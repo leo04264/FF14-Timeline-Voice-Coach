@@ -76,9 +76,9 @@ function click(element: HTMLElement) {
 }
 
 function startPull() {
-  click(screen.getByRole('button', { name: 'START' }));
+  click(screen.getByRole('button', { name: '開始' }));
   const dialog = screen.getByRole('dialog');
-  click(within(dialog).getByRole('button', { name: 'START' }));
+  click(within(dialog).getByRole('button', { name: '開始' }));
 }
 
 describe('Player flow', () => {
@@ -105,12 +105,12 @@ describe('Player flow', () => {
     expect(screen.getByTestId('timer')).toHaveTextContent('-00:15.0');
 
     // START opens the Ready Summary (Quick Start is off by default).
-    click(screen.getByRole('button', { name: 'START' }));
+    click(screen.getByRole('button', { name: '開始' }));
     const dialog = screen.getByRole('dialog');
     expect(within(dialog).getByText(/Boss Mechanics/)).toBeInTheDocument();
-    click(within(dialog).getByRole('button', { name: 'START' }));
+    click(within(dialog).getByRole('button', { name: '開始' }));
 
-    expect(screen.getByText('countdown')).toBeInTheDocument();
+    expect(screen.getByText('倒數中')).toBeInTheDocument();
 
     // Negative-time cue fires during the countdown.
     advance(13_100);
@@ -118,16 +118,16 @@ describe('Player flow', () => {
 
     // t = 0 switches to running.
     advance(2000);
-    expect(screen.getByText('running')).toBeInTheDocument();
+    expect(screen.getByText('進行中')).toBeInTheDocument();
 
     // The 10s cue fires.
     advance(10_000);
     expect(screen.getByTestId('current-cue')).toHaveTextContent('第一次機制');
 
     // WIPE resets to idle without a second confirmation.
-    click(screen.getByRole('button', { name: 'WIPE' }));
+    click(screen.getByRole('button', { name: '滅團重置' }));
     expect(screen.getByTestId('timer')).toHaveTextContent('-00:15.0');
-    expect(screen.getByText('idle')).toBeInTheDocument();
+    expect(screen.getByText('待機')).toBeInTheDocument();
     expect(screen.getByTestId('current-cue')).toHaveTextContent('—');
     expect(screen.getByTestId('pull-offset')).toHaveTextContent('+0.0s');
 
@@ -136,7 +136,7 @@ describe('Player flow', () => {
     advance(13_100);
     expect(screen.getByTestId('current-cue')).toHaveTextContent('兩秒後開始');
     // Header and the debug pull filter both mention it.
-    expect(screen.getAllByText(/Pull 2/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/第 2 場/).length).toBeGreaterThan(0);
   });
 
   it('keeps the session offset across a wipe and clears the pull offset', async () => {
@@ -149,11 +149,11 @@ describe('Player flow', () => {
     click(screen.getByRole('button', { name: '+0.5s' }));
     expect(screen.getByTestId('pull-offset')).toHaveTextContent('+0.5s');
 
-    click(screen.getByRole('button', { name: 'Move pull offset into session' }));
+    click(screen.getByRole('button', { name: '把本場偏移併入全域偏移' }));
     expect(screen.getByTestId('session-offset')).toHaveTextContent('+0.5s');
     expect(screen.getByTestId('pull-offset')).toHaveTextContent('+0.0s');
 
-    click(screen.getByRole('button', { name: 'WIPE' }));
+    click(screen.getByRole('button', { name: '滅團重置' }));
     expect(screen.getByTestId('session-offset')).toHaveTextContent('+0.5s');
     expect(screen.getByTestId('effective-offset')).toHaveTextContent('+0.5s');
   });

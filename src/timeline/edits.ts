@@ -47,7 +47,7 @@ export function updateCue(
   }));
 }
 
-export function addTrack(timeline: TimelinePackage, name = 'New Track'): TimelinePackage {
+export function addTrack(timeline: TimelinePackage, name = '新軌道'): TimelinePackage {
   const track: TimelineTrack = {
     id: createId(),
     type: 'custom',
@@ -68,7 +68,7 @@ export function duplicateTrack(timeline: TimelinePackage, trackId: string): Time
   const copy: TimelineTrack = {
     ...source,
     id: createId(),
-    name: `${source.name} (Copy)`,
+    name: `${source.name}（複本）`,
     events: source.events.map((event) => ({
       ...event,
       id: createId(),
@@ -103,7 +103,7 @@ export function addEvent(
   const event: TimelineEvent = {
     id: createId(),
     atMs,
-    name: 'New Event',
+    name: '新事件',
     category: 'mechanic',
     cues: [],
   };
@@ -139,7 +139,7 @@ export function duplicateEvent(
   const copy: TimelineEvent = {
     ...source,
     id: createId(),
-    name: `${source.name} (Copy)`,
+    name: `${source.name}（複本）`,
     cues: source.cues.map((cue) => ({ ...cue, id: createId() })),
   };
   const index = track.events.findIndex((event) => event.id === eventId);

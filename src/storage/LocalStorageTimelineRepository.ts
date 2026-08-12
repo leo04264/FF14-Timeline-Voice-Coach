@@ -73,7 +73,7 @@ export class LocalStorageTimelineRepository implements TimelineRepository {
     try {
       this.storage.setItem(timelineKey(timeline.id), JSON.stringify(record));
     } catch (error) {
-      throw new StorageWriteError('Failed to write timeline to LocalStorage', error);
+      throw new StorageWriteError('寫入 LocalStorage 失敗', error);
     }
     const ids = readIndex(this.storage);
     if (!ids.includes(timeline.id)) writeIndex(this.storage, [...ids, timeline.id]);
@@ -95,7 +95,7 @@ export class LocalStorageTimelineRepository implements TimelineRepository {
     try {
       this.storage.setItem(timelineKey(id), raw);
     } catch (error) {
-      throw new StorageWriteError('Failed to write raw timeline to LocalStorage', error);
+      throw new StorageWriteError('寫入 LocalStorage 失敗（原始資料）', error);
     }
     const ids = readIndex(this.storage);
     if (!ids.includes(id)) writeIndex(this.storage, [...ids, id]);
@@ -122,7 +122,7 @@ export class LocalStorageTimelineRepository implements TimelineRepository {
     try {
       record = JSON.parse(raw) as StoredRecord;
     } catch {
-      return invalid('Stored value is not valid JSON');
+      return invalid('儲存的內容不是合法的 JSON');
     }
 
     // `saveRaw` may have stored a bare TimelinePackage instead of a wrapper.
@@ -140,7 +140,7 @@ export class LocalStorageTimelineRepository implements TimelineRepository {
         id,
         name: guessName(raw),
         raw,
-        error: result.report.errors[0]?.message ?? 'Timeline failed validation',
+        error: result.report.errors[0]?.message ?? '時間軸沒有通過驗證',
         report: result.report,
       };
     }

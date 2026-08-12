@@ -1,3 +1,4 @@
+import { EVENT_CATEGORY_LABEL } from '../../i18n/labels';
 import type { CollisionReport } from '../../timeline/collision';
 import { addCue, updateEvent } from '../../timeline/edits';
 import { EVENT_CATEGORIES, type EventCategory, type TimelineEvent, type TimelinePackage } from '../../timeline/types';
@@ -25,8 +26,8 @@ export function EventDetail({
   if (!event) {
     return (
       <div className="col">
-        <h2>Event</h2>
-        <p className="muted small">Select an event to edit it.</p>
+        <h2>事件細節</h2>
+        <p className="muted small">選擇一個事件才能編輯。</p>
       </div>
     );
   }
@@ -36,16 +37,16 @@ export function EventDetail({
 
   return (
     <div className="col">
-      <h2>Event</h2>
+      <h2>事件細節</h2>
 
       <TimeInput
-        label="Time"
+        label="時間"
         valueMs={event.atMs}
         onChange={(ms) => patch((current) => ({ ...current, atMs: ms }))}
       />
 
       <label className="field">
-        Name
+        名稱
         <input
           value={event.name}
           onChange={(changeEvent) =>
@@ -56,7 +57,7 @@ export function EventDetail({
 
       <div className="row">
         <label className="field">
-          Phase
+          階段
           <input
             value={event.phase ?? ''}
             placeholder="P1"
@@ -66,7 +67,7 @@ export function EventDetail({
           />
         </label>
         <label className="field">
-          Category
+          分類
           <select
             value={event.category}
             onChange={(changeEvent) =>
@@ -78,7 +79,7 @@ export function EventDetail({
           >
             {EVENT_CATEGORIES.map((category) => (
               <option key={category} value={category}>
-                {category}
+                {EVENT_CATEGORY_LABEL[category]}
               </option>
             ))}
           </select>
@@ -86,19 +87,19 @@ export function EventDetail({
       </div>
 
       <div className="row">
-        <h3 style={{ margin: 0 }}>Cues ({event.cues.length})</h3>
+        <h3 style={{ margin: 0 }}>語音提示（{event.cues.length}）</h3>
         <span className="spacer" />
         <button
           type="button"
           className="primary"
           onClick={() => onChange(addCue(timeline, trackId, event.id).timeline)}
         >
-          + Add Cue
+          ＋ 新增提示
         </button>
       </div>
 
       {event.cues.length === 0 ? (
-        <p className="small text-warn">This event has no cues — nothing will be spoken.</p>
+        <p className="small text-warn">這個事件沒有任何提示，不會發出聲音。</p>
       ) : null}
 
       {event.cues.map((cue) => (

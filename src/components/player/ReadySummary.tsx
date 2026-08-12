@@ -32,46 +32,46 @@ export function ReadySummary({
 
   return (
     <Modal
-      title="Ready?"
+      title="準備好了嗎？"
       onClose={onCancel}
       footer={
         <>
           <button type="button" onClick={onCancel}>
-            Cancel
+            取消
           </button>
           <button type="button" className="primary" autoFocus onClick={onConfirm}>
-            START
+            開始
           </button>
         </>
       }
     >
       <dl className="col" style={{ margin: 0 }}>
         <div className="row">
-          <strong style={{ minWidth: 140 }}>Timeline</strong>
+          <strong style={{ minWidth: 140 }}>時間軸</strong>
           <span>{timelineName}</span>
         </div>
         <div className="row">
-          <strong style={{ minWidth: 140 }}>Position / Job</strong>
+          <strong style={{ minWidth: 140 }}>站位 / 職業</strong>
           <span>
             {profile.position} / {profile.job}
           </span>
-          {conventional ? null : <span className="badge warn">unusual</span>}
+          {conventional ? null : <span className="badge warn">非常見組合</span>}
         </div>
         <div className="row">
-          <strong style={{ minWidth: 140 }}>Tracks</strong>
-          <span>{enabled.length ? enabled.map((track) => track.name).join(', ') : 'none'}</span>
+          <strong style={{ minWidth: 140 }}>啟用軌道</strong>
+          <span>{enabled.length ? enabled.map((track) => track.name).join('、') : '無'}</span>
         </div>
         <div className="row">
-          <strong style={{ minWidth: 140 }}>Countdown</strong>
-          <span className="mono">{(countdownMs / 1000).toFixed(1)}s</span>
+          <strong style={{ minWidth: 140 }}>倒數</strong>
+          <span className="mono">{(countdownMs / 1000).toFixed(1)} 秒</span>
         </div>
         <div className="row">
-          <strong style={{ minWidth: 140 }}>Effective Offset</strong>
+          <strong style={{ minWidth: 140 }}>實際偏移</strong>
           <span className="mono">{formatSecondsSigned(effectiveOffsetMs)}</span>
         </div>
         <div className="row">
-          <strong style={{ minWidth: 140 }}>Cues for you</strong>
-          <span>{cueCount}</span>
+          <strong style={{ minWidth: 140 }}>你會聽到的提示</strong>
+          <span>{cueCount} 句</span>
         </div>
       </dl>
     </Modal>

@@ -30,7 +30,7 @@ export function LibraryPage() {
   const [notice, setNotice] = useState<string | null>(null);
 
   const handleNew = async () => {
-    const timeline = createEmptyTimeline();
+    const timeline = createEmptyTimeline('新的時間軸');
     await saveTimeline(timeline);
     navigate(`/editor/${timeline.id}`);
   };
@@ -54,13 +54,13 @@ export function LibraryPage() {
     }
 
     await saveTimeline(result.timeline);
-    setNotice(`Imported "${result.timeline.meta.name}"`);
+    setNotice(`已匯入「${result.timeline.meta.name}」`);
   };
 
   const handleDuplicate = async (timeline: TimelinePackage, label: string) => {
-    const copy = cloneTimelineWithNewIds(timeline, { name: `${timeline.meta.name} (${label})` });
+    const copy = cloneTimelineWithNewIds(timeline, { name: `${timeline.meta.name}（${label}）` });
     await saveTimeline(copy);
-    setNotice(`Created "${copy.meta.name}"`);
+    setNotice(`已建立「${copy.meta.name}」`);
   };
 
   const handleExport = (entry: TimelineEntry) => {
@@ -68,7 +68,7 @@ export function LibraryPage() {
     try {
       exportTimeline(entry.timeline, entry.report);
     } catch {
-      setNotice('Export blocked: fix the validation errors, or use Export Raw Draft.');
+      setNotice('無法正式匯出：請先修正驗證錯誤，或改用「匯出草稿」。');
     }
   };
 
@@ -90,79 +90,79 @@ export function LibraryPage() {
           <div className="muted small mono">{entry.id}</div>
         </td>
         <td>
-          <span className="badge">{isBuiltin ? 'built-in' : 'local'}</span>
+          <span className="badge">{isBuiltin ? '內建' : '本機'}</span>
         </td>
         <td>
           {entry.status === 'invalid' ? (
             <span className="badge error" title={entry.error}>
-              invalid
+              無法讀取
             </span>
           ) : errors > 0 ? (
-            <span className="badge error">{errors} errors</span>
+            <span className="badge error">{errors} 個錯誤</span>
           ) : warnings > 0 ? (
-            <span className="badge warn">{warnings} warnings</span>
+            <span className="badge warn">{warnings} 個警告</span>
           ) : (
-            <span className="badge ok">ok</span>
+            <span className="badge ok">正常</span>
           )}
         </td>
         <td className="mono small">
           {entry.status === 'valid'
-            ? `${entry.timeline.tracks.length} tracks · ${entry.timeline.tracks.reduce(
+            ? `${entry.timeline.tracks.length} 軌道 · ${entry.timeline.tracks.reduce(
                 (sum, track) => sum + track.events.length,
                 0,
-              )} events`
+              )} 事件`
             : '--'}
         </td>
         <td>
           <div className="row">
             {entry.status === 'valid' && errors === 0 ? (
               <button type="button" onClick={() => navigate(`/player/${entry.id}`)}>
-                Play
+                播放
               </button>
             ) : null}
             {entry.status === 'valid' && !isBuiltin ? (
               <button type="button" onClick={() => navigate(`/editor/${entry.id}`)}>
-                Edit
+                編輯
               </button>
             ) : null}
             {entry.status === 'valid' && isBuiltin ? (
               <button
                 type="button"
-                title="Built-in timelines are read only; editing creates a fork"
+                title="內建時間軸是唯讀的，編輯會自動建立一份衍生版本"
                 onClick={async () => {
                   const fork = cloneTimelineWithNewIds(entry.timeline, {
-                    name: `${entry.timeline.meta.name} (Fork)`,
+                    name: `${entry.timeline.meta.name}（衍生）`,
                   });
                   await saveTimeline(fork);
                   navigate(`/editor/${fork.id}`);
                 }}
               >
-                Fork &amp; Edit
+                衍生後編輯
               </button>
             ) : null}
             {entry.status === 'valid' ? (
               <>
-                <button type="button" onClick={() => handleDuplicate(entry.timeline, 'Copy')}>
-                  Duplicate
+                <button type="button" onClick={() => handleDuplicate(entry.timeline, '複本')}>
+                  複製
                 </button>
-                <button type="button" onClick={() => handleDuplicate(entry.timeline, 'Fork')}>
-                  Fork
+                <button type="button" onClick={() => handleDuplicate(entry.timeline, '衍生')}>
+                  衍生
                 </button>
                 <button type="button" onClick={() => handleExport(entry)}>
-                  Export
+                  匯出 JSON
                 </button>
                 <button type="button" className="ghost" onClick={() => exportRawDraft(entry.timeline)}>
-                  Export Raw Draft
+                  匯出草稿
                 </button>
               </>
             ) : (
               <button type="button" onClick={() => void handleExportRawStored(entry)}>
-                Export Raw Data
+                匯出原始資料
               </button>
             )}
             {!isBuiltin ? (
               <button type="button" className="danger" onClick={() => setPendingDelete(entry)}>
-                Delete
+                刪除
               </button>
             ) : null}
           </div>
@@ -174,16 +174,16 @@ export function LibraryPage() {
   return (
     <section className="col">
       <div className="page-header">
-        <h1>Timeline Library</h1>
+        <h1>時間軸庫</h1>
         <div className="row">
           <button type="button" className="primary" onClick={() => void handleNew()}>
-            New Timeline
+            新增時間軸
           </button>
           <button type="button" onClick={() => fileInputRef.current?.click()}>
-            Import JSON
+            匯入 JSON
           </button>
           <button type="button" className="ghost" onClick={() => void refresh()}>
-            Refresh
+            重新整理
           </button>
           <input
             ref={fileInputRef}
@@ -204,36 +204,36 @@ export function LibraryPage() {
           <span>{notice}</span>
           <span className="spacer" />
           <button type="button" className="ghost" onClick={() => setNotice(null)}>
-            Dismiss
+            關閉
           </button>
         </div>
       ) : null}
 
       {importError ? (
         <div className="panel">
-          <p className="text-error">Import failed: {importError}</p>
+          <p className="text-error">匯入失敗：{importError}</p>
         </div>
       ) : null}
 
-      {loading ? <p className="muted">Loading…</p> : null}
+      {loading ? <p className="muted">載入中…</p> : null}
 
       <div className="panel">
-        <h2>My Timelines ({locals.length})</h2>
+        <h2>我的時間軸（{locals.length}）</h2>
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Source</th>
-              <th>Status</th>
-              <th>Contents</th>
-              <th>Actions</th>
+              <th>名稱</th>
+              <th>來源</th>
+              <th>狀態</th>
+              <th>內容</th>
+              <th>操作</th>
             </tr>
           </thead>
           <tbody>
             {locals.length === 0 ? (
               <tr>
                 <td colSpan={5} className="muted">
-                  Nothing stored yet. Create a new timeline or fork a built-in one.
+                  還沒有任何資料。可以新增一份，或從內建範本衍生一份。
                 </td>
               </tr>
             ) : null}
@@ -243,16 +243,16 @@ export function LibraryPage() {
       </div>
 
       <div className="panel">
-        <h2>Built-in Templates ({builtins.length})</h2>
-        <p className="muted small">Read only — editing creates a fork (spec §64).</p>
+        <h2>內建範本（{builtins.length}）</h2>
+        <p className="muted small">唯讀，編輯時會自動建立衍生版本（規格 §64）。</p>
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Source</th>
-              <th>Status</th>
-              <th>Contents</th>
-              <th>Actions</th>
+              <th>名稱</th>
+              <th>來源</th>
+              <th>狀態</th>
+              <th>內容</th>
+              <th>操作</th>
             </tr>
           </thead>
           <tbody>{builtins.map(renderRow)}</tbody>
@@ -261,25 +261,25 @@ export function LibraryPage() {
 
       {conflict ? (
         <Modal
-          title="Timeline id already exists"
+          title="時間軸 ID 重複"
           onClose={() => setConflict(null)}
           footer={
             <>
               <button type="button" onClick={() => setConflict(null)}>
-                Cancel
+                取消
               </button>
               <button
                 type="button"
                 onClick={async () => {
                   const copy = cloneTimelineWithNewIds(conflict.timeline, {
-                    name: `${conflict.timeline.meta.name} (Imported Copy)`,
+                    name: `${conflict.timeline.meta.name}（匯入複本）`,
                   });
                   await saveTimeline(copy);
                   setConflict(null);
-                  setNotice(`Imported as copy: "${copy.meta.name}"`);
+                  setNotice(`已匯入為複本：「${copy.meta.name}」`);
                 }}
               >
-                Import as Copy
+                匯入成複本
               </button>
               <button
                 type="button"
@@ -287,29 +287,29 @@ export function LibraryPage() {
                 onClick={async () => {
                   await saveTimeline(conflict.timeline);
                   setConflict(null);
-                  setNotice(`Replaced "${conflict.timeline.meta.name}"`);
+                  setNotice(`已覆蓋「${conflict.timeline.meta.name}」`);
                 }}
               >
-                Replace
+                覆蓋
               </button>
             </>
           }
         >
           <p>
-            The imported timeline has the same id as <strong>{conflict.existingName}</strong>.
-            Nothing is overwritten without your choice (spec §67).
+            匯入的時間軸和 <strong>{conflict.existingName}</strong> 的 ID
+            相同。在你選擇之前不會動到現有資料（規格 §67）。
           </p>
         </Modal>
       ) : null}
 
       {pendingDelete ? (
         <Modal
-          title="Delete timeline?"
+          title="確定要刪除嗎？"
           onClose={() => setPendingDelete(null)}
           footer={
             <>
               <button type="button" onClick={() => setPendingDelete(null)}>
-                Cancel
+                取消
               </button>
               <button
                 type="button"
@@ -323,7 +323,7 @@ export function LibraryPage() {
                   }
                 }}
               >
-                Download backup first
+                先下載備份
               </button>
               <button
                 type="button"
@@ -331,22 +331,22 @@ export function LibraryPage() {
                 onClick={async () => {
                   await deleteTimeline(pendingDelete.id);
                   setPendingDelete(null);
-                  setNotice('Timeline deleted');
+                  setNotice('已刪除');
                 }}
               >
-                Delete
+                刪除
               </button>
             </>
           }
         >
           <p>
+            將會移除{' '}
             <strong>
               {pendingDelete.status === 'valid'
                 ? pendingDelete.timeline.meta.name
                 : (pendingDelete.name ?? pendingDelete.id)}
-            </strong>{' '}
-            will be removed. V0.1 has no trash — this cannot be undone after you leave the page
-            (spec §66).
+            </strong>
+            。V0.1 沒有垃圾桶，離開頁面之後就救不回來了（規格 §66）。
           </p>
         </Modal>
       ) : null}

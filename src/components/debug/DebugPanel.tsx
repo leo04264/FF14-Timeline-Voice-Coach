@@ -8,6 +8,7 @@ import {
   TIMING_VERDICT_LABEL,
 } from '../../debug/statistics';
 import type { DebugCueRecord, DebugStatistics, MetricSummary } from '../../debug/types';
+import { DEBUG_STATUS_LABEL, VISIBILITY_LABEL } from '../../i18n/labels';
 import { formatMs } from '../../timeline/time';
 
 interface DebugPanelProps {
@@ -36,19 +37,19 @@ function StatisticsTable({ stats }: { stats: DebugStatistics }) {
     <table>
       <thead>
         <tr>
-          <th>Metric</th>
-          <th>Count</th>
-          <th>Avg</th>
+          <th>指標</th>
+          <th>筆數</th>
+          <th>平均</th>
           <th>P50</th>
           <th>P95</th>
           <th>P99</th>
-          <th>Max</th>
+          <th>最大</th>
         </tr>
       </thead>
       <tbody>
-        <MetricRow label="Engine late" metric={stats.engineLate} />
-        <MetricRow label="TTS queue delay" metric={stats.ttsQueueDelay} />
-        <MetricRow label="Approx audible late" metric={stats.approxAudibleLate} />
+        <MetricRow label="引擎延遲" metric={stats.engineLate} />
+        <MetricRow label="語音排隊延遲" metric={stats.ttsQueueDelay} />
+        <MetricRow label="估計實際延遲" metric={stats.approxAudibleLate} />
       </tbody>
     </table>
   );
@@ -77,26 +78,26 @@ export function DebugPanel({ records, onClear, defaultOpen = false }: DebugPanel
   return (
     <details className="panel" open={defaultOpen}>
       <summary>
-        Debug / Timing{' '}
+        偵錯 / 延遲統計{' '}
         <span className="muted small">
-          ({records.length} records, {pulls.length} pulls)
+          （{records.length} 筆記錄，{pulls.length} 場）
         </span>
       </summary>
 
       <div className="col" style={{ marginTop: '0.75rem' }}>
         <div className="row">
           <label className="field">
-            Pull
+            場次
             <select
               value={String(pullFilter)}
               onChange={(event) =>
                 setPullFilter(event.target.value === 'all' ? 'all' : Number(event.target.value))
               }
             >
-              <option value="all">All pulls</option>
+              <option value="all">全部場次</option>
               {pulls.map((pull) => (
                 <option key={pull} value={pull}>
-                  Pull {pull}
+                  第 {pull} 場
                 </option>
               ))}
             </select>
@@ -107,58 +108,58 @@ export function DebugPanel({ records, onClear, defaultOpen = false }: DebugPanel
             disabled={records.length === 0}
             onClick={() => downloadCsv('ff14-timeline-debug.csv', recordsToCsv(records))}
           >
-            Export CSV
+            匯出 CSV
           </button>
           <button type="button" className="ghost" disabled={records.length === 0} onClick={onClear}>
-            Clear Debug
+            清除記錄
           </button>
         </div>
 
         <div className="debug-grid">
           <div className="stat">
-            <div className="label">Records</div>
+            <div className="label">記錄筆數</div>
             <div className="value">{stats.totalRecords}</div>
           </div>
           <div className="stat">
-            <div className="label">Played</div>
+            <div className="label">已播放</div>
             <div className="value">{stats.played}</div>
           </div>
           <div className="stat">
-            <div className="label">Skipped</div>
+            <div className="label">已略過</div>
             <div className={`value ${stats.skipped > 0 ? 'text-warn' : ''}`}>{stats.skipped}</div>
           </div>
           <div className="stat">
-            <div className="label">Errors</div>
+            <div className="label">錯誤</div>
             <div className={`value ${stats.errors > 0 ? 'text-error' : ''}`}>{stats.errors}</div>
           </div>
           <div className="stat">
-            <div className="label">Approx audible P95</div>
+            <div className="label">估計實際延遲 P95</div>
             <div className="value">{formatMetric(stats.approxAudibleLate.p95)}</div>
           </div>
         </div>
 
         <p className="small">
-          Verdict: <strong>{TIMING_VERDICT_LABEL[verdict]}</strong>
+          評估結果：<strong>{TIMING_VERDICT_LABEL[verdict]}</strong>
         </p>
 
-        <h3>Statistics</h3>
+        <h3>統計</h3>
         <StatisticsTable stats={stats} />
 
-        <h3>Foreground vs Background</h3>
+        <h3>前景 vs 背景</h3>
         <table>
           <thead>
             <tr>
-              <th>Visibility</th>
-              <th>Records</th>
-              <th>Skipped</th>
-              <th>Engine late P95</th>
-              <th>Approx audible P95</th>
-              <th>Approx audible Max</th>
+              <th>分頁狀態</th>
+              <th>記錄筆數</th>
+              <th>已略過</th>
+              <th>引擎延遲 P95</th>
+              <th>估計實際延遲 P95</th>
+              <th>估計實際延遲 最大</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>visible</td>
+              <td>{VISIBILITY_LABEL.visible}</td>
               <td className="mono">{byVisibility.visible.totalRecords}</td>
               <td className="mono">{byVisibility.visible.skipped}</td>
               <td className="mono">{formatMetric(byVisibility.visible.engineLate.p95)}</td>
@@ -166,7 +167,7 @@ export function DebugPanel({ records, onClear, defaultOpen = false }: DebugPanel
               <td className="mono">{formatMetric(byVisibility.visible.approxAudibleLate.max)}</td>
             </tr>
             <tr>
-              <td>hidden</td>
+              <td>{VISIBILITY_LABEL.hidden}</td>
               <td className="mono">{byVisibility.hidden.totalRecords}</td>
               <td className="mono">{byVisibility.hidden.skipped}</td>
               <td className="mono">{formatMetric(byVisibility.hidden.engineLate.p95)}</td>
@@ -176,21 +177,21 @@ export function DebugPanel({ records, onClear, defaultOpen = false }: DebugPanel
           </tbody>
         </table>
 
-        <h3>Records</h3>
+        <h3>逐筆記錄</h3>
         <div className="scroll-y">
           <table>
             <thead>
               <tr>
-                <th>Pull</th>
-                <th>Cue</th>
-                <th>Text</th>
-                <th>Trigger</th>
-                <th>Engine late</th>
-                <th>TTS delay</th>
-                <th>Approx</th>
-                <th>Vis (trigger)</th>
-                <th>Vis (audio)</th>
-                <th>Status</th>
+                <th>場次</th>
+                <th>事件</th>
+                <th>內容</th>
+                <th>觸發時間</th>
+                <th>引擎延遲</th>
+                <th>語音排隊</th>
+                <th>估計實際</th>
+                <th>觸發時分頁</th>
+                <th>發聲時分頁</th>
+                <th>狀態</th>
               </tr>
             </thead>
             <tbody>
@@ -211,8 +212,12 @@ export function DebugPanel({ records, onClear, defaultOpen = false }: DebugPanel
                       ? '--'
                       : formatMetric(record.approxAudibleLateMs)}
                   </td>
-                  <td>{record.visibilityTrigger}</td>
-                  <td>{record.visibilityAudioStart ?? '--'}</td>
+                  <td>{VISIBILITY_LABEL[record.visibilityTrigger]}</td>
+                  <td>
+                    {record.visibilityAudioStart
+                      ? VISIBILITY_LABEL[record.visibilityAudioStart]
+                      : '--'}
+                  </td>
                   <td
                     className={
                       record.status === 'skipped'
@@ -222,7 +227,7 @@ export function DebugPanel({ records, onClear, defaultOpen = false }: DebugPanel
                           : ''
                     }
                   >
-                    {record.status}
+                    {DEBUG_STATUS_LABEL[record.status]}
                   </td>
                 </tr>
               ))}

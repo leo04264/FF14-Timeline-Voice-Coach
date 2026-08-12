@@ -44,7 +44,7 @@ export function TargetEditor({ label, target, onChange }: TargetEditorProps) {
       <div className="row">
         <strong className="small">{label}</strong>
         <span className="muted small">
-          {positions || jobs ? '(positions OR) AND (jobs OR)' : 'ALL'}
+          {positions || jobs ? '（站位 任一）且（職業 任一）' : '所有人'}
         </span>
       </div>
 
@@ -54,7 +54,7 @@ export function TargetEditor({ label, target, onChange }: TargetEditorProps) {
           className={positions ? '' : 'active'}
           onClick={() => emit({ positions: undefined, jobs })}
         >
-          Any position
+          不限站位
         </button>
         {PARTY_POSITIONS.map((position) => (
           <button
@@ -74,7 +74,7 @@ export function TargetEditor({ label, target, onChange }: TargetEditorProps) {
           className={jobs ? '' : 'active'}
           onClick={() => emit({ positions, jobs: undefined })}
         >
-          Any job
+          不限職業
         </button>
         {JOB_CODES.map((job) => (
           <button
@@ -90,7 +90,7 @@ export function TargetEditor({ label, target, onChange }: TargetEditorProps) {
 
       {positions?.length === 0 || jobs?.length === 0 ? (
         <span className="small text-warn">
-          An empty selection matches nobody — use "Any" to target everyone.
+          一個都沒選代表沒有人會聽到，要對所有人播放請按「不限」。
         </span>
       ) : null}
     </div>

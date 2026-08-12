@@ -19,13 +19,13 @@ export function readSchemaVersion(input: unknown): number | undefined {
 
 export function migrateTimeline(input: unknown): MigrationResult {
   if (typeof input !== 'object' || input === null || Array.isArray(input)) {
-    return { ok: false, error: 'Timeline must be a JSON object' };
+    return { ok: false, error: '時間軸必須是 JSON 物件' };
   }
 
   const version = readSchemaVersion(input);
 
   if (version === undefined) {
-    return { ok: false, error: 'Missing schemaVersion' };
+    return { ok: false, error: '缺少 schemaVersion 欄位' };
   }
 
   if (version === CURRENT_SCHEMA_VERSION) {
@@ -35,10 +35,10 @@ export function migrateTimeline(input: unknown): MigrationResult {
   if (version > CURRENT_SCHEMA_VERSION) {
     return {
       ok: false,
-      error: `Timeline schemaVersion ${version} is newer than this app supports (${CURRENT_SCHEMA_VERSION})`,
+      error: `時間軸的 schemaVersion 是 ${version}，比這個版本支援的 ${CURRENT_SCHEMA_VERSION} 還新`,
     };
   }
 
   // No older versions exist yet; future migrations chain from here.
-  return { ok: false, error: `Unsupported schemaVersion ${version}` };
+  return { ok: false, error: `不支援的 schemaVersion：${version}` };
 }

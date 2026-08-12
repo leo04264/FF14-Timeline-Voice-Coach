@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { CUE_PRIORITY_LABEL, EVENT_CATEGORY_LABEL } from '../../i18n/labels';
 import { formatMs } from '../../timeline/time';
 import type { CompiledCue } from '../../timeline/types';
 
@@ -51,15 +52,17 @@ export function CueDisplay({ currentCue, currentCueAtMs, nextCues }: CueDisplayP
         <div className="row small muted">
           <span>{currentCue.eventName}</span>
           {currentCue.phase ? <span className="badge">{currentCue.phase}</span> : null}
-          <span className="badge">{currentCue.category}</span>
-          <span className={`badge ${highPriority ? 'high' : ''}`}>{currentCue.priority}</span>
+          <span className="badge">{EVENT_CATEGORY_LABEL[currentCue.category]}</span>
+          <span className={`badge ${highPriority ? 'high' : ''}`}>
+            {CUE_PRIORITY_LABEL[currentCue.priority]}
+          </span>
           <span className="mono">{formatMs(currentCue.triggerMs)}</span>
         </div>
       ) : null}
 
-      <h3 style={{ marginTop: '0.5rem' }}>Next 3</h3>
+      <h3 style={{ marginTop: '0.5rem' }}>接下來三句</h3>
       <div className="next-cues" data-testid="next-cues">
-        {nextCues.length === 0 ? <span className="muted small">No more cues</span> : null}
+        {nextCues.length === 0 ? <span className="muted small">沒有後續提示了</span> : null}
         {nextCues.map((cue) => (
           <div
             key={`${cue.id}-${cue.triggerMs}`}

@@ -124,8 +124,8 @@ export function analyzeCueRefCollisions(
 
 export function describeCollision(pair: CollisionPair): string {
   return (
-    `${pair.a.eventName} / "${pair.a.text}" (${describeTarget(pair.a.target)}) ` +
-    `and ${pair.b.eventName} / "${pair.b.text}" (${describeTarget(pair.b.target)}) ` +
-    `trigger ${pair.gapMs}ms apart`
+    `${pair.a.eventName}／「${pair.a.text}」（${describeTarget(pair.a.target)}）` +
+    `與 ${pair.b.eventName}／「${pair.b.text}」（${describeTarget(pair.b.target)}）` +
+    `相隔 ${pair.gapMs} 毫秒觸發`
   );
 }

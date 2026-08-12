@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useLibrary } from '../../app/LibraryContext';
 import { useSettings } from '../../app/SettingsContext';
 import { DebugPanel } from '../debug/DebugPanel';
+import { ENGINE_STATE_LABEL } from '../../i18n/labels';
 import { useShortcuts } from '../../hooks/useShortcuts';
 import { useTimelineEngine } from '../../hooks/useTimelineEngine';
 import { loadPlayerPrefs, savePlayerPrefs } from '../../storage/settings';
@@ -67,7 +68,7 @@ export function PlayerView({ mode }: PlayerViewProps) {
   }, [timeline?.id]);
 
   const compileResult = useMemo((): { compiled: CompiledTimeline } | { error: string } => {
-    if (!timeline) return { error: 'No timeline selected' };
+    if (!timeline) return { error: '尚未選擇時間軸' };
     try {
       return {
         compiled: compileTimeline(timeline, {
@@ -80,13 +81,13 @@ export function PlayerView({ mode }: PlayerViewProps) {
     } catch (error) {
       if (error instanceof TimelineCompileError) {
         return {
-          error: `Timeline has ${error.report.errors.length} blocking validation error(s): ${error.report.errors
+          error: `這份時間軸有 ${error.report.errors.length} 個必須修正的錯誤：${error.report.errors
             .slice(0, 3)
             .map((issue) => issue.message)
-            .join('; ')}`,
+            .join('；')}`,
         };
       }
-      return { error: error instanceof Error ? error.message : 'Failed to compile timeline' };
+      return { error: error instanceof Error ? error.message : '時間軸編譯失敗' };
     }
   }, [timeline, profile, enabledTrackIds, countdownMs, settings.audio]);
 
@@ -152,18 +153,18 @@ export function PlayerView({ mode }: PlayerViewProps) {
     [engine, updateSettings],
   );
 
-  if (loading) return <p className="muted">Loading library…</p>;
+  if (loading) return <p className="muted">時間軸庫載入中…</p>;
 
   if (!timelineId || !entry) {
     const selectable = entries.filter((candidate) => candidate.status === 'valid');
     return (
       <section className="panel">
-        <h1>{mode === 'practice' ? 'Practice' : 'Player'}</h1>
-        <p className="muted">Pick a timeline to run.</p>
+        <h1>{mode === 'practice' ? '練習' : '播放器'}</h1>
+        <p className="muted">選擇一份要跑的時間軸。</p>
         <div className="col">
           {selectable.length === 0 ? (
             <p className="muted">
-              No timelines available. Create one in the Editor or import JSON from the Library.
+              目前沒有可用的時間軸。請到編輯器新增一份，或從時間軸庫匯入 JSON。
             </p>
           ) : null}
           {selectable.map((candidate) => (
@@ -173,10 +174,10 @@ export function PlayerView({ mode }: PlayerViewProps) {
                 className="primary"
                 onClick={() => navigate(`/${mode === 'practice' ? 'practice' : 'player'}/${candidate.id}`)}
               >
-                Open
+                開啟
               </button>
               <span>{candidate.status === 'valid' ? candidate.timeline.meta.name : candidate.id}</span>
-              <span className="badge">{candidate.source}</span>
+              <span className="badge">{candidate.source === 'builtin' ? '內建' : '本機'}</span>
             </div>
           ))}
         </div>
@@ -187,10 +188,9 @@ export function PlayerView({ mode }: PlayerViewProps) {
   if (!timeline) {
     return (
       <section className="panel">
-        <h1>Timeline unavailable</h1>
+        <h1>無法使用這份時間軸</h1>
         <p className="text-error">
-          This timeline failed validation and cannot be played (spec §79). Open it in the Library to
-          export the raw data or delete it.
+          這份時間軸沒有通過驗證，因此不能播放（規格 §79）。請到時間軸庫匯出原始資料，或直接刪除。
         </p>
       </section>
     );
@@ -205,20 +205,20 @@ export function PlayerView({ mode }: PlayerViewProps) {
         <div>
           <h1>
             {timeline.meta.name}{' '}
-            {mode === 'practice' ? <span className="badge">Practice</span> : null}
+            {mode === 'practice' ? <span className="badge">練習模式</span> : null}
           </h1>
           <p className="muted small">
             {timeline.meta.encounterId}
             {timeline.meta.strategy ? ` · ${timeline.meta.strategy}` : ''}
-            {timeline.meta.version ? ` · v${timeline.meta.version}` : ''} · Pull {snapshot.pullId}
+            {timeline.meta.version ? ` · v${timeline.meta.version}` : ''} · 第 {snapshot.pullId} 場
           </p>
         </div>
         <div className="row">
           <button type="button" onClick={() => navigate(`/editor/${timeline.id}`)}>
-            Edit
+            編輯
           </button>
           <button type="button" onClick={() => navigate('/library')}>
-            Library
+            時間軸庫
           </button>
         </div>
       </div>
@@ -232,17 +232,17 @@ export function PlayerView({ mode }: PlayerViewProps) {
       <div className="panel">
         <div className="row" style={{ alignItems: 'flex-start' }}>
           <div className="col" style={{ minWidth: 240 }}>
-            <div className="player-state">{snapshot.state}</div>
+            <div className="player-state">{ENGINE_STATE_LABEL[snapshot.state]}</div>
             <div className="player-timer mono" data-testid="timer">
               {formatTimer(snapshot.timelineElapsedMs)}
             </div>
             <div className="small muted mono">
-              duration {formatMs(snapshot.durationMs, { millis: false })} · cue{' '}
-              {snapshot.firedCount}/{snapshot.totalCues}
-              {snapshot.skippedCount > 0 ? ` · skipped ${snapshot.skippedCount}` : ''}
+              全長 {formatMs(snapshot.durationMs, { millis: false })} · 提示 {snapshot.firedCount}/
+              {snapshot.totalCues}
+              {snapshot.skippedCount > 0 ? ` · 略過 ${snapshot.skippedCount}` : ''}
             </div>
             <div className="small muted mono">
-              effective offset {formatSecondsSigned(snapshot.effectiveOffsetMs)}
+              實際偏移 {formatSecondsSigned(snapshot.effectiveOffsetMs)}
             </div>
           </div>
 
@@ -262,10 +262,10 @@ export function PlayerView({ mode }: PlayerViewProps) {
             disabled={!compiled}
             onClick={running || paused ? beginPull : handleStart}
           >
-            {running || paused ? 'RESTART' : 'START'}
+            {running || paused ? '重新開始' : '開始'}
           </button>
           <button type="button" className="wipe-button" onClick={handleWipe}>
-            WIPE
+            滅團重置
           </button>
           {mode === 'practice' ? (
             <button
@@ -274,16 +274,16 @@ export function PlayerView({ mode }: PlayerViewProps) {
               onClick={() => (paused ? engine.resume() : engine.pause())}
               disabled={!running && !paused}
             >
-              {paused ? 'Resume' : 'Pause'}
+              {paused ? '繼續' : '暫停'}
             </button>
           ) : null}
           <span className="spacer" />
-          <span className="small muted">Space start/restart · Esc wipe · ←/→ ±0.5s</span>
+          <span className="small muted">空白鍵 開始/重新開始 · Esc 重置 · ←/→ 偏移 ±0.5 秒</span>
         </div>
       </div>
 
       <div className="panel">
-        <h2>Offset</h2>
+        <h2>偏移校正</h2>
         <OffsetControls
           sessionOffsetMs={snapshot.sessionOffsetMs}
           pullOffsetMs={snapshot.pullOffsetMs}
@@ -297,9 +297,9 @@ export function PlayerView({ mode }: PlayerViewProps) {
       </div>
 
       <details className="panel" open={isIdle}>
-        <summary>Setup</summary>
+        <summary>開場設定</summary>
         <div className="col" style={{ marginTop: '0.75rem' }}>
-          <h3>Position / Job</h3>
+          <h3>站位 / 職業</h3>
           <ProfileSelector
             profile={profile}
             disabled={running}
@@ -309,7 +309,7 @@ export function PlayerView({ mode }: PlayerViewProps) {
             }}
           />
 
-          <h3>Tracks</h3>
+          <h3>軌道</h3>
           <TrackSelector
             tracks={timeline.tracks}
             enabledTrackIds={enabledTrackIds}
@@ -320,7 +320,7 @@ export function PlayerView({ mode }: PlayerViewProps) {
             }}
           />
 
-          <h3>Countdown</h3>
+          <h3>倒數</h3>
           <CountdownSelector
             countdownMs={countdownMs}
             timelineDefaultMs={timeline.encounter.countdownMs}
@@ -332,17 +332,17 @@ export function PlayerView({ mode }: PlayerViewProps) {
             }}
           />
           <p className="small muted">
-            The countdown is shown only — no automatic 5/4/3/2/1 voice. Add negative-time cues to
-            the timeline if you want spoken countdown lines (spec §18).
+            倒數只會顯示在畫面上，不會自動念 5、4、3、2、1。想要語音倒數的話，請在時間軸裡自己加負時間的提示（規格
+            §18）。
           </p>
 
           <div className="row">
             <button
               type="button"
               onClick={() => void backend.prepare(compiled ? compiled.cues : [])}
-              title="Warm up the speech engine (Chrome needs one user gesture)"
+              title="先喚醒語音引擎，Chrome 需要一次使用者操作才會啟動"
             >
-              Test audio
+              測試語音引擎
             </button>
             <button
               type="button"
@@ -356,7 +356,7 @@ export function PlayerView({ mode }: PlayerViewProps) {
                 })
               }
             >
-              Speak sample
+              試聽一句
             </button>
           </div>
         </div>

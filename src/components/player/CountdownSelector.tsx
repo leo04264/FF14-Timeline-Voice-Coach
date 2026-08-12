@@ -25,7 +25,7 @@ export function CountdownSelector({
   const applyCustom = () => {
     const parsed = parseTimeInput(custom);
     if (!parsed.ok || parsed.ms === undefined || parsed.ms < 0) {
-      setCustomError(parsed.error ?? 'Countdown must be >= 0');
+      setCustomError(parsed.error ?? '倒數秒數必須大於等於 0');
       return;
     }
     setCustomError(null);
@@ -43,7 +43,7 @@ export function CountdownSelector({
             className={countdownMs === preset ? 'active' : ''}
             onClick={() => onChange(preset)}
           >
-            {preset / 1000}s
+            {preset / 1000} 秒
           </button>
         ))}
         <button
@@ -52,12 +52,12 @@ export function CountdownSelector({
           className={countdownMs === timelineDefaultMs ? 'active' : ''}
           onClick={() => onChange(timelineDefaultMs)}
         >
-          Timeline default ({timelineDefaultMs / 1000}s)
+          時間軸預設（{timelineDefaultMs / 1000} 秒）
         </button>
       </div>
       <div className="row">
         <label className="field">
-          Custom (SS or MM:SS.mmm)
+          自訂（SS 或 MM:SS.mmm）
           <input
             value={custom}
             disabled={disabled}
@@ -70,7 +70,7 @@ export function CountdownSelector({
             }}
           />
         </label>
-        <span className="mono">= {(countdownMs / 1000).toFixed(3)}s</span>
+        <span className="mono">= {(countdownMs / 1000).toFixed(3)} 秒</span>
       </div>
       {customError ? <p className="small text-error">{customError}</p> : null}
     </div>

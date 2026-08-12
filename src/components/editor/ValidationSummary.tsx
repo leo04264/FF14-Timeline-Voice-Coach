@@ -25,25 +25,23 @@ export function ValidationSummary({
     <div className="panel col">
       <div className="row">
         <span className={report.errors.length ? 'badge error' : 'badge ok'}>
-          {report.errors.length} Errors
+          {report.errors.length} 個錯誤
         </span>
         <span className={report.warnings.length ? 'badge warn' : 'badge'}>
-          {report.warnings.length} Warnings
+          {report.warnings.length} 個警告
         </span>
         <span className={collisions.pairs.length ? 'badge warn' : 'badge'}>
-          {collisions.pairs.length} Collisions ({severeCollisions} same-priority) within{' '}
-          {collisions.windowMs}ms
+          {collisions.windowMs} 毫秒內有 {collisions.pairs.length} 組衝突（其中 {severeCollisions}{' '}
+          組同優先度）
         </span>
         {report.errors.length > 0 ? (
-          <span className="small text-error">
-            Live Player and formal Export are blocked until the errors are fixed.
-          </span>
+          <span className="small text-error">錯誤修正之前，無法播放也無法正式匯出。</span>
         ) : null}
       </div>
 
       {report.issues.length > 0 ? (
         <details>
-          <summary className="small">Issues</summary>
+          <summary className="small">問題清單</summary>
           <div className="issue-list" style={{ marginTop: '0.4rem' }}>
             {report.issues.map((issue, index) => (
               <button
@@ -53,7 +51,7 @@ export function ValidationSummary({
                 onClick={() => onSelectIssue(issue)}
               >
                 <span className={`badge ${issue.level === 'error' ? 'error' : 'warn'}`}>
-                  {issue.level}
+                  {issue.level === 'error' ? '錯誤' : '警告'}
                 </span>
                 <span>{issue.message}</span>
               </button>
@@ -64,7 +62,7 @@ export function ValidationSummary({
 
       {collisions.pairs.length > 0 ? (
         <details>
-          <summary className="small">Collisions</summary>
+          <summary className="small">衝突清單</summary>
           <div className="issue-list" style={{ marginTop: '0.4rem' }}>
             {collisions.pairs.map((pair, index) => {
               const location = cueIndex.get(pair.a.cueId);
@@ -78,7 +76,7 @@ export function ValidationSummary({
                   }}
                 >
                   <span className={`badge ${pair.severity === 'severe' ? 'error' : 'warn'}`}>
-                    {pair.severity}
+                    {pair.severity === 'severe' ? '同優先度' : '不同優先度'}
                   </span>
                   <span>{describeCollision(pair)}</span>
                 </button>

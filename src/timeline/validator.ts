@@ -74,7 +74,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
     issues.push({
       level: 'warning',
       code: 'timeline.no-tracks',
-      message: 'Timeline has no tracks',
+      message: '這份時間軸沒有任何軌道',
     });
   }
 
@@ -83,7 +83,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
       issues.push({
         level: 'error',
         code: 'track.duplicate-id',
-        message: `Duplicate track id "${track.id}"`,
+        message: `軌道 ID 重複：「${track.id}」`,
         trackId: track.id,
         field: 'id',
       });
@@ -94,7 +94,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
       issues.push({
         level: 'warning',
         code: 'track.empty-name',
-        message: 'Track has no name',
+        message: '軌道沒有名稱',
         trackId: track.id,
         field: 'name',
       });
@@ -104,7 +104,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
       issues.push({
         level: 'warning',
         code: 'track.no-events',
-        message: `Track "${track.name}" has no events`,
+        message: `軌道「${track.name}」沒有任何事件`,
         trackId: track.id,
       });
     }
@@ -113,7 +113,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
       issues.push({
         level: 'warning',
         code: 'track.empty-target',
-        message: `Track "${track.name}" targets nobody`,
+        message: `軌道「${track.name}」的對象是空的，沒有人會聽到`,
         trackId: track.id,
         field: 'target',
       });
@@ -124,7 +124,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
         issues.push({
           level: 'error',
           code: 'event.duplicate-id',
-          message: `Duplicate event id "${event.id}"`,
+          message: `事件 ID 重複：「${event.id}」`,
           trackId: track.id,
           eventId: event.id,
           field: 'id',
@@ -136,7 +136,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
         issues.push({
           level: 'warning',
           code: 'event.empty-name',
-          message: 'Event has no name',
+          message: '事件沒有名稱',
           trackId: track.id,
           eventId: event.id,
           field: 'name',
@@ -147,7 +147,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
         issues.push({
           level: 'error',
           code: 'event.after-duration',
-          message: `Event "${event.name}" is after the encounter duration (${durationMs}ms)`,
+          message: `事件「${event.name}」超過戰鬥全長（${durationMs} 毫秒）`,
           trackId: track.id,
           eventId: event.id,
           field: 'atMs',
@@ -158,7 +158,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
         issues.push({
           level: 'warning',
           code: 'event.before-countdown',
-          message: `Event "${event.name}" starts before the countdown (${minTimeMs}ms)`,
+          message: `事件「${event.name}」早於倒數開始（${minTimeMs} 毫秒）`,
           trackId: track.id,
           eventId: event.id,
           field: 'atMs',
@@ -169,7 +169,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
         issues.push({
           level: 'warning',
           code: 'event.no-cues',
-          message: `Event "${event.name}" has no cues`,
+          message: `事件「${event.name}」沒有任何語音提示`,
           trackId: track.id,
           eventId: event.id,
         });
@@ -180,7 +180,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
           issues.push({
             level: 'error',
             code: 'cue.duplicate-id',
-            message: `Duplicate cue id "${cue.id}"`,
+            message: `語音提示 ID 重複：「${cue.id}」`,
             trackId: track.id,
             eventId: event.id,
             cueId: cue.id,
@@ -193,7 +193,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
           issues.push({
             level: 'error',
             code: 'cue.empty-text',
-            message: `Cue in "${event.name}" has no text`,
+            message: `事件「${event.name}」底下有空白的語音提示`,
             trackId: track.id,
             eventId: event.id,
             cueId: cue.id,
@@ -206,7 +206,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
           issues.push({
             level: 'error',
             code: 'cue.before-countdown',
-            message: `Cue triggers at ${triggerMs}ms, before the countdown starts (${minTimeMs}ms)`,
+            message: `提示在 ${triggerMs} 毫秒觸發，早於倒數開始（${minTimeMs} 毫秒）`,
             trackId: track.id,
             eventId: event.id,
             cueId: cue.id,
@@ -218,7 +218,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
           issues.push({
             level: 'warning',
             code: 'cue.after-duration',
-            message: `Cue triggers at ${triggerMs}ms, after the encounter duration (${durationMs}ms)`,
+            message: `提示在 ${triggerMs} 毫秒觸發，超過戰鬥全長（${durationMs} 毫秒）`,
             trackId: track.id,
             eventId: event.id,
             cueId: cue.id,
@@ -233,8 +233,8 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
             code: level === 'severe' ? 'cue.text-very-long' : 'cue.text-long',
             message:
               level === 'severe'
-                ? `Cue text is very long (~${measureCueText(cue.text)} units); it may not finish before the next cue`
-                : `Cue text is long (~${measureCueText(cue.text)} units)`,
+                ? `語音內容太長（約 ${measureCueText(cue.text)} 字），可能來不及在下一句之前念完`
+                : `語音內容偏長（約 ${measureCueText(cue.text)} 字）`,
             trackId: track.id,
             eventId: event.id,
             cueId: cue.id,
@@ -246,7 +246,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
           issues.push({
             level: 'warning',
             code: 'cue.unreachable-target',
-            message: 'Cue target does not overlap its track target — it can never play',
+            message: '提示對象和軌道對象沒有交集，這句永遠不會播放',
             trackId: track.id,
             eventId: event.id,
             cueId: cue.id,

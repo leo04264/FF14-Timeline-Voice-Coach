@@ -23,7 +23,7 @@ events.push({
   id: 'timing-test-event-countdown',
   atMs: 0,
   name: 'Pull',
-  phase: 'Countdown',
+  phase: '倒數',
   category: 'mechanic',
   cues: [
     {
@@ -41,7 +41,7 @@ for (let index = 0; index < COUNT; index += 1) {
   events.push({
     id: `timing-test-event-${index + 1}`,
     atMs,
-    name: `Mark ${index + 1}`,
+    name: `標記 ${index + 1}`,
     phase: atMs < 150_000 ? 'P1' : 'P2',
     category: 'mechanic',
     cues: [
@@ -59,12 +59,12 @@ const timeline = {
   schemaVersion: 1,
   id: 'builtin-timing-test',
   meta: {
-    name: '5-Minute Timing Test',
+    name: '5 分鐘延遲測試',
     encounterId: 'timing-test',
     strategy: 'timing',
     author: 'FF14 Timeline Voice Coach',
     description:
-      'Fires one cue every 12 seconds for 5 minutes. Run it in the foreground, in a background tab and behind FF14, then compare Debug statistics.',
+      '五分鐘內每 12 秒播一句提示。分別在前景、背景分頁、FF14 後面各跑一次，再比較偵錯面板的統計數字。',
     version: '1.0.0',
   },
   encounter: {
@@ -75,7 +75,7 @@ const timeline = {
     {
       id: 'timing-test-track',
       type: 'encounter',
-      name: 'Timing Marks',
+      name: '計時標記',
       enabledByDefault: true,
       events,
     },

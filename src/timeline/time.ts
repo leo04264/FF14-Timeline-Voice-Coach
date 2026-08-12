@@ -65,21 +65,21 @@ const TIME_PATTERN = /^([+-])?(?:(\d+):)?(\d{1,2})(?:[.,](\d{1,3}))?$/;
  */
 export function parseTimeInput(raw: string): ParseTimeResult {
   const text = raw.trim();
-  if (text === '') return { ok: false, error: 'Time is required' };
+  if (text === '') return { ok: false, error: '必須輸入時間' };
 
   const match = TIME_PATTERN.exec(text);
-  if (!match) return { ok: false, error: 'Expected MM:SS.mmm' };
+  if (!match) return { ok: false, error: '格式必須是 MM:SS.mmm' };
 
   const [, sign, minutesRaw, secondsRaw, fractionRaw] = match;
   const minutes = minutesRaw ? Number(minutesRaw) : 0;
   const seconds = Number(secondsRaw);
   if (minutesRaw !== undefined && seconds > 59) {
-    return { ok: false, error: 'Seconds must be < 60 when minutes are given' };
+    return { ok: false, error: '有填分鐘時，秒數必須小於 60' };
   }
   const fraction = fractionRaw ? Number(fractionRaw.padEnd(3, '0')) : 0;
 
   const ms = minutes * 60_000 + seconds * 1000 + fraction;
-  if (!Number.isFinite(ms)) return { ok: false, error: 'Time must be finite' };
+  if (!Number.isFinite(ms)) return { ok: false, error: '時間必須是有限數值' };
 
   return { ok: true, ms: sign === '-' ? -ms : ms };
 }

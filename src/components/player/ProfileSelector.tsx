@@ -1,3 +1,4 @@
+import { JOB_ROLE_LABEL } from '../../i18n/labels';
 import { isConventionalAssignment } from '../../timeline/target';
 import { JOB_CODES, JOB_ROLE, PARTY_POSITIONS } from '../../timeline/types';
 import type { JobCode, PartyPosition, PlayerProfile } from '../../timeline/types';
@@ -19,11 +20,11 @@ export function ProfileSelector({ profile, onChange, disabled }: ProfileSelector
     <div className="col">
       <div className="row">
         <label className="field">
-          Party Position
+          站位
           <select
             value={profile.position}
             disabled={disabled}
-            aria-label="Party Position"
+            aria-label="站位"
             onChange={(event) =>
               onChange({ ...profile, position: event.target.value as PartyPosition })
             }
@@ -37,16 +38,16 @@ export function ProfileSelector({ profile, onChange, disabled }: ProfileSelector
         </label>
 
         <label className="field">
-          Job
+          職業
           <select
             value={profile.job}
             disabled={disabled}
-            aria-label="Job"
+            aria-label="職業"
             onChange={(event) => onChange({ ...profile, job: event.target.value as JobCode })}
           >
             {JOB_CODES.map((job) => (
               <option key={job} value={job}>
-                {job} ({JOB_ROLE[job]})
+                {job}（{JOB_ROLE_LABEL[JOB_ROLE[job]]}）
               </option>
             ))}
           </select>
@@ -55,8 +56,7 @@ export function ProfileSelector({ profile, onChange, disabled }: ProfileSelector
 
       {conventional ? null : (
         <p className="small text-warn" role="status">
-          Warning: {profile.position} + {profile.job} is an unusual combination. It is allowed —
-          cues still play normally.
+          警告：{profile.position} + {profile.job} 不是常見組合。仍然可以使用，語音提示照常播放。
         </p>
       )}
     </div>

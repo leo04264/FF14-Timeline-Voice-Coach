@@ -7,7 +7,8 @@ import { EventTable } from '../components/editor/EventTable';
 import { TrackList } from '../components/editor/TrackList';
 import { ValidationSummary } from '../components/editor/ValidationSummary';
 import { TimeInput } from '../components/editor/TimeInput';
-import { SAVE_STATUS_LABEL, useEditorState } from '../hooks/useEditorState';
+import { SAVE_STATUS_TEXT } from '../i18n/labels';
+import { useEditorState } from '../hooks/useEditorState';
 import { exportRawDraft, exportTimeline } from '../storage/timelineIo';
 import { analyzeCollisions } from '../timeline/collision';
 import { cloneTimelineWithNewIds } from '../timeline/exampleTimeline';
@@ -87,7 +88,7 @@ export function EditorPage() {
     return index;
   }, [timeline]);
 
-  if (loading) return <p className="muted">Loading…</p>;
+  if (loading) return <p className="muted">載入中…</p>;
 
   if (!timelineId) {
     const editable = entries.filter(
@@ -95,18 +96,18 @@ export function EditorPage() {
     );
     return (
       <section className="panel col">
-        <h1>Editor</h1>
-        <p className="muted">Pick a timeline to edit, or create one in the Library.</p>
+        <h1>編輯器</h1>
+        <p className="muted">選一份要編輯的時間軸，或到時間軸庫新增一份。</p>
         {editable.map((candidate) => (
           <div className="row" key={candidate.id}>
             <button type="button" onClick={() => navigate(`/editor/${candidate.id}`)}>
-              Edit
+              編輯
             </button>
             <span>{candidate.status === 'valid' ? candidate.timeline.meta.name : candidate.id}</span>
           </div>
         ))}
         <button type="button" className="primary" onClick={() => navigate('/library')}>
-          Go to Library
+          前往時間軸庫
         </button>
       </section>
     );
@@ -115,9 +116,9 @@ export function EditorPage() {
   if (!entry) {
     return (
       <section className="panel">
-        <h1>Timeline not found</h1>
+        <h1>找不到這份時間軸</h1>
         <button type="button" onClick={() => navigate('/library')}>
-          Back to Library
+          回時間軸庫
         </button>
       </section>
     );
@@ -126,14 +127,14 @@ export function EditorPage() {
   if (entry.status === 'invalid') {
     return (
       <section className="panel col">
-        <h1>Timeline cannot be opened</h1>
+        <h1>無法開啟這份時間軸</h1>
         <p className="text-error">{entry.error}</p>
         <p className="small muted">
-          The stored data failed schema validation, so the editor cannot load it safely. Export the
-          raw data from the Library and repair it by hand (spec §81).
+          儲存的資料沒有通過格式驗證，編輯器無法安全載入。請從時間軸庫匯出原始資料，手動修好之後再匯入（規格
+          §81）。
         </p>
         <button type="button" onClick={() => navigate('/library')}>
-          Back to Library
+          回時間軸庫
         </button>
       </section>
     );
@@ -143,25 +144,25 @@ export function EditorPage() {
     return (
       <section className="panel col">
         <h1>{entry.timeline.meta.name}</h1>
-        <p>Built-in timelines are read only. Fork it to make changes (spec §64).</p>
+        <p>內建時間軸是唯讀的。要修改請先建立一份衍生版本（規格 §64）。</p>
         <button
           type="button"
           className="primary"
           onClick={async () => {
             const fork = cloneTimelineWithNewIds(entry.timeline, {
-              name: `${entry.timeline.meta.name} (Fork)`,
+              name: `${entry.timeline.meta.name}（衍生）`,
             });
             await saveTimeline(fork);
             navigate(`/editor/${fork.id}`);
           }}
         >
-          Fork &amp; Edit
+          衍生後編輯
         </button>
       </section>
     );
   }
 
-  if (!timeline || !report) return <p className="muted">Loading timeline…</p>;
+  if (!timeline || !report) return <p className="muted">時間軸載入中…</p>;
 
   const selectedTrack =
     timeline.tracks.find((track) => track.id === selectedTrackId) ?? timeline.tracks[0] ?? null;
@@ -187,38 +188,34 @@ export function EditorPage() {
           <p className="muted small mono">{timeline.id}</p>
         </div>
         <div className="row">
-          <span className="badge">{SAVE_STATUS_LABEL[editor.saveStatus] || 'Idle'}</span>
+          <span className="badge">{SAVE_STATUS_TEXT[editor.saveStatus]}</span>
           {editor.saveError ? <span className="text-error small">{editor.saveError}</span> : null}
           <button type="button" disabled={!editor.canUndo} onClick={editor.undo}>
-            Undo
+            復原
           </button>
           <button type="button" disabled={!editor.canRedo} onClick={editor.redo}>
-            Redo
+            重做
           </button>
           <button
             type="button"
             onClick={async () => {
               await editor.saveNow();
               await refresh();
-              setNotice('Saved');
+              setNotice('已儲存');
             }}
           >
-            Save now
+            立即儲存
           </button>
           <button
             type="button"
             disabled={report.hasBlockingError}
-            title={
-              report.hasBlockingError
-                ? 'Blocked while validation errors exist (spec §69)'
-                : undefined
-            }
+            title={report.hasBlockingError ? '還有驗證錯誤，無法正式匯出（規格 §69）' : undefined}
             onClick={() => exportTimeline(timeline, report)}
           >
-            Export JSON
+            匯出 JSON
           </button>
           <button type="button" className="ghost" onClick={() => exportRawDraft(timeline)}>
-            Export Raw Draft
+            匯出草稿
           </button>
           <button
             type="button"
@@ -229,7 +226,7 @@ export function EditorPage() {
               navigate(`/player/${timeline.id}`);
             }}
           >
-            Play
+            播放
           </button>
         </div>
       </div>
@@ -239,7 +236,7 @@ export function EditorPage() {
           <span>{notice}</span>
           <span className="spacer" />
           <button type="button" className="ghost" onClick={() => setNotice(null)}>
-            Dismiss
+            關閉
           </button>
         </div>
       ) : null}
@@ -257,32 +254,32 @@ export function EditorPage() {
       />
 
       <details className="panel">
-        <summary>Timeline settings</summary>
+        <summary>時間軸設定</summary>
         <div className="col" style={{ marginTop: '0.6rem' }}>
           <div className="row">
             <label className="field">
-              Name
+              名稱
               <input
                 value={timeline.meta.name}
                 onChange={(event) => patchMeta({ name: event.target.value })}
               />
             </label>
             <label className="field">
-              Encounter id
+              副本代號
               <input
                 value={timeline.meta.encounterId}
                 onChange={(event) => patchMeta({ encounterId: event.target.value })}
               />
             </label>
             <label className="field">
-              Strategy
+              打法
               <input
                 value={timeline.meta.strategy ?? ''}
                 onChange={(event) => patchMeta({ strategy: event.target.value || undefined })}
               />
             </label>
             <label className="field">
-              Version
+              版本
               <input
                 value={timeline.meta.version ?? ''}
                 placeholder="1.0.0"
@@ -290,7 +287,7 @@ export function EditorPage() {
               />
             </label>
             <label className="field">
-              Author
+              作者
               <input
                 value={timeline.meta.author ?? ''}
                 onChange={(event) => patchMeta({ author: event.target.value || undefined })}
@@ -298,7 +295,7 @@ export function EditorPage() {
             </label>
           </div>
           <label className="field">
-            Description
+            說明
             <textarea
               rows={2}
               value={timeline.meta.description ?? ''}
@@ -307,7 +304,7 @@ export function EditorPage() {
           </label>
           <div className="row" style={{ alignItems: 'flex-start' }}>
             <TimeInput
-              label="Encounter duration"
+              label="戰鬥全長"
               valueMs={timeline.encounter.durationMs}
               allowNegative={false}
               onChange={(ms) =>
@@ -315,7 +312,7 @@ export function EditorPage() {
               }
             />
             <TimeInput
-              label="Default countdown"
+              label="預設倒數"
               valueMs={timeline.encounter.countdownMs}
               allowNegative={false}
               onChange={(ms) =>
@@ -354,7 +351,7 @@ export function EditorPage() {
               onChange={change}
             />
           ) : (
-            <p className="muted">Add a track to get started.</p>
+            <p className="muted">先新增一個軌道才能開始。</p>
           )}
         </div>
 

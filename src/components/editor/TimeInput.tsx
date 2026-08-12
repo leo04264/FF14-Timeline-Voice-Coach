@@ -24,11 +24,11 @@ export function TimeInput({ label, valueMs, onChange, allowNegative = true, id }
     const parsed = parseTimeInput(raw);
     if (!parsed.ok || parsed.ms === undefined) {
       // Never silently clamp or auto-fix (spec §75).
-      setError(parsed.error ?? 'Invalid time');
+      setError(parsed.error ?? '時間格式錯誤');
       return;
     }
     if (!allowNegative && parsed.ms < 0) {
-      setError('Must be >= 0');
+      setError('必須大於等於 0');
       return;
     }
     setError(null);

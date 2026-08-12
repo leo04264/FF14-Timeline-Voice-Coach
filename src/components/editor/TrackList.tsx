@@ -1,3 +1,4 @@
+import { TRACK_TYPE_LABEL } from '../../i18n/labels';
 import { TIMELINE_TRACK_TYPES, type TimelinePackage, type TimelineTrackType } from '../../timeline/types';
 import { addTrack, duplicateTrack, moveTrack, removeTrack, updateTrack } from '../../timeline/edits';
 import { TargetEditor } from './TargetEditor';
@@ -15,7 +16,7 @@ export function TrackList({ timeline, selectedTrackId, onSelectTrack, onChange }
   return (
     <div className="col">
       <div className="row">
-        <h2 style={{ margin: 0 }}>Tracks</h2>
+        <h2 style={{ margin: 0 }}>軌道</h2>
         <span className="spacer" />
         <button
           type="button"
@@ -25,7 +26,7 @@ export function TrackList({ timeline, selectedTrackId, onSelectTrack, onChange }
             onSelectTrack(next.tracks[next.tracks.length - 1].id);
           }}
         >
-          + Track
+          ＋ 新增軌道
         </button>
       </div>
 
@@ -41,8 +42,8 @@ export function TrackList({ timeline, selectedTrackId, onSelectTrack, onChange }
               if (event.key === 'Enter' || event.key === ' ') onSelectTrack(track.id);
             }}
           >
-            <span style={{ flex: 1 }}>{track.name || '(unnamed)'}</span>
-            <span className="badge">{track.type}</span>
+            <span style={{ flex: 1 }}>{track.name || '（未命名）'}</span>
+            <span className="badge">{TRACK_TYPE_LABEL[track.type]}</span>
             <span className="muted small">{track.events.length}</span>
           </div>
         ))}
@@ -50,9 +51,9 @@ export function TrackList({ timeline, selectedTrackId, onSelectTrack, onChange }
 
       {selected ? (
         <div className="col" style={{ marginTop: '0.75rem' }}>
-          <h3>Track settings</h3>
+          <h3>軌道設定</h3>
           <label className="field">
-            Name
+            名稱
             <input
               value={selected.name}
               onChange={(event) =>
@@ -66,7 +67,7 @@ export function TrackList({ timeline, selectedTrackId, onSelectTrack, onChange }
             />
           </label>
           <label className="field">
-            Type
+            類型
             <select
               value={selected.type}
               onChange={(event) =>
@@ -80,7 +81,7 @@ export function TrackList({ timeline, selectedTrackId, onSelectTrack, onChange }
             >
               {TIMELINE_TRACK_TYPES.map((type) => (
                 <option key={type} value={type}>
-                  {type}
+                  {TRACK_TYPE_LABEL[type]}
                 </option>
               ))}
             </select>
@@ -98,11 +99,11 @@ export function TrackList({ timeline, selectedTrackId, onSelectTrack, onChange }
                 )
               }
             />
-            Enabled by default in the player
+            播放器預設啟用這個軌道
           </label>
 
           <TargetEditor
-            label="Track target"
+            label="軌道對象"
             target={selected.target}
             onChange={(target) =>
               onChange(updateTrack(timeline, selected.id, (track) => ({ ...track, target })))
@@ -111,13 +112,13 @@ export function TrackList({ timeline, selectedTrackId, onSelectTrack, onChange }
 
           <div className="row">
             <button type="button" onClick={() => onChange(moveTrack(timeline, selected.id, -1))}>
-              Move up
+              上移
             </button>
             <button type="button" onClick={() => onChange(moveTrack(timeline, selected.id, 1))}>
-              Move down
+              下移
             </button>
             <button type="button" onClick={() => onChange(duplicateTrack(timeline, selected.id))}>
-              Duplicate
+              複製
             </button>
             <button
               type="button"
@@ -128,10 +129,10 @@ export function TrackList({ timeline, selectedTrackId, onSelectTrack, onChange }
                 if (remaining[0]) onSelectTrack(remaining[0].id);
               }}
             >
-              Delete track
+              刪除軌道
             </button>
           </div>
-          <p className="small muted">Deleting is undoable while you stay on this page (spec §66).</p>
+          <p className="small muted">只要還停留在這個頁面，刪除都可以用「復原」救回來（規格 §66）。</p>
         </div>
       ) : null}
     </div>

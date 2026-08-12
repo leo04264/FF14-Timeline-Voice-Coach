@@ -70,15 +70,15 @@ export function isEmptyTarget(target: CueTarget | undefined): boolean {
 }
 
 export function describeTarget(target: CueTarget | undefined): string {
-  if (!target) return 'ALL';
+  if (!target) return '所有人';
   const parts: string[] = [];
   if (target.positions) {
-    parts.push(target.positions.length ? target.positions.join('/') : '(no position)');
+    parts.push(target.positions.length ? target.positions.join('/') : '（沒有站位）');
   }
   if (target.jobs) {
-    parts.push(target.jobs.length ? target.jobs.join('/') : '(no job)');
+    parts.push(target.jobs.length ? target.jobs.join('/') : '（沒有職業）');
   }
-  return parts.length ? parts.join(' + ') : 'ALL';
+  return parts.length ? parts.join(' + ') : '所有人';
 }
 
 /**

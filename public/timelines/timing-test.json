@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "id": "builtin-timing-test",
   "meta": {
-    "name": "5-Minute Timing Test",
+    "name": "5 分鐘延遲測試",
     "encounterId": "timing-test",
     "strategy": "timing",
     "author": "FF14 Timeline Voice Coach",
-    "description": "Fires one cue every 12 seconds for 5 minutes. Run it in the foreground, in a background tab and behind FF14, then compare Debug statistics.",
+    "description": "五分鐘內每 12 秒播一句提示。分別在前景、背景分頁、FF14 後面各跑一次，再比較偵錯面板的統計數字。",
     "version": "1.0.0"
   },
   "encounter": {
@@ -17,14 +17,14 @@
     {
       "id": "timing-test-track",
       "type": "encounter",
-      "name": "Timing Marks",
+      "name": "計時標記",
       "enabledByDefault": true,
       "events": [
         {
           "id": "timing-test-event-countdown",
           "atMs": 0,
           "name": "Pull",
-          "phase": "Countdown",
+          "phase": "倒數",
           "category": "mechanic",
           "cues": [
             {
@@ -38,7 +38,7 @@
         {
           "id": "timing-test-event-1",
           "atMs": 12000,
-          "name": "Mark 1",
+          "name": "標記 1",
           "phase": "P1",
           "category": "mechanic",
           "cues": [
@@ -53,7 +53,7 @@
         {
           "id": "timing-test-event-2",
           "atMs": 24000,
-          "name": "Mark 2",
+          "name": "標記 2",
           "phase": "P1",
           "category": "mechanic",
           "cues": [
@@ -68,7 +68,7 @@
         {
           "id": "timing-test-event-3",
           "atMs": 36000,
-          "name": "Mark 3",
+          "name": "標記 3",
           "phase": "P1",
           "category": "mechanic",
           "cues": [
@@ -83,7 +83,7 @@
         {
           "id": "timing-test-event-4",
           "atMs": 48000,
-          "name": "Mark 4",
+          "name": "標記 4",
           "phase": "P1",
           "category": "mechanic",
           "cues": [
@@ -98,7 +98,7 @@
         {
           "id": "timing-test-event-5",
           "atMs": 60000,
-          "name": "Mark 5",
+          "name": "標記 5",
           "phase": "P1",
           "category": "mechanic",
           "cues": [
@@ -113,7 +113,7 @@
         {
           "id": "timing-test-event-6",
           "atMs": 72000,
-          "name": "Mark 6",
+          "name": "標記 6",
           "phase": "P1",
           "category": "mechanic",
           "cues": [
@@ -128,7 +128,7 @@
         {
           "id": "timing-test-event-7",
           "atMs": 84000,
-          "name": "Mark 7",
+          "name": "標記 7",
           "phase": "P1",
           "category": "mechanic",
           "cues": [
@@ -143,7 +143,7 @@
         {
           "id": "timing-test-event-8",
           "atMs": 96000,
-          "name": "Mark 8",
+          "name": "標記 8",
           "phase": "P1",
           "category": "mechanic",
           "cues": [
@@ -158,7 +158,7 @@
         {
           "id": "timing-test-event-9",
           "atMs": 108000,
-          "name": "Mark 9",
+          "name": "標記 9",
           "phase": "P1",
           "category": "mechanic",
           "cues": [
@@ -173,7 +173,7 @@
         {
           "id": "timing-test-event-10",
           "atMs": 120000,
-          "name": "Mark 10",
+          "name": "標記 10",
           "phase": "P1",
           "category": "mechanic",
           "cues": [
@@ -188,7 +188,7 @@
         {
           "id": "timing-test-event-11",
           "atMs": 132000,
-          "name": "Mark 11",
+          "name": "標記 11",
           "phase": "P1",
           "category": "mechanic",
           "cues": [
@@ -203,7 +203,7 @@
         {
           "id": "timing-test-event-12",
           "atMs": 144000,
-          "name": "Mark 12",
+          "name": "標記 12",
           "phase": "P1",
           "category": "mechanic",
           "cues": [
@@ -218,7 +218,7 @@
         {
           "id": "timing-test-event-13",
           "atMs": 156000,
-          "name": "Mark 13",
+          "name": "標記 13",
           "phase": "P2",
           "category": "mechanic",
           "cues": [
@@ -233,7 +233,7 @@
         {
           "id": "timing-test-event-14",
           "atMs": 168000,
-          "name": "Mark 14",
+          "name": "標記 14",
           "phase": "P2",
           "category": "mechanic",
           "cues": [
@@ -248,7 +248,7 @@
         {
           "id": "timing-test-event-15",
           "atMs": 180000,
-          "name": "Mark 15",
+          "name": "標記 15",
           "phase": "P2",
           "category": "mechanic",
           "cues": [
@@ -263,7 +263,7 @@
         {
           "id": "timing-test-event-16",
           "atMs": 192000,
-          "name": "Mark 16",
+          "name": "標記 16",
           "phase": "P2",
           "category": "mechanic",
           "cues": [
@@ -278,7 +278,7 @@
         {
           "id": "timing-test-event-17",
           "atMs": 204000,
-          "name": "Mark 17",
+          "name": "標記 17",
           "phase": "P2",
           "category": "mechanic",
           "cues": [
@@ -293,7 +293,7 @@
         {
           "id": "timing-test-event-18",
           "atMs": 216000,
-          "name": "Mark 18",
+          "name": "標記 18",
           "phase": "P2",
           "category": "mechanic",
           "cues": [
@@ -308,7 +308,7 @@
         {
           "id": "timing-test-event-19",
           "atMs": 228000,
-          "name": "Mark 19",
+          "name": "標記 19",
           "phase": "P2",
           "category": "mechanic",
           "cues": [
@@ -323,7 +323,7 @@
         {
           "id": "timing-test-event-20",
           "atMs": 240000,
-          "name": "Mark 20",
+          "name": "標記 20",
           "phase": "P2",
           "category": "mechanic",
           "cues": [
@@ -338,7 +338,7 @@
         {
           "id": "timing-test-event-21",
           "atMs": 252000,
-          "name": "Mark 21",
+          "name": "標記 21",
           "phase": "P2",
           "category": "mechanic",
           "cues": [
@@ -353,7 +353,7 @@
         {
           "id": "timing-test-event-22",
           "atMs": 264000,
-          "name": "Mark 22",
+          "name": "標記 22",
           "phase": "P2",
           "category": "mechanic",
           "cues": [
@@ -368,7 +368,7 @@
         {
           "id": "timing-test-event-23",
           "atMs": 276000,
-          "name": "Mark 23",
+          "name": "標記 23",
           "phase": "P2",
           "category": "mechanic",
           "cues": [
@@ -383,7 +383,7 @@
         {
           "id": "timing-test-event-24",
           "atMs": 288000,
-          "name": "Mark 24",
+          "name": "標記 24",
           "phase": "P2",
           "category": "mechanic",
           "cues": [
@@ -398,7 +398,7 @@
         {
           "id": "timing-test-event-25",
           "atMs": 300000,
-          "name": "Mark 25",
+          "name": "標記 25",
           "phase": "P2",
           "category": "mechanic",
           "cues": [

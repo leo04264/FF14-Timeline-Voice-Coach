@@ -40,9 +40,7 @@ export class TimelineCompileError extends Error {
   readonly report: ValidationReport;
 
   constructor(report: ValidationReport) {
-    super(
-      `Timeline has ${report.errors.length} blocking validation error(s) and cannot be compiled`,
-    );
+    super(`這份時間軸有 ${report.errors.length} 個必須修正的錯誤，無法編譯`);
     this.name = 'TimelineCompileError';
     this.report = report;
   }

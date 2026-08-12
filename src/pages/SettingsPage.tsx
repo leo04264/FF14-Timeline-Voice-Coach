@@ -22,21 +22,21 @@ export function SettingsPage() {
   return (
     <section className="col">
       <div className="page-header">
-        <h1>Settings</h1>
+        <h1>設定</h1>
         <button type="button" className="ghost" onClick={reset}>
-          Reset to defaults
+          回復預設值
         </button>
       </div>
 
       <div className="panel col">
-        <h2>Player</h2>
+        <h2>播放器</h2>
         <label className="check">
           <input
             type="checkbox"
             checked={settings.quickStart}
             onChange={(event) => update({ quickStart: event.target.checked })}
           />
-          Quick Start — skip the Ready Summary before the countdown
+          快速開始 — 按下開始後跳過確認畫面，直接進入倒數
         </label>
         <label className="check">
           <input
@@ -44,36 +44,36 @@ export function SettingsPage() {
             checked={settings.escWipe}
             onChange={(event) => update({ escWipe: event.target.checked })}
           />
-          Esc triggers WIPE
+          Esc 觸發重置
         </label>
         <p className="small muted">
-          Session offset is currently {formatSecondsSigned(settings.sessionOffsetMs)}. It is applied
-          on top of the pull offset and survives WIPE.
+          目前的全域偏移是 {formatSecondsSigned(settings.sessionOffsetMs)}
+          。它會疊加在本場偏移之上，而且不會被重置清除。
         </p>
       </div>
 
       <div className="panel col">
-        <h2>Editor</h2>
+        <h2>編輯器</h2>
         <label className="field" style={{ maxWidth: 260 }}>
-          Collision window
+          衝突判定區間
           <select
             value={settings.collisionWindowMs}
             onChange={(event) => update({ collisionWindowMs: Number(event.target.value) })}
           >
             {COLLISION_WINDOW_PRESETS_MS.map((preset) => (
               <option key={preset} value={preset}>
-                {preset} ms
+                {preset} 毫秒
               </option>
             ))}
             {COLLISION_WINDOW_PRESETS_MS.includes(
               settings.collisionWindowMs as (typeof COLLISION_WINDOW_PRESETS_MS)[number],
             ) ? null : (
-              <option value={settings.collisionWindowMs}>{settings.collisionWindowMs} ms</option>
+              <option value={settings.collisionWindowMs}>{settings.collisionWindowMs} 毫秒</option>
             )}
           </select>
         </label>
         <label className="field" style={{ maxWidth: 260 }}>
-          Custom collision window (ms)
+          自訂衝突判定區間（毫秒）
           <input
             type="number"
             min={0}
@@ -88,9 +88,9 @@ export function SettingsPage() {
       </div>
 
       <div className="panel col">
-        <h2>Runtime</h2>
+        <h2>執行參數</h2>
         <label className="field" style={{ maxWidth: 260 }}>
-          Scheduler tick interval (ms)
+          排程器 tick 間隔（毫秒）
           <input
             type="number"
             min={10}
@@ -104,7 +104,7 @@ export function SettingsPage() {
           />
         </label>
         <label className="field" style={{ maxWidth: 260 }}>
-          Skip cues later than (ms)
+          遲到超過多久就略過（毫秒）
           <input
             type="number"
             min={0}
@@ -117,28 +117,26 @@ export function SettingsPage() {
           />
         </label>
         <p className="small muted">
-          V0.1 uses performance.now() + setInterval. Treat it as a prototype scheduler — verify with
-          the 5-minute timing test before trusting it in a raid (spec §84).
+          V0.1 使用 performance.now() 搭配 setInterval，只能算是原型排程器。正式在高難度副本使用之前，請先跑過
+          5 分鐘延遲測試（規格 §84）。
         </p>
       </div>
 
       <div className="panel col">
-        <h2>Voice</h2>
+        <h2>語音</h2>
         {isSpeechSynthesisSupported() ? null : (
-          <p className="text-error">
-            This browser has no Web Speech API. Voice playback will not work.
-          </p>
+          <p className="text-error">這個瀏覽器沒有 Web Speech API，無法播放語音。</p>
         )}
         <div className="row">
           <label className="field">
-            Language
+            語言
             <input
               value={settings.audio.lang}
               onChange={(event) => update({ audio: { ...settings.audio, lang: event.target.value } })}
             />
           </label>
           <label className="field" style={{ minWidth: 260 }}>
-            Voice
+            語音
             <select
               value={settings.audio.voiceUri ?? ''}
               onChange={(event) =>
@@ -147,7 +145,7 @@ export function SettingsPage() {
                 })
               }
             >
-              <option value="">(browser default)</option>
+              <option value="">（瀏覽器預設）</option>
               {voices.map((voice) => (
                 <option key={voice.voiceURI} value={voice.voiceURI}>
                   {voice.name} — {voice.lang}
@@ -158,7 +156,7 @@ export function SettingsPage() {
         </div>
         <div className="row">
           <label className="field">
-            Rate ({settings.audio.rate.toFixed(2)})
+            語速（{settings.audio.rate.toFixed(2)}）
             <input
               type="range"
               min={0.5}
@@ -171,7 +169,7 @@ export function SettingsPage() {
             />
           </label>
           <label className="field">
-            Pitch ({settings.audio.pitch.toFixed(2)})
+            音調（{settings.audio.pitch.toFixed(2)}）
             <input
               type="range"
               min={0}
@@ -184,7 +182,7 @@ export function SettingsPage() {
             />
           </label>
           <label className="field">
-            Volume ({settings.audio.volume.toFixed(2)})
+            音量（{settings.audio.volume.toFixed(2)}）
             <input
               type="range"
               min={0}
@@ -211,7 +209,7 @@ export function SettingsPage() {
               });
             }}
           >
-            Test voice
+            試聽
           </button>
         </div>
       </div>

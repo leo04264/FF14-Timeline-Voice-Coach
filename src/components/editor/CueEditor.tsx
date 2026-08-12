@@ -1,3 +1,4 @@
+import { CUE_PRIORITY_LABEL } from '../../i18n/labels';
 import type { CollisionReport } from '../../timeline/collision';
 import { describeCollision } from '../../timeline/collision';
 import { removeCue, duplicateCue, updateCue } from '../../timeline/edits';
@@ -41,8 +42,8 @@ export function CueEditor({
       data-cue-id={cue.id}
     >
       <div className="row">
-        <strong className="small">Cue</strong>
-        <span className="mono small muted">trigger {formatMs(event.atMs + cue.offsetMs)}</span>
+        <strong className="small">語音提示</strong>
+        <span className="mono small muted">觸發於 {formatMs(event.atMs + cue.offsetMs)}</span>
         <span className="spacer" />
         <label className="check small">
           <input
@@ -52,32 +53,32 @@ export function CueEditor({
               patch((current) => ({ ...current, enabled: changeEvent.target.checked }))
             }
           />
-          Enabled
+          啟用
         </label>
         <button
           type="button"
           className="ghost small"
           onClick={() => onChange(duplicateCue(timeline, trackId, event.id, cue.id))}
         >
-          Duplicate
+          複製
         </button>
         <button
           type="button"
           className="ghost small"
           onClick={() => onChange(removeCue(timeline, trackId, event.id, cue.id))}
         >
-          Delete
+          刪除
         </button>
       </div>
 
       <TimeInput
-        label="Offset (negative = before the event)"
+        label="offset（負數代表事件之前）"
         valueMs={cue.offsetMs}
         onChange={(ms) => patch((current) => ({ ...current, offsetMs: ms }))}
       />
 
       <label className="field">
-        Text
+        語音內容
         <textarea
           rows={2}
           value={cue.text}
@@ -88,18 +89,18 @@ export function CueEditor({
       </label>
       <div className="row small">
         <span className={lengthLevel === 'severe' ? 'text-error' : lengthLevel === 'warning' ? 'text-warn' : 'muted'}>
-          ~{measureCueText(cue.text)} units
+          約 {measureCueText(cue.text)} 字
           {lengthLevel === 'severe'
-            ? ' — very long, may overrun the next cue'
+            ? '：太長，可能來不及在下一句之前念完'
             : lengthLevel === 'warning'
-              ? ' — long'
+              ? '：偏長'
               : ''}
         </span>
-        {cue.text.trim() === '' ? <span className="text-error">Text is required</span> : null}
+        {cue.text.trim() === '' ? <span className="text-error">語音內容不能空白</span> : null}
       </div>
 
       <label className="field" style={{ maxWidth: 160 }}>
-        Priority
+        優先度
         <select
           value={cue.priority ?? 'normal'}
           onChange={(changeEvent) =>
@@ -108,26 +109,26 @@ export function CueEditor({
         >
           {CUE_PRIORITIES.map((priority) => (
             <option key={priority} value={priority}>
-              {priority}
+              {CUE_PRIORITY_LABEL[priority]}
             </option>
           ))}
         </select>
       </label>
 
       <TargetEditor
-        label="Cue target"
+        label="提示對象"
         target={cue.target}
         onChange={(target) => patch((current) => ({ ...current, target }))}
       />
 
       <details>
-        <summary className="small">Audio settings (override)</summary>
+        <summary className="small">語音設定（覆寫預設值）</summary>
         <div className="row" style={{ marginTop: '0.4rem' }}>
           <label className="field">
-            Lang
+            語言
             <input
               value={audio.lang ?? ''}
-              placeholder="inherit"
+              placeholder="沿用預設"
               onChange={(changeEvent) =>
                 patch((current) => ({
                   ...current,
@@ -137,14 +138,14 @@ export function CueEditor({
             />
           </label>
           <label className="field">
-            Rate
+            語速
             <input
               type="number"
               step={0.05}
               min={0.5}
               max={2}
               value={audio.rate ?? ''}
-              placeholder="inherit"
+              placeholder="沿用預設"
               onChange={(changeEvent) => {
                 const value = changeEvent.target.value;
                 patch((current) => ({
@@ -155,14 +156,14 @@ export function CueEditor({
             />
           </label>
           <label className="field">
-            Volume
+            音量
             <input
               type="number"
               step={0.05}
               min={0}
               max={1}
               value={audio.volume ?? ''}
-              placeholder="inherit"
+              placeholder="沿用預設"
               onChange={(changeEvent) => {
                 const value = changeEvent.target.value;
                 patch((current) => ({
@@ -182,7 +183,7 @@ export function CueEditor({
               key={index}
               className={`small ${pair.severity === 'severe' ? 'text-error' : 'text-warn'}`}
             >
-              Collision: {describeCollision(pair)}
+              衝突：{describeCollision(pair)}
             </span>
           ))}
         </div>

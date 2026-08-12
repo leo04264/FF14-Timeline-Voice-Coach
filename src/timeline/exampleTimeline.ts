@@ -10,11 +10,11 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
   schemaVersion: 1,
   id: 'example-demo-encounter',
   meta: {
-    name: 'Demo Encounter (Example)',
+    name: '示範時間軸',
     encounterId: 'demo',
     strategy: 'example',
     author: 'FF14 Timeline Voice Coach',
-    description: 'Short demo timeline showing tracks, targets, priorities and negative-time cues.',
+    description: '示範用的短時間軸，展示軌道、對象、優先度與負時間提示。',
     version: '1.0.0',
   },
   encounter: {
@@ -25,13 +25,13 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
     {
       id: 'example-track-boss',
       type: 'encounter',
-      name: 'Boss Mechanics',
+      name: '王機制',
       enabledByDefault: true,
       events: [
         {
           id: 'example-event-pull',
           atMs: 0,
-          name: 'Pull',
+          name: '開場',
           phase: 'P1',
           category: 'mechanic',
           cues: [
@@ -46,7 +46,7 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
         {
           id: 'example-event-raidwide',
           atMs: 20_000,
-          name: 'Raidwide',
+          name: '全體攻擊',
           phase: 'P1',
           category: 'raidwide',
           cues: [
@@ -61,7 +61,7 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
         {
           id: 'example-event-tankbuster',
           atMs: 48_000,
-          name: 'Tank Buster',
+          name: '坦克死刑',
           phase: 'P1',
           category: 'tankbuster',
           cues: [
@@ -84,7 +84,7 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
         {
           id: 'example-event-enrage',
           atMs: 115_000,
-          name: 'Enrage',
+          name: '狂暴',
           phase: 'P2',
           category: 'mechanic',
           cues: [
@@ -101,13 +101,13 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
     {
       id: 'example-track-party-mit',
       type: 'party',
-      name: 'Party Mitigation',
+      name: '團隊減傷',
       enabledByDefault: true,
       events: [
         {
           id: 'example-event-party-mit',
           atMs: 20_000,
-          name: 'Raidwide Mitigation',
+          name: '全體減傷',
           phase: 'P1',
           category: 'mitigation',
           cues: [
@@ -124,14 +124,14 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
     {
       id: 'example-track-healer',
       type: 'role',
-      name: 'Healer',
+      name: '補師',
       enabledByDefault: false,
       target: { positions: ['H1', 'H2'] },
       events: [
         {
           id: 'example-event-heal',
           atMs: 20_000,
-          name: 'Raidwide Heal',
+          name: '全體補血',
           phase: 'P1',
           category: 'heal',
           cues: [
@@ -156,14 +156,14 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
     {
       id: 'example-track-dnc',
       type: 'job',
-      name: 'Dancer',
+      name: '舞者',
       enabledByDefault: false,
       target: { jobs: ['DNC'] },
       events: [
         {
           id: 'example-event-dnc-tech',
           atMs: 15_000,
-          name: 'Technical Step',
+          name: '技巧舞步',
           phase: 'P1',
           category: 'job',
           cues: [
@@ -181,11 +181,11 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
 };
 
 /** A brand-new empty timeline for the editor. */
-export function createEmptyTimeline(name = 'New Timeline'): TimelinePackage {
+export function createEmptyTimeline(name = '新的時間軸'): TimelinePackage {
   const track: TimelineTrack = {
     id: createId(),
     type: 'encounter',
-    name: 'Boss Mechanics',
+    name: '王機制',
     enabledByDefault: true,
     events: [],
   };

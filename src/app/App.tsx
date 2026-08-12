@@ -18,11 +18,11 @@ export function App() {
           <header className="app-header">
             <span className="app-brand">FF14 Timeline Voice Coach</span>
             <nav className="app-nav">
-              <NavLink to="/library">Library</NavLink>
-              <NavLink to="/player">Player</NavLink>
-              <NavLink to="/practice">Practice</NavLink>
-              <NavLink to="/editor">Editor</NavLink>
-              <NavLink to="/settings">Settings</NavLink>
+              <NavLink to="/library">時間軸庫</NavLink>
+              <NavLink to="/player">播放器</NavLink>
+              <NavLink to="/practice">練習</NavLink>
+              <NavLink to="/editor">編輯器</NavLink>
+              <NavLink to="/settings">設定</NavLink>
             </nav>
             <span className="badge">V0.1</span>
           </header>

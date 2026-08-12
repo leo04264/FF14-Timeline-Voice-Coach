@@ -67,7 +67,7 @@ export async function loadBuiltinTimelines(): Promise<TimelineEntry[]> {
           id: `builtin:${file}`,
           name: file,
           raw: JSON.stringify(payload, null, 2),
-          error: result.report.errors[0]?.message ?? 'Invalid built-in timeline',
+          error: result.report.errors[0]?.message ?? '內建時間軸格式錯誤',
           report: result.report,
         });
         continue;
@@ -87,7 +87,7 @@ export async function loadBuiltinTimelines(): Promise<TimelineEntry[]> {
         id: `builtin:${file}`,
         name: file,
         raw: '',
-        error: error instanceof Error ? error.message : 'Failed to load built-in timeline',
+        error: error instanceof Error ? error.message : '內建時間軸載入失敗',
       });
     }
   }

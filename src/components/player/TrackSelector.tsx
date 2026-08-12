@@ -1,3 +1,4 @@
+import { TRACK_TYPE_LABEL } from '../../i18n/labels';
 import { describeTarget } from '../../timeline/target';
 import type { TimelineTrack } from '../../timeline/types';
 
@@ -23,7 +24,7 @@ export function TrackSelector({ tracks, enabledTrackIds, onChange, disabled }: T
 
   return (
     <div className="col">
-      {tracks.length === 0 ? <p className="muted small">This timeline has no tracks.</p> : null}
+      {tracks.length === 0 ? <p className="muted small">這份時間軸沒有任何軌道。</p> : null}
       {tracks.map((track) => (
         <label className="check" key={track.id}>
           <input
@@ -33,10 +34,10 @@ export function TrackSelector({ tracks, enabledTrackIds, onChange, disabled }: T
             onChange={() => toggle(track.id)}
           />
           <span>{track.name}</span>
-          <span className="badge">{track.type}</span>
+          <span className="badge">{TRACK_TYPE_LABEL[track.type]}</span>
           {track.target ? <span className="badge">{describeTarget(track.target)}</span> : null}
           <span className="muted small">
-            {track.events.reduce((sum, event) => sum + event.cues.length, 0)} cues
+            {track.events.reduce((sum, event) => sum + event.cues.length, 0)} 句提示
           </span>
         </label>
       ))}
@@ -47,10 +48,10 @@ export function TrackSelector({ tracks, enabledTrackIds, onChange, disabled }: T
           disabled={disabled}
           onClick={() => onChange(tracks.map((track) => track.id))}
         >
-          All
+          全選
         </button>
         <button type="button" className="ghost small" disabled={disabled} onClick={() => onChange([])}>
-          None
+          全不選
         </button>
         <button
           type="button"
@@ -60,7 +61,7 @@ export function TrackSelector({ tracks, enabledTrackIds, onChange, disabled }: T
             onChange(tracks.filter((track) => track.enabledByDefault).map((track) => track.id))
           }
         >
-          Defaults
+          預設值
         </button>
       </div>
     </div>

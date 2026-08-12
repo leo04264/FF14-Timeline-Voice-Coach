@@ -34,7 +34,7 @@ export function serializeTimeline(timeline: TimelinePackage): string {
 
 export class ExportBlockedError extends Error {
   constructor(readonly report: ValidationReport) {
-    super('Timeline has blocking validation errors; use Export Raw Draft instead');
+    super('這份時間軸還有必須修正的錯誤，請改用「匯出草稿」');
     this.name = 'ExportBlockedError';
   }
 }
@@ -59,7 +59,7 @@ export function parseImportPayload(rawText: string): ImportParseResult {
   try {
     payload = JSON.parse(rawText) as unknown;
   } catch (error) {
-    return { ok: false, error: error instanceof Error ? error.message : 'Invalid JSON' };
+    return { ok: false, error: error instanceof Error ? error.message : 'JSON 格式錯誤' };
   }
 
   const migrated = migrateTimeline(payload);
@@ -69,7 +69,7 @@ export function parseImportPayload(rawText: string): ImportParseResult {
   if (!result.ok) {
     return {
       ok: false,
-      error: result.report.errors[0]?.message ?? 'Timeline failed validation',
+      error: result.report.errors[0]?.message ?? '時間軸沒有通過驗證',
       report: result.report,
     };
   }

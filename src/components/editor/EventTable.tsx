@@ -1,3 +1,4 @@
+import { EVENT_CATEGORY_LABEL } from '../../i18n/labels';
 import type { CollisionReport } from '../../timeline/collision';
 import { addEvent, duplicateEvent, removeEvent, sortTrackEvents, updateEvent } from '../../timeline/edits';
 import { formatMs } from '../../timeline/time';
@@ -33,10 +34,10 @@ export function EventTable({
   return (
     <div className="col">
       <div className="row">
-        <h2 style={{ margin: 0 }}>Events — {track.name}</h2>
+        <h2 style={{ margin: 0 }}>事件 — {track.name}</h2>
         <span className="spacer" />
         <button type="button" onClick={() => onChange(sortTrackEvents(timeline, track.id))}>
-          Sort by time
+          依時間排序
         </button>
         <button
           type="button"
@@ -47,28 +48,28 @@ export function EventTable({
             onSelectEvent(result.eventId);
           }}
         >
-          + Event
+          ＋ 新增事件
         </button>
       </div>
 
       <table>
         <thead>
           <tr>
-            <th>Time</th>
-            <th>Phase</th>
-            <th>Event Name</th>
-            <th>Category</th>
-            <th>Cues</th>
-            <th>Collision</th>
-            <th>Enabled</th>
-            <th>Actions</th>
+            <th>時間</th>
+            <th>階段</th>
+            <th>事件名稱</th>
+            <th>分類</th>
+            <th>提示</th>
+            <th>衝突</th>
+            <th>啟用</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody>
           {track.events.length === 0 ? (
             <tr>
               <td colSpan={8} className="muted">
-                No events yet.
+                還沒有任何事件。
               </td>
             </tr>
           ) : null}
@@ -83,9 +84,9 @@ export function EventTable({
               >
                 <td className="mono">{formatMs(event.atMs)}</td>
                 <td>{event.phase ?? ''}</td>
-                <td>{event.name || <span className="muted">(unnamed)</span>}</td>
+                <td>{event.name || <span className="muted">（未命名）</span>}</td>
                 <td>
-                  <span className="badge">{event.category}</span>
+                  <span className="badge">{EVENT_CATEGORY_LABEL[event.category]}</span>
                 </td>
                 <td className="mono">
                   {enabledCues}/{event.cues.length}
@@ -100,7 +101,7 @@ export function EventTable({
                 <td>
                   <input
                     type="checkbox"
-                    aria-label={`Enable all cues of ${event.name}`}
+                    aria-label={`啟用「${event.name}」的所有提示`}
                     checked={event.cues.length > 0 && enabledCues === event.cues.length}
                     disabled={event.cues.length === 0}
                     onClick={(clickEvent) => clickEvent.stopPropagation()}
@@ -127,7 +128,7 @@ export function EventTable({
                         onSelectEvent(result.eventId);
                       }}
                     >
-                      Duplicate
+                      複製
                     </button>
                     <button
                       type="button"
@@ -137,7 +138,7 @@ export function EventTable({
                         onChange(removeEvent(timeline, track.id, event.id));
                       }}
                     >
-                      Delete
+                      刪除
                     </button>
                   </div>
                 </td>
@@ -147,8 +148,7 @@ export function EventTable({
         </tbody>
       </table>
       <p className="small muted">
-        The Enabled column toggles every cue of the event; individual cues are toggled in the detail
-        panel (spec §21).
+        「啟用」欄位會一次切換該事件底下所有提示；要單獨開關某一句請到右邊的細節面板（規格 §21）。
       </p>
     </div>
   );

@@ -27,19 +27,19 @@ export function OffsetControls({
     <div className="col">
       <div className="offset-display">
         <div>
-          <div className="small muted">Session Offset</div>
+          <div className="small muted">全域偏移</div>
           <div className="mono" data-testid="session-offset">
             {formatSecondsSigned(sessionOffsetMs)}
           </div>
         </div>
         <div>
-          <div className="small muted">Pull Offset</div>
+          <div className="small muted">本場偏移</div>
           <div className="mono" data-testid="pull-offset">
             {formatSecondsSigned(pullOffsetMs)}
           </div>
         </div>
         <div>
-          <div className="small muted">Effective Offset</div>
+          <div className="small muted">實際偏移</div>
           <div className="mono" data-testid="effective-offset">
             {formatSecondsSigned(effective)}
           </div>
@@ -53,20 +53,21 @@ export function OffsetControls({
           </button>
         ))}
         <button type="button" className="ghost" onClick={() => onNudgePull(-pullOffsetMs)}>
-          Reset pull
+          清除本場偏移
         </button>
       </div>
 
       <div className="row">
         <button type="button" className="ghost small" onClick={onPromotePullToSession}>
-          Move pull offset into session
+          把本場偏移併入全域偏移
         </button>
         <button type="button" className="ghost small" onClick={() => onSetSession(0)}>
-          Clear session offset
+          清除全域偏移
         </button>
       </div>
       <p className="small muted">
-        A positive offset delays the timeline. Left / Right arrows nudge the pull offset by 0.5s.
+        偏移為正代表時間軸整體延後。左右方向鍵可以每次調整本場偏移 0.5
+        秒。全域偏移會跨場保留，本場偏移會在重置或重新開始時清除。
       </p>
     </div>
   );

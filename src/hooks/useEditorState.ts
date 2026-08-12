@@ -54,7 +54,7 @@ export function useEditorState(repository: TimelineRepository): EditorState {
         setSaveError(null);
         setSaveStatus('saved');
       } catch (error) {
-        setSaveError(error instanceof Error ? error.message : 'Save failed');
+        setSaveError(error instanceof Error ? error.message : '儲存失敗');
         setSaveStatus('failed');
       }
     },
@@ -165,11 +165,3 @@ export function useEditorState(repository: TimelineRepository): EditorState {
     saveNow,
   };
 }
-
-export const SAVE_STATUS_LABEL: Record<SaveStatus, string> = {
-  idle: '',
-  editing: 'Editing…',
-  saving: 'Saving…',
-  saved: 'Saved',
-  failed: 'Save failed',
-};
