@@ -1,0 +1,416 @@
+{
+  "schemaVersion": 1,
+  "id": "builtin-timing-test",
+  "meta": {
+    "name": "5-Minute Timing Test",
+    "encounterId": "timing-test",
+    "strategy": "timing",
+    "author": "FF14 Timeline Voice Coach",
+    "description": "Fires one cue every 12 seconds for 5 minutes. Run it in the foreground, in a background tab and behind FF14, then compare Debug statistics.",
+    "version": "1.0.0"
+  },
+  "encounter": {
+    "durationMs": 300000,
+    "countdownMs": 15000
+  },
+  "tracks": [
+    {
+      "id": "timing-test-track",
+      "type": "encounter",
+      "name": "Timing Marks",
+      "enabledByDefault": true,
+      "events": [
+        {
+          "id": "timing-test-event-countdown",
+          "atMs": 0,
+          "name": "Pull",
+          "phase": "Countdown",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-countdown",
+              "offsetMs": -3000,
+              "text": "三秒後開始",
+              "priority": "high"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-1",
+          "atMs": 12000,
+          "name": "Mark 1",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-1",
+              "offsetMs": 0,
+              "text": "第 1 次 12 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-2",
+          "atMs": 24000,
+          "name": "Mark 2",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-2",
+              "offsetMs": 0,
+              "text": "第 2 次 24 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-3",
+          "atMs": 36000,
+          "name": "Mark 3",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-3",
+              "offsetMs": 0,
+              "text": "第 3 次 36 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-4",
+          "atMs": 48000,
+          "name": "Mark 4",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-4",
+              "offsetMs": 0,
+              "text": "第 4 次 48 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-5",
+          "atMs": 60000,
+          "name": "Mark 5",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-5",
+              "offsetMs": 0,
+              "text": "第 5 次 60 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-6",
+          "atMs": 72000,
+          "name": "Mark 6",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-6",
+              "offsetMs": 0,
+              "text": "第 6 次 72 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-7",
+          "atMs": 84000,
+          "name": "Mark 7",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-7",
+              "offsetMs": 0,
+              "text": "第 7 次 84 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-8",
+          "atMs": 96000,
+          "name": "Mark 8",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-8",
+              "offsetMs": 0,
+              "text": "第 8 次 96 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-9",
+          "atMs": 108000,
+          "name": "Mark 9",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-9",
+              "offsetMs": 0,
+              "text": "第 9 次 108 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-10",
+          "atMs": 120000,
+          "name": "Mark 10",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-10",
+              "offsetMs": 0,
+              "text": "第 10 次 120 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-11",
+          "atMs": 132000,
+          "name": "Mark 11",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-11",
+              "offsetMs": 0,
+              "text": "第 11 次 132 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-12",
+          "atMs": 144000,
+          "name": "Mark 12",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-12",
+              "offsetMs": 0,
+              "text": "第 12 次 144 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-13",
+          "atMs": 156000,
+          "name": "Mark 13",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-13",
+              "offsetMs": 0,
+              "text": "第 13 次 156 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-14",
+          "atMs": 168000,
+          "name": "Mark 14",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-14",
+              "offsetMs": 0,
+              "text": "第 14 次 168 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-15",
+          "atMs": 180000,
+          "name": "Mark 15",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-15",
+              "offsetMs": 0,
+              "text": "第 15 次 180 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-16",
+          "atMs": 192000,
+          "name": "Mark 16",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-16",
+              "offsetMs": 0,
+              "text": "第 16 次 192 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-17",
+          "atMs": 204000,
+          "name": "Mark 17",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-17",
+              "offsetMs": 0,
+              "text": "第 17 次 204 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-18",
+          "atMs": 216000,
+          "name": "Mark 18",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-18",
+              "offsetMs": 0,
+              "text": "第 18 次 216 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-19",
+          "atMs": 228000,
+          "name": "Mark 19",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-19",
+              "offsetMs": 0,
+              "text": "第 19 次 228 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-20",
+          "atMs": 240000,
+          "name": "Mark 20",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-20",
+              "offsetMs": 0,
+              "text": "第 20 次 240 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-21",
+          "atMs": 252000,
+          "name": "Mark 21",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-21",
+              "offsetMs": 0,
+              "text": "第 21 次 252 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-22",
+          "atMs": 264000,
+          "name": "Mark 22",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-22",
+              "offsetMs": 0,
+              "text": "第 22 次 264 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-23",
+          "atMs": 276000,
+          "name": "Mark 23",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-23",
+              "offsetMs": 0,
+              "text": "第 23 次 276 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-24",
+          "atMs": 288000,
+          "name": "Mark 24",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-24",
+              "offsetMs": 0,
+              "text": "第 24 次 288 秒",
+              "priority": "normal"
+            }
+          ]
+        },
+        {
+          "id": "timing-test-event-25",
+          "atMs": 300000,
+          "name": "Mark 25",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "timing-test-cue-25",
+              "offsetMs": 0,
+              "text": "第 25 次 300 秒",
+              "priority": "normal"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
