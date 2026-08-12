@@ -175,7 +175,7 @@ export function LibraryPage() {
     <section className="col">
       <div className="page-header">
         <h1>時間軸庫</h1>
-        <div className="row">
+        <div className="row page-actions">
           <button type="button" className="primary" onClick={() => void handleNew()}>
             新增時間軸
           </button>
@@ -219,7 +219,8 @@ export function LibraryPage() {
 
       <div className="panel">
         <h2>我的時間軸（{locals.length}）</h2>
-        <table>
+        <div className="table-scroll library-table" role="region" aria-label="我的時間軸列表" tabIndex={0}>
+          <table>
           <thead>
             <tr>
               <th>名稱</th>
@@ -239,13 +240,15 @@ export function LibraryPage() {
             ) : null}
             {locals.map(renderRow)}
           </tbody>
-        </table>
+          </table>
+        </div>
       </div>
 
       <div className="panel">
         <h2>內建範本（{builtins.length}）</h2>
         <p className="muted small">唯讀，編輯時會自動建立衍生版本（規格 §64）。</p>
-        <table>
+        <div className="table-scroll library-table" role="region" aria-label="內建範本列表" tabIndex={0}>
+          <table>
           <thead>
             <tr>
               <th>名稱</th>
@@ -256,7 +259,8 @@ export function LibraryPage() {
             </tr>
           </thead>
           <tbody>{builtins.map(renderRow)}</tbody>
-        </table>
+          </table>
+        </div>
       </div>
 
       {conflict ? (

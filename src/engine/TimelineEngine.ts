@@ -164,7 +164,7 @@ export class TimelineEngine {
     this.setState('idle', true);
   }
 
-  /** START / Restart (spec §37, §41). */
+  /** Start a fresh pull. The UI requires WIPE before calling this again. */
   start(): void {
     if (!this.compiled) return;
     this.audio.cancelAll();

@@ -123,7 +123,7 @@ audio scheduling layer to WebAudio in V0.2.
 
 | Key | Action |
 | --- | --- |
-| Space | Start / Restart |
+| Space | 開始 / 暫停 / 繼續 |
 | Esc | Wipe (can be disabled in Settings) |
 | ← / → | Pull offset −0.5s / +0.5s |
 | Ctrl/Cmd+Z, Ctrl+Shift+Z / Ctrl+Y | Editor undo / redo |

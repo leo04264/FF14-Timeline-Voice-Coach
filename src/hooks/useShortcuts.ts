@@ -2,12 +2,12 @@ import { useEffect, useRef } from 'react';
 
 /**
  * Desktop shortcuts (spec §41, §42):
- *   Space = Start / Restart, Esc = Wipe, Left/Right = -0.5s / +0.5s.
+ *   Space = Start / Pause / Resume, Esc = Wipe, Left/Right = -0.5s / +0.5s.
  * Disabled while a text input has focus.
  */
 
 export interface ShortcutHandlers {
-  onStartOrRestart(): void;
+  onTogglePlayback(): void;
   onWipe(): void;
   onNudge(deltaMs: number): void;
 }
@@ -42,7 +42,7 @@ export function useShortcuts(options: {
         case ' ':
         case 'Spacebar':
           event.preventDefault();
-          handlersRef.current.onStartOrRestart();
+          handlersRef.current.onTogglePlayback();
           break;
         case 'Escape':
           if (!escWipe) return;

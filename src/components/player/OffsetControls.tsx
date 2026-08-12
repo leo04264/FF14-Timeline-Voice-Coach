@@ -67,7 +67,7 @@ export function OffsetControls({
       </div>
       <p className="small muted">
         偏移為正代表時間軸整體延後。左右方向鍵可以每次調整本場偏移 0.5
-        秒。全域偏移會跨場保留，本場偏移會在重置或重新開始時清除。
+        秒。全域偏移會跨場保留，本場偏移會在重置時清除。
       </p>
     </div>
   );

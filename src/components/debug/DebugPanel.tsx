@@ -34,24 +34,26 @@ function MetricRow({ label, metric }: { label: string; metric: MetricSummary }) 
 
 function StatisticsTable({ stats }: { stats: DebugStatistics }) {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>指標</th>
-          <th>筆數</th>
-          <th>平均</th>
-          <th>P50</th>
-          <th>P95</th>
-          <th>P99</th>
-          <th>最大</th>
-        </tr>
-      </thead>
-      <tbody>
-        <MetricRow label="引擎延遲" metric={stats.engineLate} />
-        <MetricRow label="語音排隊延遲" metric={stats.ttsQueueDelay} />
-        <MetricRow label="估計實際延遲" metric={stats.approxAudibleLate} />
-      </tbody>
-    </table>
+    <div className="table-scroll debug-table" role="region" aria-label="延遲統計" tabIndex={0}>
+      <table>
+        <thead>
+          <tr>
+            <th>指標</th>
+            <th>筆數</th>
+            <th>平均</th>
+            <th>P50</th>
+            <th>P95</th>
+            <th>P99</th>
+            <th>最大</th>
+          </tr>
+        </thead>
+        <tbody>
+          <MetricRow label="引擎延遲" metric={stats.engineLate} />
+          <MetricRow label="語音排隊延遲" metric={stats.ttsQueueDelay} />
+          <MetricRow label="估計實際延遲" metric={stats.approxAudibleLate} />
+        </tbody>
+      </table>
+    </div>
   );
 }
 
@@ -146,7 +148,8 @@ export function DebugPanel({ records, onClear, defaultOpen = false }: DebugPanel
         <StatisticsTable stats={stats} />
 
         <h3>前景 vs 背景</h3>
-        <table>
+        <div className="table-scroll debug-table" role="region" aria-label="前景與背景延遲比較" tabIndex={0}>
+          <table>
           <thead>
             <tr>
               <th>分頁狀態</th>
@@ -175,10 +178,11 @@ export function DebugPanel({ records, onClear, defaultOpen = false }: DebugPanel
               <td className="mono">{formatMetric(byVisibility.hidden.approxAudibleLate.max)}</td>
             </tr>
           </tbody>
-        </table>
+          </table>
+        </div>
 
         <h3>逐筆記錄</h3>
-        <div className="scroll-y">
+        <div className="table-scroll scroll-y debug-records" role="region" aria-label="逐筆延遲記錄" tabIndex={0}>
           <table>
             <thead>
               <tr>

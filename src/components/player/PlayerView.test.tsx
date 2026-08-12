@@ -45,7 +45,7 @@ function renderPlayer() {
       <LibraryProvider repository={repository}>
         <MemoryRouter initialEntries={[`/player/${TIMELINE.id}`]}>
           <Routes>
-            <Route path="/player/:timelineId" element={<PlayerView mode="live" />} />
+            <Route path="/player/:timelineId" element={<PlayerView />} />
             <Route path="*" element={<div>elsewhere</div>} />
           </Routes>
         </MemoryRouter>
@@ -156,5 +156,84 @@ describe('Player flow', () => {
     click(screen.getByRole('button', { name: '滅團重置' }));
     expect(screen.getByTestId('session-offset')).toHaveTextContent('+0.5s');
     expect(screen.getByTestId('effective-offset')).toHaveTextContent('+0.5s');
+  });
+
+  it('uses Space to start, pause and resume without restarting the pull', async () => {
+    renderPlayer();
+    await flush();
+
+    act(() => fireEvent.keyDown(window, { key: ' ' }));
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(screen.getByText('倒數中')).toBeInTheDocument();
+    expect(screen.getAllByText(/第 1 場/).length).toBeGreaterThan(0);
+
+    advance(1000);
+    const pausedAt = screen.getByTestId('timer').textContent;
+    act(() => fireEvent.keyDown(window, { key: ' ' }));
+    expect(screen.getByText('已暫停')).toBeInTheDocument();
+    advance(2000);
+    expect(screen.getByTestId('timer')).toHaveTextContent(pausedAt ?? '');
+    expect(screen.getAllByText(/第 1 場/).length).toBeGreaterThan(0);
+
+    act(() => fireEvent.keyDown(window, { key: ' ' }));
+    expect(screen.getByText('倒數中')).toBeInTheDocument();
+    expect(screen.getAllByText(/第 1 場/).length).toBeGreaterThan(0);
+  });
+
+  it('uses the same primary button to pause and resume after starting', async () => {
+    renderPlayer();
+    await flush();
+
+    startPull();
+    expect(screen.getByRole('button', { name: '暫停' })).toBeEnabled();
+    expect(screen.getAllByText(/第 1 場/).length).toBeGreaterThan(0);
+
+    advance(1000);
+    const pausedAt = screen.getByTestId('timer').textContent;
+    click(screen.getByRole('button', { name: '暫停' }));
+    expect(screen.getByText('已暫停')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '繼續' })).toBeEnabled();
+
+    advance(2000);
+    expect(screen.getByTestId('timer')).toHaveTextContent(pausedAt ?? '');
+    click(screen.getByRole('button', { name: '繼續' }));
+    expect(screen.getByText('倒數中')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '暫停' })).toBeEnabled();
+    expect(screen.getAllByText(/第 1 場/).length).toBeGreaterThan(0);
+  });
+
+  it('shows Traditional Chinese job names and gives voice-test feedback', async () => {
+    renderPlayer();
+    await flush();
+
+    expect(screen.getByRole('option', { name: '騎士（坦克）' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: '測試語音引擎' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: '試聽一句' })).not.toBeInTheDocument();
+
+    click(screen.getByRole('button', { name: '播放測試語音' }));
+    expect(screen.getByText('正在準備語音…')).toBeInTheDocument();
+    await act(async () => {
+      vi.advanceTimersByTime(2100);
+      await Promise.resolve();
+    });
+    expect(screen.getByText(/已送出測試語音/)).toBeInTheDocument();
+  });
+
+  it('requires a manual wipe before starting again after completion', async () => {
+    renderPlayer();
+    await flush();
+
+    act(() => fireEvent.keyDown(window, { key: ' ' }));
+    advance(75_100);
+    expect(screen.getByText('已結束')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '請先重置' })).toBeDisabled();
+
+    act(() => fireEvent.keyDown(window, { key: ' ' }));
+    expect(screen.getByText('已結束')).toBeInTheDocument();
+    expect(screen.getAllByText(/第 1 場/).length).toBeGreaterThan(0);
+
+    click(screen.getByRole('button', { name: '滅團重置' }));
+    expect(screen.getByText('待機')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '開始' })).toBeEnabled();
   });
 });

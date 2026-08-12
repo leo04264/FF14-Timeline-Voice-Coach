@@ -34,7 +34,7 @@ export function Modal({ title, onClose, children, footer, closeOnEscape = true }
         <h2>{title}</h2>
         {children}
         {footer ? (
-          <div className="row" style={{ marginTop: '1rem', justifyContent: 'flex-end' }}>
+          <div className="row modal-footer">
             {footer}
           </div>
         ) : null}

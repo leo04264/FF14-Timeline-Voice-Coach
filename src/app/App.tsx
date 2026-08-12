@@ -1,9 +1,15 @@
-import { HashRouter, NavLink, Navigate, Route, Routes } from 'react-router-dom';
+import {
+  HashRouter,
+  NavLink,
+  Navigate,
+  Route,
+  Routes,
+  useParams,
+} from 'react-router-dom';
 import { LibraryProvider } from './LibraryContext';
 import { SettingsProvider } from './SettingsContext';
 import { LibraryPage } from '../pages/LibraryPage';
 import { PlayerPage } from '../pages/PlayerPage';
-import { PracticePage } from '../pages/PracticePage';
 import { EditorPage } from '../pages/EditorPage';
 import { SettingsPage } from '../pages/SettingsPage';
 
@@ -20,7 +26,6 @@ export function App() {
             <nav className="app-nav">
               <NavLink to="/library">時間軸庫</NavLink>
               <NavLink to="/player">播放器</NavLink>
-              <NavLink to="/practice">練習</NavLink>
               <NavLink to="/editor">編輯器</NavLink>
               <NavLink to="/settings">設定</NavLink>
             </nav>
@@ -32,8 +37,8 @@ export function App() {
               <Route path="/library" element={<LibraryPage />} />
               <Route path="/player" element={<PlayerPage />} />
               <Route path="/player/:timelineId" element={<PlayerPage />} />
-              <Route path="/practice" element={<PracticePage />} />
-              <Route path="/practice/:timelineId" element={<PracticePage />} />
+              <Route path="/practice" element={<LegacyPracticeRedirect />} />
+              <Route path="/practice/:timelineId" element={<LegacyPracticeRedirect />} />
               <Route path="/editor" element={<EditorPage />} />
               <Route path="/editor/:timelineId" element={<EditorPage />} />
               <Route path="/settings" element={<SettingsPage />} />
@@ -44,4 +49,8 @@ export function App() {
       </LibraryProvider>
     </SettingsProvider>
   );
+}
+function LegacyPracticeRedirect() {
+  const { timelineId } = useParams();
+  return <Navigate to={timelineId ? `/player/${timelineId}` : '/player'} replace />;
 }

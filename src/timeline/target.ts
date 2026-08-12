@@ -6,6 +6,7 @@ import {
   type PartyPosition,
   type PlayerProfile,
 } from './types';
+import { JOB_NAME_LABEL } from '../i18n/labels';
 
 /**
  * Target semantics (spec §19):
@@ -76,7 +77,11 @@ export function describeTarget(target: CueTarget | undefined): string {
     parts.push(target.positions.length ? target.positions.join('/') : '（沒有站位）');
   }
   if (target.jobs) {
-    parts.push(target.jobs.length ? target.jobs.join('/') : '（沒有職業）');
+    parts.push(
+      target.jobs.length
+        ? target.jobs.map((job) => JOB_NAME_LABEL[job]).join('/')
+        : '（沒有職業）',
+    );
   }
   return parts.length ? parts.join(' + ') : '所有人';
 }

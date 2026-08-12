@@ -30,6 +30,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background: var(--bg);
+  overflow-x: hidden;
 }
 
 #root {
@@ -72,6 +73,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 20;
+  min-width: 0;
 }
 
 .app-brand {
@@ -84,6 +86,7 @@ a {
   display: flex;
   gap: 0.35rem;
   flex: 1;
+  min-width: 0;
 }
 
 .app-nav a {
@@ -110,6 +113,7 @@ a {
   max-width: 1600px;
   width: 100%;
   margin: 0 auto;
+  min-width: 0;
 }
 
 .page-header {
@@ -121,6 +125,15 @@ a {
   flex-wrap: wrap;
 }
 
+.page-header > :first-child {
+  min-width: 0;
+}
+
+.page-header h1,
+.page-header p {
+  overflow-wrap: anywhere;
+}
+
 /* ---------------------------------------------------------------- widgets */
 
 .panel {
@@ -128,6 +141,7 @@ a {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 0.9rem;
+  min-width: 0;
 }
 
 .panel + .panel {
@@ -139,6 +153,10 @@ a {
   gap: 0.5rem;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.row > * {
+  min-width: 0;
 }
 
 .col {
@@ -226,6 +244,7 @@ textarea {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 0.3rem 0.5rem;
+  max-width: 100%;
 }
 
 input:focus,
@@ -244,6 +263,13 @@ label.field {
   gap: 0.2rem;
   font-size: 0.82rem;
   color: var(--text-dim);
+  min-width: 0;
+}
+
+label.field > input,
+label.field > select,
+label.field > textarea {
+  width: 100%;
 }
 
 label.check {
@@ -258,6 +284,35 @@ table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.88rem;
+}
+
+.table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-scroll:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.library-table > table {
+  min-width: 760px;
+}
+
+.event-table > table {
+  min-width: 720px;
+}
+
+.debug-table > table {
+  min-width: 620px;
+}
+
+.debug-records > table {
+  min-width: 1080px;
 }
 
 th,
@@ -339,6 +394,31 @@ tbody tr.selected {
   color: var(--text-dim);
 }
 
+.player-overview {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.32fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.player-summary,
+.player-cues {
+  min-width: 0;
+}
+
+.player-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.shortcut-hint {
+  flex: 1 1 260px;
+  text-align: right;
+}
+
 .cue-current {
   min-height: 5.5rem;
   display: flex;
@@ -352,6 +432,7 @@ tbody tr.selected {
   background: var(--bg-panel-2);
   padding: 1rem;
   transition: opacity 220ms linear, border-color 220ms linear;
+  overflow-wrap: anywhere;
 }
 
 .cue-current.fresh {
@@ -382,6 +463,12 @@ tbody tr.selected {
   padding: 0.35rem 0.5rem;
   border-radius: var(--radius);
   background: var(--bg-panel-2);
+  min-width: 0;
+}
+
+.next-cue > :nth-child(2) {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .next-cue.high {
@@ -410,6 +497,7 @@ tbody tr.selected {
   grid-template-columns: 260px minmax(0, 1fr) 380px;
   gap: 0.75rem;
   align-items: start;
+  min-width: 0;
 }
 
 @media (max-width: 1200px) {
@@ -425,6 +513,14 @@ tbody tr.selected {
   padding: 0.75rem;
   max-height: calc(100vh - 190px);
   overflow: auto;
+  min-width: 0;
+}
+
+@media (max-width: 1200px) {
+  .editor-column {
+    max-height: none;
+    overflow: visible;
+  }
 }
 
 .track-item {
@@ -434,6 +530,11 @@ tbody tr.selected {
   padding: 0.4rem 0.5rem;
   border-radius: var(--radius);
   cursor: pointer;
+}
+
+.track-item > :first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .track-item:hover {
@@ -485,6 +586,106 @@ tbody tr.selected {
   background: var(--bg-input);
 }
 
+.validation-summary details > summary {
+  padding: 0.2rem 0;
+  font-weight: 600;
+}
+
+.problem-list {
+  display: grid;
+  gap: 0.65rem;
+  max-height: 520px;
+  overflow: auto;
+  margin-top: 0.6rem;
+  padding-right: 0.2rem;
+}
+
+.problem-card {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.7rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--warn);
+  border-radius: var(--radius);
+  background: var(--bg-panel-2);
+}
+
+.problem-card.error,
+.problem-card.collision.severe {
+  border-left-color: var(--error);
+}
+
+.problem-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.problem-card-header strong {
+  overflow-wrap: anywhere;
+}
+
+.problem-context {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  font-size: 0.84rem;
+}
+
+.problem-context > div {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 0.45rem;
+}
+
+.problem-context dt {
+  color: var(--text-dim);
+}
+
+.problem-context dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.problem-guidance {
+  padding: 0.5rem 0.6rem;
+  border-radius: var(--radius);
+  background: var(--bg-input);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.problem-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.collision-cues {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.collision-cue {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+  padding: 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-panel);
+}
+
+.collision-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-weight: 600;
+}
+
 /* ---------------------------------------------------------------- modal */
 
 .modal-backdrop {
@@ -511,6 +712,15 @@ tbody tr.selected {
 
 .modal h2 {
   margin-top: 0;
+}
+
+.modal-footer {
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.ready-summary-row > strong {
+  min-width: 140px;
 }
 
 /* ---------------------------------------------------------------- debug */
@@ -547,4 +757,240 @@ details > summary {
 .scroll-y {
   max-height: 320px;
   overflow: auto;
+}
+
+.settings-number-field,
+.settings-voice-field {
+  width: 100%;
+}
+
+.settings-number-field {
+  max-width: 260px;
+}
+
+.settings-voice-field {
+  min-width: 260px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 16px;
+  }
+
+  .app-header {
+    flex-wrap: wrap;
+    gap: 0.45rem 0.75rem;
+    padding: 0.55rem 0.65rem 0.45rem;
+  }
+
+  .app-brand {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.92rem;
+  }
+
+  .app-nav {
+    order: 3;
+    flex-basis: 100%;
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .app-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .app-nav a {
+    flex: 1 0 auto;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 0.65rem;
+  }
+
+  .app-main {
+    padding: 0.65rem;
+  }
+
+  .page-header {
+    align-items: stretch;
+    gap: 0.65rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-header > *,
+  .page-actions {
+    width: 100%;
+  }
+
+  .page-actions > button {
+    flex: 1 1 auto;
+  }
+
+  .panel {
+    padding: 0.75rem;
+  }
+
+  button {
+    min-height: 40px;
+  }
+
+  button.big,
+  button.huge,
+  .wipe-button {
+    padding: 0.75rem 1rem;
+    font-size: 1.05rem;
+  }
+
+  .responsive-fields > label.field,
+  .settings-number-field,
+  .settings-voice-field {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .player-overview {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .player-summary {
+    align-items: center;
+    text-align: center;
+  }
+
+  .player-timer {
+    font-size: clamp(3rem, 18vw, 4rem);
+  }
+
+  .cue-current {
+    min-height: 4.5rem;
+    padding: 0.75rem;
+    font-size: clamp(1.35rem, 7vw, 2rem);
+  }
+
+  .player-actions > button {
+    flex: 1 1 calc(50% - 0.25rem);
+  }
+
+  .shortcut-hint {
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  .offset-display {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .offset-display > div {
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    background: var(--bg-panel-2);
+    text-align: center;
+  }
+
+  .editor-layout {
+    gap: 0.65rem;
+  }
+
+  .editor-column {
+    padding: 0.65rem;
+  }
+
+  .debug-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .collision-cues {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header > .badge {
+    font-size: 0.65rem;
+  }
+
+  .app-main {
+    padding: 0.5rem;
+  }
+
+  .panel {
+    padding: 0.65rem;
+  }
+
+  .timeline-picker-row {
+    align-items: stretch;
+  }
+
+  .timeline-picker-row > button {
+    width: 100%;
+  }
+
+  .next-cue {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .next-cue > .spacer {
+    display: none;
+  }
+
+  .next-cue > :last-child {
+    grid-column: 2;
+  }
+
+  .player-actions > button,
+  .modal-footer > button {
+    flex-basis: 100%;
+  }
+
+  .ready-summary-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .ready-summary-row > strong {
+    min-width: 0;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+  }
+
+  .problem-list {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .problem-context > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.05rem;
+  }
+
+  .problem-actions > button {
+    flex: 1 1 100%;
+  }
+
+  .modal-backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal {
+    max-height: 92vh;
+    border-radius: 10px 10px 0 0;
+    border-width: 1px 0 0;
+    padding: 1rem 0.75rem calc(1rem + env(safe-area-inset-bottom));
+  }
+
+  .debug-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

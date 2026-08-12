@@ -52,7 +52,8 @@ export function EventTable({
         </button>
       </div>
 
-      <table>
+      <div className="table-scroll event-table" role="region" aria-label={`事件列表：${track.name}`} tabIndex={0}>
+        <table>
         <thead>
           <tr>
             <th>時間</th>
@@ -79,6 +80,7 @@ export function EventTable({
             return (
               <tr
                 key={event.id}
+                data-event-id={event.id}
                 className={event.id === selectedEventId ? 'selected' : ''}
                 onClick={() => onSelectEvent(event.id)}
               >
@@ -146,7 +148,8 @@ export function EventTable({
             );
           })}
         </tbody>
-      </table>
+        </table>
+      </div>
       <p className="small muted">
         「啟用」欄位會一次切換該事件底下所有提示；要單獨開關某一句請到右邊的細節面板（規格 §21）。
       </p>

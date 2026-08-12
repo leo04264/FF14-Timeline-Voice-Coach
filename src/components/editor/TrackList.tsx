@@ -34,6 +34,7 @@ export function TrackList({ timeline, selectedTrackId, onSelectTrack, onChange }
         {timeline.tracks.map((track) => (
           <div
             key={track.id}
+            data-track-id={track.id}
             className={`track-item ${track.id === selectedTrackId ? 'selected' : ''}`}
             onClick={() => onSelectTrack(track.id)}
             role="button"

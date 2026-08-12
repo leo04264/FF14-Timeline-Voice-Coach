@@ -1,4 +1,4 @@
-import { JOB_ROLE_LABEL } from '../../i18n/labels';
+import { JOB_NAME_LABEL, JOB_ROLE_LABEL } from '../../i18n/labels';
 import { isConventionalAssignment } from '../../timeline/target';
 import { JOB_CODES, JOB_ROLE, PARTY_POSITIONS } from '../../timeline/types';
 import type { JobCode, PartyPosition, PlayerProfile } from '../../timeline/types';
@@ -47,7 +47,7 @@ export function ProfileSelector({ profile, onChange, disabled }: ProfileSelector
           >
             {JOB_CODES.map((job) => (
               <option key={job} value={job}>
-                {job}（{JOB_ROLE_LABEL[JOB_ROLE[job]]}）
+                {JOB_NAME_LABEL[job]}（{JOB_ROLE_LABEL[JOB_ROLE[job]]}）
               </option>
             ))}
           </select>
@@ -56,7 +56,7 @@ export function ProfileSelector({ profile, onChange, disabled }: ProfileSelector
 
       {conventional ? null : (
         <p className="small text-warn" role="status">
-          警告：{profile.position} + {profile.job} 不是常見組合。仍然可以使用，語音提示照常播放。
+          警告：{profile.position} + {JOB_NAME_LABEL[profile.job]} 不是常見組合。仍然可以使用，語音提示照常播放。
         </p>
       )}
     </div>

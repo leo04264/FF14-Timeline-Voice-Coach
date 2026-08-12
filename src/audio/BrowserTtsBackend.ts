@@ -82,8 +82,8 @@ export class BrowserTtsBackend implements AudioBackend {
   }
 
   /** Speak arbitrary text (voice preview in Settings). Not telemetered. */
-  speakPreview(text: string, config: { lang: string; rate: number; pitch: number; volume: number; voiceUri?: string }): void {
-    if (!isSpeechSynthesisSupported()) return;
+  speakPreview(text: string, config: { lang: string; rate: number; pitch: number; volume: number; voiceUri?: string }): boolean {
+    if (!isSpeechSynthesisSupported()) return false;
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = config.lang;
     utterance.rate = config.rate;
@@ -95,6 +95,7 @@ export class BrowserTtsBackend implements AudioBackend {
     }
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(utterance);
+    return true;
   }
 
   cancelAll(): void {

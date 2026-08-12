@@ -15,6 +15,11 @@ import { cloneTimelineWithNewIds } from '../timeline/exampleTimeline';
 import { validateTimeline, type ValidationIssue } from '../timeline/validator';
 import type { TimelinePackage } from '../timeline/types';
 
+type EditorLocation =
+  | { kind: 'track'; id: string }
+  | { kind: 'event'; id: string }
+  | { kind: 'cue'; id: string };
+
 export function EditorPage() {
   const { timelineId } = useParams();
   const navigate = useNavigate();
@@ -25,6 +30,7 @@ export function EditorPage() {
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [highlightCueId, setHighlightCueId] = useState<string | null>(null);
+  const [pendingLocation, setPendingLocation] = useState<EditorLocation | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
 
   const entry = useMemo(
@@ -75,18 +81,18 @@ export function EditorPage() {
     [timeline, settings.collisionWindowMs],
   );
 
-  const cueIndex = useMemo(() => {
-    const index = new Map<string, { trackId: string; eventId: string }>();
-    if (!timeline) return index;
-    for (const track of timeline.tracks) {
-      for (const event of track.events) {
-        for (const cue of event.cues) {
-          index.set(cue.id, { trackId: track.id, eventId: event.id });
-        }
-      }
-    }
-    return index;
-  }, [timeline]);
+  useEffect(() => {
+    if (!pendingLocation) return;
+    const handle = window.requestAnimationFrame(() => {
+      const attribute = `data-${pendingLocation.kind}-id`;
+      const target = [...document.querySelectorAll<HTMLElement>(`[${attribute}]`)].find(
+        (element) => element.getAttribute(attribute) === pendingLocation.id,
+      );
+      target?.scrollIntoView?.({ behavior: 'smooth', block: 'center' });
+      setPendingLocation(null);
+    });
+    return () => window.cancelAnimationFrame(handle);
+  }, [pendingLocation]);
 
   if (loading) return <p className="muted">載入中…</p>;
 
@@ -178,6 +184,9 @@ export function EditorPage() {
     if (issue.trackId) setSelectedTrackId(issue.trackId);
     if (issue.eventId) setSelectedEventId(issue.eventId);
     setHighlightCueId(issue.cueId ?? null);
+    if (issue.cueId) setPendingLocation({ kind: 'cue', id: issue.cueId });
+    else if (issue.eventId) setPendingLocation({ kind: 'event', id: issue.eventId });
+    else if (issue.trackId) setPendingLocation({ kind: 'track', id: issue.trackId });
   };
 
   return (
@@ -187,7 +196,7 @@ export function EditorPage() {
           <h1>{timeline.meta.name}</h1>
           <p className="muted small mono">{timeline.id}</p>
         </div>
-        <div className="row">
+        <div className="row page-actions">
           <span className="badge">{SAVE_STATUS_TEXT[editor.saveStatus]}</span>
           {editor.saveError ? <span className="text-error small">{editor.saveError}</span> : null}
           <button type="button" disabled={!editor.canUndo} onClick={editor.undo}>
@@ -242,21 +251,22 @@ export function EditorPage() {
       ) : null}
 
       <ValidationSummary
+        timeline={timeline}
         report={report}
         collisions={collisions}
-        cueIndex={cueIndex}
         onSelectIssue={focusIssue}
         onSelectCue={(trackId, eventId, cueId) => {
           setSelectedTrackId(trackId);
           setSelectedEventId(eventId);
           setHighlightCueId(cueId);
+          setPendingLocation({ kind: 'cue', id: cueId });
         }}
       />
 
       <details className="panel">
         <summary>時間軸設定</summary>
         <div className="col" style={{ marginTop: '0.6rem' }}>
-          <div className="row">
+          <div className="row responsive-fields">
             <label className="field">
               名稱
               <input
@@ -302,7 +312,7 @@ export function EditorPage() {
               onChange={(event) => patchMeta({ description: event.target.value || undefined })}
             />
           </label>
-          <div className="row" style={{ alignItems: 'flex-start' }}>
+          <div className="row responsive-fields" style={{ alignItems: 'flex-start' }}>
             <TimeInput
               label="戰鬥全長"
               valueMs={timeline.encounter.durationMs}

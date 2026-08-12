@@ -8,6 +8,7 @@ export function SettingsPage() {
   const { settings, update, reset } = useSettings();
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [backend] = useState(() => new BrowserTtsBackend());
+  const [voiceTestStatus, setVoiceTestStatus] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -54,7 +55,7 @@ export function SettingsPage() {
 
       <div className="panel col">
         <h2>編輯器</h2>
-        <label className="field" style={{ maxWidth: 260 }}>
+        <label className="field settings-number-field">
           衝突判定區間
           <select
             value={settings.collisionWindowMs}
@@ -72,7 +73,7 @@ export function SettingsPage() {
             )}
           </select>
         </label>
-        <label className="field" style={{ maxWidth: 260 }}>
+        <label className="field settings-number-field">
           自訂衝突判定區間（毫秒）
           <input
             type="number"
@@ -89,7 +90,7 @@ export function SettingsPage() {
 
       <div className="panel col">
         <h2>執行參數</h2>
-        <label className="field" style={{ maxWidth: 260 }}>
+        <label className="field settings-number-field">
           排程器 tick 間隔（毫秒）
           <input
             type="number"
@@ -103,7 +104,7 @@ export function SettingsPage() {
             }}
           />
         </label>
-        <label className="field" style={{ maxWidth: 260 }}>
+        <label className="field settings-number-field">
           遲到超過多久就略過（毫秒）
           <input
             type="number"
@@ -127,7 +128,7 @@ export function SettingsPage() {
         {isSpeechSynthesisSupported() ? null : (
           <p className="text-error">這個瀏覽器沒有 Web Speech API，無法播放語音。</p>
         )}
-        <div className="row">
+        <div className="row responsive-fields">
           <label className="field">
             語言
             <input
@@ -135,7 +136,7 @@ export function SettingsPage() {
               onChange={(event) => update({ audio: { ...settings.audio, lang: event.target.value } })}
             />
           </label>
-          <label className="field" style={{ minWidth: 260 }}>
+          <label className="field settings-voice-field">
             語音
             <select
               value={settings.audio.voiceUri ?? ''}
@@ -154,7 +155,7 @@ export function SettingsPage() {
             </select>
           </label>
         </div>
-        <div className="row">
+        <div className="row responsive-fields">
           <label className="field">
             語速（{settings.audio.rate.toFixed(2)}）
             <input
@@ -198,20 +199,35 @@ export function SettingsPage() {
         <div className="row">
           <button
             type="button"
+            disabled={voiceTestStatus === '正在準備語音…'}
             onClick={async () => {
-              await backend.prepare([]);
-              backend.speakPreview('三秒後坦克死刑', {
-                lang: settings.audio.lang,
-                rate: settings.audio.rate,
-                pitch: settings.audio.pitch,
-                volume: settings.audio.volume,
-                voiceUri: settings.audio.voiceUri,
-              });
+              setVoiceTestStatus('正在準備語音…');
+              try {
+                await backend.prepare([]);
+                const queued = backend.speakPreview('三秒後坦克死刑', {
+                  lang: settings.audio.lang,
+                  rate: settings.audio.rate,
+                  pitch: settings.audio.pitch,
+                  volume: settings.audio.volume,
+                  voiceUri: settings.audio.voiceUri,
+                });
+                setVoiceTestStatus(
+                  queued
+                    ? '已送出測試語音；若沒有聽到，請改選其他語音或確認系統音量。'
+                    : '這個瀏覽器不支援 Web Speech API，無法播放語音。',
+                );
+              } catch (error) {
+                setVoiceTestStatus(
+                  `測試語音失敗：${error instanceof Error ? error.message : '未知錯誤'}`,
+                );
+              }
             }}
           >
-            試聽
+            播放測試語音
           </button>
+          {voiceTestStatus ? <span className="small" role="status">{voiceTestStatus}</span> : null}
         </div>
+        <p className="small muted">用上方目前設定念一句測試文字，不會開始播放器。</p>
       </div>
     </section>
   );

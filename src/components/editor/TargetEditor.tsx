@@ -1,4 +1,11 @@
-import { JOB_CODES, PARTY_POSITIONS, type CueTarget, type JobCode, type PartyPosition } from '../../timeline/types';
+import { JOB_NAME_LABEL } from '../../i18n/labels';
+import {
+  JOB_CODES,
+  PARTY_POSITIONS,
+  type CueTarget,
+  type JobCode,
+  type PartyPosition,
+} from '../../timeline/types';
 
 interface TargetEditorProps {
   label: string;
@@ -83,7 +90,7 @@ export function TargetEditor({ label, target, onChange }: TargetEditorProps) {
             className={jobs?.includes(job) ? 'active' : ''}
             onClick={() => toggleJob(job)}
           >
-            {job}
+            {JOB_NAME_LABEL[job]}
           </button>
         ))}
       </div>

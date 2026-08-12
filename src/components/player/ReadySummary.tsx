@@ -1,4 +1,5 @@
 import { Modal } from '../common/Modal';
+import { JOB_NAME_LABEL } from '../../i18n/labels';
 import { isConventionalAssignment } from '../../timeline/target';
 import { formatSecondsSigned } from '../../timeline/time';
 import type { PlayerProfile, TimelineTrack } from '../../timeline/types';
@@ -45,32 +46,32 @@ export function ReadySummary({
         </>
       }
     >
-      <dl className="col" style={{ margin: 0 }}>
-        <div className="row">
-          <strong style={{ minWidth: 140 }}>時間軸</strong>
+      <dl className="col ready-summary" style={{ margin: 0 }}>
+        <div className="row ready-summary-row">
+          <strong>時間軸</strong>
           <span>{timelineName}</span>
         </div>
-        <div className="row">
-          <strong style={{ minWidth: 140 }}>站位 / 職業</strong>
+        <div className="row ready-summary-row">
+          <strong>站位 / 職業</strong>
           <span>
-            {profile.position} / {profile.job}
+            {profile.position} / {JOB_NAME_LABEL[profile.job]}
           </span>
           {conventional ? null : <span className="badge warn">非常見組合</span>}
         </div>
-        <div className="row">
-          <strong style={{ minWidth: 140 }}>啟用軌道</strong>
+        <div className="row ready-summary-row">
+          <strong>啟用軌道</strong>
           <span>{enabled.length ? enabled.map((track) => track.name).join('、') : '無'}</span>
         </div>
-        <div className="row">
-          <strong style={{ minWidth: 140 }}>倒數</strong>
+        <div className="row ready-summary-row">
+          <strong>倒數</strong>
           <span className="mono">{(countdownMs / 1000).toFixed(1)} 秒</span>
         </div>
-        <div className="row">
-          <strong style={{ minWidth: 140 }}>實際偏移</strong>
+        <div className="row ready-summary-row">
+          <strong>實際偏移</strong>
           <span className="mono">{formatSecondsSigned(effectiveOffsetMs)}</span>
         </div>
-        <div className="row">
-          <strong style={{ minWidth: 140 }}>你會聽到的提示</strong>
+        <div className="row ready-summary-row">
+          <strong>你會聽到的提示</strong>
           <span>{cueCount} 句</span>
         </div>
       </dl>

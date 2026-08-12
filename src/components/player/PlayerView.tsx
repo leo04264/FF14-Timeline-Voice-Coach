@@ -17,17 +17,11 @@ import { ProfileSelector } from './ProfileSelector';
 import { ReadySummary } from './ReadySummary';
 import { TrackSelector } from './TrackSelector';
 
-export type PlayerMode = 'live' | 'practice';
-
-interface PlayerViewProps {
-  mode: PlayerMode;
-}
-
 /**
- * Player / Practice screen (spec §37–§46).
- * Practice mode is the only place Pause is offered (spec §40).
+ * Player screen (spec §37–§46). Playback can be paused, but starting a new pull
+ * always requires an explicit wipe first.
  */
-export function PlayerView({ mode }: PlayerViewProps) {
+export function PlayerView() {
   const { timelineId } = useParams();
   const navigate = useNavigate();
   const { entries, loading } = useLibrary();
@@ -47,6 +41,7 @@ export function PlayerView({ mode }: PlayerViewProps) {
   const [enabledTrackIds, setEnabledTrackIds] = useState<string[]>([]);
   const [countdownMs, setCountdownMs] = useState<number>(settings.lastCountdownMs);
   const [showReady, setShowReady] = useState(false);
+  const [voiceTestStatus, setVoiceTestStatus] = useState<string | null>(null);
 
   const { engine, backend, recorder, snapshot, records } = useTimelineEngine({
     tickIntervalMs: settings.tickIntervalMs,
@@ -94,7 +89,7 @@ export function PlayerView({ mode }: PlayerViewProps) {
   const compiled = 'compiled' in compileResult ? compileResult.compiled : null;
   const compileError = 'error' in compileResult ? compileResult.error : null;
 
-  const isIdle = snapshot.state === 'idle' || snapshot.state === 'completed';
+  const isIdle = snapshot.state === 'idle';
 
   // Keep the engine in sync while idle; never swap the timeline mid-pull.
   useEffect(() => {
@@ -132,13 +127,38 @@ export function PlayerView({ mode }: PlayerViewProps) {
     engine.wipe();
   }, [engine]);
 
+  const handleVoiceTest = useCallback(async () => {
+    if (!compiled) return;
+    setVoiceTestStatus('正在準備語音…');
+    try {
+      await backend.prepare(compiled.cues);
+      const queued = backend.speakPreview('語音測試，三秒後開始', {
+        lang: settings.audio.lang,
+        rate: settings.audio.rate,
+        pitch: settings.audio.pitch,
+        volume: settings.audio.volume,
+        voiceUri: settings.audio.voiceUri,
+      });
+      setVoiceTestStatus(
+        queued
+          ? '已送出測試語音；若沒有聽到，請到「設定」確認語音與音量。'
+          : '這個瀏覽器不支援 Web Speech API，無法播放語音。',
+      );
+    } catch (error) {
+      setVoiceTestStatus(
+        `測試語音失敗：${error instanceof Error ? error.message : '未知錯誤'}`,
+      );
+    }
+  }, [backend, compiled, settings.audio]);
+
   useShortcuts({
     enabled: Boolean(compiled) && !showReady,
     escWipe: settings.escWipe,
     handlers: {
-      onStartOrRestart: () => {
-        if (snapshot.state === 'idle' || snapshot.state === 'completed') handleStart();
-        else beginPull();
+      onTogglePlayback: () => {
+        if (snapshot.state === 'idle') beginPull();
+        else if (snapshot.state === 'paused') engine.resume();
+        else if (snapshot.state === 'countdown' || snapshot.state === 'running') engine.pause();
       },
       onWipe: handleWipe,
       onNudge: (delta) => engine.adjustPullOffsetMs(delta),
@@ -159,7 +179,7 @@ export function PlayerView({ mode }: PlayerViewProps) {
     const selectable = entries.filter((candidate) => candidate.status === 'valid');
     return (
       <section className="panel">
-        <h1>{mode === 'practice' ? '練習' : '播放器'}</h1>
+        <h1>播放器</h1>
         <p className="muted">選擇一份要跑的時間軸。</p>
         <div className="col">
           {selectable.length === 0 ? (
@@ -168,11 +188,11 @@ export function PlayerView({ mode }: PlayerViewProps) {
             </p>
           ) : null}
           {selectable.map((candidate) => (
-            <div className="row" key={candidate.id}>
+            <div className="row timeline-picker-row" key={candidate.id}>
               <button
                 type="button"
                 className="primary"
-                onClick={() => navigate(`/${mode === 'practice' ? 'practice' : 'player'}/${candidate.id}`)}
+                onClick={() => navigate(`/player/${candidate.id}`)}
               >
                 開啟
               </button>
@@ -203,17 +223,14 @@ export function PlayerView({ mode }: PlayerViewProps) {
     <section className="col">
       <div className="page-header">
         <div>
-          <h1>
-            {timeline.meta.name}{' '}
-            {mode === 'practice' ? <span className="badge">練習模式</span> : null}
-          </h1>
+          <h1>{timeline.meta.name}</h1>
           <p className="muted small">
             {timeline.meta.encounterId}
             {timeline.meta.strategy ? ` · ${timeline.meta.strategy}` : ''}
             {timeline.meta.version ? ` · v${timeline.meta.version}` : ''} · 第 {snapshot.pullId} 場
           </p>
         </div>
-        <div className="row">
+        <div className="row page-actions">
           <button type="button" onClick={() => navigate(`/editor/${timeline.id}`)}>
             編輯
           </button>
@@ -230,8 +247,8 @@ export function PlayerView({ mode }: PlayerViewProps) {
       ) : null}
 
       <div className="panel">
-        <div className="row" style={{ alignItems: 'flex-start' }}>
-          <div className="col" style={{ minWidth: 240 }}>
+        <div className="player-overview">
+          <div className="col player-summary">
             <div className="player-state">{ENGINE_STATE_LABEL[snapshot.state]}</div>
             <div className="player-timer mono" data-testid="timer">
               {formatTimer(snapshot.timelineElapsedMs)}
@@ -246,7 +263,7 @@ export function PlayerView({ mode }: PlayerViewProps) {
             </div>
           </div>
 
-          <div className="col" style={{ flex: 1, minWidth: 320 }}>
+          <div className="col player-cues">
             <CueDisplay
               currentCue={snapshot.currentCue}
               currentCueAtMs={snapshot.currentCueAtMs}
@@ -255,30 +272,31 @@ export function PlayerView({ mode }: PlayerViewProps) {
           </div>
         </div>
 
-        <div className="row" style={{ marginTop: '1rem' }}>
+        <div className="player-actions">
           <button
             type="button"
             className="primary huge"
-            disabled={!compiled}
-            onClick={running || paused ? beginPull : handleStart}
+            disabled={!compiled || snapshot.state === 'completed'}
+            onClick={() => {
+              if (running) engine.pause();
+              else if (paused) engine.resume();
+              else handleStart();
+            }}
           >
-            {running || paused ? '重新開始' : '開始'}
+            {running
+              ? '暫停'
+              : paused
+                ? '繼續'
+                : snapshot.state === 'completed'
+                  ? '請先重置'
+                  : '開始'}
           </button>
           <button type="button" className="wipe-button" onClick={handleWipe}>
             滅團重置
           </button>
-          {mode === 'practice' ? (
-            <button
-              type="button"
-              className="big"
-              onClick={() => (paused ? engine.resume() : engine.pause())}
-              disabled={!running && !paused}
-            >
-              {paused ? '繼續' : '暫停'}
-            </button>
-          ) : null}
-          <span className="spacer" />
-          <span className="small muted">空白鍵 開始/重新開始 · Esc 重置 · ←/→ 偏移 ±0.5 秒</span>
+          <span className="small muted shortcut-hint">
+            空白鍵 開始／暫停／繼續 · Esc 重置 · ←/→ 偏移 ±0.5 秒
+          </span>
         </div>
       </div>
 
@@ -302,7 +320,7 @@ export function PlayerView({ mode }: PlayerViewProps) {
           <h3>站位 / 職業</h3>
           <ProfileSelector
             profile={profile}
-            disabled={running}
+            disabled={!isIdle}
             onChange={(next) => {
               setProfile(next);
               updateSettings({ lastPosition: next.position, lastJob: next.job });
@@ -313,7 +331,7 @@ export function PlayerView({ mode }: PlayerViewProps) {
           <TrackSelector
             tracks={timeline.tracks}
             enabledTrackIds={enabledTrackIds}
-            disabled={running}
+            disabled={!isIdle}
             onChange={(ids) => {
               setEnabledTrackIds(ids);
               persistPrefs({ enabledTrackIds: ids });
@@ -324,7 +342,7 @@ export function PlayerView({ mode }: PlayerViewProps) {
           <CountdownSelector
             countdownMs={countdownMs}
             timelineDefaultMs={timeline.encounter.countdownMs}
-            disabled={running}
+            disabled={!isIdle}
             onChange={(ms) => {
               setCountdownMs(ms);
               persistPrefs({ countdownMs: ms });
@@ -339,33 +357,23 @@ export function PlayerView({ mode }: PlayerViewProps) {
           <div className="row">
             <button
               type="button"
-              onClick={() => void backend.prepare(compiled ? compiled.cues : [])}
-              title="先喚醒語音引擎，Chrome 需要一次使用者操作才會啟動"
+              onClick={() => void handleVoiceTest()}
+              disabled={!compiled || voiceTestStatus === '正在準備語音…'}
             >
-              測試語音引擎
+              播放測試語音
             </button>
-            <button
-              type="button"
-              onClick={() =>
-                backend.speakPreview('語音測試', {
-                  lang: settings.audio.lang,
-                  rate: settings.audio.rate,
-                  pitch: settings.audio.pitch,
-                  volume: settings.audio.volume,
-                  voiceUri: settings.audio.voiceUri,
-                })
-              }
-            >
-              試聽一句
-            </button>
+            {voiceTestStatus ? <span className="small" role="status">{voiceTestStatus}</span> : null}
           </div>
+          <p className="small muted">
+            這只會用目前的語言、語音、語速、音調與音量念一句測試文字，不會開始或改動時間軸。
+          </p>
         </div>
       </details>
 
       <DebugPanel
         records={records}
         onClear={() => recorder.clear()}
-        defaultOpen={mode === 'practice'}
+        defaultOpen={false}
       />
 
       {showReady && compiled ? (
