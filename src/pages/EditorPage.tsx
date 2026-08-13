@@ -150,19 +150,19 @@ export function EditorPage() {
     return (
       <section className="panel col">
         <h1>{entry.timeline.meta.name}</h1>
-        <p>內建時間軸是唯讀的。要修改請先建立一份衍生版本（規格 §64）。</p>
+        <p>內建時間軸是唯讀的。要修改請先建立一份複本（規格 §64）。</p>
         <button
           type="button"
           className="primary"
           onClick={async () => {
-            const fork = cloneTimelineWithNewIds(entry.timeline, {
-              name: `${entry.timeline.meta.name}（衍生）`,
+            const copy = cloneTimelineWithNewIds(entry.timeline, {
+              name: `${entry.timeline.meta.name}（複本）`,
             });
-            await saveTimeline(fork);
-            navigate(`/editor/${fork.id}`);
+            await saveTimeline(copy);
+            navigate(`/editor/${copy.id}`);
           }}
         >
-          衍生後編輯
+          複製後編輯
         </button>
       </section>
     );
@@ -218,14 +218,26 @@ export function EditorPage() {
           <button
             type="button"
             disabled={report.hasBlockingError}
-            title={report.hasBlockingError ? '還有驗證錯誤，無法正式匯出（規格 §69）' : undefined}
+            title={
+              report.hasBlockingError
+                ? '還有驗證錯誤，請先修正或改用「匯出草稿」（規格 §69）'
+                : undefined
+            }
             onClick={() => exportTimeline(timeline, report)}
           >
             匯出 JSON
           </button>
-          <button type="button" className="ghost" onClick={() => exportRawDraft(timeline)}>
-            匯出草稿
-          </button>
+          {/* 草稿匯出只在正式匯出被擋住時才需要，內容相同、只是檔名不同（規格 §69）。 */}
+          {report.hasBlockingError ? (
+            <button
+              type="button"
+              className="ghost"
+              title="略過驗證，直接備份目前的內容"
+              onClick={() => exportRawDraft(timeline)}
+            >
+              匯出草稿
+            </button>
+          ) : null}
           <button
             type="button"
             disabled={report.hasBlockingError}

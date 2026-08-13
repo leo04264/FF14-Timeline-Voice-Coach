@@ -57,8 +57,8 @@ export function LibraryPage() {
     setNotice(`已匯入「${result.timeline.meta.name}」`);
   };
 
-  const handleDuplicate = async (timeline: TimelinePackage, label: string) => {
-    const copy = cloneTimelineWithNewIds(timeline, { name: `${timeline.meta.name}（${label}）` });
+  const handleDuplicate = async (timeline: TimelinePackage) => {
+    const copy = cloneTimelineWithNewIds(timeline, { name: `${timeline.meta.name}（複本）` });
     await saveTimeline(copy);
     setNotice(`已建立「${copy.meta.name}」`);
   };
@@ -128,32 +128,42 @@ export function LibraryPage() {
             {entry.status === 'valid' && isBuiltin ? (
               <button
                 type="button"
-                title="內建時間軸是唯讀的，編輯會自動建立一份衍生版本"
+                title="內建時間軸是唯讀的，編輯會自動建立一份複本"
                 onClick={async () => {
-                  const fork = cloneTimelineWithNewIds(entry.timeline, {
-                    name: `${entry.timeline.meta.name}（衍生）`,
+                  const copy = cloneTimelineWithNewIds(entry.timeline, {
+                    name: `${entry.timeline.meta.name}（複本）`,
                   });
-                  await saveTimeline(fork);
-                  navigate(`/editor/${fork.id}`);
+                  await saveTimeline(copy);
+                  navigate(`/editor/${copy.id}`);
                 }}
               >
-                衍生後編輯
+                複製後編輯
               </button>
             ) : null}
             {entry.status === 'valid' ? (
               <>
-                <button type="button" onClick={() => handleDuplicate(entry.timeline, '複本')}>
+                <button type="button" onClick={() => handleDuplicate(entry.timeline)}>
                   複製
                 </button>
-                <button type="button" onClick={() => handleDuplicate(entry.timeline, '衍生')}>
-                  衍生
-                </button>
-                <button type="button" onClick={() => handleExport(entry)}>
+                <button
+                  type="button"
+                  disabled={errors > 0}
+                  title={errors > 0 ? '還有驗證錯誤，請先修正或改用「匯出草稿」（規格 §69）' : undefined}
+                  onClick={() => handleExport(entry)}
+                >
                   匯出 JSON
                 </button>
-                <button type="button" className="ghost" onClick={() => exportRawDraft(entry.timeline)}>
-                  匯出草稿
-                </button>
+                {/* 草稿匯出只在正式匯出被擋住時才需要，內容相同、只是檔名不同（規格 §69）。 */}
+                {errors > 0 ? (
+                  <button
+                    type="button"
+                    className="ghost"
+                    title="略過驗證，直接備份目前的內容"
+                    onClick={() => exportRawDraft(entry.timeline)}
+                  >
+                    匯出草稿
+                  </button>
+                ) : null}
               </>
             ) : (
               <button type="button" onClick={() => void handleExportRawStored(entry)}>
@@ -234,7 +244,7 @@ export function LibraryPage() {
             {locals.length === 0 ? (
               <tr>
                 <td colSpan={5} className="muted">
-                  還沒有任何資料。可以新增一份，或從內建範本衍生一份。
+                  還沒有任何資料。可以新增一份，或從內建範本複製一份。
                 </td>
               </tr>
             ) : null}
@@ -246,7 +256,7 @@ export function LibraryPage() {
 
       <div className="panel">
         <h2>內建範本（{builtins.length}）</h2>
-        <p className="muted small">唯讀，編輯時會自動建立衍生版本（規格 §64）。</p>
+        <p className="muted small">唯讀，編輯時會自動建立複本（規格 §64）。</p>
         <div className="table-scroll library-table" role="region" aria-label="內建範本列表" tabIndex={0}>
           <table>
           <thead>
