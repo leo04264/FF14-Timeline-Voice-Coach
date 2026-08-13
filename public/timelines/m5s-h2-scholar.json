@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "id": "builtin-m5s-h2-scholar",
   "meta": {
-    "name": "M5S Dancing Green — Boss + H2 Scholar Core Plan",
+    "name": "M5S Dancing Green — Boss + H2 Scholar Core + Rotation",
     "encounterId": "aac-cruiserweight-m1-savage-m5s",
-    "strategy": "M5S Boss Mechanics + H2 Scholar Core Plan",
+    "strategy": "M5S Boss Mechanics + H2 Scholar Core + 30s DoT / mechanic-aligned Chain",
     "author": "FF14 Timeline Voice Coach",
-    "description": "Core live-play M5S Scholar timeline rebuilt from the user's latest compact healing plan. Only the requested H2 Scholar healing, mitigation, tank-support, and major burst reminders are retained. Boss Mechanics is kept as a separate encounter track. All cues are enabled and the timeline uses schemaVersion 1.",
-    "version": "0.4.0"
+    "description": "M5S Boss + H2 Scholar Core timeline with Scholar rotation reminders added. DoT refresh is reminded every 30 seconds after the opener. Chain Stratagem follows the mechanic-aligned delayed raid-burst timings rather than a rigid 120-second schedule. Existing Chain windows at 246.0s, 365.5s and 484.0s are preserved, with missing windows added around 125.5s and 603.5s. DoT reminders are merged into nearby H2 calls where practical or placed as concise standalone cues while preserving the 2000ms collision window.",
+    "version": "0.4.1"
   },
   "encounter": {
     "durationMs": 610000,
@@ -949,6 +949,30 @@
           ]
         },
         {
+          "id": "sch-dot-030",
+          "atMs": 30000,
+          "name": "30秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-030-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-core-p1-03",
           "atMs": 34500,
           "name": "第一次左右刀：罩子＋祥光",
@@ -999,14 +1023,14 @@
         {
           "id": "sch-core-p1-05",
           "atMs": 59200,
-          "name": "第二次左右刀＋分攤結束：大仙女一段",
+          "name": "第二次左右刀＋分攤結束：大仙女一段＋DoT",
           "phase": "P1",
           "category": "heal",
           "cues": [
             {
               "id": "sch-core-p1-05-cue",
               "offsetMs": 0,
-              "text": "判定後，大仙女一段",
+              "text": "判定後，大仙女一段，補毒",
               "target": {
                 "positions": [
                   "H2"
@@ -1045,6 +1069,30 @@
           ]
         },
         {
+          "id": "sch-core-p1-08",
+          "atMs": 90250,
+          "name": "鋼鐵月環：罩子＋低語＋DoT",
+          "phase": "P1",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-core-p1-08-cue",
+              "offsetMs": 0,
+              "text": "鋼鐵月環，罩子低語，補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-core-p1-07",
           "atMs": 109500,
           "name": "聚光燈第二組踩完：跑快快＋仙女附體＋群盾＋罩子",
@@ -1069,16 +1117,16 @@
           ]
         },
         {
-          "id": "sch-core-p1-08",
-          "atMs": 90250,
-          "name": "鋼鐵月環：罩子＋低語",
-          "phase": "P1",
-          "category": "mitigation",
+          "id": "sch-dot-120",
+          "atMs": 120000,
+          "name": "120秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
           "cues": [
             {
-              "id": "sch-core-p1-08-cue",
-              "offsetMs": 0,
-              "text": "鋼鐵月環，罩子低語",
+              "id": "sch-dot-120-cue",
+              "offsetMs": -2500,
+              "text": "補毒",
               "target": {
                 "positions": [
                   "H2"
@@ -1087,14 +1135,14 @@
                   "SCH"
                 ]
               },
-              "priority": "high",
+              "priority": "low",
               "enabled": true
             }
           ]
         },
         {
           "id": "sch-core-p1-09",
-          "atMs": 123500,
+          "atMs": 123000,
           "name": "左右刀後：罩子＋群盾",
           "phase": "P1",
           "category": "shield",
@@ -1112,6 +1160,102 @@
                 ]
               },
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-chain-125500",
+          "atMs": 125500,
+          "name": "左右刀後：連環計",
+          "phase": "P1",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-chain-125500-cue",
+              "offsetMs": 0,
+              "text": "左右刀後，連環計",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-150",
+          "atMs": 150000,
+          "name": "150秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-150-cue",
+              "offsetMs": -1500,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-180",
+          "atMs": 180000,
+          "name": "180秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-180-cue",
+              "offsetMs": 1000,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-210",
+          "atMs": 210000,
+          "name": "210秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-210-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
               "enabled": true
             }
           ]
@@ -1143,14 +1287,14 @@
         {
           "id": "sch-core-p2a-02",
           "atMs": 238000,
-          "name": "地火第一次分攤：跑快快",
+          "name": "地火第一次分攤：跑快快＋DoT",
           "phase": "P2",
           "category": "mitigation",
           "cues": [
             {
               "id": "sch-core-p2a-02-cue",
               "offsetMs": 0,
-              "text": "第一次分攤，跑快快",
+              "text": "第一次分攤，跑快快，補毒",
               "target": {
                 "positions": [
                   "H2"
@@ -1184,6 +1328,30 @@
                 ]
               },
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-270",
+          "atMs": 270000,
+          "name": "270秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-270-cue",
+              "offsetMs": -2500,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
               "enabled": true
             }
           ]
@@ -1237,6 +1405,30 @@
           ]
         },
         {
+          "id": "sch-dot-300",
+          "atMs": 300000,
+          "name": "300秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-300-cue",
+              "offsetMs": 1500,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-core-p2b-01",
           "atMs": 316900,
           "name": "太空滑步分攤後：大仙女一段＋罩子",
@@ -1285,6 +1477,30 @@
           ]
         },
         {
+          "id": "sch-dot-330",
+          "atMs": 330000,
+          "name": "330秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-330-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-core-p2b-03",
           "atMs": 350500,
           "name": "聚光燈後：幻光＋罩子＋群盾",
@@ -1304,6 +1520,30 @@
                 ]
               },
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-360",
+          "atMs": 360000,
+          "name": "360秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-360-cue",
+              "offsetMs": -2500,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
               "enabled": true
             }
           ]
@@ -1357,6 +1597,54 @@
           ]
         },
         {
+          "id": "sch-dot-390",
+          "atMs": 390000,
+          "name": "390秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-390-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-420",
+          "atMs": 420000,
+          "name": "420秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-420-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-core-p2b-06",
           "atMs": 433000,
           "name": "前後左右＋全場AOE後：連線＋綠帽",
@@ -1381,16 +1669,40 @@
           ]
         },
         {
+          "id": "sch-dot-450",
+          "atMs": 450000,
+          "name": "450秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-450-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-core-p3-01",
           "atMs": 478000,
-          "name": "TN引導前：罩子",
+          "name": "TN引導前：罩子＋DoT",
           "phase": "P3",
           "category": "mitigation",
           "cues": [
             {
               "id": "sch-core-p3-01-cue",
               "offsetMs": 0,
-              "text": "引導前，下罩子",
+              "text": "引導前，下罩子，補毒",
               "target": {
                 "positions": [
                   "H2"
@@ -1431,14 +1743,14 @@
         {
           "id": "sch-core-p3-03",
           "atMs": 508000,
-          "name": "死刑前：連線＋綠帽",
+          "name": "死刑前：連線＋綠帽＋DoT",
           "phase": "P3",
           "category": "heal",
           "cues": [
             {
               "id": "sch-core-p3-03-cue",
               "offsetMs": 0,
-              "text": "死刑前，連線綠帽",
+              "text": "死刑前，連線綠帽，補毒",
               "target": {
                 "positions": [
                   "H2"
@@ -1496,6 +1808,30 @@
                 ]
               },
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-540",
+          "atMs": 540000,
+          "name": "540秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-540-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
               "enabled": true
             }
           ]
@@ -1592,6 +1928,78 @@
                 ]
               },
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-570",
+          "atMs": 570000,
+          "name": "570秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-570-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-600",
+          "atMs": 600000,
+          "name": "600秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-600-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-chain-603500",
+          "atMs": 603500,
+          "name": "終盤爆發：連環計",
+          "phase": "P3",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-chain-603500-cue",
+              "offsetMs": 0,
+              "text": "最後爆發，連環計",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "normal",
               "enabled": true
             }
           ]
