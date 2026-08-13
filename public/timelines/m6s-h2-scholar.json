@@ -1,0 +1,2330 @@
+{
+  "schemaVersion": 1,
+  "id": "builtin-m6s-h2-scholar",
+  "meta": {
+    "name": "M6S Sugar Riot — Boss + H2 Scholar Core + Rotation",
+    "encounterId": "aac-cruiserweight-m2-savage-m6s",
+    "strategy": "M6S Boss Mechanics + H2 Scholar + 30s DoT / mechanic-aligned Chain",
+    "author": "FF14 Timeline Voice Coach",
+    "description": "M6S Boss + H2 Scholar timeline with Scholar DoT reminders every 30 seconds. Chain Stratagem keeps the mechanic-aligned delayed burst timings from the core healing plan instead of forcing a rigid 120-second cadence: 124.0s, 258.0s, and 360.5s. DoT reminders are merged into nearby Scholar calls where possible; otherwise they use a concise standalone '補毒' cue placed near the intended 30-second refresh while preserving the 2000ms collision window. All cues remain enabled.",
+    "version": "0.1.2"
+  },
+  "encounter": {
+    "durationMs": 686000,
+    "countdownMs": 10000
+  },
+  "tracks": [
+    {
+      "id": "boss-mechanics",
+      "type": "encounter",
+      "name": "Boss Mechanics",
+      "enabledByDefault": true,
+      "events": [
+        {
+          "id": "boss-mousse-01",
+          "atMs": 11200,
+          "name": "Mousse Mural #1",
+          "phase": "P1",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-mousse-01-cue",
+              "offsetMs": -5000,
+              "text": "開場全體傷害",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-color-riot-01",
+          "atMs": 24400,
+          "name": "Color Riot #1",
+          "phase": "P1",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "boss-color-riot-01-cue",
+              "offsetMs": -6500,
+              "text": "雙坦死刑準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-wingmark-01",
+          "atMs": 59940,
+          "name": "Wingmark #1",
+          "phase": "P1",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-wingmark-01-cue",
+              "offsetMs": -6000,
+              "text": "準備擊飛安全角",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-color-clash-01",
+          "atMs": 62040,
+          "name": "Color Clash #1",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-color-clash-01-cue",
+              "offsetMs": -5000,
+              "text": "落地分攤準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-sticky-01",
+          "atMs": 76140,
+          "name": "Sticky Mousse #1",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-sticky-01-cue",
+              "offsetMs": -5000,
+              "text": "黏黏分攤準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-color-riot-02",
+          "atMs": 83540,
+          "name": "Color Riot #2",
+          "phase": "P1",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "boss-color-riot-02-cue",
+              "offsetMs": -6000,
+              "text": "雙坦死刑準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-desert",
+          "atMs": 90990,
+          "name": "Sugarscape Desert",
+          "phase": "P1 Desert",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-desert-cue",
+              "offsetMs": -4500,
+              "text": "沙漠階段開始",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-layer1",
+          "atMs": 107290,
+          "name": "Desert Layer #1",
+          "phase": "P1 Desert",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-layer1-cue",
+              "offsetMs": -5500,
+              "text": "仙人掌安全區",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-cactus-first",
+          "atMs": 121390,
+          "name": "Cactus AoEs Start",
+          "phase": "P1 Desert",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-cactus-first-cue",
+              "offsetMs": -4500,
+              "text": "仙人掌開始",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-cactus-last",
+          "atMs": 136590,
+          "name": "Cactus AoEs End",
+          "phase": "P1 Desert",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-cactus-last-cue",
+              "offsetMs": -4500,
+              "text": "最後仙人掌",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-heating-01",
+          "atMs": 141090,
+          "name": "Heating Up #1",
+          "phase": "P1 Desert",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-heating-01-cue",
+              "offsetMs": -6000,
+              "text": "點名分攤準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-sticky-02",
+          "atMs": 155590,
+          "name": "Sticky Mousse #2",
+          "phase": "P1 Desert",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-sticky-02-cue",
+              "offsetMs": -5000,
+              "text": "黏黏分攤準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-layer2",
+          "atMs": 157090,
+          "name": "Desert Layer #2",
+          "phase": "P1 Desert",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-layer2-cue",
+              "offsetMs": -9000,
+              "text": "流沙階段準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-quicksand",
+          "atMs": 173250,
+          "name": "Quicksand",
+          "phase": "P1 Desert",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-quicksand-cue",
+              "offsetMs": -10500,
+              "text": "流沙啟動",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-bombs",
+          "atMs": 189720,
+          "name": "Pudding Graf - Bombs",
+          "phase": "P1 Desert",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-bombs-cue",
+              "offsetMs": -4500,
+              "text": "放炸彈準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-mousse-02",
+          "atMs": 198820,
+          "name": "Mousse Mural #2",
+          "phase": "P1 Desert",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-mousse-02-cue",
+              "offsetMs": -5500,
+              "text": "全體傷害準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-color-riot-03",
+          "atMs": 208920,
+          "name": "Color Riot #3",
+          "phase": "P1 Desert",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "boss-color-riot-03-cue",
+              "offsetMs": -5500,
+              "text": "雙坦死刑準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-zoo-start",
+          "atMs": 217120,
+          "name": "Soul Sugar",
+          "phase": "Zoo",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-zoo-start-cue",
+              "offsetMs": -4500,
+              "text": "動物園開始",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-add1",
+          "atMs": 227470,
+          "name": "Live Painting #1",
+          "phase": "Zoo",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-add1-cue",
+              "offsetMs": -3500,
+              "text": "小怪一出現",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-add2",
+          "atMs": 256670,
+          "name": "Live Painting #2",
+          "phase": "Zoo",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-add2-cue",
+              "offsetMs": -3500,
+              "text": "小怪二出現",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-add3",
+          "atMs": 278770,
+          "name": "Live Painting #3",
+          "phase": "Zoo",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-add3-cue",
+              "offsetMs": -3500,
+              "text": "小怪三出現",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-jabber1",
+          "atMs": 286870,
+          "name": "Jabberwock #1",
+          "phase": "Zoo",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-jabber1-cue",
+              "offsetMs": -3500,
+              "text": "馬怪靠近場中",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-ready1",
+          "atMs": 305770,
+          "name": "Ready Ore Not #1",
+          "phase": "Zoo",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-ready1-cue",
+              "offsetMs": -5500,
+              "text": "動物園全體傷害",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-add4",
+          "atMs": 318070,
+          "name": "Live Painting #4",
+          "phase": "Zoo",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-add4-cue",
+              "offsetMs": -3500,
+              "text": "小怪四出現",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-jabber2",
+          "atMs": 326170,
+          "name": "Jabberwock #2",
+          "phase": "Zoo",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-jabber2-cue",
+              "offsetMs": -3500,
+              "text": "第二隻馬怪",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-ready2",
+          "atMs": 389170,
+          "name": "Ready Ore Not #2",
+          "phase": "Zoo",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-ready2-cue",
+              "offsetMs": -6000,
+              "text": "第二次全體傷害",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-arrows",
+          "atMs": 402570,
+          "name": "Single Style - Arrows",
+          "phase": "Zoo",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-arrows-cue",
+              "offsetMs": -4500,
+              "text": "規避箭矢",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-color-riot-04",
+          "atMs": 413670,
+          "name": "Color Riot #4",
+          "phase": "Zoo",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "boss-color-riot-04-cue",
+              "offsetMs": -12500,
+              "text": "雙坦死刑準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-mousse-03",
+          "atMs": 419770,
+          "name": "Mousse Mural #3",
+          "phase": "Zoo",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-mousse-03-cue",
+              "offsetMs": -7500,
+              "text": "全體傷害準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-river",
+          "atMs": 429270,
+          "name": "Sugarscape River",
+          "phase": "River",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-river-cue",
+              "offsetMs": -4500,
+              "text": "河流階段開始",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-fire-lightning",
+          "atMs": 453570,
+          "name": "Fire / Lightning",
+          "phase": "River",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-fire-lightning-cue",
+              "offsetMs": -7500,
+              "text": "火分攤或雷散開",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-storm",
+          "atMs": 461720,
+          "name": "Thunderstorm Start",
+          "phase": "Storm",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-storm-cue",
+              "offsetMs": -4500,
+              "text": "雷雨階段開始",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-thunder1",
+          "atMs": 469920,
+          "name": "Thundercloud #1",
+          "phase": "Storm",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-thunder1-cue",
+              "offsetMs": -5500,
+              "text": "雷雲一準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-thunder2",
+          "atMs": 480420,
+          "name": "Thundercloud #2",
+          "phase": "Storm",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-thunder2-cue",
+              "offsetMs": -4000,
+              "text": "雷雲二準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-thunder3",
+          "atMs": 491020,
+          "name": "Thundercloud #3",
+          "phase": "Storm",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-thunder3-cue",
+              "offsetMs": -4000,
+              "text": "雷雲三準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-thunder4",
+          "atMs": 501620,
+          "name": "Thundercloud #4",
+          "phase": "Storm",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-thunder4-cue",
+              "offsetMs": -4000,
+              "text": "雷雲四準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-thunder5",
+          "atMs": 512220,
+          "name": "Thundercloud #5",
+          "phase": "Storm",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-thunder5-cue",
+              "offsetMs": -4000,
+              "text": "最後雷雲準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-pudding-party",
+          "atMs": 518020,
+          "name": "Pudding Party",
+          "phase": "Storm",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-pudding-party-cue",
+              "offsetMs": -6000,
+              "text": "五連分攤準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-lava",
+          "atMs": 531370,
+          "name": "River Layer #2 - Lava",
+          "phase": "Lava",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-lava-cue",
+              "offsetMs": -4500,
+              "text": "熔岩階段開始",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-mousse-drip",
+          "atMs": 552670,
+          "name": "Mousse Drip",
+          "phase": "Lava",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-mousse-drip-cue",
+              "offsetMs": -6500,
+              "text": "遠端多段分攤",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-moussacre",
+          "atMs": 558570,
+          "name": "Moussacre",
+          "phase": "Lava",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-moussacre-cue",
+              "offsetMs": -8000,
+              "text": "近戰扇形準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-tower1",
+          "atMs": 566670,
+          "name": "Towers #1",
+          "phase": "Lava",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-tower1-cue",
+              "offsetMs": -4500,
+              "text": "第一輪踩塔",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-wingmark-lava",
+          "atMs": 584870,
+          "name": "Wingmark - Lava",
+          "phase": "Lava",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-wingmark-lava-cue",
+              "offsetMs": -5500,
+              "text": "擊飛踩第二輪塔",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-tower2",
+          "atMs": 593070,
+          "name": "Towers #2",
+          "phase": "Lava",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-tower2-cue",
+              "offsetMs": -5500,
+              "text": "第二輪踩塔",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-mousse-04",
+          "atMs": 598070,
+          "name": "Mousse Mural #4",
+          "phase": "Final",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-mousse-04-cue",
+              "offsetMs": -13000,
+              "text": "終盤全體傷害",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-sticky-final",
+          "atMs": 615020,
+          "name": "Sticky Mousse - Final",
+          "phase": "Final",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-sticky-final-cue",
+              "offsetMs": -5000,
+              "text": "終盤黏黏分攤",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-color-final",
+          "atMs": 622420,
+          "name": "Color Riot - Final",
+          "phase": "Final",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "boss-color-final-cue",
+              "offsetMs": -6500,
+              "text": "終盤雙坦死刑",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-wingmark-final",
+          "atMs": 657960,
+          "name": "Wingmark - Final",
+          "phase": "Final",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-wingmark-final-cue",
+              "offsetMs": -5500,
+              "text": "最後擊飛準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-clash-final",
+          "atMs": 660060,
+          "name": "Color Clash - Final",
+          "phase": "Final",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-clash-final-cue",
+              "offsetMs": -10000,
+              "text": "最後分攤準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-enrage",
+          "atMs": 669060,
+          "name": "Artistic Anarchy",
+          "phase": "Final",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-enrage-cue",
+              "offsetMs": -500,
+              "text": "狂暴讀條開始",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h2-scholar",
+      "type": "job",
+      "name": "H2 Scholar Core Healing / Mitigation",
+      "enabledByDefault": true,
+      "target": {
+        "positions": [
+          "H2"
+        ],
+        "jobs": [
+          "SCH"
+        ]
+      },
+      "events": [
+        {
+          "id": "sch-pre-01",
+          "atMs": -10000,
+          "name": "倒數10秒：幻光＋群盾",
+          "phase": "P1",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-pre-01-cue",
+              "offsetMs": 0,
+              "text": "幻光，群盾",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-pre-02",
+          "atMs": -2000,
+          "name": "倒數2秒：起手軸",
+          "phase": "P1",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-pre-02-cue",
+              "offsetMs": 0,
+              "text": "起手，轉化藥後連環計",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-01",
+          "atMs": 26800,
+          "name": "雙T死刑後：擴散盾",
+          "phase": "P1",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-p1-01-cue",
+              "offsetMs": 0,
+              "text": "死刑後，擴散盾",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-030",
+          "atMs": 30000,
+          "name": "30秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-030-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-02",
+          "atMs": 60200,
+          "name": "飛到對面後：跑快快＋DoT",
+          "phase": "P1",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-p1-02-cue",
+              "offsetMs": 0,
+              "text": "落地後，跑快快，補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-03",
+          "atMs": 63200,
+          "name": "分攤後：祥光",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p1-03-cue",
+              "offsetMs": 0,
+              "text": "分攤後，祥光",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-04",
+          "atMs": 66500,
+          "name": "點名後：罩子偏A＋群盾",
+          "phase": "P1",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-p1-04-cue",
+              "offsetMs": 0,
+              "text": "點名後，罩子群盾",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-090",
+          "atMs": 90000,
+          "name": "90秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-090-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-05",
+          "atMs": 92500,
+          "name": "沙漠後：低語",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p1-05-cue",
+              "offsetMs": 0,
+              "text": "沙漠後，低語",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-06",
+          "atMs": 104000,
+          "name": "連線前：罩子",
+          "phase": "P1 Desert",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-p1-06-cue",
+              "offsetMs": 0,
+              "text": "連線前，下罩子",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-07",
+          "atMs": 121000,
+          "name": "罩子消失後：大仙女一段＋DoT",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p1-07-cue",
+              "offsetMs": 0,
+              "text": "大仙女一段，補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-08",
+          "atMs": 124000,
+          "name": "罩子消失後：連環計",
+          "phase": "P1 Desert",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-p1-08-cue",
+              "offsetMs": 0,
+              "text": "連環計",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-09",
+          "atMs": 127000,
+          "name": "罩子消失後：大仙女二段",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p1-09-cue",
+              "offsetMs": 0,
+              "text": "大仙女二段",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-10",
+          "atMs": 137500,
+          "name": "最後仙人掌：幻光＋罩子",
+          "phase": "P1 Desert",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-p1-10-cue",
+              "offsetMs": 0,
+              "text": "最後仙人掌，幻光罩子",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-11",
+          "atMs": 145000,
+          "name": "Boss回場中：即刻＋展開戰術",
+          "phase": "P1 Desert",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-p1-11-cue",
+              "offsetMs": 0,
+              "text": "即刻，展開戰術",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-150",
+          "atMs": 150000,
+          "name": "150秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-150-cue",
+              "offsetMs": 3000,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-12",
+          "atMs": 158500,
+          "name": "黏黏分攤後：祥光＋群盾",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p1-12-cue",
+              "offsetMs": 0,
+              "text": "分攤後，祥光群盾",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-13",
+          "atMs": 165000,
+          "name": "仙人掌基準：單盾＋連線自己",
+          "phase": "P1 Desert",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-p1-13-cue",
+              "offsetMs": 0,
+              "text": "單盾，連線自己",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-14",
+          "atMs": 169000,
+          "name": "流沙：低語＋跑快快＋罩子",
+          "phase": "P1 Desert",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-p1-14-cue",
+              "offsetMs": 0,
+              "text": "流沙，低語跑快快罩子",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-180",
+          "atMs": 180000,
+          "name": "180秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-180-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p1-15",
+          "atMs": 191000,
+          "name": "放完炸彈：不屈",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p1-15-cue",
+              "offsetMs": 0,
+              "text": "炸彈放完，不屈",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-210",
+          "atMs": 210000,
+          "name": "210秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-210-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-01",
+          "atMs": 228500,
+          "name": "小怪1：MT綠帽＋連線",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-zoo-01-cue",
+              "offsetMs": 0,
+              "text": "小怪一，綠帽連線主坦",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-02",
+          "atMs": 232000,
+          "name": "小怪1：轉化＋罩子",
+          "phase": "Zoo",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-zoo-02-cue",
+              "offsetMs": 0,
+              "text": "轉化，下罩子",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-03",
+          "atMs": 235500,
+          "name": "小怪1：兩豆打貓",
+          "phase": "Zoo",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-zoo-03-cue",
+              "offsetMs": 0,
+              "text": "兩豆打貓",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-04",
+          "atMs": 239000,
+          "name": "小怪1：單盾MT＋DoT",
+          "phase": "Zoo",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-zoo-04-cue",
+              "offsetMs": 0,
+              "text": "單盾主坦，補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-05",
+          "atMs": 258000,
+          "name": "小怪2：連環計打魚＋松鼠",
+          "phase": "Zoo",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-zoo-05-cue",
+              "offsetMs": 0,
+              "text": "連環計打魚和松鼠",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-06",
+          "atMs": 262000,
+          "name": "小怪2：MT綠帽＋連線",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-zoo-06-cue",
+              "offsetMs": 0,
+              "text": "綠帽連線主坦",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-270",
+          "atMs": 270000,
+          "name": "270秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-270-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-07",
+          "atMs": 280000,
+          "name": "小怪3：奶好雙T",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-zoo-07-cue",
+              "offsetMs": 0,
+              "text": "小怪三，顧好雙坦",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-08",
+          "atMs": 287500,
+          "name": "馬到場中：幻光＋展開＋右下罩子",
+          "phase": "Zoo",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-zoo-08-cue",
+              "offsetMs": 0,
+              "text": "幻光展開，右下罩子",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-300",
+          "atMs": 300000,
+          "name": "300秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-300-cue",
+              "offsetMs": -2500,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-09",
+          "atMs": 319000,
+          "name": "小怪4：爆發藥",
+          "phase": "Zoo",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-zoo-09-cue",
+              "offsetMs": 0,
+              "text": "小怪四，爆發藥",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-10",
+          "atMs": 327000,
+          "name": "點奶後：大仙女一段＋MT綠帽",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-zoo-10-cue",
+              "offsetMs": 0,
+              "text": "大仙女一段，綠帽主坦",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-11",
+          "atMs": 331000,
+          "name": "小怪4：低語＋大仙女二段＋DoT",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-zoo-11-cue",
+              "offsetMs": 0,
+              "text": "低語，大仙女二段，補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-12",
+          "atMs": 335000,
+          "name": "小怪4：單盾＋活性MT",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-zoo-12-cue",
+              "offsetMs": 0,
+              "text": "單盾，活性主坦",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-13",
+          "atMs": 344000,
+          "name": "罰站結束：場中跑快快",
+          "phase": "Zoo",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-zoo-13-cue",
+              "offsetMs": 0,
+              "text": "罰站結束，場中跑快快",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-14",
+          "atMs": 350000,
+          "name": "打魚：仙女附體＋單盾無敵外T",
+          "phase": "Zoo",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-zoo-14-cue",
+              "offsetMs": 0,
+              "text": "打魚，附體單盾坦克",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-15",
+          "atMs": 357000,
+          "name": "打完魚：群盾＋罩子",
+          "phase": "Zoo",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-zoo-15-cue",
+              "offsetMs": 0,
+              "text": "打完魚，群盾罩子",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-16",
+          "atMs": 360500,
+          "name": "怪群：連環計＋DoT",
+          "phase": "Zoo",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-zoo-16-cue",
+              "offsetMs": 0,
+              "text": "連環計打怪群，補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-390",
+          "atMs": 390000,
+          "name": "390秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-390-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-17",
+          "atMs": 403500,
+          "name": "規避箭矢後：群盾",
+          "phase": "Zoo",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-zoo-17-cue",
+              "offsetMs": 0,
+              "text": "箭矢後，群盾",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-18",
+          "atMs": 407000,
+          "name": "Boss舉槍：罩子＋幻光",
+          "phase": "Zoo",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-zoo-18-cue",
+              "offsetMs": 0,
+              "text": "舉槍，罩子幻光",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-zoo-19",
+          "atMs": 414500,
+          "name": "Boss到場邊後：擴散盾",
+          "phase": "Zoo",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-zoo-19-cue",
+              "offsetMs": 0,
+              "text": "到場邊，擴散盾",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-420",
+          "atMs": 420000,
+          "name": "420秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-420-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-river-01",
+          "atMs": 450500,
+          "name": "火分攤：罩子＋DoT",
+          "phase": "River",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-river-01-cue",
+              "offsetMs": 0,
+              "text": "火分攤，下罩子，補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-river-02",
+          "atMs": 455000,
+          "name": "火分攤後：注意MT血線",
+          "phase": "River",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-river-02-cue",
+              "offsetMs": 0,
+              "text": "注意主坦血線",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-storm-01",
+          "atMs": 466500,
+          "name": "雷點名後：跑快快",
+          "phase": "Storm",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-storm-01-cue",
+              "offsetMs": 0,
+              "text": "雷點名後，跑快快",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-480",
+          "atMs": 480000,
+          "name": "480秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-480-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-510",
+          "atMs": 510000,
+          "name": "510秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-510-cue",
+              "offsetMs": -4000,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-sup-01",
+          "atMs": 514500,
+          "name": "五連分攤前：罩子＋群盾",
+          "phase": "Storm",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-sup-01-cue",
+              "offsetMs": 0,
+              "text": "五連分攤，罩子群盾",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-540",
+          "atMs": 540000,
+          "name": "540秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-540-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-sup-02",
+          "atMs": 548500,
+          "name": "熔岩多段分攤前：大仙女",
+          "phase": "Lava",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-sup-02-cue",
+              "offsetMs": 0,
+              "text": "多段分攤，大仙女",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-sup-03",
+          "atMs": 553000,
+          "name": "多段分攤：大仙女一段",
+          "phase": "Lava",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-sup-03-cue",
+              "offsetMs": 0,
+              "text": "分攤，大仙女一段",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-sup-04",
+          "atMs": 559500,
+          "name": "扇形後：大仙女二段",
+          "phase": "Lava",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-sup-04-cue",
+              "offsetMs": 0,
+              "text": "扇形後，大仙女二段",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-570",
+          "atMs": 570000,
+          "name": "570秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-570-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-sup-05",
+          "atMs": 590000,
+          "name": "第二輪塔前：群盾＋罩子",
+          "phase": "Lava",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-sup-05-cue",
+              "offsetMs": 0,
+              "text": "第二輪塔，群盾罩子",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-sup-06",
+          "atMs": 599500,
+          "name": "終盤全體後：祥光＋群盾＋DoT",
+          "phase": "Final",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-sup-06-cue",
+              "offsetMs": 0,
+              "text": "全體後，祥光群盾，補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-sup-07",
+          "atMs": 618500,
+          "name": "終盤死刑前：連線＋綠帽MT",
+          "phase": "Final",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-sup-07-cue",
+              "offsetMs": 0,
+              "text": "死刑前，連線綠帽",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-630",
+          "atMs": 630000,
+          "name": "630秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-630-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-sup-08",
+          "atMs": 654500,
+          "name": "最後擊飛前：罩子＋低語",
+          "phase": "Final",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-sup-08-cue",
+              "offsetMs": 0,
+              "text": "最後擊飛，罩子低語",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-660",
+          "atMs": 660000,
+          "name": "660秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-660-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
