@@ -258,7 +258,7 @@ export function PlayerView() {
               {snapshot.totalCues}
               {snapshot.skippedCount > 0 ? ` · 略過 ${snapshot.skippedCount}` : ''}
             </div>
-            <div className="small muted mono">
+            <div className="small offset-text mono">
               實際偏移 {formatSecondsSigned(snapshot.effectiveOffsetMs)}
             </div>
           </div>

@@ -8,6 +8,8 @@
   --text-dim: #98a0b3;
   --accent: #4da3ff;
   --accent-dim: #2b6cb0;
+  /* 比 --text-dim 明顯、又比純白柔和，用在偏移校正這類需要一眼看到的讀數 */
+  --accent-soft: #93c5fd;
   --ok: #46c07a;
   --warn: #e0a83c;
   --error: #e5606a;
@@ -171,6 +173,14 @@ a {
 
 .muted {
   color: var(--text-dim);
+}
+
+/**
+ * 偏移校正相關的文字（標籤、讀數、說明）。只換顏色，字型與大小沿用原本的
+ * .small / .mono，維持版面不變。
+ */
+.offset-text {
+  color: var(--accent-soft);
 }
 
 .small {

@@ -27,20 +27,20 @@ export function OffsetControls({
     <div className="col">
       <div className="offset-display">
         <div>
-          <div className="small muted">全域偏移</div>
-          <div className="mono" data-testid="session-offset">
+          <div className="small offset-text">全域偏移</div>
+          <div className="mono offset-text" data-testid="session-offset">
             {formatSecondsSigned(sessionOffsetMs)}
           </div>
         </div>
         <div>
-          <div className="small muted">本場偏移</div>
-          <div className="mono" data-testid="pull-offset">
+          <div className="small offset-text">本場偏移</div>
+          <div className="mono offset-text" data-testid="pull-offset">
             {formatSecondsSigned(pullOffsetMs)}
           </div>
         </div>
         <div>
-          <div className="small muted">實際偏移</div>
-          <div className="mono" data-testid="effective-offset">
+          <div className="small offset-text">實際偏移</div>
+          <div className="mono offset-text" data-testid="effective-offset">
             {formatSecondsSigned(effective)}
           </div>
         </div>
@@ -65,7 +65,7 @@ export function OffsetControls({
           清除全域偏移
         </button>
       </div>
-      <p className="small muted">
+      <p className="small offset-text">
         偏移為正代表時間軸整體延後。左右方向鍵可以每次調整本場偏移 0.5
         秒。全域偏移會跨場保留，本場偏移會在重置時清除。
       </p>

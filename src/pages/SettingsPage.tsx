@@ -47,7 +47,7 @@ export function SettingsPage() {
           />
           Esc 觸發重置
         </label>
-        <p className="small muted">
+        <p className="small offset-text">
           目前的全域偏移是 {formatSecondsSigned(settings.sessionOffsetMs)}
           。它會疊加在本場偏移之上，而且不會被重置清除。
         </p>

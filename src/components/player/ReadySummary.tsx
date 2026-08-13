@@ -68,7 +68,7 @@ export function ReadySummary({
         </div>
         <div className="row ready-summary-row">
           <strong>實際偏移</strong>
-          <span className="mono">{formatSecondsSigned(effectiveOffsetMs)}</span>
+          <span className="mono offset-text">{formatSecondsSigned(effectiveOffsetMs)}</span>
         </div>
         <div className="row ready-summary-row">
           <strong>你會聽到的提示</strong>
