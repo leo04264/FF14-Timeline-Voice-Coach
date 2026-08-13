@@ -1,0 +1,1602 @@
+{
+  "schemaVersion": 1,
+  "id": "builtin-m5s-h2-scholar",
+  "meta": {
+    "name": "M5S Dancing Green — Boss + H2 Scholar Core Plan",
+    "encounterId": "aac-cruiserweight-m1-savage-m5s",
+    "strategy": "M5S Boss Mechanics + H2 Scholar Core Plan",
+    "author": "FF14 Timeline Voice Coach",
+    "description": "Core live-play M5S Scholar timeline rebuilt from the user's latest compact healing plan. Only the requested H2 Scholar healing, mitigation, tank-support, and major burst reminders are retained. Boss Mechanics is kept as a separate encounter track. All cues are enabled and the timeline uses schemaVersion 1.",
+    "version": "0.4.0"
+  },
+  "encounter": {
+    "durationMs": 610000,
+    "countdownMs": 15000
+  },
+  "tracks": [
+    {
+      "id": "boss-mechanics",
+      "type": "encounter",
+      "name": "Boss Mechanics",
+      "enabledByDefault": true,
+      "events": [
+        {
+          "id": "boss-deep-cut-1",
+          "atMs": 14900,
+          "name": "Deep Cut #1",
+          "phase": "P1",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "boss-deep-cut-1-cue",
+              "offsetMs": -5000,
+              "text": "五秒後雙坦死刑，坦克準備減傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-flip-ab-1",
+          "atMs": 26600,
+          "name": "Flip to A/B-side #1",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-flip-ab-1-cue",
+              "offsetMs": -3500,
+              "text": "記住 A 面或 B 面",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-twist-drop-1",
+          "atMs": 39150,
+          "name": "X-snap Twist & Drop the Needle #1",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-twist-drop-1-cue",
+              "offsetMs": -7000,
+              "text": "準備左右半場，接分攤或散開",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-flip-ab-2",
+          "atMs": 46050,
+          "name": "Flip to A/B-side #2",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-flip-ab-2-cue",
+              "offsetMs": -3500,
+              "text": "再次記住 A 面或 B 面",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-twist-drop-2",
+          "atMs": 58550,
+          "name": "X-snap Twist & Drop the Needle #2",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-twist-drop-2-cue",
+              "offsetMs": -11550,
+              "text": "左右半場，分攤散開準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-raidwide-1",
+          "atMs": 64450,
+          "name": "Celebrate Good Times #1",
+          "phase": "P1",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-raidwide-1-cue",
+              "offsetMs": -2750,
+              "text": "全體傷害準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-disco-1",
+          "atMs": 76850,
+          "name": "Disco Infernal #1",
+          "phase": "P1",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-disco-1-cue",
+              "offsetMs": -5000,
+              "text": "Disco一，全體後準備燈光",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-funky-floor-1",
+          "atMs": 82150,
+          "name": "Funky Floor #1",
+          "phase": "P1",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-funky-floor-1-cue",
+              "offsetMs": -7350,
+              "text": "地板機制準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-inout-1",
+          "atMs": 90250,
+          "name": "Inside Out / Outside In #1",
+          "phase": "P1",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-inout-1-cue",
+              "offsetMs": -5000,
+              "text": "準備內外或外內",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-burn-short-1",
+          "atMs": 101050,
+          "name": "Burn Baby Burn - Short",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-burn-short-1-cue",
+              "offsetMs": -4000,
+              "text": "短計時準備踩燈",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-burn-long-1",
+          "atMs": 108950,
+          "name": "Burn Baby Burn - Long",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-burn-long-1-cue",
+              "offsetMs": -4000,
+              "text": "長計時準備踩燈",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-twist-drop-3",
+          "atMs": 122050,
+          "name": "X-snap Twist & Drop the Needle #3",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-twist-drop-3-cue",
+              "offsetMs": -7000,
+              "text": "準備左右半場，處理記憶分攤散開",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-raidwide-2",
+          "atMs": 128050,
+          "name": "Celebrate Good Times #2",
+          "phase": "P1",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-raidwide-2-cue",
+              "offsetMs": -8050,
+              "text": "全體傷害準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-deep-cut-2",
+          "atMs": 135850,
+          "name": "Deep Cut #2",
+          "phase": "P1",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "boss-deep-cut-2-cue",
+              "offsetMs": -5000,
+              "text": "五秒後雙坦死刑",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-ensemble-1",
+          "atMs": 146850,
+          "name": "Ensemble Assemble #1",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-ensemble-1-cue",
+              "offsetMs": -3000,
+              "text": "夜狂熱準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-night-fever-start",
+          "atMs": 155150,
+          "name": "Arcady Night Fever - Proteans Start",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-night-fever-start-cue",
+              "offsetMs": -4500,
+              "text": "連續八次內外與扇形開始",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-night-fever-end",
+          "atMs": 175250,
+          "name": "Arcady Night Fever - Proteans End",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-night-fever-end-cue",
+              "offsetMs": -2500,
+              "text": "連續扇形結束，準備跳舞",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-lets-dance-1",
+          "atMs": 183550,
+          "name": "Let's Dance! #1",
+          "phase": "P2",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-lets-dance-1-cue",
+              "offsetMs": -5000,
+              "text": "跳舞半場切換，注意波長順序",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-lets-pose-1",
+          "atMs": 208900,
+          "name": "Let's Pose! #1",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-lets-pose-1-cue",
+              "offsetMs": -8400,
+              "text": "跳舞結算準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-ride-waves",
+          "atMs": 232700,
+          "name": "Ride the Waves",
+          "phase": "P2",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-ride-waves-cue",
+              "offsetMs": -5000,
+              "text": "舞浪全開，準備移動",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-beats-1",
+          "atMs": 242900,
+          "name": "Quarter / Eighth Beats #1",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-beats-1-cue",
+              "offsetMs": -9900,
+              "text": "第一次分攤散開準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-beats-2",
+          "atMs": 251100,
+          "name": "Quarter / Eighth Beats #2",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-beats-2-cue",
+              "offsetMs": -8600,
+              "text": "第二次分攤散開準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-inout-2",
+          "atMs": 261550,
+          "name": "Inside Out / Outside In #2",
+          "phase": "P2",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-inout-2-cue",
+              "offsetMs": -5000,
+              "text": "準備內外或外內",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-twist-drop-4",
+          "atMs": 276850,
+          "name": "X-snap Twist & Drop the Needle #4",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-twist-drop-4-cue",
+              "offsetMs": -7000,
+              "text": "準備記憶分攤散開",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-deep-cut-3",
+          "atMs": 284550,
+          "name": "Deep Cut #3",
+          "phase": "P2",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "boss-deep-cut-3-cue",
+              "offsetMs": -11550,
+              "text": "雙坦死刑準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-raidwide-3",
+          "atMs": 291050,
+          "name": "Celebrate Good Times #3",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-raidwide-3-cue",
+              "offsetMs": -7250,
+              "text": "全體傷害準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-frogtourage-1",
+          "atMs": 302350,
+          "name": "Frogtourage #1",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-frogtourage-1-cue",
+              "offsetMs": -3000,
+              "text": "青蛙一開始，找安全區",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-frog-beats-1",
+          "atMs": 316650,
+          "name": "Frogtourage #1 - Beats",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-frog-beats-1-cue",
+              "offsetMs": -5000,
+              "text": "青蛙機制中準備分攤或散開",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-disco-2",
+          "atMs": 324850,
+          "name": "Disco Infernal #2",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-disco-2-cue",
+              "offsetMs": -5000,
+              "text": "Disco 二，全體傷害後準備誘導",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-backup-1",
+          "atMs": 336650,
+          "name": "Back Up Dance #1",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-backup-1-cue",
+              "offsetMs": -4000,
+              "text": "第一輪誘導準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-backup-2",
+          "atMs": 346950,
+          "name": "Back Up Dance #2",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-backup-2-cue",
+              "offsetMs": -4000,
+              "text": "第二輪誘導準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-twist-drop-5",
+          "atMs": 358850,
+          "name": "X-snap Twist & Drop the Needle #5",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-twist-drop-5-cue",
+              "offsetMs": -11350,
+              "text": "記憶分攤散開準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-raidwide-4",
+          "atMs": 364850,
+          "name": "Celebrate Good Times #4",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-raidwide-4-cue",
+              "offsetMs": -5000,
+              "text": "五秒後全體傷害",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-ensemble-2",
+          "atMs": 376250,
+          "name": "Ensemble Assemble #2",
+          "phase": "P3",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-ensemble-2-cue",
+              "offsetMs": -3000,
+              "text": "返場夜狂熱準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-night-encore-start",
+          "atMs": 384650,
+          "name": "Arcady Night Encore - Proteans Start",
+          "phase": "P3",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-night-encore-start-cue",
+              "offsetMs": -4500,
+              "text": "返場八次內外扇形開始",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-night-encore-end",
+          "atMs": 404750,
+          "name": "Arcady Night Encore - Proteans End",
+          "phase": "P3",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-night-encore-end-cue",
+              "offsetMs": -2500,
+              "text": "Encore 結束，準備 Remix",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-dance-remix",
+          "atMs": 413050,
+          "name": "Let's Dance! Remix",
+          "phase": "P3",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-dance-remix-cue",
+              "offsetMs": -5000,
+              "text": "Remix 開始，注意四方向半場",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-lets-pose-2",
+          "atMs": 430750,
+          "name": "Let's Pose! #2",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-lets-pose-2-cue",
+              "offsetMs": -5000,
+              "text": "五秒後機制結算與全體傷害",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-frogtourage-2",
+          "atMs": 450250,
+          "name": "Frogtourage #2",
+          "phase": "P3",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-frogtourage-2-cue",
+              "offsetMs": -3000,
+              "text": "青蛙二開始，準備連續半場",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-frog-cleaves-1",
+          "atMs": 457450,
+          "name": "Frogtourage #2 - Cleaves 1",
+          "phase": "P3",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-frog-cleaves-1-cue",
+              "offsetMs": -3000,
+              "text": "第一輪半場切割",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-frog-cleaves-2",
+          "atMs": 461550,
+          "name": "Frogtourage #2 - Cleaves 2",
+          "phase": "P3",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-frog-cleaves-2-cue",
+              "offsetMs": -2500,
+              "text": "第二輪半場切割",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-frog-cleaves-3",
+          "atMs": 465550,
+          "name": "Frogtourage #2 - Cleaves 3",
+          "phase": "P3",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-frog-cleaves-3-cue",
+              "offsetMs": -2500,
+              "text": "第三輪半場切割",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-frog-floor-1",
+          "atMs": 482450,
+          "name": "Frogtourage #2 - Floor/Baits 1",
+          "phase": "P3",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-frog-floor-1-cue",
+              "offsetMs": -8450,
+              "text": "地板與誘導準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-frog-floor-2",
+          "atMs": 498350,
+          "name": "Frogtourage #2 - Floor/Baits 2",
+          "phase": "P3",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-frog-floor-2-cue",
+              "offsetMs": -4000,
+              "text": "地板與第二輪誘導",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-safe-dorito",
+          "atMs": 507850,
+          "name": "Frogtourage #2 - Final Safe",
+          "phase": "P3",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-safe-dorito-cue",
+              "offsetMs": -6350,
+              "text": "青蛙最後安全區準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-deep-cut-4",
+          "atMs": 515550,
+          "name": "Deep Cut #4",
+          "phase": "P3",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "boss-deep-cut-4-cue",
+              "offsetMs": -10550,
+              "text": "雙坦死刑準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-funky-floor-2",
+          "atMs": 525850,
+          "name": "Funky Floor #2",
+          "phase": "P3",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-funky-floor-2-cue",
+              "offsetMs": -5850,
+              "text": "最終地板準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-final-beats-1",
+          "atMs": 534050,
+          "name": "Final Quarter / Eighth Beats #1",
+          "phase": "P3",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-final-beats-1-cue",
+              "offsetMs": -9550,
+              "text": "第一次分攤散開準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-final-inout",
+          "atMs": 542150,
+          "name": "Final Inside Out / Outside In",
+          "phase": "P3",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-final-inout-cue",
+              "offsetMs": -5000,
+              "text": "地板中準備內外或外內",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-final-beats-2",
+          "atMs": 554250,
+          "name": "Final Quarter / Eighth Beats #2",
+          "phase": "P3",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-final-beats-2-cue",
+              "offsetMs": -7750,
+              "text": "第二次分攤散開準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-raidwide-5",
+          "atMs": 561450,
+          "name": "Celebrate Good Times #5",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-raidwide-5-cue",
+              "offsetMs": -8950,
+              "text": "全體傷害準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-raidwide-6",
+          "atMs": 571650,
+          "name": "Celebrate Good Times #6",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-raidwide-6-cue",
+              "offsetMs": -5000,
+              "text": "五秒後第二次全體傷害",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-finale",
+          "atMs": 591950,
+          "name": "Frogtourage Finale",
+          "phase": "P3",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-finale-cue",
+              "offsetMs": -4000,
+              "text": "最後青蛙演出，準備狂暴",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-enrage",
+          "atMs": 607250,
+          "name": "Hi-NRG Fever",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-enrage-cue",
+              "offsetMs": -12000,
+              "text": "狂暴讀條開始",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h2-scholar",
+      "type": "job",
+      "name": "H2 Scholar Core Healing / Mitigation",
+      "enabledByDefault": true,
+      "target": {
+        "positions": [
+          "H2"
+        ],
+        "jobs": [
+          "SCH"
+        ]
+      },
+      "events": [
+        {
+          "id": "sch-core-p1-01",
+          "atMs": -15000,
+          "name": "倒數15秒：秘策綠帽MT＋雙坦單盾",
+          "phase": "P1",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-core-p1-01-cue",
+              "offsetMs": 0,
+              "text": "秘策綠帽主坦，雙坦單盾",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p1-02",
+          "atMs": -2000,
+          "name": "倒數2秒：普攻→DoT→轉化→爆發藥→普攻→連環計",
+          "phase": "P1",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-core-p1-02-cue",
+              "offsetMs": 0,
+              "text": "起手，Dot轉化，藥後連環計",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p1-03",
+          "atMs": 34500,
+          "name": "第一次左右刀：罩子＋祥光",
+          "phase": "P1",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-core-p1-03-cue",
+              "offsetMs": 0,
+              "text": "左右刀，罩子祥光",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p1-04",
+          "atMs": 50000,
+          "name": "第二次左右刀前：擴散盾＋幻光",
+          "phase": "P1",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-core-p1-04-cue",
+              "offsetMs": 0,
+              "text": "第二次左右刀，擴散盾幻光",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p1-05",
+          "atMs": 59200,
+          "name": "第二次左右刀＋分攤結束：大仙女一段",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-core-p1-05-cue",
+              "offsetMs": 0,
+              "text": "判定後，大仙女一段",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p1-06",
+          "atMs": 77300,
+          "name": "全屏AOE後：大仙女二段＋低語",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-core-p1-06-cue",
+              "offsetMs": 0,
+              "text": "全屏後，大仙女二段低語",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p1-07",
+          "atMs": 109500,
+          "name": "聚光燈第二組踩完：跑快快＋仙女附體＋群盾＋罩子",
+          "phase": "P1",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-core-p1-07-cue",
+              "offsetMs": 0,
+              "text": "跑快快，附體群盾罩子",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p1-08",
+          "atMs": 90250,
+          "name": "鋼鐵月環：罩子＋低語",
+          "phase": "P1",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-core-p1-08-cue",
+              "offsetMs": 0,
+              "text": "鋼鐵月環，罩子低語",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p1-09",
+          "atMs": 123500,
+          "name": "左右刀後：罩子＋群盾",
+          "phase": "P1",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-core-p1-09-cue",
+              "offsetMs": 0,
+              "text": "左右刀後，罩子群盾",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p2a-01",
+          "atMs": 212500,
+          "name": "地火前：擴散盾",
+          "phase": "P2",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-core-p2a-01-cue",
+              "offsetMs": 0,
+              "text": "地火前，擴散盾",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p2a-02",
+          "atMs": 238000,
+          "name": "地火第一次分攤：跑快快",
+          "phase": "P2",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-core-p2a-02-cue",
+              "offsetMs": 0,
+              "text": "第一次分攤，跑快快",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p2a-03",
+          "atMs": 246000,
+          "name": "地火第二次分攤：連環計＋低語",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-core-p2a-03-cue",
+              "offsetMs": 0,
+              "text": "第二次分攤，連環計低語",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p2a-04",
+          "atMs": 276000,
+          "name": "左右刀分攤前：卡罩子",
+          "phase": "P2",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-core-p2a-04-cue",
+              "offsetMs": 0,
+              "text": "左右刀分攤前，卡罩子",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p2a-05",
+          "atMs": 281500,
+          "name": "死刑：連線＋綠帽＋秘策群盾",
+          "phase": "P2",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-core-p2a-05-cue",
+              "offsetMs": 0,
+              "text": "死刑，連線綠帽秘策群盾",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p2b-01",
+          "atMs": 316900,
+          "name": "太空滑步分攤後：大仙女一段＋罩子",
+          "phase": "P2",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-core-p2b-01-cue",
+              "offsetMs": 0,
+              "text": "分攤後，大仙女一段罩子",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p2b-02",
+          "atMs": 325200,
+          "name": "AOE後：大仙女二段＋低語",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-core-p2b-02-cue",
+              "offsetMs": 0,
+              "text": "全屏後，大仙女二段低語",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p2b-03",
+          "atMs": 350500,
+          "name": "聚光燈後：幻光＋罩子＋群盾",
+          "phase": "P2",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-core-p2b-03-cue",
+              "offsetMs": 0,
+              "text": "聚光燈後，幻光罩子群盾",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p2b-04",
+          "atMs": 365500,
+          "name": "半場刀＋全屏AOE後：爆發藥＋連環計＋轉化",
+          "phase": "P2",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-core-p2b-04-cue",
+              "offsetMs": 0,
+              "text": "全屏後，爆發藥連環轉化",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p2b-05",
+          "atMs": 384500,
+          "name": "鋼鐵月環：罩子",
+          "phase": "P2",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-core-p2b-05-cue",
+              "offsetMs": 0,
+              "text": "鋼鐵月環，下罩子",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p2b-06",
+          "atMs": 433000,
+          "name": "前後左右＋全場AOE後：連線＋綠帽",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-core-p2b-06-cue",
+              "offsetMs": 0,
+              "text": "全屏後，連線綠帽",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p3-01",
+          "atMs": 478000,
+          "name": "TN引導前：罩子",
+          "phase": "P3",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-core-p3-01-cue",
+              "offsetMs": 0,
+              "text": "引導前，下罩子",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p3-02",
+          "atMs": 484000,
+          "name": "TN引導後：連環計＋低語＋祥光",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-core-p3-02-cue",
+              "offsetMs": 0,
+              "text": "引導後，連環低語祥光",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p3-03",
+          "atMs": 508000,
+          "name": "死刑前：連線＋綠帽",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-core-p3-03-cue",
+              "offsetMs": 0,
+              "text": "死刑前，連線綠帽",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p3-04",
+          "atMs": 517000,
+          "name": "死刑後：擴散盾",
+          "phase": "P3",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-core-p3-04-cue",
+              "offsetMs": 0,
+              "text": "死刑後，擴散盾",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p3-05",
+          "atMs": 529000,
+          "name": "第一輪分攤：跑快快",
+          "phase": "P3",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-core-p3-05-cue",
+              "offsetMs": 0,
+              "text": "第一輪分攤，跑快快",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p3-06",
+          "atMs": 543000,
+          "name": "鋼鐵月環後：幻光＋大仙女",
+          "phase": "P3",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-core-p3-06-cue",
+              "offsetMs": 0,
+              "text": "鋼鐵月環後，幻光大仙女",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p3-07",
+          "atMs": 549000,
+          "name": "分攤前：大仙女一段",
+          "phase": "P3",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-core-p3-07-cue",
+              "offsetMs": 0,
+              "text": "分攤前，大仙女一段",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p3-08",
+          "atMs": 555000,
+          "name": "分攤後：大仙女二段",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-core-p3-08-cue",
+              "offsetMs": 0,
+              "text": "分攤後，大仙女二段",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-core-p3-09",
+          "atMs": 561000,
+          "name": "兩次分攤後：罩子＋仙女附體＋群盾",
+          "phase": "P3",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-core-p3-09-cue",
+              "offsetMs": 0,
+              "text": "兩次分攤後，罩子附體群盾",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
