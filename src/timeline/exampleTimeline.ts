@@ -199,7 +199,9 @@ export function createEmptyTimeline(name = '新的時間軸'): TimelinePackage {
     },
     encounter: {
       durationMs: 600_000,
-      countdownMs: 15_000,
+      // 常用的開場倒數；和 storage/settings.ts 的 DEFAULT_COUNTDOWN_MS 一致。
+      // 這裡刻意寫死，避免 domain 層反向依賴 storage 層。
+      countdownMs: 16_000,
     },
     tracks: [track],
   };

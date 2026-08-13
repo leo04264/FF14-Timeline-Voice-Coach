@@ -25,6 +25,9 @@ export interface AppSettings {
   sessionOffsetMs: number;
 }
 
+/** 常用的開場倒數秒數；玩家沒有自己設定時就用這個值。 */
+export const DEFAULT_COUNTDOWN_MS = 16_000;
+
 export const DEFAULT_SETTINGS: AppSettings = {
   quickStart: false,
   escWipe: true,
@@ -32,13 +35,13 @@ export const DEFAULT_SETTINGS: AppSettings = {
   tickIntervalMs: DEFAULT_TICK_INTERVAL_MS,
   maxLateMs: DEFAULT_MAX_LATE_MS,
   audio: { ...DEFAULT_AUDIO_CONFIG },
-  lastCountdownMs: 15_000,
+  lastCountdownMs: DEFAULT_COUNTDOWN_MS,
   lastPosition: 'MT',
   lastJob: 'PLD',
   sessionOffsetMs: 0,
 };
 
-export const COUNTDOWN_PRESETS_MS = [5000, 10_000, 15_000, 20_000] as const;
+export const COUNTDOWN_PRESETS_MS = [5000, 10_000, 16_000, 20_000] as const;
 
 const SETTINGS_KEY = `${STORAGE_PREFIX}:settings`;
 const playerPrefsKey = (timelineId: string) => `${STORAGE_PREFIX}:player-prefs:${timelineId}`;

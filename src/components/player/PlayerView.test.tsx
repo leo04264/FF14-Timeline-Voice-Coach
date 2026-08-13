@@ -11,7 +11,7 @@ const TIMELINE: TimelinePackage = {
   schemaVersion: 1,
   id: 'ui-test-timeline',
   meta: { name: 'UI Test', encounterId: 'ui-test' },
-  encounter: { durationMs: 60_000, countdownMs: 15_000 },
+  encounter: { durationMs: 60_000, countdownMs: 16_000 },
   tracks: [
     {
       id: 'ui-track',
@@ -101,8 +101,8 @@ describe('Player flow', () => {
     await flush();
 
     expect(screen.getByText('UI Test')).toBeInTheDocument();
-    // Idle sits at -countdown.
-    expect(screen.getByTestId('timer')).toHaveTextContent('-00:15.0');
+    // Idle sits at -countdown (16s is the default preset).
+    expect(screen.getByTestId('timer')).toHaveTextContent('-00:16.0');
 
     // START opens the Ready Summary (Quick Start is off by default).
     click(screen.getByRole('button', { name: '開始' }));
@@ -113,7 +113,7 @@ describe('Player flow', () => {
     expect(screen.getByText('倒數中')).toBeInTheDocument();
 
     // Negative-time cue fires during the countdown.
-    advance(13_100);
+    advance(14_100);
     expect(screen.getByTestId('current-cue')).toHaveTextContent('兩秒後開始');
 
     // t = 0 switches to running.
@@ -126,14 +126,14 @@ describe('Player flow', () => {
 
     // WIPE resets to idle without a second confirmation.
     click(screen.getByRole('button', { name: '滅團重置' }));
-    expect(screen.getByTestId('timer')).toHaveTextContent('-00:15.0');
+    expect(screen.getByTestId('timer')).toHaveTextContent('-00:16.0');
     expect(screen.getByText('待機')).toBeInTheDocument();
     expect(screen.getByTestId('current-cue')).toHaveTextContent('—');
     expect(screen.getByTestId('pull-offset')).toHaveTextContent('+0.0s');
 
     // Restart works and counts a new pull.
     startPull();
-    advance(13_100);
+    advance(14_100);
     expect(screen.getByTestId('current-cue')).toHaveTextContent('兩秒後開始');
     // Header and the debug pull filter both mention it.
     expect(screen.getAllByText(/第 2 場/).length).toBeGreaterThan(0);
@@ -224,7 +224,7 @@ describe('Player flow', () => {
     await flush();
 
     act(() => fireEvent.keyDown(window, { key: ' ' }));
-    advance(75_100);
+    advance(76_100); // 16s countdown + the full 60s encounter
     expect(screen.getByText('已結束')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '請先重置' })).toBeDisabled();
 

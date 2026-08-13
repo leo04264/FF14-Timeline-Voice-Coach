@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSettings } from '../app/SettingsContext';
 import { BrowserTtsBackend, isSpeechSynthesisSupported, loadVoices } from '../audio/BrowserTtsBackend';
+import { RangeField } from '../components/common/RangeField';
 import { COLLISION_WINDOW_PRESETS_MS } from '../timeline/collision';
 import { formatSecondsSigned } from '../timeline/time';
 
@@ -156,45 +157,30 @@ export function SettingsPage() {
           </label>
         </div>
         <div className="row responsive-fields">
-          <label className="field">
-            語速（{settings.audio.rate.toFixed(2)}）
-            <input
-              type="range"
-              min={0.5}
-              max={2}
-              step={0.05}
-              value={settings.audio.rate}
-              onChange={(event) =>
-                update({ audio: { ...settings.audio, rate: Number(event.target.value) } })
-              }
-            />
-          </label>
-          <label className="field">
-            音調（{settings.audio.pitch.toFixed(2)}）
-            <input
-              type="range"
-              min={0}
-              max={2}
-              step={0.05}
-              value={settings.audio.pitch}
-              onChange={(event) =>
-                update({ audio: { ...settings.audio, pitch: Number(event.target.value) } })
-              }
-            />
-          </label>
-          <label className="field">
-            音量（{settings.audio.volume.toFixed(2)}）
-            <input
-              type="range"
-              min={0}
-              max={1}
-              step={0.05}
-              value={settings.audio.volume}
-              onChange={(event) =>
-                update({ audio: { ...settings.audio, volume: Number(event.target.value) } })
-              }
-            />
-          </label>
+          <RangeField
+            label="語速"
+            min={0.5}
+            max={2}
+            step={0.05}
+            value={settings.audio.rate}
+            onChange={(rate) => update({ audio: { ...settings.audio, rate } })}
+          />
+          <RangeField
+            label="音調"
+            min={0}
+            max={2}
+            step={0.05}
+            value={settings.audio.pitch}
+            onChange={(pitch) => update({ audio: { ...settings.audio, pitch } })}
+          />
+          <RangeField
+            label="音量"
+            min={0}
+            max={1}
+            step={0.05}
+            value={settings.audio.volume}
+            onChange={(volume) => update({ audio: { ...settings.audio, volume } })}
+          />
         </div>
         <div className="row">
           <button
