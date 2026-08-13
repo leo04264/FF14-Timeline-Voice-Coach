@@ -42,10 +42,16 @@ export class BrowserTtsBackend implements AudioBackend {
 
   async prepare(_cues: CompiledCue[]): Promise<void> {
     if (!isSpeechSynthesisSupported()) return;
-    this.voices = await loadVoices();
     // Some Chrome builds keep the first utterance queued until the synthesiser
     // has been touched at least once inside a user gesture.
+    //
+    // This must happen *synchronously*, before awaiting the voice list. The
+    // player calls load() (which fires prepare) immediately before start(), and
+    // start() can dispatch an already-overdue cue in the same tick. Cancelling
+    // after the await would land in a later microtask and kill that utterance —
+    // the first cue of every pull would fail with `canceled`.
     window.speechSynthesis.cancel();
+    this.voices = await loadVoices();
   }
 
   getVoices(): SpeechSynthesisVoice[] {
