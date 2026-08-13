@@ -125,7 +125,7 @@ describe('Player flow', () => {
     expect(screen.getByTestId('current-cue')).toHaveTextContent('第一次機制');
 
     // WIPE resets to idle without a second confirmation.
-    click(screen.getByRole('button', { name: '滅團重置' }));
+    click(screen.getByRole('button', { name: '重置' }));
     expect(screen.getByTestId('timer')).toHaveTextContent('-00:16.0');
     expect(screen.getByText('待機')).toBeInTheDocument();
     expect(screen.getByTestId('current-cue')).toHaveTextContent('—');
@@ -153,7 +153,7 @@ describe('Player flow', () => {
     expect(screen.getByTestId('session-offset')).toHaveTextContent('+0.5s');
     expect(screen.getByTestId('pull-offset')).toHaveTextContent('+0.0s');
 
-    click(screen.getByRole('button', { name: '滅團重置' }));
+    click(screen.getByRole('button', { name: '重置' }));
     expect(screen.getByTestId('session-offset')).toHaveTextContent('+0.5s');
     expect(screen.getByTestId('effective-offset')).toHaveTextContent('+0.5s');
   });
@@ -232,7 +232,7 @@ describe('Player flow', () => {
     expect(screen.getByText('已結束')).toBeInTheDocument();
     expect(screen.getAllByText(/第 1 場/).length).toBeGreaterThan(0);
 
-    click(screen.getByRole('button', { name: '滅團重置' }));
+    click(screen.getByRole('button', { name: '重置' }));
     expect(screen.getByText('待機')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '開始' })).toBeEnabled();
   });

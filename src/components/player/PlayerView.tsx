@@ -292,7 +292,7 @@ export function PlayerView() {
                   : '開始'}
           </button>
           <button type="button" className="wipe-button" onClick={handleWipe}>
-            滅團重置
+            重置
           </button>
           <span className="small muted shortcut-hint">
             空白鍵 開始／暫停／繼續 · Esc 重置 · ←/→ 偏移 ±0.5 秒
