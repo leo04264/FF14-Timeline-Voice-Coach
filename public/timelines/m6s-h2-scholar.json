@@ -6,8 +6,8 @@
     "encounterId": "aac-cruiserweight-m2-savage-m6s",
     "strategy": "M6S Boss Mechanics + H2 Scholar + 30s DoT / 60s Aetherflow / mechanic-aligned Chain",
     "author": "FF14 Timeline Voice Coach",
-    "description": "M6S Boss + H2 Scholar timeline with Scholar DoT reminders every 30 seconds. Chain Stratagem keeps the mechanic-aligned delayed burst timings from the core healing plan instead of forcing a rigid 120-second cadence: 124.0s, 258.0s, and 360.5s. DoT reminders are merged into nearby Scholar calls where possible; otherwise they use a concise standalone '補毒' cue placed near the intended 30-second refresh while preserving the 2000ms collision window. Aetherflow reminders are added on a 60-second cadence, nudged into gaps so the 2000ms collision window stays clear and each cast lands after the preceding stack spenders rather than before them. Windows where healing does not consume the stacks also mention dumping the surplus into Energy Drain. All cues remain enabled.",
-    "version": "0.2.0"
+    "description": "M6S Boss + H2 Scholar timeline with Scholar DoT reminders every 30 seconds. Chain Stratagem keeps the mechanic-aligned delayed burst timings from the core healing plan instead of forcing a rigid 120-second cadence: 124.0s, 258.0s, and 360.5s. DoT reminders are merged into nearby Scholar calls where possible; otherwise they use a concise standalone '補毒' cue placed near the intended 30-second refresh while preserving the 2000ms collision window. Aetherflow reminders are chained off its own 60-second recast rather than a fixed clock grid: each cast is placed at the earliest quiet slot that is both off cooldown and at least 2500ms clear of every other cue, so the 2000ms collision window stays empty. Windows where healing does not consume the stacks also mention dumping the surplus into Energy Drain. All cues remain enabled.",
+    "version": "0.2.1"
   },
   "encounter": {
     "durationMs": 686000,
@@ -887,7 +887,7 @@
         {
           "id": "sch-af-015",
           "atMs": 15000,
-          "name": "15秒：以太超流",
+          "name": "015秒：以太超流",
           "phase": "Rotation",
           "category": "job",
           "cues": [
@@ -1031,14 +1031,14 @@
         {
           "id": "sch-af-075",
           "atMs": 75000,
-          "name": "75秒：以太超流",
+          "name": "075秒：以太超流",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
               "id": "sch-af-075-cue",
               "offsetMs": 0,
-              "text": "以太超流",
+              "text": "以太超流，多的打能量吸收",
               "target": {
                 "positions": [
                   "H2"
@@ -1197,30 +1197,6 @@
           ]
         },
         {
-          "id": "sch-af-135",
-          "atMs": 135000,
-          "name": "135秒：以太超流",
-          "phase": "Rotation",
-          "category": "job",
-          "cues": [
-            {
-              "id": "sch-af-135-cue",
-              "offsetMs": 5000,
-              "text": "以太超流",
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              },
-              "priority": "low",
-              "enabled": true
-            }
-          ]
-        },
-        {
           "id": "sch-p1-10",
           "atMs": 137500,
           "name": "最後仙人掌：幻光＋罩子",
@@ -1240,6 +1216,30 @@
                 ]
               },
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-af-140",
+          "atMs": 140000,
+          "name": "140秒：以太超流",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-af-140-cue",
+              "offsetMs": 0,
+              "text": "以太超流",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
               "enabled": true
             }
           ]
@@ -1413,15 +1413,15 @@
           ]
         },
         {
-          "id": "sch-af-195",
-          "atMs": 195000,
-          "name": "195秒：以太超流",
+          "id": "sch-af-200",
+          "atMs": 200000,
+          "name": "200秒：以太超流",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "sch-af-195-cue",
-              "offsetMs": 1000,
+              "id": "sch-af-200-cue",
+              "offsetMs": 0,
               "text": "以太超流",
               "target": {
                 "positions": [
@@ -1557,30 +1557,6 @@
           ]
         },
         {
-          "id": "sch-af-255",
-          "atMs": 255000,
-          "name": "255秒：以太超流",
-          "phase": "Rotation",
-          "category": "job",
-          "cues": [
-            {
-              "id": "sch-af-255-cue",
-              "offsetMs": -4500,
-              "text": "以太超流",
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              },
-              "priority": "low",
-              "enabled": true
-            }
-          ]
-        },
-        {
           "id": "sch-zoo-05",
           "atMs": 258000,
           "name": "小怪2：連環計打魚＋松鼠",
@@ -1624,6 +1600,30 @@
                 ]
               },
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-af-265",
+          "atMs": 264500,
+          "name": "265秒：以太超流",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-af-265-cue",
+              "offsetMs": 0,
+              "text": "以太超流，多的打能量吸收",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
               "enabled": true
             }
           ]
@@ -1711,30 +1711,6 @@
               "id": "sch-dot-300-cue",
               "offsetMs": -2500,
               "text": "補毒",
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              },
-              "priority": "low",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "sch-af-315",
-          "atMs": 315000,
-          "name": "315秒：以太超流",
-          "phase": "Rotation",
-          "category": "job",
-          "cues": [
-            {
-              "id": "sch-af-315-cue",
-              "offsetMs": -3000,
-              "text": "以太超流",
               "target": {
                 "positions": [
                   "H2"
@@ -1845,6 +1821,30 @@
           ]
         },
         {
+          "id": "sch-af-338",
+          "atMs": 337500,
+          "name": "338秒：以太超流",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-af-338-cue",
+              "offsetMs": 0,
+              "text": "以太超流，多的打能量吸收",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-zoo-13",
           "atMs": 344000,
           "name": "罰站結束：場中跑快快",
@@ -1941,30 +1941,6 @@
           ]
         },
         {
-          "id": "sch-af-375",
-          "atMs": 375000,
-          "name": "375秒：以太超流",
-          "phase": "Rotation",
-          "category": "job",
-          "cues": [
-            {
-              "id": "sch-af-375-cue",
-              "offsetMs": 0,
-              "text": "以太超流",
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              },
-              "priority": "low",
-              "enabled": true
-            }
-          ]
-        },
-        {
           "id": "sch-dot-390",
           "atMs": 390000,
           "name": "390秒：DoT更新",
@@ -2037,6 +2013,30 @@
           ]
         },
         {
+          "id": "sch-af-410",
+          "atMs": 409500,
+          "name": "410秒：以太超流",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-af-410-cue",
+              "offsetMs": 0,
+              "text": "以太超流，多的打能量吸收",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-zoo-19",
           "atMs": 414500,
           "name": "Boss到場邊後：擴散盾",
@@ -2071,30 +2071,6 @@
               "id": "sch-dot-420-cue",
               "offsetMs": 0,
               "text": "補毒",
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              },
-              "priority": "low",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "sch-af-435",
-          "atMs": 435000,
-          "name": "435秒：以太超流",
-          "phase": "Rotation",
-          "category": "job",
-          "cues": [
-            {
-              "id": "sch-af-435-cue",
-              "offsetMs": 0,
-              "text": "以太超流，多的打能量吸收",
               "target": {
                 "positions": [
                   "H2"
@@ -2181,16 +2157,16 @@
           ]
         },
         {
-          "id": "sch-dot-480",
-          "atMs": 480000,
-          "name": "480秒：DoT更新",
+          "id": "sch-af-470",
+          "atMs": 469500,
+          "name": "470秒：以太超流",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "sch-dot-480-cue",
+              "id": "sch-af-470-cue",
               "offsetMs": 0,
-              "text": "補毒",
+              "text": "以太超流，多的打能量吸收",
               "target": {
                 "positions": [
                   "H2"
@@ -2205,16 +2181,16 @@
           ]
         },
         {
-          "id": "sch-af-495",
-          "atMs": 495000,
-          "name": "495秒：以太超流",
+          "id": "sch-dot-480",
+          "atMs": 480000,
+          "name": "480秒：DoT更新",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "sch-af-495-cue",
+              "id": "sch-dot-480-cue",
               "offsetMs": 0,
-              "text": "以太超流，多的打能量吸收",
+              "text": "補毒",
               "target": {
                 "positions": [
                   "H2"
@@ -2272,6 +2248,30 @@
                 ]
               },
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-af-530",
+          "atMs": 529500,
+          "name": "530秒：以太超流",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-af-530-cue",
+              "offsetMs": 0,
+              "text": "以太超流，多的打能量吸收",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
               "enabled": true
             }
           ]
@@ -2349,30 +2349,6 @@
           ]
         },
         {
-          "id": "sch-af-555",
-          "atMs": 555000,
-          "name": "555秒：以太超流",
-          "phase": "Rotation",
-          "category": "job",
-          "cues": [
-            {
-              "id": "sch-af-555-cue",
-              "offsetMs": 500,
-              "text": "以太超流，多的打能量吸收",
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              },
-              "priority": "low",
-              "enabled": true
-            }
-          ]
-        },
-        {
           "id": "sch-sup-04",
           "atMs": 559500,
           "name": "扇形後：大仙女二段",
@@ -2445,6 +2421,30 @@
           ]
         },
         {
+          "id": "sch-af-593",
+          "atMs": 592500,
+          "name": "593秒：以太超流",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-af-593-cue",
+              "offsetMs": 0,
+              "text": "以太超流，多的打能量吸收",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-sup-06",
           "atMs": 599500,
           "name": "終盤全體後：祥光＋群盾＋DoT",
@@ -2464,30 +2464,6 @@
                 ]
               },
               "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "sch-af-615",
-          "atMs": 615000,
-          "name": "615秒：以太超流",
-          "phase": "Rotation",
-          "category": "job",
-          "cues": [
-            {
-              "id": "sch-af-615-cue",
-              "offsetMs": -2000,
-              "text": "以太超流",
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              },
-              "priority": "low",
               "enabled": true
             }
           ]
@@ -2560,6 +2536,30 @@
                 ]
               },
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-af-657",
+          "atMs": 657000,
+          "name": "657秒：以太超流",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-af-657-cue",
+              "offsetMs": 0,
+              "text": "以太超流，多的打能量吸收",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "low",
               "enabled": true
             }
           ]
