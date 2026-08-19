@@ -4,10 +4,10 @@
   "meta": {
     "name": "M5S Dancing Green — Boss + H2 Scholar Core + Rotation",
     "encounterId": "aac-cruiserweight-m1-savage-m5s",
-    "strategy": "M5S Boss Mechanics + H2 Scholar Core + 30s DoT / 60s Aetherflow / mechanic-aligned Chain",
+    "strategy": "M5S Boss Mechanics + H2 Scholar Core + 30s DoT / 60s Aetherflow / 120s Chain",
     "author": "FF14 Timeline Voice Coach",
-    "description": "M5S Boss + H2 Scholar Core timeline with Scholar rotation reminders added. DoT refresh is reminded every 30 seconds after the opener. Chain Stratagem follows the mechanic-aligned delayed raid-burst timings rather than a rigid 120-second schedule. Existing Chain windows at 246.0s, 365.5s and 484.0s are preserved, with missing windows added around 125.5s and 603.5s. DoT reminders are merged into nearby H2 calls where practical or placed as concise standalone cues while preserving the 2000ms collision window. Aetherflow reminders are chained off its own 60-second recast rather than a fixed clock grid: each cast is placed at the earliest quiet slot that is both off cooldown and at least 2500ms clear of every other cue, so the 2000ms collision window stays empty. The prepull Excogitation is covered by Recitation and therefore does not consume a stack. Windows where healing leaves two or more spare stacks also mention dumping the surplus into Energy Drain.",
-    "version": "0.5.0"
+    "description": "M5S Boss + H2 Scholar Core timeline with Scholar rotation reminders added. DoT refresh is reminded every 30 seconds after the opener. Chain Stratagem now follows a fixed 120-second cadence anchored on the opener cast at 8 seconds: standalone cues fire at 128s, 248s, 368s, 488s and 608s instead of drifting with mechanic timings, so no reminder ever lands before the 120-second recast is ready. The Chain wording was removed from the mechanic cues it used to be merged into, and the 246.0s Whispering Dawn call was moved to 245.5s to keep the 2000ms collision window empty. Aetherflow reminders are chained off its own 60-second recast rather than a fixed clock grid: each cast is placed at the earliest quiet slot that is both off cooldown and at least 2500ms clear of every other cue. The prepull Excogitation is covered by Recitation and therefore does not consume a stack. Windows where healing leaves two or more spare stacks also mention dumping the surplus into Energy Drain.",
+    "version": "0.6.0"
   },
   "encounter": {
     "durationMs": 610000,
@@ -1213,16 +1213,16 @@
           ]
         },
         {
-          "id": "sch-chain-125500",
-          "atMs": 125500,
-          "name": "左右刀後：連環計",
+          "id": "sch-chain-128000",
+          "atMs": 128000,
+          "name": "128秒：連環計",
           "phase": "P1",
           "category": "job",
           "cues": [
             {
-              "id": "sch-chain-125500-cue",
+              "id": "sch-chain-128000-cue",
               "offsetMs": 0,
-              "text": "左右刀後，連環計",
+              "text": "連環計",
               "target": {
                 "positions": [
                   "H2"
@@ -1406,15 +1406,15 @@
         },
         {
           "id": "sch-core-p2a-03",
-          "atMs": 246000,
-          "name": "地火第二次分攤：連環計＋低語",
+          "atMs": 245500,
+          "name": "地火第二次分攤：低語",
           "phase": "P2",
           "category": "heal",
           "cues": [
             {
               "id": "sch-core-p2a-03-cue",
               "offsetMs": 0,
-              "text": "第二次分攤，連環計低語",
+              "text": "第二次分攤，低語",
               "target": {
                 "positions": [
                   "H2"
@@ -1424,6 +1424,30 @@
                 ]
               },
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-chain-248000",
+          "atMs": 248000,
+          "name": "248秒：連環計",
+          "phase": "P2",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-chain-248000-cue",
+              "offsetMs": 0,
+              "text": "連環計",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "normal",
               "enabled": true
             }
           ]
@@ -1695,14 +1719,38 @@
         {
           "id": "sch-core-p2b-04",
           "atMs": 365500,
-          "name": "半場刀＋全屏AOE後：爆發藥＋連環計＋轉化",
+          "name": "半場刀＋全屏AOE後：爆發藥＋轉化",
           "phase": "P2",
           "category": "job",
           "cues": [
             {
               "id": "sch-core-p2b-04-cue",
               "offsetMs": 0,
-              "text": "全屏後，爆發藥連環轉化",
+              "text": "全屏後，爆發藥轉化",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-chain-368000",
+          "atMs": 368000,
+          "name": "368秒：連環計",
+          "phase": "P2",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-chain-368000-cue",
+              "offsetMs": 0,
+              "text": "連環計",
               "target": {
                 "positions": [
                   "H2"
@@ -1911,14 +1959,14 @@
         {
           "id": "sch-core-p3-02",
           "atMs": 484000,
-          "name": "TN引導後：連環計＋低語＋祥光",
+          "name": "TN引導後：低語＋祥光",
           "phase": "P3",
           "category": "heal",
           "cues": [
             {
               "id": "sch-core-p3-02-cue",
               "offsetMs": 0,
-              "text": "引導後，連環低語祥光",
+              "text": "引導後，低語祥光",
               "target": {
                 "positions": [
                   "H2"
@@ -1928,6 +1976,30 @@
                 ]
               },
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-chain-488000",
+          "atMs": 488000,
+          "name": "488秒：連環計",
+          "phase": "P3",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-chain-488000-cue",
+              "offsetMs": 0,
+              "text": "連環計",
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              },
+              "priority": "normal",
               "enabled": true
             }
           ]
@@ -2221,16 +2293,16 @@
           ]
         },
         {
-          "id": "sch-chain-603500",
-          "atMs": 603500,
-          "name": "終盤爆發：連環計",
+          "id": "sch-chain-608000",
+          "atMs": 608000,
+          "name": "608秒：連環計",
           "phase": "P3",
           "category": "job",
           "cues": [
             {
-              "id": "sch-chain-603500-cue",
+              "id": "sch-chain-608000-cue",
               "offsetMs": 0,
-              "text": "最後爆發，連環計",
+              "text": "連環計",
               "target": {
                 "positions": [
                   "H2"
