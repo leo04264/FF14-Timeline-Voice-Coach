@@ -1,0 +1,488 @@
+{
+  "schemaVersion": 1,
+  "id": "builtin-m7s-h2-scholar",
+  "meta": {
+    "name": "M7S Brute Abominator — Boss + H2 Scholar Core + Rotation",
+    "encounterId": "aac-cruiserweight-m3-savage-m7s",
+    "strategy": "M7S Boss Mechanics + H2 Scholar + 30s DoT / 60s Aetherflow / mechanic-aligned Chain",
+    "author": "FF14 Timeline Voice Coach",
+    "description": "M7S Boss 與 H2 學者時間軸。Boss 時間依 cactbot R7S 時間線建立，學者治療配置參考野生西瓜的 7.2 M7S 學者開荒與伐木奶軸，再依學者技能冷卻、仙女互斥與 2000ms 語音碰撞視窗調整。DoT 約每 30 秒更新，轉場無法選取時延後；以太超流每次至少相隔 60 秒；連環計配合開場、兩分鐘與 P3 小怪／終盤窗口。奶軸是安全向參考，請依 H1、坦克減傷、裝等與隊伍打法微調。",
+    "version": "0.1.0"
+  },
+  "encounter": {
+    "durationMs": 670000,
+    "countdownMs": 10000
+  },
+  "tracks": [
+    {
+      "id": "boss-mechanics",
+      "type": "encounter",
+      "name": "Boss Mechanics",
+      "enabledByDefault": true,
+      "events": [
+        {
+          "id": "boss-brutal-impact-01",
+          "atMs": 10500,
+          "name": "Brutal Impact x6",
+          "phase": "P1",
+          "category": "raidwide",
+          "cues": [{ "id": "boss-brutal-impact-01-cue", "offsetMs": -6000, "text": "六連全體傷害", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-stoneringer-01",
+          "atMs": 23100,
+          "name": "Stoneringer #1",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-stoneringer-01-cue", "offsetMs": -5100, "text": "記住鋼鐵或月環", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-smash-swing-01",
+          "atMs": 34100,
+          "name": "Smash Here/There + Brutish Swing #1",
+          "phase": "P1",
+          "category": "tankbuster",
+          "cues": [{ "id": "boss-smash-swing-01-cue", "offsetMs": -8100, "text": "近遠死刑接鋼鐵月環", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-spore-sac-01",
+          "atMs": 43300,
+          "name": "Spore Sac #1",
+          "phase": "P1",
+          "category": "movement",
+          "cues": [{ "id": "boss-spore-sac-01-cue", "offsetMs": -4800, "text": "孢子安全區準備", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-sinister-seeds-01",
+          "atMs": 52800,
+          "name": "Sinister Seeds #1",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-sinister-seeds-01-cue", "offsetMs": -5800, "text": "近遠四人放種子", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-blooming-adds-01",
+          "atMs": 70700,
+          "name": "Blooming Abomination Adds",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-blooming-adds-01-cue", "offsetMs": -4700, "text": "小怪打斷鋼鐵月環", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-quarry-swamp-01",
+          "atMs": 93400,
+          "name": "Quarry Swamp #1",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-quarry-swamp-01-cue", "offsetMs": -6400, "text": "石化鏡頭準備", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-explosion-01",
+          "atMs": 105400,
+          "name": "Explosion x3",
+          "phase": "P1",
+          "category": "movement",
+          "cues": [{ "id": "boss-explosion-01-cue", "offsetMs": -5400, "text": "三輪墜落，找安全格", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-smash-swing-02",
+          "atMs": 117500,
+          "name": "Stoneringer + Smash Here/There #2",
+          "phase": "P1",
+          "category": "tankbuster",
+          "cues": [{ "id": "boss-smash-swing-02-cue", "offsetMs": -6500, "text": "記武器，近遠死刑", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-pulp-smash-01",
+          "atMs": 127300,
+          "name": "Pulp Smash #1",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-pulp-smash-01-cue", "offsetMs": -6300, "text": "八人分攤接散開", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-neo-bombarian-special",
+          "atMs": 148000,
+          "name": "Neo Bombarian Special",
+          "phase": "P1",
+          "category": "raidwide",
+          "cues": [{ "id": "boss-neo-bombarian-special-cue", "offsetMs": -6500, "text": "轉場大傷害準備", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-stoneringer-02",
+          "atMs": 170400,
+          "name": "Stoneringer #2",
+          "phase": "P2 Rooftop",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-stoneringer-02-cue", "offsetMs": -5400, "text": "記住鋼鐵或月環", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-rooftop-combo-01",
+          "atMs": 195200,
+          "name": "Brutish Swing + Glower Power + Revenge #1",
+          "phase": "P2 Rooftop",
+          "category": "raidwide",
+          "cues": [{ "id": "boss-rooftop-combo-01-cue", "offsetMs": -16200, "text": "牆邊鋼鐵月環接分散", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-thorny-deathmatch",
+          "atMs": 206300,
+          "name": "Thorny Deathmatch",
+          "phase": "P2 Rooftop",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-thorny-deathmatch-cue", "offsetMs": -6300, "text": "主坦接刺藤連線", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-stoneringer-03",
+          "atMs": 210400,
+          "name": "Stoneringer #3",
+          "phase": "P2 Rooftop",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-stoneringer-03-cue", "offsetMs": -3400, "text": "再記鋼鐵或月環", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-abominable-blink-01",
+          "atMs": 222500,
+          "name": "Abominable Blink #1",
+          "phase": "P2 Rooftop",
+          "category": "tankbuster",
+          "cues": [{ "id": "boss-abominable-blink-01-cue", "offsetMs": -6000, "text": "坦克遠離放衰減", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-sporesplosion",
+          "atMs": 231600,
+          "name": "Sporesplosion",
+          "phase": "P2 Rooftop",
+          "category": "movement",
+          "cues": [{ "id": "boss-sporesplosion-cue", "offsetMs": -5600, "text": "三輪地火準備", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-rooftop-combo-02",
+          "atMs": 257600,
+          "name": "Brutish Swing + Glower Power + Revenge #2",
+          "phase": "P2 Rooftop",
+          "category": "raidwide",
+          "cues": [{ "id": "boss-rooftop-combo-02-cue", "offsetMs": -17100, "text": "牆邊鋼鐵月環接分散", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-demolition-deathmatch",
+          "atMs": 266700,
+          "name": "Demolition Deathmatch",
+          "phase": "P2 Rooftop",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-demolition-deathmatch-cue", "offsetMs": -2700, "text": "三條刺藤連線準備", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-abominable-blink-02",
+          "atMs": 281100,
+          "name": "Abominable Blink #2",
+          "phase": "P2 Rooftop",
+          "category": "tankbuster",
+          "cues": [{ "id": "boss-abominable-blink-02-cue", "offsetMs": -6100, "text": "坦克遠離放衰減", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-strange-seeds-01",
+          "atMs": 288100,
+          "name": "Strange Seeds #1",
+          "phase": "P2 Rooftop",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-strange-seeds-01-cue", "offsetMs": -5600, "text": "四輪雙人點名放種子", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-stoneringer-04",
+          "atMs": 295200,
+          "name": "Stoneringer #4",
+          "phase": "P2 Rooftop",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-stoneringer-04-cue", "offsetMs": -5200, "text": "記住鋼鐵或月環", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-killer-seeds-01",
+          "atMs": 319100,
+          "name": "Killer Seeds #1",
+          "phase": "P2 Rooftop",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-killer-seeds-01-cue", "offsetMs": -6100, "text": "四組分攤準備", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-rooftop-combo-03",
+          "atMs": 340000,
+          "name": "Brutish Swing + Glower Power + Revenge #3",
+          "phase": "P2 Rooftop",
+          "category": "raidwide",
+          "cues": [{ "id": "boss-rooftop-combo-03-cue", "offsetMs": -17000, "text": "牆邊鋼鐵月環接分散", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-powerslam",
+          "atMs": 352100,
+          "name": "Powerslam",
+          "phase": "P2 Rooftop",
+          "category": "raidwide",
+          "cues": [{ "id": "boss-powerslam-cue", "offsetMs": -8100, "text": "場地崩塌大傷害", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-brutal-impact-02",
+          "atMs": 381500,
+          "name": "Brutal Impact x7",
+          "phase": "P3 Basement",
+          "category": "raidwide",
+          "cues": [{ "id": "boss-brutal-impact-02-cue", "offsetMs": -4500, "text": "落地七連全體傷害", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-stoneringers-01",
+          "atMs": 395300,
+          "name": "Stoneringers #1",
+          "phase": "P3 Basement",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-stoneringers-01-cue", "offsetMs": -6300, "text": "記住雙持武器順序", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-basement-swing-01",
+          "atMs": 409000,
+          "name": "Brutish Swing + Revenge #1",
+          "phase": "P3 Basement",
+          "category": "raidwide",
+          "cues": [{ "id": "boss-basement-swing-01-cue", "offsetMs": -8000, "text": "第一下鋼鐵月環", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-lashing-lariat-01",
+          "atMs": 415000,
+          "name": "Lashing Lariat #1",
+          "phase": "P3 Basement",
+          "category": "movement",
+          "cues": [{ "id": "boss-lashing-lariat-01-cue", "offsetMs": -5000, "text": "左右衝拳準備", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-basement-swing-02",
+          "atMs": 426400,
+          "name": "Brutish Swing + Glower Power #2",
+          "phase": "P3 Basement",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-basement-swing-02-cue", "offsetMs": -9400, "text": "第二下鋼鐵月環接分散", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-slaminator-01",
+          "atMs": 432300,
+          "name": "Slaminator #1",
+          "phase": "P3 Basement",
+          "category": "raidwide",
+          "cues": [{ "id": "boss-slaminator-01-cue", "offsetMs": -5800, "text": "連續砸地準備", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-brutal-impact-03",
+          "atMs": 441500,
+          "name": "Brutal Impact x8 #1",
+          "phase": "P3 Basement",
+          "category": "raidwide",
+          "cues": [{ "id": "boss-brutal-impact-03-cue", "offsetMs": -3500, "text": "八連全體傷害", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-stoneringer-05",
+          "atMs": 454300,
+          "name": "Stoneringer #5",
+          "phase": "P3 Basement",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-stoneringer-05-cue", "offsetMs": -5800, "text": "記住鋼鐵或月環", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-smash-swing-03",
+          "atMs": 465300,
+          "name": "Smash Here/There + Brutish Swing #3",
+          "phase": "P3 Basement",
+          "category": "tankbuster",
+          "cues": [{ "id": "boss-smash-swing-03-cue", "offsetMs": -8300, "text": "近遠死刑接鋼鐵月環", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-debris-deathmatch",
+          "atMs": 476500,
+          "name": "Debris Deathmatch",
+          "phase": "P3 Basement",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-debris-deathmatch-cue", "offsetMs": -6000, "text": "牆面刺藤連線準備", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-spore-sac-02",
+          "atMs": 481600,
+          "name": "Spore Sac #2",
+          "phase": "P3 Basement",
+          "category": "movement",
+          "cues": [{ "id": "boss-spore-sac-02-cue", "offsetMs": -3600, "text": "孢子安全區準備", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-killer-seeds-02",
+          "atMs": 495700,
+          "name": "Killer Seeds #2",
+          "phase": "P3 Basement",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-killer-seeds-02-cue", "offsetMs": -6200, "text": "四組分攤放種子", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-quarry-swamp-02",
+          "atMs": 512700,
+          "name": "Quarry Swamp #2",
+          "phase": "P3 Basement",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-quarry-swamp-02-cue", "offsetMs": -6200, "text": "石化小怪準備", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-sinister-seeds-02",
+          "atMs": 523800,
+          "name": "Sinister Seeds #2",
+          "phase": "P3 Basement",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-sinister-seeds-02-cue", "offsetMs": -5800, "text": "近遠四人放種子", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-pulp-smash-02",
+          "atMs": 541700,
+          "name": "Pulp Smash #2",
+          "phase": "P3 Basement",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-pulp-smash-02-cue", "offsetMs": -6200, "text": "八人分攤接散開", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-brutal-impact-04",
+          "atMs": 550000,
+          "name": "Brutal Impact x8 #2",
+          "phase": "P3 Basement",
+          "category": "raidwide",
+          "cues": [{ "id": "boss-brutal-impact-04-cue", "offsetMs": -6500, "text": "八連全體傷害", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-stoneringers-02",
+          "atMs": 567700,
+          "name": "Stoneringers #2",
+          "phase": "P3 Basement",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-stoneringers-02-cue", "offsetMs": -6200, "text": "記住雙持武器順序", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-strange-seeds-02",
+          "atMs": 579600,
+          "name": "Strange Seeds #2",
+          "phase": "P3 Basement",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-strange-seeds-02-cue", "offsetMs": -6100, "text": "兩輪雙人點名放種子", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-final-combo-01",
+          "atMs": 595400,
+          "name": "Brutish Swing + Lashing Lariat",
+          "phase": "P3 Basement",
+          "category": "movement",
+          "cues": [{ "id": "boss-final-combo-01-cue", "offsetMs": -14900, "text": "鋼鐵月環接左右衝拳", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-final-combo-02",
+          "atMs": 611200,
+          "name": "Brutish Swing + Slaminator",
+          "phase": "P3 Basement",
+          "category": "raidwide",
+          "cues": [{ "id": "boss-final-combo-02-cue", "offsetMs": -13200, "text": "第二輪鋼鐵月環接砸地", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-stoneringer-06",
+          "atMs": 617400,
+          "name": "Stoneringer #6",
+          "phase": "P3 Basement",
+          "category": "mechanic",
+          "cues": [{ "id": "boss-stoneringer-06-cue", "offsetMs": -8400, "text": "記住鋼鐵或月環", "priority": "normal", "enabled": true }]
+        },
+        {
+          "id": "boss-smash-swing-04",
+          "atMs": 628400,
+          "name": "Smash Here/There + Brutish Swing #4",
+          "phase": "P3 Basement",
+          "category": "tankbuster",
+          "cues": [{ "id": "boss-smash-swing-04-cue", "offsetMs": -8400, "text": "近遠死刑接鋼鐵月環", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-brutal-impact-05",
+          "atMs": 637400,
+          "name": "Brutal Impact x8 #3",
+          "phase": "P3 Basement",
+          "category": "raidwide",
+          "cues": [{ "id": "boss-brutal-impact-05-cue", "offsetMs": -6900, "text": "最後八連全體傷害", "priority": "high", "enabled": true }]
+        },
+        {
+          "id": "boss-enrage",
+          "atMs": 665600,
+          "name": "Special Bombarian Special",
+          "phase": "P3 Basement",
+          "category": "raidwide",
+          "cues": [{ "id": "boss-enrage-cue", "offsetMs": -5600, "text": "狂暴讀條開始", "priority": "high", "enabled": true }]
+        }
+      ]
+    },
+    {
+      "id": "h2-scholar",
+      "type": "job",
+      "name": "H2 Scholar Core Healing / Mitigation",
+      "enabledByDefault": true,
+      "target": { "positions": ["H2"], "jobs": ["SCH"] },
+      "events": [
+        { "id": "sch-pre-01", "atMs": -10000, "name": "倒數10秒：幻光＋群盾", "phase": "P1", "category": "shield", "cues": [{ "id": "sch-pre-01-cue", "offsetMs": 0, "text": "幻光，群盾", "priority": "high", "enabled": true }] },
+        { "id": "sch-opener", "atMs": -2000, "name": "倒數2秒：起手軸", "phase": "P1", "category": "job", "cues": [{ "id": "sch-opener-cue", "offsetMs": 0, "text": "起手，Dot轉化，藥後連環計", "priority": "normal", "enabled": true }] },
+        { "id": "sch-af-01", "atMs": 15000, "name": "015秒：以太超流", "phase": "P1", "category": "job", "cues": [{ "id": "sch-af-01-cue", "offsetMs": 0, "text": "以太超流，多的打能量吸收", "priority": "normal", "enabled": true }] },
+        { "id": "sch-dot-01", "atMs": 30000, "name": "30秒：DoT更新", "phase": "P1", "category": "job", "cues": [{ "id": "sch-dot-01-cue", "offsetMs": 0, "text": "補毒", "priority": "normal", "enabled": true }] },
+        { "id": "sch-deploy-01", "atMs": 35000, "name": "第一次死刑後：回生法擴散盾", "phase": "P1", "category": "shield", "cues": [{ "id": "sch-deploy-01-cue", "offsetMs": 0, "text": "死刑後，回生法單盾擴散", "priority": "high", "enabled": true }] },
+        { "id": "sch-seraph-01", "atMs": 50000, "name": "第一次種子前：大仙女", "phase": "P1", "category": "mitigation", "cues": [{ "id": "sch-seraph-01-cue", "offsetMs": 0, "text": "點名前，大仙女", "priority": "high", "enabled": true }] },
+        { "id": "sch-consolation-01", "atMs": 61000, "name": "第一次種子後：大仙女一段＋DoT", "phase": "P1", "category": "shield", "cues": [{ "id": "sch-consolation-01-cue", "offsetMs": 0, "text": "點名後，大仙女一段，補毒", "priority": "high", "enabled": true }] },
+        { "id": "sch-consolation-02", "atMs": 70000, "name": "小怪傷害：大仙女二段", "phase": "P1", "category": "shield", "cues": [{ "id": "sch-consolation-02-cue", "offsetMs": 0, "text": "小怪傷害，大仙女二段", "priority": "normal", "enabled": true }] },
+        { "id": "sch-af-02", "atMs": 75000, "name": "075秒：以太超流", "phase": "P1", "category": "job", "cues": [{ "id": "sch-af-02-cue", "offsetMs": 0, "text": "以太超流，留豆，主坦低血深謀", "priority": "normal", "enabled": true }] },
+        { "id": "sch-dot-02", "atMs": 90000, "name": "90秒：DoT更新", "phase": "P1", "category": "job", "cues": [{ "id": "sch-dot-02-cue", "offsetMs": 0, "text": "補毒", "priority": "normal", "enabled": true }] },
+        { "id": "sch-seraphism-01", "atMs": 105500, "name": "第二輪墜落：仙女附體＋跑快快", "phase": "P1", "category": "mitigation", "cues": [{ "id": "sch-seraphism-01-cue", "offsetMs": 0, "text": "第二輪墜落，附體跑快快", "priority": "high", "enabled": true }] },
+        { "id": "sch-swing-mit-01", "atMs": 114500, "name": "近遠死刑前：群盾＋幻光＋罩子", "phase": "P1", "category": "mitigation", "cues": [{ "id": "sch-swing-mit-01-cue", "offsetMs": 0, "text": "群盾，幻光，罩子", "priority": "high", "enabled": true }] },
+        { "id": "sch-dot-03", "atMs": 118500, "name": "119秒：DoT更新", "phase": "P1", "category": "job", "cues": [{ "id": "sch-dot-03-cue", "offsetMs": 0, "text": "補毒", "priority": "normal", "enabled": true }] },
+        { "id": "sch-chain-02", "atMs": 128000, "name": "128秒：連環計", "phase": "P1", "category": "job", "cues": [{ "id": "sch-chain-02-cue", "offsetMs": 0, "text": "連環計", "priority": "normal", "enabled": true }] },
+        { "id": "sch-af-03", "atMs": 137000, "name": "137秒：以太超流", "phase": "P1", "category": "job", "cues": [{ "id": "sch-af-03-cue", "offsetMs": 0, "text": "以太超流，多的打能量吸收", "priority": "normal", "enabled": true }] },
+        { "id": "sch-transition-shield", "atMs": 145000, "name": "轉場前：群盾", "phase": "P1", "category": "shield", "cues": [{ "id": "sch-transition-shield-cue", "offsetMs": 0, "text": "轉場前，群盾", "priority": "high", "enabled": true }] },
+        { "id": "sch-dot-04", "atMs": 162500, "name": "Boss回場：DoT更新", "phase": "P2 Rooftop", "category": "job", "cues": [{ "id": "sch-dot-04-cue", "offsetMs": 0, "text": "Boss回場，補毒", "priority": "normal", "enabled": true }] },
+        { "id": "sch-seraph-02", "atMs": 175000, "name": "第一輪牆邊連段：大仙女", "phase": "P2 Rooftop", "category": "mitigation", "cues": [{ "id": "sch-seraph-02-cue", "offsetMs": 0, "text": "牆邊連段，大仙女", "priority": "high", "enabled": true }] },
+        { "id": "sch-consolation-03", "atMs": 190000, "name": "分散前：大仙女一段＋群盾", "phase": "P2 Rooftop", "category": "shield", "cues": [{ "id": "sch-consolation-03-cue", "offsetMs": 0, "text": "分散前，大仙女一段群盾", "priority": "high", "enabled": true }] },
+        { "id": "sch-consolation-04", "atMs": 196500, "name": "全體後：大仙女二段＋DoT", "phase": "P2 Rooftop", "category": "heal", "cues": [{ "id": "sch-consolation-04-cue", "offsetMs": 0, "text": "全體後，大仙女二段，補毒", "priority": "high", "enabled": true }] },
+        { "id": "sch-af-04", "atMs": 203500, "name": "204秒：以太超流", "phase": "P2 Rooftop", "category": "job", "cues": [{ "id": "sch-af-04-cue", "offsetMs": 0, "text": "以太超流，多的打能量吸收", "priority": "normal", "enabled": true }] },
+        { "id": "sch-spores-shield", "atMs": 229500, "name": "三輪地火：群盾＋DoT", "phase": "P2 Rooftop", "category": "shield", "cues": [{ "id": "sch-spores-shield-cue", "offsetMs": 0, "text": "地火前群盾，補毒，仙女放中右", "priority": "high", "enabled": true }] },
+        { "id": "sch-chain-03", "atMs": 248000, "name": "248秒：連環計", "phase": "P2 Rooftop", "category": "job", "cues": [{ "id": "sch-chain-03-cue", "offsetMs": 0, "text": "連環計", "priority": "normal", "enabled": true }] },
+        { "id": "sch-rooftop-heal-01", "atMs": 260000, "name": "第二輪分散後：不屈＋祥光＋DoT", "phase": "P2 Rooftop", "category": "heal", "cues": [{ "id": "sch-rooftop-heal-01-cue", "offsetMs": 0, "text": "分散後，不屈祥光，補毒", "priority": "high", "enabled": true }] },
+        { "id": "sch-af-05", "atMs": 270000, "name": "270秒：以太超流", "phase": "P2 Rooftop", "category": "job", "cues": [{ "id": "sch-af-05-cue", "offsetMs": 0, "text": "以太超流", "priority": "normal", "enabled": true }] },
+        { "id": "sch-deploy-02", "atMs": 272500, "name": "拆樓連線：秘策回生法擴散盾", "phase": "P2 Rooftop", "category": "shield", "cues": [{ "id": "sch-deploy-02-cue", "offsetMs": 0, "text": "秘策回生法，單盾擴散", "priority": "high", "enabled": true }] },
+        { "id": "sch-dot-05", "atMs": 287000, "name": "287秒：DoT更新", "phase": "P2 Rooftop", "category": "job", "cues": [{ "id": "sch-dot-05-cue", "offsetMs": 0, "text": "補毒", "priority": "normal", "enabled": true }] },
+        { "id": "sch-seraph-03", "atMs": 300000, "name": "四輪點名前：大仙女", "phase": "P2 Rooftop", "category": "mitigation", "cues": [{ "id": "sch-seraph-03-cue", "offsetMs": 0, "text": "四輪點名前，大仙女", "priority": "high", "enabled": true }] },
+        { "id": "sch-consolation-05", "atMs": 316000, "name": "第四輪點名後：大仙女一段＋DoT", "phase": "P2 Rooftop", "category": "shield", "cues": [{ "id": "sch-consolation-05-cue", "offsetMs": 0, "text": "四輪點名後，大仙女一段，補毒", "priority": "high", "enabled": true }] },
+        { "id": "sch-consolation-06", "atMs": 319500, "name": "四組分攤：大仙女二段", "phase": "P2 Rooftop", "category": "shield", "cues": [{ "id": "sch-consolation-06-cue", "offsetMs": 0, "text": "分攤，大仙女二段", "priority": "high", "enabled": true }] },
+        { "id": "sch-fey-union-01", "atMs": 326000, "name": "拆樓後段：連線D3", "phase": "P2 Rooftop", "category": "heal", "cues": [{ "id": "sch-fey-union-01-cue", "offsetMs": 0, "text": "仙女連線D3", "priority": "normal", "enabled": true }] },
+        { "id": "sch-af-06", "atMs": 330000, "name": "330秒：以太超流", "phase": "P2 Rooftop", "category": "job", "cues": [{ "id": "sch-af-06-cue", "offsetMs": 0, "text": "以太超流，多的打能量吸收", "priority": "normal", "enabled": true }] },
+        { "id": "sch-powerslam-mit", "atMs": 340500, "name": "場地崩塌前：罩子＋群盾＋祥光", "phase": "P2 Rooftop", "category": "mitigation", "cues": [{ "id": "sch-powerslam-mit-cue", "offsetMs": 0, "text": "崩塌前，罩子群盾祥光", "priority": "high", "enabled": true }] },
+        { "id": "sch-dot-06", "atMs": 346500, "name": "347秒：DoT更新", "phase": "P2 Rooftop", "category": "job", "cues": [{ "id": "sch-dot-06-cue", "offsetMs": 0, "text": "補毒", "priority": "normal", "enabled": true }] },
+        { "id": "sch-powerslam-heal", "atMs": 355500, "name": "場地崩塌後：群盾＋清豆", "phase": "P2 Rooftop", "category": "heal", "cues": [{ "id": "sch-powerslam-heal-cue", "offsetMs": 0, "text": "崩塌後再群盾，豆子打完", "priority": "high", "enabled": true }] },
+        { "id": "sch-chain-04", "atMs": 370500, "name": "P3 Boss回場：連環計＋罩子", "phase": "P3 Basement", "category": "job", "cues": [{ "id": "sch-chain-04-cue", "offsetMs": 0, "text": "Boss回場，連環計罩子", "priority": "high", "enabled": true }] },
+        { "id": "sch-dot-07", "atMs": 373500, "name": "P3：DoT更新", "phase": "P3 Basement", "category": "job", "cues": [{ "id": "sch-dot-07-cue", "offsetMs": 0, "text": "補毒", "priority": "normal", "enabled": true }] },
+        { "id": "sch-dissipation-02", "atMs": 380000, "name": "七連全體前：轉化＋群盾", "phase": "P3 Basement", "category": "shield", "cues": [{ "id": "sch-dissipation-02-cue", "offsetMs": 0, "text": "轉化，群盾", "priority": "high", "enabled": true }] },
+        { "id": "sch-af-07", "atMs": 395000, "name": "395秒：以太超流", "phase": "P3 Basement", "category": "job", "cues": [{ "id": "sch-af-07-cue", "offsetMs": 0, "text": "以太超流，多的打能量吸收", "priority": "normal", "enabled": true }] },
+        { "id": "sch-dot-08", "atMs": 403500, "name": "404秒：DoT更新", "phase": "P3 Basement", "category": "job", "cues": [{ "id": "sch-dot-08-cue", "offsetMs": 0, "text": "補毒", "priority": "normal", "enabled": true }] },
+        { "id": "sch-basement-heal-01", "atMs": 412500, "name": "第一輪武器後：祥光＋群盾＋跑快快", "phase": "P3 Basement", "category": "heal", "cues": [{ "id": "sch-basement-heal-01-cue", "offsetMs": 0, "text": "武器後，祥光群盾跑快快", "priority": "high", "enabled": true }] },
+        { "id": "sch-basement-mit-01", "atMs": 420000, "name": "第二輪武器：群盾＋罩子＋低語", "phase": "P3 Basement", "category": "mitigation", "cues": [{ "id": "sch-basement-mit-01-cue", "offsetMs": 0, "text": "群盾罩子，低語", "priority": "high", "enabled": true }] },
+        { "id": "sch-slaminator-heal-01", "atMs": 434500, "name": "連續砸地後：群盾＋不屈＋DoT", "phase": "P3 Basement", "category": "heal", "cues": [{ "id": "sch-slaminator-heal-01-cue", "offsetMs": 0, "text": "砸地後，群盾不屈，補毒", "priority": "high", "enabled": true }] },
+        { "id": "sch-fey-union-02", "atMs": 445000, "name": "八連全體前：連線MT", "phase": "P3 Basement", "category": "heal", "cues": [{ "id": "sch-fey-union-02-cue", "offsetMs": 0, "text": "仙女連線主坦", "priority": "normal", "enabled": true }] },
+        { "id": "sch-af-08", "atMs": 460000, "name": "460秒：以太超流", "phase": "P3 Basement", "category": "job", "cues": [{ "id": "sch-af-08-cue", "offsetMs": 0, "text": "以太超流", "priority": "normal", "enabled": true }] },
+        { "id": "sch-deploy-03", "atMs": 466500, "name": "死刑後：秘策回生法擴散盾＋DoT", "phase": "P3 Basement", "category": "shield", "cues": [{ "id": "sch-deploy-03-cue", "offsetMs": 0, "text": "死刑後，秘策回生法擴散，補毒", "priority": "high", "enabled": true }] },
+        { "id": "sch-seraph-04", "atMs": 496000, "name": "小怪出現：大仙女＋DoT", "phase": "P3 Basement", "category": "mitigation", "cues": [{ "id": "sch-seraph-04-cue", "offsetMs": 0, "text": "小怪出現，大仙女，補毒", "priority": "high", "enabled": true }] },
+        { "id": "sch-consolation-07", "atMs": 499000, "name": "小怪傷害：大仙女一段＋低語", "phase": "P3 Basement", "category": "heal", "cues": [{ "id": "sch-consolation-07-cue", "offsetMs": 0, "text": "小怪傷害，大仙女一段低語", "priority": "high", "enabled": true }] },
+        { "id": "sch-chain-05", "atMs": 514000, "name": "小怪石化後：連環計", "phase": "P3 Basement", "category": "job", "cues": [{ "id": "sch-chain-05-cue", "offsetMs": 0, "text": "小怪石化，連環計", "priority": "normal", "enabled": true }] },
+        { "id": "sch-af-09", "atMs": 522500, "name": "523秒：以太超流", "phase": "P3 Basement", "category": "job", "cues": [{ "id": "sch-af-09-cue", "offsetMs": 0, "text": "以太超流，多的打能量吸收", "priority": "normal", "enabled": true }] },
+        { "id": "sch-dot-09", "atMs": 526000, "name": "526秒：群盾＋DoT", "phase": "P3 Basement", "category": "shield", "cues": [{ "id": "sch-dot-09-cue", "offsetMs": 0, "text": "群盾，補毒", "priority": "normal", "enabled": true }] },
+        { "id": "sch-impact-mit-01", "atMs": 547000, "name": "終盤八連前：群盾＋罩子", "phase": "P3 Basement", "category": "mitigation", "cues": [{ "id": "sch-impact-mit-01-cue", "offsetMs": 0, "text": "八連前，群盾罩子", "priority": "high", "enabled": true }] },
+        { "id": "sch-impact-heal-01", "atMs": 558000, "name": "終盤八連後：祥光＋低語＋DoT", "phase": "P3 Basement", "category": "heal", "cues": [{ "id": "sch-impact-heal-01-cue", "offsetMs": 0, "text": "八連後，祥光低語，補毒", "priority": "high", "enabled": true }] },
+        { "id": "sch-deploy-04", "atMs": 577000, "name": "兩輪點名前：秘策回生法擴散盾", "phase": "P3 Basement", "category": "shield", "cues": [{ "id": "sch-deploy-04-cue", "offsetMs": 0, "text": "仙女放中，秘策回生法擴散", "priority": "high", "enabled": true }] },
+        { "id": "sch-af-10", "atMs": 584000, "name": "584秒：以太超流", "phase": "P3 Basement", "category": "job", "cues": [{ "id": "sch-af-10-cue", "offsetMs": 0, "text": "以太超流，多的打能量吸收", "priority": "normal", "enabled": true }] },
+        { "id": "sch-dot-10", "atMs": 588000, "name": "588秒：DoT更新", "phase": "P3 Basement", "category": "job", "cues": [{ "id": "sch-dot-10-cue", "offsetMs": 0, "text": "補毒", "priority": "normal", "enabled": true }] },
+        { "id": "sch-seraph-05", "atMs": 616000, "name": "最後死刑前：大仙女＋DoT", "phase": "P3 Basement", "category": "mitigation", "cues": [{ "id": "sch-seraph-05-cue", "offsetMs": 0, "text": "大仙女，補毒", "priority": "high", "enabled": true }] },
+        { "id": "sch-consolation-08", "atMs": 634000, "name": "最後八連前：大仙女一段＋爆發藥", "phase": "P3 Basement", "category": "shield", "cues": [{ "id": "sch-consolation-08-cue", "offsetMs": 0, "text": "大仙女一段，爆發藥", "priority": "high", "enabled": true }] },
+        { "id": "sch-chain-06", "atMs": 636500, "name": "最後八連：連環計＋罩子＋大仙女二段", "phase": "P3 Basement", "category": "mitigation", "cues": [{ "id": "sch-chain-06-cue", "offsetMs": 0, "text": "連環計罩子，大仙女二段", "priority": "high", "enabled": true }] },
+        { "id": "sch-final-heal", "atMs": 646500, "name": "最後八連後：低語＋秘策不屈", "phase": "P3 Basement", "category": "heal", "cues": [{ "id": "sch-final-heal-cue", "offsetMs": 0, "text": "八連後，低語，秘策不屈", "priority": "high", "enabled": true }] },
+        { "id": "sch-dot-11", "atMs": 649500, "name": "650秒：DoT更新", "phase": "P3 Basement", "category": "job", "cues": [{ "id": "sch-dot-11-cue", "offsetMs": 0, "text": "補毒", "priority": "normal", "enabled": true }] }
+      ]
+    }
+  ]
+}
