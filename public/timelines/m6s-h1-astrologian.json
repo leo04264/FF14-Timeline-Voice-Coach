@@ -1,0 +1,3122 @@
+{
+  "schemaVersion": 1,
+  "id": "builtin-m6s-h1-astrologian",
+  "meta": {
+    "name": "M6S Sugar Riot — Boss + H1 Astrologian Healing Plan",
+    "encounterId": "aac-cruiserweight-m2-savage-m6s",
+    "strategy": "M6S Boss Mechanics + H1 Astrologian 奶軸",
+    "author": "FF14 Timeline Voice Coach",
+    "description": "M6S Sugar Riot 的 H1 占星術師奶軸。Boss 機制軌沿用已驗證的 m6s-h2-scholar 秒數，提示風格與既有的學者範本一致。大技能配置對照 Nephritesssss（番茄水煮魚HQ）的 Stella 減傷／治療時間軸表：大宇宙只交三次，分別對準重熱放散（126s）、小怪四的羊雙體 AA（312s）、終盤黏黏慕斯接雙坦死刑（604s，該段死刑 45 萬 x2 是全場最大單體傷害）；王冠之淑女（貴婦）比照該表當成主力群補，排在落地分攤、黏黏分攤、小怪二與第三次慕斯驟雨。太陽星座一律排在中間學派同一個 20 秒窗內對準大團傷，中間學派走 120 秒節奏。動物園（212.6s-412.3s）的補血細節參考 Masla Kaguchi 的實戰心得：小怪一提醒兩隻都掛毒、主坦單補不要斷，小怪四以星位合圖＋大福星撐坦。注意該表把技能標在「它負責的那一下傷害」那一列而不是按下去的時間，因此表上的中間學派（190s/276s）與大宇宙（150s/310s）彼此間隔小於冷卻，無法照抄成實際施放時間；本檔改成冷卻可行、但覆蓋同一批傷害的排法。所有技能冷卻與充能（先天卜卦 40 秒三充、天星交錯 30 秒兩充、光速 60 秒兩充、地星／天宮圖／時測／沖日／黃經 60 秒、合圖／占卜／中間學派 120 秒、大宇宙 180 秒）都經程式檢查；地星每次引爆都在放置後 10-20 秒內、時測引爆都在 30 秒窗內、大宇宙到小宇宙都在 15 秒內。每句提示與 Boss 軌及彼此都保持 2100ms 以上間距，2000ms 碰撞視窗全空。",
+    "version": "0.2.0"
+  },
+  "encounter": {
+    "durationMs": 686000,
+    "countdownMs": 10000
+  },
+  "tracks": [
+    {
+      "id": "boss-mechanics",
+      "type": "encounter",
+      "name": "Boss Mechanics",
+      "enabledByDefault": true,
+      "events": [
+        {
+          "id": "boss-mousse-01",
+          "atMs": 11200,
+          "name": "Mousse Mural #1",
+          "phase": "P1",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-mousse-01-cue",
+              "offsetMs": -5000,
+              "text": "開場全體傷害",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-color-riot-01",
+          "atMs": 24400,
+          "name": "Color Riot #1",
+          "phase": "P1",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "boss-color-riot-01-cue",
+              "offsetMs": -6500,
+              "text": "雙坦死刑準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-wingmark-01",
+          "atMs": 59940,
+          "name": "Wingmark #1",
+          "phase": "P1",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-wingmark-01-cue",
+              "offsetMs": -6000,
+              "text": "準備擊飛安全角",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-color-clash-01",
+          "atMs": 62040,
+          "name": "Color Clash #1",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-color-clash-01-cue",
+              "offsetMs": -5000,
+              "text": "落地分攤準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-sticky-01",
+          "atMs": 76140,
+          "name": "Sticky Mousse #1",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-sticky-01-cue",
+              "offsetMs": -5000,
+              "text": "黏黏分攤準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-color-riot-02",
+          "atMs": 83540,
+          "name": "Color Riot #2",
+          "phase": "P1",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "boss-color-riot-02-cue",
+              "offsetMs": -6000,
+              "text": "雙坦死刑準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-desert",
+          "atMs": 90990,
+          "name": "Sugarscape Desert",
+          "phase": "P1 Desert",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-desert-cue",
+              "offsetMs": -4500,
+              "text": "沙漠階段開始",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-layer1",
+          "atMs": 107290,
+          "name": "Desert Layer #1",
+          "phase": "P1 Desert",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-layer1-cue",
+              "offsetMs": -5500,
+              "text": "仙人掌安全區",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-cactus-first",
+          "atMs": 121390,
+          "name": "Cactus AoEs Start",
+          "phase": "P1 Desert",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-cactus-first-cue",
+              "offsetMs": -4500,
+              "text": "仙人掌開始",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-cactus-last",
+          "atMs": 136590,
+          "name": "Cactus AoEs End",
+          "phase": "P1 Desert",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-cactus-last-cue",
+              "offsetMs": -4500,
+              "text": "最後仙人掌",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-heating-01",
+          "atMs": 141090,
+          "name": "Heating Up #1",
+          "phase": "P1 Desert",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-heating-01-cue",
+              "offsetMs": -6000,
+              "text": "點名分攤準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-sticky-02",
+          "atMs": 155590,
+          "name": "Sticky Mousse #2",
+          "phase": "P1 Desert",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-sticky-02-cue",
+              "offsetMs": -5000,
+              "text": "黏黏分攤準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-layer2",
+          "atMs": 157090,
+          "name": "Desert Layer #2",
+          "phase": "P1 Desert",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-layer2-cue",
+              "offsetMs": -9000,
+              "text": "流沙階段準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-quicksand",
+          "atMs": 173250,
+          "name": "Quicksand",
+          "phase": "P1 Desert",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-quicksand-cue",
+              "offsetMs": -10500,
+              "text": "流沙啟動",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-bombs",
+          "atMs": 189720,
+          "name": "Pudding Graf - Bombs",
+          "phase": "P1 Desert",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-bombs-cue",
+              "offsetMs": -4500,
+              "text": "放炸彈準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-mousse-02",
+          "atMs": 198820,
+          "name": "Mousse Mural #2",
+          "phase": "P1 Desert",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-mousse-02-cue",
+              "offsetMs": -5500,
+              "text": "全體傷害準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-color-riot-03",
+          "atMs": 208920,
+          "name": "Color Riot #3",
+          "phase": "P1 Desert",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "boss-color-riot-03-cue",
+              "offsetMs": -5500,
+              "text": "雙坦死刑準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-zoo-start",
+          "atMs": 217120,
+          "name": "Soul Sugar",
+          "phase": "Zoo",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-zoo-start-cue",
+              "offsetMs": -4500,
+              "text": "動物園開始",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-add1",
+          "atMs": 227470,
+          "name": "Live Painting #1",
+          "phase": "Zoo",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-add1-cue",
+              "offsetMs": -3500,
+              "text": "小怪一出現",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-add2",
+          "atMs": 256670,
+          "name": "Live Painting #2",
+          "phase": "Zoo",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-add2-cue",
+              "offsetMs": -3500,
+              "text": "小怪二出現",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-add3",
+          "atMs": 278770,
+          "name": "Live Painting #3",
+          "phase": "Zoo",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-add3-cue",
+              "offsetMs": -3500,
+              "text": "小怪三出現",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-jabber1",
+          "atMs": 286870,
+          "name": "Jabberwock #1",
+          "phase": "Zoo",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-jabber1-cue",
+              "offsetMs": -3500,
+              "text": "馬怪靠近場中",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-ready1",
+          "atMs": 305770,
+          "name": "Ready Ore Not #1",
+          "phase": "Zoo",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-ready1-cue",
+              "offsetMs": -5500,
+              "text": "動物園全體傷害",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-add4",
+          "atMs": 318070,
+          "name": "Live Painting #4",
+          "phase": "Zoo",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-add4-cue",
+              "offsetMs": -3500,
+              "text": "小怪四出現",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-jabber2",
+          "atMs": 326170,
+          "name": "Jabberwock #2",
+          "phase": "Zoo",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-jabber2-cue",
+              "offsetMs": -3500,
+              "text": "第二隻馬怪",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-ready2",
+          "atMs": 389170,
+          "name": "Ready Ore Not #2",
+          "phase": "Zoo",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-ready2-cue",
+              "offsetMs": -6000,
+              "text": "第二次全體傷害",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-arrows",
+          "atMs": 402570,
+          "name": "Single Style - Arrows",
+          "phase": "Zoo",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-arrows-cue",
+              "offsetMs": -4500,
+              "text": "規避箭矢",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-color-riot-04",
+          "atMs": 413670,
+          "name": "Color Riot #4",
+          "phase": "Zoo",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "boss-color-riot-04-cue",
+              "offsetMs": -12500,
+              "text": "雙坦死刑準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-mousse-03",
+          "atMs": 419770,
+          "name": "Mousse Mural #3",
+          "phase": "Zoo",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-mousse-03-cue",
+              "offsetMs": -7500,
+              "text": "全體傷害準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-river",
+          "atMs": 429270,
+          "name": "Sugarscape River",
+          "phase": "River",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-river-cue",
+              "offsetMs": -4500,
+              "text": "河流階段開始",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-fire-lightning",
+          "atMs": 453570,
+          "name": "Fire / Lightning",
+          "phase": "River",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-fire-lightning-cue",
+              "offsetMs": -7500,
+              "text": "火分攤或雷散開",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-storm",
+          "atMs": 461720,
+          "name": "Thunderstorm Start",
+          "phase": "Storm",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-storm-cue",
+              "offsetMs": -4500,
+              "text": "雷雨階段開始",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-thunder1",
+          "atMs": 469920,
+          "name": "Thundercloud #1",
+          "phase": "Storm",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-thunder1-cue",
+              "offsetMs": -5500,
+              "text": "雷雲一準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-thunder2",
+          "atMs": 480420,
+          "name": "Thundercloud #2",
+          "phase": "Storm",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-thunder2-cue",
+              "offsetMs": -4000,
+              "text": "雷雲二準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-thunder3",
+          "atMs": 491020,
+          "name": "Thundercloud #3",
+          "phase": "Storm",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-thunder3-cue",
+              "offsetMs": -4000,
+              "text": "雷雲三準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-thunder4",
+          "atMs": 501620,
+          "name": "Thundercloud #4",
+          "phase": "Storm",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-thunder4-cue",
+              "offsetMs": -4000,
+              "text": "雷雲四準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-thunder5",
+          "atMs": 512220,
+          "name": "Thundercloud #5",
+          "phase": "Storm",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-thunder5-cue",
+              "offsetMs": -4000,
+              "text": "最後雷雲準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-pudding-party",
+          "atMs": 518020,
+          "name": "Pudding Party",
+          "phase": "Storm",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-pudding-party-cue",
+              "offsetMs": -6000,
+              "text": "五連分攤準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-lava",
+          "atMs": 531370,
+          "name": "River Layer #2 - Lava",
+          "phase": "Lava",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-lava-cue",
+              "offsetMs": -4500,
+              "text": "熔岩階段開始",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-mousse-drip",
+          "atMs": 552670,
+          "name": "Mousse Drip",
+          "phase": "Lava",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-mousse-drip-cue",
+              "offsetMs": -6500,
+              "text": "遠端多段分攤",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-moussacre",
+          "atMs": 558570,
+          "name": "Moussacre",
+          "phase": "Lava",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-moussacre-cue",
+              "offsetMs": -8000,
+              "text": "近戰扇形準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-tower1",
+          "atMs": 566670,
+          "name": "Towers #1",
+          "phase": "Lava",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-tower1-cue",
+              "offsetMs": -4500,
+              "text": "第一輪踩塔",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-wingmark-lava",
+          "atMs": 584870,
+          "name": "Wingmark - Lava",
+          "phase": "Lava",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-wingmark-lava-cue",
+              "offsetMs": -5500,
+              "text": "擊飛踩第二輪塔",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-tower2",
+          "atMs": 593070,
+          "name": "Towers #2",
+          "phase": "Lava",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-tower2-cue",
+              "offsetMs": -5500,
+              "text": "第二輪踩塔",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-mousse-04",
+          "atMs": 598070,
+          "name": "Mousse Mural #4",
+          "phase": "Final",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-mousse-04-cue",
+              "offsetMs": -13000,
+              "text": "終盤全體傷害",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-sticky-final",
+          "atMs": 615020,
+          "name": "Sticky Mousse - Final",
+          "phase": "Final",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-sticky-final-cue",
+              "offsetMs": -5000,
+              "text": "終盤黏黏分攤",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-color-final",
+          "atMs": 622420,
+          "name": "Color Riot - Final",
+          "phase": "Final",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "boss-color-final-cue",
+              "offsetMs": -6500,
+              "text": "終盤雙坦死刑",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-wingmark-final",
+          "atMs": 657960,
+          "name": "Wingmark - Final",
+          "phase": "Final",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "boss-wingmark-final-cue",
+              "offsetMs": -5500,
+              "text": "最後擊飛準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-clash-final",
+          "atMs": 660060,
+          "name": "Color Clash - Final",
+          "phase": "Final",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "boss-clash-final-cue",
+              "offsetMs": -10000,
+              "text": "最後分攤準備",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "boss-enrage",
+          "atMs": 669060,
+          "name": "Artistic Anarchy",
+          "phase": "Final",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "boss-enrage-cue",
+              "offsetMs": -500,
+              "text": "狂暴讀條開始",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h1-astrologian",
+      "type": "job",
+      "name": "H1 Astrologian Healing / Mitigation Plan",
+      "enabledByDefault": true,
+      "target": {
+        "positions": [
+          "H1"
+        ],
+        "jobs": [
+          "AST"
+        ]
+      },
+      "events": [
+        {
+          "id": "ast-m010000",
+          "atMs": -10000,
+          "name": "倒數10秒：光速＋抽卡起手",
+          "phase": "P1",
+          "category": "job",
+          "cues": [
+            {
+              "id": "ast-m010000-cue",
+              "offsetMs": 0,
+              "text": "光速，抽卡起手",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-m003000",
+          "atMs": -3000,
+          "name": "倒數3秒：地星＋合相",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-m003000-cue",
+              "offsetMs": 0,
+              "text": "地星放場中，合相",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-004000",
+          "atMs": 4000,
+          "name": "開場全體前：天宮圖",
+          "phase": "P1",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-004000-cue",
+              "offsetMs": 0,
+              "text": "開場全體，天宮圖",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-008500",
+          "atMs": 8500,
+          "name": "開場全體後：引爆地星",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-008500-cue",
+              "offsetMs": 0,
+              "text": "引爆地星，合相",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-012000",
+          "atMs": 12000,
+          "name": "開場爆發：占卜＋出牌",
+          "phase": "P1",
+          "category": "job",
+          "cues": [
+            {
+              "id": "ast-012000-cue",
+              "offsetMs": 0,
+              "text": "占卜出牌，起手爆發",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-015000",
+          "atMs": 15000,
+          "name": "雙坦死刑前：黃經＋交錯主坦",
+          "phase": "P1",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-015000-cue",
+              "offsetMs": 0,
+              "text": "死刑前，黃經交錯主坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-021000",
+          "atMs": 21000,
+          "name": "雙坦死刑後：卜卦補雙坦",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-021000-cue",
+              "offsetMs": 0,
+              "text": "死刑後，卜卦補雙坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-051500",
+          "atMs": 51500,
+          "name": "擊飛前：光速",
+          "phase": "P1",
+          "category": "job",
+          "cues": [
+            {
+              "id": "ast-051500-cue",
+              "offsetMs": 0,
+              "text": "光速，擊飛不斷讀條",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-059140",
+          "atMs": 59140,
+          "name": "落地分攤：地星＋沖日＋貴婦",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-059140-cue",
+              "offsetMs": 0,
+              "text": "落地分攤，地星沖日貴婦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-066000",
+          "atMs": 66000,
+          "name": "黏黏分攤前：中間學派＋合相",
+          "phase": "P1",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "ast-066000-cue",
+              "offsetMs": 0,
+              "text": "黏黏分攤，中間學派，合相",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-069000",
+          "atMs": 69000,
+          "name": "黏黏分攤：太陽星座",
+          "phase": "P1",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-069000-cue",
+              "offsetMs": 0,
+              "text": "太陽星座，準備吃分攤",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-075440",
+          "atMs": 75440,
+          "name": "雙坦死刑前：黃經主坦＋引爆地星",
+          "phase": "P1",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-075440-cue",
+              "offsetMs": 0,
+              "text": "死刑前，黃經主坦，引爆地星",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-080500",
+          "atMs": 80500,
+          "name": "雙坦死刑後：交錯＋卜卦",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-080500-cue",
+              "offsetMs": 0,
+              "text": "死刑後，交錯卜卦補坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-088590",
+          "atMs": 88590,
+          "name": "沙漠開始：抽卡",
+          "phase": "P1 Desert",
+          "category": "job",
+          "cues": [
+            {
+              "id": "ast-088590-cue",
+              "offsetMs": 0,
+              "text": "沙漠開始，抽好牌",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-099000",
+          "atMs": 99000,
+          "name": "仙人掌前：時測＋合相",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-099000-cue",
+              "offsetMs": 0,
+              "text": "仙人掌前，時測合相",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-114790",
+          "atMs": 114790,
+          "name": "仙人掌開始：天宮圖",
+          "phase": "P1 Desert",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-114790-cue",
+              "offsetMs": 0,
+              "text": "仙人掌開始，天宮圖",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-119500",
+          "atMs": 119500,
+          "name": "仙人掌中：地星放安全區",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-119500-cue",
+              "offsetMs": 0,
+              "text": "地星放安全區",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-126000",
+          "atMs": 126000,
+          "name": "仙人掌連段：引爆時測＋沖日＋大宇宙",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-126000-cue",
+              "offsetMs": 0,
+              "text": "引爆時測，沖日，大宇宙",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-129990",
+          "atMs": 129990,
+          "name": "點名分攤前：引爆地星＋交錯",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-129990-cue",
+              "offsetMs": 0,
+              "text": "點名分攤，引爆地星，交錯",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-140000",
+          "atMs": 140000,
+          "name": "點名分攤後：小宇宙＋占卜出牌",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-140000-cue",
+              "offsetMs": 0,
+              "text": "分攤後，小宇宙，占卜出牌",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-145990",
+          "atMs": 145990,
+          "name": "黏黏分攤前：交錯＋貴婦",
+          "phase": "P1 Desert",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "ast-145990-cue",
+              "offsetMs": 0,
+              "text": "黏黏分攤，交錯貴婦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-156000",
+          "atMs": 156000,
+          "name": "分攤後：光速＋出牌",
+          "phase": "P1 Desert",
+          "category": "job",
+          "cues": [
+            {
+              "id": "ast-156000-cue",
+              "offsetMs": 0,
+              "text": "分攤後，光速出牌",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-160650",
+          "atMs": 160650,
+          "name": "流沙前：時測＋合相",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-160650-cue",
+              "offsetMs": 0,
+              "text": "流沙前，時測合相",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-167000",
+          "atMs": 167000,
+          "name": "流沙中：引爆時測＋卜卦",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-167000-cue",
+              "offsetMs": 0,
+              "text": "引爆時測，卜卦補血",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-176000",
+          "atMs": 176000,
+          "name": "流沙後：天宮圖",
+          "phase": "P1 Desert",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-176000-cue",
+              "offsetMs": 0,
+              "text": "流沙後，天宮圖",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-183000",
+          "atMs": 183000,
+          "name": "炸彈前：地星放場中",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-183000-cue",
+              "offsetMs": 0,
+              "text": "炸彈前，地星放場中",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-187320",
+          "atMs": 187320,
+          "name": "全體傷害前：中間學派＋合相",
+          "phase": "P1 Desert",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "ast-187320-cue",
+              "offsetMs": 0,
+              "text": "全體前，中間學派，合相",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-191000",
+          "atMs": 191000,
+          "name": "全體傷害：太陽星座",
+          "phase": "P1 Desert",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-191000-cue",
+              "offsetMs": 0,
+              "text": "太陽星座，準備吃團傷",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-195500",
+          "atMs": 195500,
+          "name": "全體後：引爆地星＋沖日",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-195500-cue",
+              "offsetMs": 0,
+              "text": "引爆地星，沖日",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-198500",
+          "atMs": 198500,
+          "name": "全體後：合圖主坦",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-198500-cue",
+              "offsetMs": 0,
+              "text": "合圖主坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-201320",
+          "atMs": 201320,
+          "name": "雙坦死刑前：黃經主坦",
+          "phase": "P1 Desert",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-201320-cue",
+              "offsetMs": 0,
+              "text": "死刑前，黃經主坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-206500",
+          "atMs": 206500,
+          "name": "雙坦死刑後：交錯＋卜卦",
+          "phase": "P1 Desert",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-206500-cue",
+              "offsetMs": 0,
+              "text": "死刑後，交錯卜卦補坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-214720",
+          "atMs": 214720,
+          "name": "動物園開始：抽卡準備",
+          "phase": "Zoo",
+          "category": "job",
+          "cues": [
+            {
+              "id": "ast-214720-cue",
+              "offsetMs": 0,
+              "text": "動物園開始，抽好牌",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-221870",
+          "atMs": 221870,
+          "name": "小怪一：兩隻都上DoT",
+          "phase": "Zoo",
+          "category": "job",
+          "cues": [
+            {
+              "id": "ast-221870-cue",
+              "offsetMs": 0,
+              "text": "小怪一，兩隻都掛毒",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-226500",
+          "atMs": 226500,
+          "name": "小怪一：主坦單補不要停",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-226500-cue",
+              "offsetMs": 0,
+              "text": "顧好主坦，卜卦別留",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-236000",
+          "atMs": 236000,
+          "name": "小怪一：天宮圖＋大福星",
+          "phase": "Zoo",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-236000-cue",
+              "offsetMs": 0,
+              "text": "天宮圖，大福星補坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-245000",
+          "atMs": 245000,
+          "name": "小怪一：地星＋王冠領主",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-245000-cue",
+              "offsetMs": 0,
+              "text": "地星放怪堆，領主",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-255500",
+          "atMs": 255500,
+          "name": "小怪二：引爆地星＋沖日＋貴婦",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-255500-cue",
+              "offsetMs": 0,
+              "text": "小怪二，引爆地星沖日貴婦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-262000",
+          "atMs": 262000,
+          "name": "小怪二：交錯＋占卜出牌",
+          "phase": "Zoo",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "ast-262000-cue",
+              "offsetMs": 0,
+              "text": "交錯補坦，占卜出牌",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-268000",
+          "atMs": 268000,
+          "name": "小怪二：時測＋合相省資源",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-268000-cue",
+              "offsetMs": 0,
+              "text": "時測合相，省資源",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-277500",
+          "atMs": 277500,
+          "name": "小怪三：卜卦顧雙坦",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-277500-cue",
+              "offsetMs": 0,
+              "text": "小怪三，卜卦顧雙坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-285470",
+          "atMs": 285470,
+          "name": "馬怪靠近：黃經主坦",
+          "phase": "Zoo",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-285470-cue",
+              "offsetMs": 0,
+              "text": "馬怪靠近，黃經主坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-292000",
+          "atMs": 292000,
+          "name": "大團傷前：引爆時測＋交錯",
+          "phase": "Zoo",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "ast-292000-cue",
+              "offsetMs": 0,
+              "text": "引爆時測，交錯補坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-296000",
+          "atMs": 296000,
+          "name": "大團傷：天宮圖",
+          "phase": "Zoo",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-296000-cue",
+              "offsetMs": 0,
+              "text": "大團傷，天宮圖",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-302370",
+          "atMs": 302370,
+          "name": "大團傷後：合相＋卜卦",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-302370-cue",
+              "offsetMs": 0,
+              "text": "合相拉血，卜卦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-305000",
+          "atMs": 305000,
+          "name": "小怪四前：地星放怪堆",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-305000-cue",
+              "offsetMs": 0,
+              "text": "地星放怪堆",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-307500",
+          "atMs": 307500,
+          "name": "小怪四：中間學派＋合相",
+          "phase": "Zoo",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "ast-307500-cue",
+              "offsetMs": 0,
+              "text": "小怪四，中間學派，合相",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-312000",
+          "atMs": 312000,
+          "name": "小怪四：太陽星座＋大宇宙",
+          "phase": "Zoo",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-312000-cue",
+              "offsetMs": 0,
+              "text": "太陽星座，大宇宙",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-318500",
+          "atMs": 318500,
+          "name": "小怪四：合圖主坦＋大福星",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-318500-cue",
+              "offsetMs": 0,
+              "text": "合圖主坦，大福星別停",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-325000",
+          "atMs": 325000,
+          "name": "第二隻馬怪：小宇宙＋卜卦交錯",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-325000-cue",
+              "offsetMs": 0,
+              "text": "小宇宙，卜卦交錯顧坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-333000",
+          "atMs": 333000,
+          "name": "小怪四：時測＋合相",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-333000-cue",
+              "offsetMs": 0,
+              "text": "時測合相",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-340000",
+          "atMs": 340000,
+          "name": "小怪四：引爆時測＋沖日",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-340000-cue",
+              "offsetMs": 0,
+              "text": "引爆時測，沖日",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-346000",
+          "atMs": 346000,
+          "name": "小怪四後半：大福星＋卜卦",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-346000-cue",
+              "offsetMs": 0,
+              "text": "大福星補坦，卜卦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-352000",
+          "atMs": 352000,
+          "name": "小怪四收尾：交錯＋合相",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-352000-cue",
+              "offsetMs": 0,
+              "text": "交錯補坦，合相拉血",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-362000",
+          "atMs": 362000,
+          "name": "怪群：集中輸出",
+          "phase": "Zoo",
+          "category": "job",
+          "cues": [
+            {
+              "id": "ast-362000-cue",
+              "offsetMs": 0,
+              "text": "集中打怪群",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-369000",
+          "atMs": 369000,
+          "name": "第二次大團傷前：地星",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-369000-cue",
+              "offsetMs": 0,
+              "text": "大團傷前，地星放場中",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-381000",
+          "atMs": 381000,
+          "name": "第二次大團傷：天宮圖＋引爆地星",
+          "phase": "Zoo",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-381000-cue",
+              "offsetMs": 0,
+              "text": "大團傷，天宮圖，引爆地星",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-386500",
+          "atMs": 386500,
+          "name": "大團傷後：占卜＋卜卦交錯",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-386500-cue",
+              "offsetMs": 0,
+              "text": "占卜出牌，卜卦交錯",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-393500",
+          "atMs": 393500,
+          "name": "規避箭矢：光速＋出牌＋黃經主坦",
+          "phase": "Zoo",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-393500-cue",
+              "offsetMs": 0,
+              "text": "箭矢，光速出牌，黃經主坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-403270",
+          "atMs": 403270,
+          "name": "雙坦死刑後：沖日",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-403270-cue",
+              "offsetMs": 0,
+              "text": "死刑後，沖日拉血",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-409000",
+          "atMs": 409000,
+          "name": "全體傷害前：時測＋合相",
+          "phase": "Zoo",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "ast-409000-cue",
+              "offsetMs": 0,
+              "text": "全體前，時測合相",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-414500",
+          "atMs": 414500,
+          "name": "全體後：引爆時測＋貴婦",
+          "phase": "Zoo",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-414500-cue",
+              "offsetMs": 0,
+              "text": "引爆時測，貴婦卜卦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-420000",
+          "atMs": 420000,
+          "name": "河流階段：抽卡整隊",
+          "phase": "River",
+          "category": "job",
+          "cues": [
+            {
+              "id": "ast-420000-cue",
+              "offsetMs": 0,
+              "text": "河流階段，抽好牌",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-427500",
+          "atMs": 427500,
+          "name": "火分攤前：中間學派＋合相",
+          "phase": "River",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "ast-427500-cue",
+              "offsetMs": 0,
+              "text": "火分攤前，中間學派，合相",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-436000",
+          "atMs": 436000,
+          "name": "火分攤前：地星放場中",
+          "phase": "River",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-436000-cue",
+              "offsetMs": 0,
+              "text": "地星放場中",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-438500",
+          "atMs": 438500,
+          "name": "火分攤：合圖主坦",
+          "phase": "River",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-438500-cue",
+              "offsetMs": 0,
+              "text": "合圖主坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-443970",
+          "atMs": 443970,
+          "name": "火雷傷害：太陽星座＋天宮圖",
+          "phase": "River",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-443970-cue",
+              "offsetMs": 0,
+              "text": "太陽星座，天宮圖，硬吃火雷",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-449000",
+          "atMs": 449000,
+          "name": "火雷後：引爆地星＋合相",
+          "phase": "River",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-449000-cue",
+              "offsetMs": 0,
+              "text": "引爆地星，合相拉血",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-459320",
+          "atMs": 459320,
+          "name": "雷雨開始：光速＋抽卡",
+          "phase": "Storm",
+          "category": "job",
+          "cues": [
+            {
+              "id": "ast-459320-cue",
+              "offsetMs": 0,
+              "text": "雷雨開始，光速抽卡",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-466520",
+          "atMs": 466520,
+          "name": "雷雲：沖日＋合相",
+          "phase": "Storm",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-466520-cue",
+              "offsetMs": 0,
+              "text": "雷雲，沖日合相",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-472000",
+          "atMs": 472000,
+          "name": "雷雲：卜卦補血",
+          "phase": "Storm",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-472000-cue",
+              "offsetMs": 0,
+              "text": "卜卦補血，注意站位",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-481000",
+          "atMs": 481000,
+          "name": "雷雲：時測＋合相",
+          "phase": "Storm",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-481000-cue",
+              "offsetMs": 0,
+              "text": "雷雲，時測合相",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-490000",
+          "atMs": 490000,
+          "name": "雷雲收尾：引爆時測＋交錯",
+          "phase": "Storm",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-490000-cue",
+              "offsetMs": 0,
+              "text": "引爆時測，交錯補坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-502000",
+          "atMs": 502000,
+          "name": "五連分攤前：地星放場中",
+          "phase": "Storm",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-502000-cue",
+              "offsetMs": 0,
+              "text": "五連分攤，地星放場中",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-505500",
+          "atMs": 505500,
+          "name": "五連分攤前：天宮圖",
+          "phase": "Storm",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "ast-505500-cue",
+              "offsetMs": 0,
+              "text": "天宮圖，合相群補",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-516000",
+          "atMs": 516000,
+          "name": "五連分攤後：引爆地星",
+          "phase": "Storm",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-516000-cue",
+              "offsetMs": 0,
+              "text": "引爆地星，合相拉血",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-528970",
+          "atMs": 528970,
+          "name": "熔岩開始：抽卡",
+          "phase": "Lava",
+          "category": "job",
+          "cues": [
+            {
+              "id": "ast-528970-cue",
+              "offsetMs": 0,
+              "text": "熔岩階段，抽好牌",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-532000",
+          "atMs": 532000,
+          "name": "熔岩開始：沖日＋卜卦",
+          "phase": "Lava",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-532000-cue",
+              "offsetMs": 0,
+              "text": "沖日，卜卦補血",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-539000",
+          "atMs": 539000,
+          "name": "多段分攤前：卜卦拉血",
+          "phase": "Lava",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-539000-cue",
+              "offsetMs": 0,
+              "text": "卜卦拉血，準備多段",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-548270",
+          "atMs": 548270,
+          "name": "多段分攤：中間學派＋合相",
+          "phase": "Lava",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "ast-548270-cue",
+              "offsetMs": 0,
+              "text": "多段分攤，中間學派，合相",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-552670",
+          "atMs": 552670,
+          "name": "扇形＋踩塔：太陽星座",
+          "phase": "Lava",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-552670-cue",
+              "offsetMs": 0,
+              "text": "太陽星座，扇形踩塔",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-556000",
+          "atMs": 556000,
+          "name": "多段分攤後：交錯＋合相",
+          "phase": "Lava",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-556000-cue",
+              "offsetMs": 0,
+              "text": "交錯補坦，合相拉血",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-560070",
+          "atMs": 560070,
+          "name": "第一輪塔：合相拉血",
+          "phase": "Lava",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-560070-cue",
+              "offsetMs": 0,
+              "text": "第一輪塔，合相拉血",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-570000",
+          "atMs": 570000,
+          "name": "第二輪塔前：時測＋地星",
+          "phase": "Lava",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-570000-cue",
+              "offsetMs": 0,
+              "text": "第二輪塔，時測，地星放場中",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-582970",
+          "atMs": 582970,
+          "name": "終盤全體：天宮圖＋引爆地星",
+          "phase": "Final",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-582970-cue",
+              "offsetMs": 0,
+              "text": "終盤全體，天宮圖，引爆地星",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-589670",
+          "atMs": 589670,
+          "name": "終盤全體後：引爆時測＋卜卦",
+          "phase": "Final",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-589670-cue",
+              "offsetMs": 0,
+              "text": "引爆時測，卜卦補血",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-594000",
+          "atMs": 594000,
+          "name": "第二輪塔後：沖日＋合相",
+          "phase": "Final",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-594000-cue",
+              "offsetMs": 0,
+              "text": "沖日，合相拉血",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-604000",
+          "atMs": 604000,
+          "name": "終盤爆發：大宇宙＋占卜出牌",
+          "phase": "Final",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-604000-cue",
+              "offsetMs": 0,
+              "text": "大宇宙，占卜出牌",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-612120",
+          "atMs": 612120,
+          "name": "終盤死刑前：合圖＋黃經主坦",
+          "phase": "Final",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-612120-cue",
+              "offsetMs": 0,
+              "text": "死刑前，合圖黃經主坦",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-618020",
+          "atMs": 618020,
+          "name": "終盤死刑後：小宇宙＋卜卦交錯",
+          "phase": "Final",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-618020-cue",
+              "offsetMs": 0,
+              "text": "死刑後，小宇宙，卜卦交錯",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-630000",
+          "atMs": 630000,
+          "name": "終盤：時測＋合相",
+          "phase": "Final",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-630000-cue",
+              "offsetMs": 0,
+              "text": "時測合相，拉滿血線",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-636000",
+          "atMs": 636000,
+          "name": "最後分攤前：地星放場中",
+          "phase": "Final",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-636000-cue",
+              "offsetMs": 0,
+              "text": "最後分攤，地星放場中",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-647960",
+          "atMs": 647960,
+          "name": "最後分攤：天宮圖＋引爆地星",
+          "phase": "Final",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "ast-647960-cue",
+              "offsetMs": 0,
+              "text": "天宮圖，引爆地星",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-656000",
+          "atMs": 656000,
+          "name": "最後擊飛：引爆時測＋合相",
+          "phase": "Final",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-656000-cue",
+              "offsetMs": 0,
+              "text": "引爆時測，合相拉血",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "ast-662000",
+          "atMs": 662000,
+          "name": "狂暴前：卜卦＋交錯全上",
+          "phase": "Final",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "ast-662000-cue",
+              "offsetMs": 0,
+              "text": "卜卦交錯全上",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
