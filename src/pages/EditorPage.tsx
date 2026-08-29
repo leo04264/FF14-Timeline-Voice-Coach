@@ -381,11 +381,19 @@ export function EditorPage() {
           {selectedTrack ? (
             <EventDetail
               timeline={timeline}
-              trackId={selectedTrack.id}
+              track={selectedTrack}
               event={selectedEvent}
               collisions={collisions}
               highlightCueId={highlightCueId}
               onChange={change}
+              onNavigate={(trackId, eventId, cueId) => {
+                setSelectedTrackId(trackId);
+                setSelectedEventId(eventId);
+                setHighlightCueId(cueId ?? null);
+                setPendingLocation(
+                  cueId ? { kind: 'cue', id: cueId } : { kind: 'event', id: eventId },
+                );
+              }}
             />
           ) : null}
         </div>

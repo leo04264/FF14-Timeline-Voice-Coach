@@ -1,5 +1,7 @@
 import { createId } from './ids';
 import type {
+  CuePriority,
+  EventCategory,
   TimelineCue,
   TimelineEvent,
   TimelinePackage,
@@ -113,6 +115,91 @@ export function addEvent(
       events: [...track.events, event],
     })),
     eventId: event.id,
+  };
+}
+
+export interface AppendMechanicActionInput {
+  eventName: string;
+  category: EventCategory;
+  cueText: string;
+  cueOffsetMs: number;
+  priority: CuePriority;
+}
+
+export type AppendMechanicActionResult =
+  | { ok: true; timeline: TimelinePackage; eventId: string; cueId: string }
+  | { ok: false; timeline: TimelinePackage; error: string };
+
+/**
+ * Create a regular target-track event anchored to an encounter event's time.
+ *
+ * This is deliberately a materialised copy, not a persistent cross-track link:
+ * changing the encounter event later does not move the new event. Keeping the
+ * stored shape unchanged preserves schema v1 import/export and the compiler.
+ */
+export function appendMechanicAction(
+  timeline: TimelinePackage,
+  sourceTrackId: string,
+  sourceEventId: string,
+  targetTrackId: string,
+  input: AppendMechanicActionInput,
+): AppendMechanicActionResult {
+  const sourceTrack = timeline.tracks.find((track) => track.id === sourceTrackId);
+  const sourceEvent = sourceTrack?.events.find((event) => event.id === sourceEventId);
+  const targetTrack = timeline.tracks.find((track) => track.id === targetTrackId);
+
+  if (!sourceTrack || sourceTrack.type !== 'encounter' || !sourceEvent) {
+    return { ok: false, timeline, error: '找不到可作為錨點的王機制事件' };
+  }
+  if (!targetTrack || targetTrack.id === sourceTrack.id) {
+    return { ok: false, timeline, error: '請選擇另一條有效軌道' };
+  }
+  if (input.eventName.trim() === '') {
+    return { ok: false, timeline, error: '動作名稱不能空白' };
+  }
+  if (input.cueText.trim() === '') {
+    return { ok: false, timeline, error: '語音內容不能空白' };
+  }
+  if (!Number.isFinite(input.cueOffsetMs)) {
+    return { ok: false, timeline, error: '提示時間必須是有效數值' };
+  }
+
+  const triggerMs = sourceEvent.atMs + input.cueOffsetMs;
+  if (triggerMs < -timeline.encounter.countdownMs) {
+    return { ok: false, timeline, error: '提示時間早於倒數開始' };
+  }
+  if (triggerMs > timeline.encounter.durationMs) {
+    return { ok: false, timeline, error: '提示時間超過戰鬥全長' };
+  }
+
+  const cueId = createId();
+  const eventId = createId();
+  const actionEvent: TimelineEvent = {
+    id: eventId,
+    atMs: sourceEvent.atMs,
+    name: input.eventName.trim(),
+    phase: sourceEvent.phase,
+    category: input.category,
+    cues: [
+      {
+        id: cueId,
+        offsetMs: input.cueOffsetMs,
+        text: input.cueText.trim(),
+        priority: input.priority,
+        enabled: true,
+      },
+    ],
+  };
+
+  const events = [...targetTrack.events];
+  const insertAt = events.findIndex((event) => event.atMs > actionEvent.atMs);
+  events.splice(insertAt < 0 ? events.length : insertAt, 0, actionEvent);
+
+  return {
+    ok: true,
+    timeline: updateTrack(timeline, targetTrack.id, (track) => ({ ...track, events })),
+    eventId,
+    cueId,
   };
 }
 

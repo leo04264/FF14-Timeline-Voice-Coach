@@ -92,6 +92,10 @@ Replacing Browser TTS with a WebAudio backend in V0.2 means implementing
   intersects with the cue target.
 - Built-in read-only templates live in `public/timelines/`, listed by
   `public/timelines/index.json`. Editing one forks it.
+- Selecting an encounter event in the editor exposes **其他軌道動作**. It can
+  create a normal event on another track at the same encounter time, with a cue
+  offset relative to the mechanic. The new event is independent: moving the
+  encounter event later does not move actions that were already created.
 
 ## Verifying timing (do this before trusting it in a raid)
 

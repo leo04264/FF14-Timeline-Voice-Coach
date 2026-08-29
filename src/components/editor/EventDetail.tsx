@@ -1,27 +1,36 @@
 import { EVENT_CATEGORY_LABEL } from '../../i18n/labels';
 import type { CollisionReport } from '../../timeline/collision';
 import { addCue, updateEvent } from '../../timeline/edits';
-import { EVENT_CATEGORIES, type EventCategory, type TimelineEvent, type TimelinePackage } from '../../timeline/types';
+import {
+  EVENT_CATEGORIES,
+  type EventCategory,
+  type TimelineEvent,
+  type TimelinePackage,
+  type TimelineTrack,
+} from '../../timeline/types';
 import { CueEditor } from './CueEditor';
+import { MechanicActionPanel } from './MechanicActionPanel';
 import { TimeInput } from './TimeInput';
 
 interface EventDetailProps {
   timeline: TimelinePackage;
-  trackId: string;
+  track: TimelineTrack;
   event: TimelineEvent | null;
   collisions: CollisionReport;
   highlightCueId: string | null;
   onChange(next: TimelinePackage): void;
+  onNavigate(trackId: string, eventId: string, cueId?: string): void;
 }
 
 /** Event + cue detail column (spec §55, §58). */
 export function EventDetail({
   timeline,
-  trackId,
+  track,
   event,
   collisions,
   highlightCueId,
   onChange,
+  onNavigate,
 }: EventDetailProps) {
   if (!event) {
     return (
@@ -33,7 +42,7 @@ export function EventDetail({
   }
 
   const patch = (updater: (current: TimelineEvent) => TimelineEvent) =>
-    onChange(updateEvent(timeline, trackId, event.id, updater));
+    onChange(updateEvent(timeline, track.id, event.id, updater));
 
   return (
     <div className="col">
@@ -86,13 +95,25 @@ export function EventDetail({
         </label>
       </div>
 
+      {track.type === 'encounter' ? (
+        <MechanicActionPanel
+          key={`${track.id}:${event.id}`}
+          timeline={timeline}
+          sourceTrack={track}
+          sourceEvent={event}
+          collisionWindowMs={collisions.windowMs}
+          onChange={onChange}
+          onNavigate={onNavigate}
+        />
+      ) : null}
+
       <div className="row">
         <h3 style={{ margin: 0 }}>語音提示（{event.cues.length}）</h3>
         <span className="spacer" />
         <button
           type="button"
           className="primary"
-          onClick={() => onChange(addCue(timeline, trackId, event.id).timeline)}
+          onClick={() => onChange(addCue(timeline, track.id, event.id).timeline)}
         >
           ＋ 新增提示
         </button>
@@ -106,7 +127,7 @@ export function EventDetail({
         <CueEditor
           key={cue.id}
           timeline={timeline}
-          trackId={trackId}
+          trackId={track.id}
           event={event}
           cue={cue}
           collisions={collisions}

@@ -649,6 +649,72 @@ tbody tr.selected {
   opacity: 0.55;
 }
 
+.mechanic-action-panel {
+  margin: 0.25rem 0 0.4rem;
+  padding: 0.7rem;
+  border: 1px solid var(--accent-dim);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--accent-dim) 12%, var(--bg-panel-2));
+}
+
+.mechanic-action-help {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.mechanic-action-existing {
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+}
+
+.mechanic-action-existing-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0.45rem 0.5rem;
+  border-radius: var(--radius);
+  background: var(--bg-input);
+}
+
+.mechanic-action-existing-row > :first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.mechanic-action-form {
+  margin-top: 0.2rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border);
+}
+
+.mechanic-action-options > label.field {
+  flex: 1 1 130px;
+}
+
+.mechanic-action-collisions {
+  gap: 0.3rem;
+  padding: 0.55rem;
+  border: 1px solid var(--warn);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--warn) 8%, var(--bg-input));
+  color: var(--warn);
+  overflow-wrap: anywhere;
+}
+
+.mechanic-action-confirm {
+  border-color: var(--warn);
+  color: var(--warn);
+}
+
+.mechanic-action-success {
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--ok);
+  border-radius: var(--radius);
+  color: var(--ok);
+}
+
 .issue-list {
   max-height: 220px;
   overflow: auto;
@@ -990,6 +1056,17 @@ details > summary {
 
   .editor-column {
     padding: 0.65rem;
+  }
+
+  .mechanic-action-existing-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .mechanic-action-existing-row > button,
+  .mechanic-action-form > button,
+  .mechanic-action-success > button {
+    width: 100%;
   }
 
   .debug-grid {
