@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "id": "builtin-tea-h2-scholar",
   "meta": {
-    "name": "TEA — The Epic of Alexander — H2 Scholar Core Plan",
+    "name": "TEA — The Epic of Alexander — H2 Scholar Core + Rotation",
     "encounterId": "the-epic-of-alexander-ultimate-tea",
-    "strategy": "TEA P1–P4 H2 Scholar / Fuuc Jagd Doll Ignore 20",
+    "strategy": "TEA P1–P4 H2 Scholar + 30s DoT / raid-burst-aligned Chain / Fuuc Jagd Doll Ignore 20",
     "author": "FF14 Timeline Voice Coach",
-    "description": "TEA P1–P4 H2 學者時間軸，採 Fuuc Jagd Doll 無視 20 策略。P1 Boss 軌保留附件提供的三個關鍵時間點；H2 軌依 TEA H2 SCH Fuuc Full P1–P4 Timing Preview 補齊 Limit Cut、BJ/CC、Prime、Inception、Wormhole、J-Wave、Alpha、Beta、大審判與時間牢獄。密集技能合併為單一語音，並依 2000ms 語音碰撞視窗錯開；請依隊伍轉階段時間以 Pull Offset 校正。",
-    "version": "1.1.0"
+    "description": "TEA P1–P4 H2 學者時間軸，採 Fuuc Jagd Doll 無視 20 策略。H2 軌依 TEA H2 SCH Fuuc Full P1–P4 Timing Preview 涵蓋 Limit Cut、BJ/CC、Prime、Inception、Wormhole、J-Wave、Alpha、Beta、大審判與時間牢獄；開場補毒獨立放在 0 秒，後續約每 30 秒提醒並跳過長轉場，第一次連環計於 17 秒配合 Cascade 詠唱後的團隊爆發，後續配合 BJ/CC 開場與尾段、Inception 後、J-Wave、Perfect Alexander 開場、Alpha 後及終盤團隊爆發。密集技能合併為單一語音，並依 2000ms 語音碰撞視窗錯開；請依隊伍轉階段時間以 Pull Offset 校正。",
+    "version": "1.2.0"
   },
   "encounter": {
     "durationMs": 1090000,
@@ -29,8 +29,8 @@
           "cues": [
             {
               "id": "p1-cascade-cue",
-              "offsetMs": -2500,
-              "text": "兩秒後全體傷害",
+              "offsetMs": -5500,
+              "text": "五秒後全體傷害",
               "priority": "high",
               "enabled": true
             }
@@ -101,6 +101,22 @@
           ]
         },
         {
+          "id": "sch-dot-opener",
+          "atMs": 0,
+          "name": "開場：DoT",
+          "phase": "P1 Living Liquid",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-opener-cue",
+              "offsetMs": 0,
+              "text": "開場補毒",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-opening-soil",
           "atMs": 5000,
           "name": "開場第2個 GCD：罩子",
@@ -111,6 +127,22 @@
               "id": "sch-opening-soil-cue",
               "offsetMs": 0,
               "text": "下罩子",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-chain-opener",
+          "atMs": 17000,
+          "name": "Cascade詠唱後：連環計",
+          "phase": "P1 Living Liquid",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-chain-opener-cue",
+              "offsetMs": 0,
+              "text": "連環計",
               "priority": "high",
               "enabled": true
             }
@@ -151,14 +183,14 @@
         {
           "id": "sch-recitation-consolation1",
           "atMs": 27000,
-          "name": "秘策＋大仙女一段",
+          "name": "秘策＋大仙女一段＋DoT",
           "phase": "P1 Living Liquid",
           "category": "shield",
           "cues": [
             {
               "id": "sch-recitation-consolation1-cue",
               "offsetMs": 0,
-              "text": "秘策，大仙女一段",
+              "text": "秘策，大仙女一段，補毒",
               "priority": "high",
               "enabled": true
             }
@@ -263,14 +295,46 @@
         {
           "id": "sch-aetherflow-reserve",
           "atMs": 60000,
-          "name": "060秒：以太超流",
+          "name": "060秒：以太超流＋DoT",
           "phase": "P1 Living Liquid",
           "category": "job",
           "cues": [
             {
               "id": "sch-aetherflow-reserve-cue",
               "offsetMs": 0,
-              "text": "以太超流，留一層給下階段罩子",
+              "text": "以太超流，留一層，補毒",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-p1-090",
+          "atMs": 90000,
+          "name": "090秒：DoT更新",
+          "phase": "P1 Living Liquid",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p1-090-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-p1-120",
+          "atMs": 120000,
+          "name": "120秒：DoT更新",
+          "phase": "P1 Living Liquid",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p1-120-cue",
+              "offsetMs": 0,
+              "text": "補毒",
               "priority": "normal",
               "enabled": true
             }
@@ -341,6 +405,22 @@
           ]
         },
         {
+          "id": "sch-chain-bjcc-opener",
+          "atMs": 176000,
+          "name": "P2開場：連環計＋DoT",
+          "phase": "P2 BJ/CC",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-chain-bjcc-opener-cue",
+              "offsetMs": 0,
+              "text": "P2開場，補毒，連環計",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-p2-whirlwind-seraph",
           "atMs": 194500,
           "name": "戰輪前：大仙女＋低語",
@@ -384,6 +464,22 @@
               "offsetMs": 0,
               "text": "回中，大仙女一段群盾",
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-p2-206",
+          "atMs": 206000,
+          "name": "206秒：DoT更新",
+          "phase": "P2 BJ/CC",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p2-206-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "priority": "normal",
               "enabled": true
             }
           ]
@@ -437,6 +533,22 @@
           ]
         },
         {
+          "id": "sch-dot-p2-236",
+          "atMs": 236000,
+          "name": "236秒：DoT更新",
+          "phase": "P2 BJ/CC",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p2-236-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-p2-water2-mit",
           "atMs": 249000,
           "name": "水雷二：群盾＋罩子",
@@ -464,6 +576,22 @@
               "offsetMs": 0,
               "text": "水雷二後，低語",
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-p2-266",
+          "atMs": 266000,
+          "name": "266秒：DoT更新",
+          "phase": "P2 BJ/CC",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p2-266-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "priority": "normal",
               "enabled": true
             }
           ]
@@ -517,6 +645,22 @@
           ]
         },
         {
+          "id": "sch-dot-p2-296",
+          "atMs": 296000,
+          "name": "296秒：DoT更新",
+          "phase": "P2 BJ/CC",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p2-296-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-p2-photon2-shield",
           "atMs": 306000,
           "name": "光子二前：群盾",
@@ -559,6 +703,38 @@
               "id": "sch-p2-photon2-indom-cue",
               "offsetMs": 0,
               "text": "光子二後，秘策不屈",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-p2-326",
+          "atMs": 326000,
+          "name": "326秒：DoT更新",
+          "phase": "P2 BJ/CC",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p2-326-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-chain-bjcc-end",
+          "atMs": 333000,
+          "name": "BJCC尾段爆發：連環計",
+          "phase": "P2 BJ/CC",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-chain-bjcc-end-cue",
+              "offsetMs": 0,
+              "text": "BJCC尾段，連環計",
               "priority": "high",
               "enabled": true
             }
@@ -624,6 +800,22 @@
               "offsetMs": 0,
               "text": "時停前，群盾",
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-p3-prime",
+          "atMs": 393500,
+          "name": "P3回場：DoT更新",
+          "phase": "P3 Prime",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p3-prime-cue",
+              "offsetMs": 0,
+              "text": "P3回場，補毒",
+              "priority": "normal",
               "enabled": true
             }
           ]
@@ -736,6 +928,38 @@
               "offsetMs": 0,
               "text": "火炎放射後，大仙女二段",
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-chain-post-inception",
+          "atMs": 454000,
+          "name": "Inception後：連環計＋DoT",
+          "phase": "P3 Prime",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-chain-post-inception-cue",
+              "offsetMs": 0,
+              "text": "一運結束，補毒，連環計",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-p3-484",
+          "atMs": 484000,
+          "name": "484秒：DoT更新",
+          "phase": "P3 Prime",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p3-484-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "priority": "normal",
               "enabled": true
             }
           ]
@@ -885,6 +1109,22 @@
           ]
         },
         {
+          "id": "sch-chain-jwave",
+          "atMs": 580500,
+          "name": "J Wave爆發：連環計＋DoT",
+          "phase": "P3 J-Wave",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-chain-jwave-cue",
+              "offsetMs": 0,
+              "text": "J Wave，補毒，連環計",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-p3-jwave-whispering",
           "atMs": 585500,
           "name": "J Wave：低語",
@@ -935,14 +1175,14 @@
         {
           "id": "sch-p3-jwave-illumination",
           "atMs": 612000,
-          "name": "J Wave後段：幻光＋群盾",
+          "name": "J Wave後段：幻光＋群盾＋DoT",
           "phase": "P3 J-Wave",
           "category": "mitigation",
           "cues": [
             {
               "id": "sch-p3-jwave-illumination-cue",
               "offsetMs": 0,
-              "text": "J Wave後段，幻光群盾",
+              "text": "J Wave，幻光群盾，補毒",
               "priority": "high",
               "enabled": true
             }
@@ -1013,6 +1253,22 @@
           ]
         },
         {
+          "id": "sch-chain-p4-opener",
+          "atMs": 754500,
+          "name": "P4開場：連環計＋DoT",
+          "phase": "P4 Perfect",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-chain-p4-opener-cue",
+              "offsetMs": 0,
+              "text": "P4開場，補毒，連環計",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-p4-aim1-consolation",
           "atMs": 758500,
           "name": "照準一：大仙女一段",
@@ -1040,6 +1296,22 @@
               "offsetMs": 0,
               "text": "照準二，大仙女二段",
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-p4-784",
+          "atMs": 784500,
+          "name": "785秒：DoT更新",
+          "phase": "P4 Perfect",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p4-784-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "priority": "normal",
               "enabled": true
             }
           ]
@@ -1093,6 +1365,22 @@
           ]
         },
         {
+          "id": "sch-dot-p4-815",
+          "atMs": 815000,
+          "name": "815秒：DoT更新",
+          "phase": "P4 Perfect",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p4-815-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-p4-tankbuster1",
           "atMs": 826500,
           "name": "坦傷一：綠帽＋單盾",
@@ -1103,6 +1391,38 @@
               "id": "sch-p4-tankbuster1-cue",
               "offsetMs": 0,
               "text": "坦傷一，綠帽單盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-p4-845",
+          "atMs": 845000,
+          "name": "845秒：DoT更新",
+          "phase": "P4 Perfect",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p4-845-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-chain-post-alpha",
+          "atMs": 875000,
+          "name": "Alpha後爆發：連環計＋DoT",
+          "phase": "P4 Perfect",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-chain-post-alpha-cue",
+              "offsetMs": 0,
+              "text": "Alpha後，補毒，連環計",
               "priority": "high",
               "enabled": true
             }
@@ -1175,14 +1495,14 @@
         {
           "id": "sch-p4-beta-indom",
           "atMs": 906000,
-          "name": "Beta後：不屈",
+          "name": "Beta後：不屈＋DoT",
           "phase": "P4 Beta",
           "category": "heal",
           "cues": [
             {
               "id": "sch-p4-beta-indom-cue",
               "offsetMs": 0,
-              "text": "Beta後，不屈",
+              "text": "Beta後，不屈，補毒",
               "priority": "high",
               "enabled": true
             }
@@ -1200,6 +1520,22 @@
               "offsetMs": 0,
               "text": "坦傷二，必要時綠帽",
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-p4-935",
+          "atMs": 935000,
+          "name": "935秒：DoT更新",
+          "phase": "P4 Perfect",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p4-935-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "priority": "normal",
               "enabled": true
             }
           ]
@@ -1237,6 +1573,22 @@
           ]
         },
         {
+          "id": "sch-dot-p4-965",
+          "atMs": 965000,
+          "name": "965秒：DoT更新",
+          "phase": "P4 Burn",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p4-965-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
           "id": "sch-p4-tankbuster3",
           "atMs": 970500,
           "name": "坦傷三：綠帽",
@@ -1264,6 +1616,22 @@
               "offsetMs": -1500,
               "text": "第二輪大審判，幻光群盾罩子低語",
               "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dot-p4-995",
+          "atMs": 995000,
+          "name": "995秒：DoT更新",
+          "phase": "P4 Burn",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-dot-p4-995-cue",
+              "offsetMs": 0,
+              "text": "補毒",
+              "priority": "normal",
               "enabled": true
             }
           ]
@@ -1311,6 +1679,22 @@
               "id": "sch-p4-burn-dissipation-cue",
               "offsetMs": 0,
               "text": "第二輪結束，轉化全力輸出",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-chain-final",
+          "atMs": 1010000,
+          "name": "終盤爆發：連環計",
+          "phase": "P4 Burn",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-chain-final-cue",
+              "offsetMs": 0,
+              "text": "終盤爆發，連環計",
               "priority": "high",
               "enabled": true
             }
