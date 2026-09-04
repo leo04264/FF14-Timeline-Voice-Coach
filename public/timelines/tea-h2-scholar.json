@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "id": "builtin-tea-h2-scholar",
   "meta": {
-    "name": "TEA — The Epic of Alexander — Boss + H2 Scholar Core Plan",
+    "name": "TEA — The Epic of Alexander — H2 Scholar Core Plan",
     "encounterId": "the-epic-of-alexander-ultimate-tea",
-    "strategy": "Jagd Doll ignore 20 / LC1211 / healer-first Nisi / Time Stop safe / Wormhole 34 fixed",
+    "strategy": "TEA P1–P4 H2 Scholar / Fuuc Jagd Doll Ignore 20",
     "author": "FF14 Timeline Voice Coach",
-    "description": "TEA H2 Scholar live voice plan. Boss mechanics follow the public TEA timeline with artificial phase-anchor gaps compressed into one continuous manual-timer reference. H2 Scholar follows the supplied Lv80 prog-safe plan: P1 Seraph and Hand Spreadlo, P1.5 LC recovery, P2 BJ/CC tank care and Photon recovery, P3 Inception/Wormhole/J-Wave, and P4 Fate Calibration/Almighty Judgment. All cues are enabled. Party DPS changes phase push timing, so Phase Sync or Pull Offset is recommended.",
-    "version": "0.1.0"
+    "description": "TEA P1–P4 H2 學者時間軸，採 Fuuc Jagd Doll 無視 20 策略。P1 Boss 軌保留附件提供的三個關鍵時間點；H2 軌依 TEA H2 SCH Fuuc Full P1–P4 Timing Preview 補齊 Limit Cut、BJ/CC、Prime、Inception、Wormhole、J-Wave、Alpha、Beta、大審判與時間牢獄。密集技能合併為單一語音，並依 2000ms 語音碰撞視窗錯開；請依隊伍轉階段時間以 Pull Offset 校正。",
+    "version": "1.1.0"
   },
   "encounter": {
     "durationMs": 1090000,
@@ -21,832 +21,48 @@
       "enabledByDefault": true,
       "events": [
         {
-          "id": "tea-p1-fluid",
-          "atMs": 11400,
-          "name": "Fluid Swing",
-          "phase": "P1 Living Liquid",
-          "category": "tankbuster",
-          "cues": [
-            {
-              "id": "tea-p1-fluid-cue",
-              "offsetMs": -7000,
-              "text": "開場坦傷",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p1-cascade1",
+          "id": "p1-cascade",
           "atMs": 19500,
-          "name": "Cascade #1",
+          "name": "Cascade",
           "phase": "P1 Living Liquid",
           "category": "raidwide",
           "cues": [
             {
-              "id": "tea-p1-cascade1-cue",
-              "offsetMs": -6000,
-              "text": "Cascade一",
+              "id": "p1-cascade-cue",
+              "offsetMs": -2500,
+              "text": "兩秒後全體傷害",
               "priority": "high",
               "enabled": true
             }
           ]
         },
         {
-          "id": "tea-p1-hand1",
-          "atMs": 35800,
-          "name": "Hand of Prayer / Parting",
-          "phase": "P1 Living Liquid",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p1-hand1-cue",
-              "offsetMs": -11000,
-              "text": "Hand準備",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p1-handpain1",
-          "atMs": 42800,
-          "name": "Hand of Pain #1",
-          "phase": "P1 Living Liquid",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p1-handpain1-cue",
-              "offsetMs": -4000,
-              "text": "Hand大傷",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p1-protean1",
-          "atMs": 69800,
-          "name": "Protean Wave #1",
-          "phase": "P1 Living Liquid",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p1-protean1-cue",
-              "offsetMs": -4000,
-              "text": "扇形開始",
-              "priority": "normal",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p1-splash1",
-          "atMs": 81100,
-          "name": "Splash x6 #1",
-          "phase": "P1 Living Liquid",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p1-splash1-cue",
-              "offsetMs": -7000,
-              "text": "連續全體傷害",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p1-cascade2",
-          "atMs": 91700,
-          "name": "Cascade #2",
-          "phase": "P1 Living Liquid",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p1-cascade2-cue",
-              "offsetMs": -5000,
-              "text": "Cascade二",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p1-protean2",
-          "atMs": 107000,
+          "id": "p1-protean2",
+          "atMs": 38700,
           "name": "Protean Wave #2",
           "phase": "P1 Living Liquid",
           "category": "mechanic",
           "cues": [
             {
-              "id": "tea-p1-protean2-cue",
-              "offsetMs": -6500,
-              "text": "第二輪扇形",
-              "priority": "normal",
+              "id": "p1-protean2-cue",
+              "offsetMs": -2000,
+              "text": "準備第二次扇形",
+              "priority": "high",
               "enabled": true
             }
           ]
         },
         {
-          "id": "tea-p1-splash2",
-          "atMs": 127400,
-          "name": "Splash x6 #2",
+          "id": "p1-hand-of-pain",
+          "atMs": 42800,
+          "name": "Hand of Pain / Equalization",
           "phase": "P1 Living Liquid",
           "category": "raidwide",
           "cues": [
             {
-              "id": "tea-p1-splash2-cue",
-              "offsetMs": -4000,
-              "text": "最後連續傷害",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-lc-start",
-          "atMs": 146100,
-          "name": "Limit Cut / Hawk Blaster",
-          "phase": "P1.5 Limit Cut",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-lc-start-cue",
-              "offsetMs": -5500,
-              "text": "麻將開始",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-lc-8",
-          "atMs": 169000,
-          "name": "Limit Cut #8",
-          "phase": "P1.5 Limit Cut",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-lc-8-cue",
-              "offsetMs": -7000,
-              "text": "麻將八號",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p2-kick",
-          "atMs": 172200,
-          "name": "Justice Kick",
-          "phase": "P2 BJ/CC",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p2-kick-cue",
-              "offsetMs": -12500,
-              "text": "正義飛踢",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p2-chakram",
-          "atMs": 202300,
-          "name": "Chakrams",
-          "phase": "P2 BJ/CC",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p2-chakram-cue",
-              "offsetMs": -6000,
-              "text": "戰輪準備",
-              "priority": "normal",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p2-photon1",
-          "atMs": 208600,
-          "name": "Photon #1",
-          "phase": "P2 BJ/CC",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p2-photon1-cue",
-              "offsetMs": -7500,
-              "text": "Photon一",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p2-water1",
-          "atMs": 223400,
-          "name": "Water and Thunder #1",
-          "phase": "P2 BJ/CC",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p2-water1-cue",
-              "offsetMs": -6500,
-              "text": "水雷一",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p2-mine",
-          "atMs": 236700,
-          "name": "Hidden Minefield",
-          "phase": "P2 BJ/CC",
-          "category": "tankbuster",
-          "cues": [
-            {
-              "id": "tea-p2-mine-cue",
-              "offsetMs": -6500,
-              "text": "副坦踩雷",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p2-water2",
-          "atMs": 252800,
-          "name": "Water and Thunder #2",
-          "phase": "P2 BJ/CC",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p2-water2-cue",
-              "offsetMs": -6000,
-              "text": "水雷二",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p2-flare",
-          "atMs": 261600,
-          "name": "Flarethrower",
-          "phase": "P2 BJ/CC",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p2-flare-cue",
-              "offsetMs": -6000,
-              "text": "火炎放射",
-              "priority": "normal",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p2-whirl",
-          "atMs": 273700,
-          "name": "Whirlwind",
-          "phase": "P2 BJ/CC",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p2-whirl-cue",
-              "offsetMs": -6500,
-              "text": "龍捲傷害",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p2-water3",
-          "atMs": 282300,
-          "name": "Water and Thunder #3",
-          "phase": "P2 BJ/CC",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p2-water3-cue",
-              "offsetMs": -6000,
-              "text": "水雷三",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p2-gavel",
-          "atMs": 302600,
-          "name": "Gavel",
-          "phase": "P2 BJ/CC",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p2-gavel-cue",
-              "offsetMs": -5000,
-              "text": "終審閉庭",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p2-photon2",
-          "atMs": 312900,
-          "name": "Photon #2",
-          "phase": "P2 BJ/CC",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p2-photon2-cue",
-              "offsetMs": -9000,
-              "text": "Photon二",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p2-tornado1",
-          "atMs": 341100,
-          "name": "Whirlwind #2",
-          "phase": "P2 BJ/CC",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p2-tornado1-cue",
-              "offsetMs": -7000,
-              "text": "最後龍捲一",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p2-tornado2",
-          "atMs": 349200,
-          "name": "Whirlwind #3",
-          "phase": "P2 BJ/CC",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p2-tornado2-cue",
-              "offsetMs": -4000,
-              "text": "最後龍捲二",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p3-timestop",
-          "atMs": 377800,
-          "name": "Temporal Stasis",
-          "phase": "P3 Prime",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p3-timestop-cue",
-              "offsetMs": -5500,
-              "text": "時間停止",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p3-chastening1",
-          "atMs": 399300,
-          "name": "Chastening Heat #1",
-          "phase": "P3 Prime",
-          "category": "tankbuster",
-          "cues": [
-            {
-              "id": "tea-p3-chastening1-cue",
-              "offsetMs": -5000,
-              "text": "神罰坦傷一",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p3-inception",
-          "atMs": 415700,
-          "name": "Inception Formation",
-          "phase": "P3 Inception",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p3-inception-cue",
-              "offsetMs": -7000,
-              "text": "一運開始",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p3-crystal",
-          "atMs": 430200,
-          "name": "Judgment Crystal",
-          "phase": "P3 Inception",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p3-crystal-cue",
-              "offsetMs": -4000,
-              "text": "結晶傷害",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p3-inception-hit",
-          "atMs": 458800,
-          "name": "Inception",
-          "phase": "P3 Inception",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p3-inception-hit-cue",
-              "offsetMs": -4000,
-              "text": "一運集合傷害",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p3-chastening2",
-          "atMs": 488700,
-          "name": "Chastening Heat #2",
-          "phase": "P3 Prime",
-          "category": "tankbuster",
-          "cues": [
-            {
-              "id": "tea-p3-chastening2-cue",
-              "offsetMs": -5000,
-              "text": "神罰坦傷二",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p3-wormhole",
-          "atMs": 507100,
-          "name": "Wormhole Formation",
-          "phase": "P3 Wormhole",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p3-wormhole-cue",
-              "offsetMs": -7500,
-              "text": "二運開始",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p3-headsplit",
-          "atMs": 547800,
-          "name": "Incinerating Heat",
-          "phase": "P3 Wormhole",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p3-headsplit-cue",
-              "offsetMs": -5000,
-              "text": "二運中央頭割",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p3-holy1",
-          "atMs": 560700,
-          "name": "Mega Holy #1",
-          "phase": "P3 Wormhole",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p3-holy1-cue",
-              "offsetMs": -5500,
-              "text": "Mega Holy一",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p3-holy2",
-          "atMs": 567800,
-          "name": "Mega Holy #2",
-          "phase": "P3 Wormhole",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p3-holy2-cue",
-              "offsetMs": -7000,
-              "text": "Mega Holy二",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p3-jwave",
-          "atMs": 583500,
-          "name": "J Storm / J-Wave",
-          "phase": "P3 J-Wave",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p3-jwave-cue",
-              "offsetMs": -5000,
-              "text": "J Wave開始",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p3-divine",
-          "atMs": 665100,
-          "name": "Divine Judgment",
-          "phase": "P3 Transition",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p3-divine-cue",
-              "offsetMs": -6000,
-              "text": "神聖大審判轉場",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-finalword",
-          "atMs": 732300,
-          "name": "The Final Word",
-          "phase": "P4 Perfect",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p4-finalword-cue",
-              "offsetMs": -5000,
-              "text": "確定判決",
-              "priority": "normal",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-motion1",
-          "atMs": 739300,
-          "name": "Motion / Stillness #1",
-          "phase": "P4 Perfect",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p4-motion1-cue",
-              "offsetMs": -4000,
-              "text": "動靜一",
-              "priority": "normal",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-motion2",
-          "atMs": 749500,
-          "name": "Motion / Stillness #2",
-          "phase": "P4 Perfect",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p4-motion2-cue",
-              "offsetMs": -4000,
-              "text": "動靜二",
-              "priority": "normal",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-optical1",
-          "atMs": 759700,
-          "name": "Optical Sight #1",
-          "phase": "P4 Perfect",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p4-optical1-cue",
-              "offsetMs": -7500,
-              "text": "照準一",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-optical2",
-          "atMs": 765900,
-          "name": "Optical Sight #2",
-          "phase": "P4 Perfect",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p4-optical2-cue",
-              "offsetMs": -4000,
-              "text": "照準二",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-alpha",
-          "atMs": 780800,
-          "name": "Fate Projection Alpha",
-          "phase": "P4 Alpha",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p4-alpha-cue",
-              "offsetMs": -5000,
-              "text": "未來觀測Alpha",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-alpha-real",
-          "atMs": 805800,
-          "name": "Fate Calibration Alpha",
-          "phase": "P4 Alpha",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p4-alpha-real-cue",
-              "offsetMs": -5000,
-              "text": "Alpha實行",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-tb1",
-          "atMs": 831200,
-          "name": "Capital Punishment #1",
-          "phase": "P4 Perfect",
-          "category": "tankbuster",
-          "cues": [
-            {
-              "id": "tea-p4-tb1-cue",
-              "offsetMs": -7500,
-              "text": "加重誅罰一",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-beta",
-          "atMs": 855500,
-          "name": "Fate Projection Beta",
-          "phase": "P4 Beta",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p4-beta-cue",
-              "offsetMs": -5000,
-              "text": "未來觀測Beta",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-beta-real",
-          "atMs": 893500,
-          "name": "Fate Calibration Beta",
-          "phase": "P4 Beta",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p4-beta-real-cue",
-              "offsetMs": -5000,
-              "text": "Beta實行",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-tb2",
-          "atMs": 930000,
-          "name": "Capital Punishment #2",
-          "phase": "P4 Perfect",
-          "category": "tankbuster",
-          "cues": [
-            {
-              "id": "tea-p4-tb2-cue",
-              "offsetMs": -7000,
-              "text": "加重誅罰二",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-judgment1",
-          "atMs": 949400,
-          "name": "Almighty Judgment #1",
-          "phase": "P4 Burn",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p4-judgment1-cue",
-              "offsetMs": -6500,
-              "text": "大審判一",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-tb3",
-          "atMs": 975800,
-          "name": "Capital Punishment #3",
-          "phase": "P4 Burn",
-          "category": "tankbuster",
-          "cues": [
-            {
-              "id": "tea-p4-tb3-cue",
-              "offsetMs": -11500,
-              "text": "加重誅罰三",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-judgment2",
-          "atMs": 994900,
-          "name": "Almighty Judgment #2",
-          "phase": "P4 Burn",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p4-judgment2-cue",
-              "offsetMs": -7500,
-              "text": "大審判二",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-prison",
-          "atMs": 1026000,
-          "name": "Temporal Interference",
-          "phase": "P4 Prison",
-          "category": "mechanic",
-          "cues": [
-            {
-              "id": "tea-p4-prison-cue",
-              "offsetMs": -5000,
-              "text": "時間牢獄開始",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "tea-p4-enrage",
-          "atMs": 1070800,
-          "name": "Temporal Prison Enrage",
-          "phase": "P4 Prison",
-          "category": "raidwide",
-          "cues": [
-            {
-              "id": "tea-p4-enrage-cue",
-              "offsetMs": -7000,
-              "text": "最後狂暴",
+              "id": "p1-hand-of-pain-cue",
+              "offsetMs": -1900,
+              "text": "兩秒後均等化大傷",
               "priority": "high",
               "enabled": true
             }
@@ -869,1898 +85,1250 @@
       },
       "events": [
         {
-          "id": "sch-pre1",
-          "atMs": -10000,
-          "name": "倒數10秒：鼓舞MT",
+          "id": "sch-prepull-succor",
+          "atMs": -5500,
+          "name": "倒數5.5秒：群盾",
           "phase": "P1 Living Liquid",
           "category": "shield",
           "cues": [
             {
-              "id": "sch-pre1-cue",
+              "id": "sch-prepull-succor-cue",
               "offsetMs": 0,
-              "text": "單盾主坦",
+              "text": "群盾",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-pre2",
-          "atMs": -7500,
-          "name": "倒數約8秒：士氣",
+          "id": "sch-opening-soil",
+          "atMs": 5000,
+          "name": "開場第2個 GCD：罩子",
+          "phase": "P1 Living Liquid",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-opening-soil-cue",
+              "offsetMs": 0,
+              "text": "下罩子",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-cascade-seraph",
+          "atMs": 19500,
+          "name": "Cascade：低語＋大仙女",
+          "phase": "P1 Living Liquid",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-cascade-seraph-cue",
+              "offsetMs": 0,
+              "text": "Cascade，低語，大仙女",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-fey-illumination",
+          "atMs": 22000,
+          "name": "幻光",
+          "phase": "P1 Living Liquid",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-fey-illumination-cue",
+              "offsetMs": 0,
+              "text": "幻光",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-recitation-consolation1",
+          "atMs": 27000,
+          "name": "秘策＋大仙女一段",
           "phase": "P1 Living Liquid",
           "category": "shield",
           "cues": [
             {
-              "id": "sch-pre2-cue",
+              "id": "sch-recitation-consolation1-cue",
               "offsetMs": 0,
-              "text": "倒數八秒，群盾",
+              "text": "秘策，大仙女一段",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p1-01",
-          "atMs": 1000,
-          "name": "開場：乙太超流",
+          "id": "sch-second-soil",
+          "atMs": 32500,
+          "name": "第二次罩子",
+          "phase": "P1 Living Liquid",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-second-soil-cue",
+              "offsetMs": 0,
+              "text": "下第二個罩子",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-swift-adlo",
+          "atMs": 35500,
+          "name": "即刻＋單盾準備",
+          "phase": "P1 Living Liquid",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-swift-adlo-cue",
+              "offsetMs": -900,
+              "text": "即刻，單盾自己，等第二次扇形",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-deploy-consolation2",
+          "atMs": 38900,
+          "name": "第二次扇形後：擴散盾＋大仙女二段",
+          "phase": "P1 Living Liquid",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-deploy-consolation2-cue",
+              "offsetMs": -100,
+              "text": "擴散盾，大仙女二段",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-after-hop-excog",
+          "atMs": 43500,
+          "name": "均等化後：深謀主坦",
+          "phase": "P1 Living Liquid",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-after-hop-excog-cue",
+              "offsetMs": 0,
+              "text": "均等化結束，深謀主坦",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-fey-blessing",
+          "atMs": 45500,
+          "name": "祥光",
+          "phase": "P1 Living Liquid",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-fey-blessing-cue",
+              "offsetMs": 100,
+              "text": "祥光",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-dissipation",
+          "atMs": 48000,
+          "name": "轉化",
           "phase": "P1 Living Liquid",
           "category": "job",
           "cues": [
             {
-              "id": "sch-p1-01-cue",
+              "id": "sch-dissipation-cue",
               "offsetMs": 0,
-              "text": "開場，乙太超流",
+              "text": "轉化",
               "priority": "normal",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p1-02",
-          "atMs": 6500,
-          "name": "開場：召喚熾天使",
+          "id": "sch-aetherflow-reserve",
+          "atMs": 60000,
+          "name": "060秒：以太超流",
           "phase": "P1 Living Liquid",
-          "category": "heal",
+          "category": "job",
           "cues": [
             {
-              "id": "sch-p1-02-cue",
+              "id": "sch-aetherflow-reserve-cue",
               "offsetMs": 0,
-              "text": "開場，大仙女",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p1-03",
-          "atMs": 9000,
-          "name": "開場：深謀MT",
-          "phase": "P1 Living Liquid",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p1-03-cue",
-              "offsetMs": 0,
-              "text": "綠帽主坦",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p1-04",
-          "atMs": 16000,
-          "name": "Cascade前：慰藉一",
-          "phase": "P1 Living Liquid",
-          "category": "shield",
-          "cues": [
-            {
-              "id": "sch-p1-04-cue",
-              "offsetMs": 0,
-              "text": "Cascade前，慰藉一",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p1-05",
-          "atMs": 27000,
-          "name": "Cascade後：約3GCD野戰",
-          "phase": "P1 Living Liquid",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "sch-p1-05-cue",
-              "offsetMs": 0,
-              "text": "Cascade後，下罩子",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p1-06",
-          "atMs": 30500,
-          "name": "Hand前：秘策",
-          "phase": "P1 Living Liquid",
-          "category": "shield",
-          "cues": [
-            {
-              "id": "sch-p1-06-cue",
-              "offsetMs": 0,
-              "text": "Hand前，秘策",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p1-07",
-          "atMs": 33000,
-          "name": "Hand前：異想幻光",
-          "phase": "P1 Living Liquid",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "sch-p1-07-cue",
-              "offsetMs": 0,
-              "text": "Hand前，幻光",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p1-08",
-          "atMs": 35500,
-          "name": "Hand：鼓舞展開",
-          "phase": "P1 Living Liquid",
-          "category": "shield",
-          "cues": [
-            {
-              "id": "sch-p1-08-cue",
-              "offsetMs": 0,
-              "text": "鼓舞，展開",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p1-09",
-          "atMs": 76500,
-          "name": "扇形後：不屈＋妖精祝福",
-          "phase": "P1 Living Liquid",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p1-09-cue",
-              "offsetMs": 0,
-              "text": "扇形後，不屈祝福",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p1-10",
-          "atMs": 79500,
-          "name": "接續大傷：士氣",
-          "phase": "P1 Living Liquid",
-          "category": "shield",
-          "cues": [
-            {
-              "id": "sch-p1-10-cue",
-              "offsetMs": 0,
-              "text": "接續大傷，群盾",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p1-11",
-          "atMs": 103000,
-          "name": "後段：轉化＋士氣",
-          "phase": "P1 Living Liquid",
-          "category": "shield",
-          "cues": [
-            {
-              "id": "sch-p1-11-cue",
-              "offsetMs": 0,
-              "text": "後段，轉化群盾",
+              "text": "以太超流，留一層給下階段罩子",
               "priority": "normal",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-lc-01",
+          "id": "sch-p15-limitcut-shield",
           "atMs": 143000,
-          "name": "麻將前：士氣",
+          "name": "麻將前：群盾",
           "phase": "P1.5 Limit Cut",
           "category": "shield",
           "cues": [
             {
-              "id": "sch-lc-01-cue",
+              "id": "sch-p15-limitcut-shield-cue",
               "offsetMs": 0,
               "text": "麻將前，群盾",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-lc-02",
+          "id": "sch-p15-kick-soil",
           "atMs": 164500,
-          "name": "8號快結束：野戰",
+          "name": "八號結束：罩子",
           "phase": "P1.5 Limit Cut",
           "category": "mitigation",
           "cues": [
             {
-              "id": "sch-lc-02-cue",
+              "id": "sch-p15-kick-soil-cue",
               "offsetMs": 0,
-              "text": "八號快結束，下罩子",
+              "text": "八號結束，下罩子，準備飛踢",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-lc-03",
+          "id": "sch-p15-return-shield",
           "atMs": 168000,
-          "name": "全員回場：士氣＋不屈",
+          "name": "飛踢回場：群盾",
           "phase": "P1.5 Limit Cut",
-          "category": "heal",
+          "category": "shield",
           "cues": [
             {
-              "id": "sch-lc-03-cue",
+              "id": "sch-p15-return-shield-cue",
               "offsetMs": 0,
-              "text": "回場，群盾不屈",
+              "text": "飛踢回場，群盾",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p2-01",
+          "id": "sch-p2-kick-recovery",
           "atMs": 173500,
-          "name": "Justice Kick後：士氣＋妖精祝福",
+          "name": "飛踢後：群盾＋祥光",
           "phase": "P2 BJ/CC",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p2-01-cue",
+              "id": "sch-p2-kick-recovery-cue",
               "offsetMs": 0,
-              "text": "飛踢後，群盾祝福",
+              "text": "飛踢後，群盾祥光",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p2-02",
-          "atMs": 198500,
-          "name": "Chakram前：召喚熾天使",
+          "id": "sch-p2-whirlwind-seraph",
+          "atMs": 194500,
+          "name": "戰輪前：大仙女＋低語",
           "phase": "P2 BJ/CC",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p2-02-cue",
+              "id": "sch-p2-whirlwind-seraph-cue",
               "offsetMs": 0,
-              "text": "戰輪前，大仙女",
+              "text": "戰輪前，大仙女低語",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p2-03",
-          "atMs": 203500,
-          "name": "回中央：士氣＋不屈＋慰藉一",
-          "phase": "P2 BJ/CC",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p2-03-cue",
-              "offsetMs": 0,
-              "text": "回中，群盾不屈慰藉",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p2-04",
-          "atMs": 206500,
-          "name": "回中央：低語＋野戰",
+          "id": "sch-p2-center-soil",
+          "atMs": 199000,
+          "name": "回中：罩子",
           "phase": "P2 BJ/CC",
           "category": "mitigation",
           "cues": [
             {
-              "id": "sch-p2-04-cue",
+              "id": "sch-p2-center-soil-cue",
               "offsetMs": 0,
-              "text": "低語，下罩子",
+              "text": "回中，下罩子",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p2-05",
-          "atMs": 219000,
-          "name": "壓縮一前：士氣",
+          "id": "sch-p2-center-consolation1",
+          "atMs": 202500,
+          "name": "回中：大仙女一段＋群盾",
           "phase": "P2 BJ/CC",
           "category": "shield",
           "cues": [
             {
-              "id": "sch-p2-05-cue",
+              "id": "sch-p2-center-consolation1-cue",
+              "offsetMs": 0,
+              "text": "回中，大仙女一段群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p2-consolation2",
+          "atMs": 214500,
+          "name": "大仙女二段",
+          "phase": "P2 BJ/CC",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-p2-consolation2-cue",
+              "offsetMs": 0,
+              "text": "大仙女二段",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p2-water1-shield",
+          "atMs": 219000,
+          "name": "水雷一前：群盾",
+          "phase": "P2 BJ/CC",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-p2-water1-shield-cue",
               "offsetMs": 0,
               "text": "水雷一前，群盾",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p2-06",
-          "atMs": 223500,
-          "name": "壓縮一：慰藉二",
-          "phase": "P2 BJ/CC",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p2-06-cue",
-              "offsetMs": 0,
-              "text": "水雷一，慰藉二",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p2-07",
-          "atMs": 226500,
-          "name": "壓縮一後：不屈",
-          "phase": "P2 BJ/CC",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p2-07-cue",
-              "offsetMs": 0,
-              "text": "水雷一後，不屈",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p2-08",
-          "atMs": 232500,
-          "name": "ST踩雷前：野戰",
+          "id": "sch-p2-mine-tank-care",
+          "atMs": 230500,
+          "name": "地雷前：幻光＋副坦綠帽單盾",
           "phase": "P2 BJ/CC",
           "category": "mitigation",
           "cues": [
             {
-              "id": "sch-p2-08-cue",
+              "id": "sch-p2-mine-tank-care-cue",
               "offsetMs": 0,
-              "text": "副坦踩雷，下罩子",
+              "text": "地雷前，幻光，副坦綠帽單盾",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p2-09",
-          "atMs": 235000,
-          "name": "ST踩雷前：深謀＋鼓舞",
-          "phase": "P2 BJ/CC",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p2-09-cue",
-              "offsetMs": 0,
-              "text": "副坦，綠帽單盾",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p2-10",
-          "atMs": 239500,
-          "name": "踩雷後：回看MT＋乙太契約",
-          "phase": "P2 BJ/CC",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p2-10-cue",
-              "offsetMs": 0,
-              "text": "回看主坦，連線",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p2-11",
+          "id": "sch-p2-water2-mit",
           "atMs": 249000,
-          "name": "壓縮二前：士氣",
+          "name": "水雷二：群盾＋罩子",
+          "phase": "P2 BJ/CC",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-p2-water2-mit-cue",
+              "offsetMs": 0,
+              "text": "水雷二，群盾罩子",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p2-water2-whispering",
+          "atMs": 258500,
+          "name": "水雷二後：低語",
+          "phase": "P2 BJ/CC",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p2-water2-whispering-cue",
+              "offsetMs": 0,
+              "text": "水雷二後，低語",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p2-water3-excog",
+          "atMs": 276500,
+          "name": "水雷三前：副坦綠帽",
+          "phase": "P2 BJ/CC",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p2-water3-excog-cue",
+              "offsetMs": 0,
+              "text": "水雷三前，副坦綠帽",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p2-water3-mit",
+          "atMs": 279000,
+          "name": "水雷三：罩子＋群盾",
+          "phase": "P2 BJ/CC",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-p2-water3-mit-cue",
+              "offsetMs": 0,
+              "text": "水雷三，罩子群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p2-water3-fey-union",
+          "atMs": 282500,
+          "name": "水雷三後：祥光＋連線主坦",
+          "phase": "P2 BJ/CC",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p2-water3-fey-union-cue",
+              "offsetMs": 0,
+              "text": "祥光，連線主坦，注意雙坦",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p2-photon2-shield",
+          "atMs": 306000,
+          "name": "光子二前：群盾",
           "phase": "P2 BJ/CC",
           "category": "shield",
           "cues": [
             {
-              "id": "sch-p2-11-cue",
+              "id": "sch-p2-photon2-shield-cue",
               "offsetMs": 0,
-              "text": "水雷二前，群盾",
+              "text": "光子二前，群盾",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p2-12",
-          "atMs": 258000,
-          "name": "火炎放射前：幻光＋士氣",
+          "id": "sch-p2-photon2-prep",
+          "atMs": 309000,
+          "name": "光子二：罩子＋秘策",
           "phase": "P2 BJ/CC",
           "category": "mitigation",
           "cues": [
             {
-              "id": "sch-p2-12-cue",
+              "id": "sch-p2-photon2-prep-cue",
               "offsetMs": 0,
-              "text": "火炎前，幻光群盾",
+              "text": "光子二，罩子，秘策準備不屈",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p2-13",
-          "atMs": 269500,
-          "name": "Tornado前：野戰＋低語",
+          "id": "sch-p2-photon2-indom",
+          "atMs": 313200,
+          "name": "光子二後：秘策不屈",
+          "phase": "P2 BJ/CC",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p2-photon2-indom-cue",
+              "offsetMs": 0,
+              "text": "光子二後，秘策不屈",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p2-final-whirlwind-mit",
+          "atMs": 338500,
+          "name": "最後龍捲：群盾＋低語＋罩子",
           "phase": "P2 BJ/CC",
           "category": "mitigation",
           "cues": [
             {
-              "id": "sch-p2-13-cue",
+              "id": "sch-p2-final-whirlwind-mit-cue",
               "offsetMs": 0,
-              "text": "龍捲前，罩子低語",
+              "text": "最後龍捲，群盾低語罩子",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p2-14",
-          "atMs": 278500,
-          "name": "壓縮三：野戰＋士氣＋低語",
-          "phase": "P2 BJ/CC",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "sch-p2-14-cue",
-              "offsetMs": 0,
-              "text": "水雷三，罩子群盾低語",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p2-15",
-          "atMs": 281500,
-          "name": "壓縮三：坦低就深謀",
+          "id": "sch-p2-final-whirlwind-blessing",
+          "atMs": 342500,
+          "name": "最後龍捲：祥光",
           "phase": "P2 BJ/CC",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p2-15-cue",
+              "id": "sch-p2-final-whirlwind-blessing-cue",
               "offsetMs": 0,
-              "text": "坦低就補綠帽",
-              "priority": "normal",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p2-16",
-          "atMs": 306000,
-          "name": "Photon前：野戰＋士氣",
-          "phase": "P2 BJ/CC",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "sch-p2-16-cue",
-              "offsetMs": 0,
-              "text": "Photon前，罩子群盾",
+              "text": "最後龍捲，祥光",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p2-17",
-          "atMs": 310500,
-          "name": "Photon：秘策＋不屈",
+          "id": "sch-p2-second-whirlwind-indom",
+          "atMs": 349500,
+          "name": "第二個龍捲：不屈",
           "phase": "P2 BJ/CC",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p2-17-cue",
+              "id": "sch-p2-second-whirlwind-indom-cue",
               "offsetMs": 0,
-              "text": "秘策，不屈",
+              "text": "第二個龍捲，不屈",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p2-18",
-          "atMs": 314000,
-          "name": "Photon後：必要時應急士氣",
-          "phase": "P2 BJ/CC",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p2-18-cue",
-              "offsetMs": 0,
-              "text": "血低，應急群盾",
-              "priority": "normal",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p2-19",
-          "atMs": 336500,
-          "name": "最後龍捲前：召喚熾天使",
-          "phase": "P2 BJ/CC",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p2-19-cue",
-              "offsetMs": 0,
-              "text": "最後龍捲，大仙女",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p2-20",
-          "atMs": 340000,
-          "name": "龍捲一：慰藉一＋野戰＋低語",
-          "phase": "P2 BJ/CC",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "sch-p2-20-cue",
-              "offsetMs": 0,
-              "text": "慰藉一，罩子低語",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p2-21",
-          "atMs": 348000,
-          "name": "龍捲二：慰藉二",
-          "phase": "P2 BJ/CC",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p2-21-cue",
-              "offsetMs": 0,
-              "text": "龍捲二，慰藉二",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p2-22",
-          "atMs": 351500,
-          "name": "收尾：妖精祝福",
-          "phase": "P2 BJ/CC",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p2-22-cue",
-              "offsetMs": 0,
-              "text": "收尾，妖精祝福",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p3-01",
+          "id": "sch-p3-time-stop-shield",
           "atMs": 374500,
-          "name": "時停前：士氣",
+          "name": "時停前：群盾",
           "phase": "P3 Prime",
           "category": "shield",
           "cues": [
             {
-              "id": "sch-p3-01-cue",
+              "id": "sch-p3-time-stop-shield-cue",
               "offsetMs": 0,
               "text": "時停前，群盾",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-02",
+          "id": "sch-p3-divine-spear-excog",
+          "atMs": 396500,
+          "name": "神罰：主坦綠帽",
+          "phase": "P3 Prime",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p3-divine-spear-excog-cue",
+              "offsetMs": 0,
+              "text": "神罰坦傷，主坦綠帽",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p3-invuln-fey-union",
           "atMs": 400500,
-          "name": "時停後坦無敵：深謀＋乙太契約",
+          "name": "坦無敵後：連線主坦",
           "phase": "P3 Prime",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p3-02-cue",
+              "id": "sch-p3-invuln-fey-union-cue",
               "offsetMs": 0,
-              "text": "坦無敵後，綠帽連線",
+              "text": "坦無敵後，連線主坦",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-03",
-          "atMs": 411000,
-          "name": "一運前：幻光＋士氣",
+          "id": "sch-p3-inception-prep",
+          "atMs": 414000,
+          "name": "一運：秘策＋群盾",
           "phase": "P3 Inception",
           "category": "shield",
           "cues": [
             {
-              "id": "sch-p3-03-cue",
+              "id": "sch-p3-inception-prep-cue",
               "offsetMs": 0,
-              "text": "一運，幻光群盾",
+              "text": "一運，秘策群盾",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-04",
-          "atMs": 433000,
-          "name": "結晶後：野戰＋不屈",
+          "id": "sch-p3-crystal-mit",
+          "atMs": 425500,
+          "name": "結晶前：幻光＋低語",
+          "phase": "P3 Inception",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-p3-crystal-mit-cue",
+              "offsetMs": 0,
+              "text": "結晶前，幻光低語",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p3-crystal-seraph",
+          "atMs": 430200,
+          "name": "結晶著彈：大仙女",
           "phase": "P3 Inception",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p3-04-cue",
+              "id": "sch-p3-crystal-seraph-cue",
               "offsetMs": 0,
-              "text": "結晶後，罩子不屈",
+              "text": "結晶著彈，大仙女",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-05",
-          "atMs": 444000,
-          "name": "火炎放射後：士氣",
+          "id": "sch-p3-inception-consolation1",
+          "atMs": 436000,
+          "name": "爆炸：大仙女一段",
           "phase": "P3 Inception",
           "category": "shield",
           "cues": [
             {
-              "id": "sch-p3-05-cue",
+              "id": "sch-p3-inception-consolation1-cue",
               "offsetMs": 0,
-              "text": "火炎後，群盾",
+              "text": "爆炸，大仙女一段",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-06",
-          "atMs": 458000,
-          "name": "真心集合：士氣",
+          "id": "sch-p3-inception-consolation2",
+          "atMs": 451500,
+          "name": "火炎放射後：大仙女二段",
           "phase": "P3 Inception",
           "category": "shield",
           "cues": [
             {
-              "id": "sch-p3-06-cue",
+              "id": "sch-p3-inception-consolation2-cue",
               "offsetMs": 0,
-              "text": "集合，再群盾",
+              "text": "火炎放射後，大仙女二段",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-07",
-          "atMs": 489500,
-          "name": "第二次神罰：深謀＋乙太契約",
+          "id": "sch-p3-divine-spear2-care",
+          "atMs": 488700,
+          "name": "第二次神罰：綠帽＋連線",
           "phase": "P3 Prime",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p3-07-cue",
+              "id": "sch-p3-divine-spear2-care-cue",
               "offsetMs": 0,
-              "text": "神罰後，綠帽連線",
+              "text": "第二次神罰，綠帽連線主坦",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-08",
-          "atMs": 502000,
-          "name": "二運開始：秘策鼓舞展開",
+          "id": "sch-p3-wormhole-spreadlo",
+          "atMs": 511000,
+          "name": "斷絕：秘策單盾＋擴散盾",
           "phase": "P3 Wormhole",
           "category": "shield",
           "cues": [
             {
-              "id": "sch-p3-08-cue",
+              "id": "sch-p3-wormhole-spreadlo-cue",
               "offsetMs": 0,
-              "text": "二運，秘策鼓舞展開",
+              "text": "斷絕，秘策單盾自己，稍後擴散盾",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-09",
-          "atMs": 516000,
-          "name": "二運中：召喚熾天使",
+          "id": "sch-p3-wormhole-whispering",
+          "atMs": 525000,
+          "name": "斷絕空檔：低語",
           "phase": "P3 Wormhole",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p3-09-cue",
+              "id": "sch-p3-wormhole-whispering-cue",
               "offsetMs": 0,
-              "text": "二運中，大仙女",
+              "text": "斷絕空檔，低語",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-10",
-          "atMs": 522000,
-          "name": "二運中：慰藉一",
+          "id": "sch-p3-wormhole-soil",
+          "atMs": 542500,
+          "name": "往中央：罩子",
           "phase": "P3 Wormhole",
-          "category": "heal",
+          "category": "mitigation",
           "cues": [
             {
-              "id": "sch-p3-10-cue",
+              "id": "sch-p3-wormhole-soil-cue",
               "offsetMs": 0,
-              "text": "二運，慰藉一",
+              "text": "往中央跑，下罩子",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-11",
+          "id": "sch-p3-wormhole-indom",
           "atMs": 548500,
-          "name": "中央頭割：野戰＋士氣＋不屈",
-          "phase": "P3 Wormhole",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "sch-p3-11-cue",
-              "offsetMs": 0,
-              "text": "頭割，罩子群盾不屈",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p3-12",
-          "atMs": 557500,
-          "name": "Mega Holy前：士氣",
-          "phase": "P3 Wormhole",
-          "category": "shield",
-          "cues": [
-            {
-              "id": "sch-p3-12-cue",
-              "offsetMs": 0,
-              "text": "Holy前，群盾",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p3-13",
-          "atMs": 563000,
-          "name": "Mega Holy一：慰藉",
+          "name": "分攤後：不屈",
           "phase": "P3 Wormhole",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p3-13-cue",
+              "id": "sch-p3-wormhole-indom-cue",
               "offsetMs": 0,
-              "text": "Holy一，慰藉",
+              "text": "分攤後，不屈",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-14",
-          "atMs": 569500,
-          "name": "Mega Holy二：補盾",
+          "id": "sch-p3-holy-seraph",
+          "atMs": 554000,
+          "name": "Mega Holy前：大仙女",
+          "phase": "P3 Wormhole",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-p3-holy-seraph-cue",
+              "offsetMs": 0,
+              "text": "神聖前，大仙女",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p3-holy1-consolation",
+          "atMs": 560500,
+          "name": "Mega Holy一：大仙女一段",
           "phase": "P3 Wormhole",
           "category": "shield",
           "cues": [
             {
-              "id": "sch-p3-14-cue",
+              "id": "sch-p3-holy1-consolation-cue",
               "offsetMs": 0,
-              "text": "Holy二，補群盾",
+              "text": "神聖一，大仙女一段",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-15",
-          "atMs": 581000,
-          "name": "J-Wave前段：野戰＋低語＋士氣",
+          "id": "sch-p3-holy2-consolation",
+          "atMs": 567500,
+          "name": "Mega Holy二：大仙女二段",
+          "phase": "P3 Wormhole",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-p3-holy2-consolation-cue",
+              "offsetMs": 0,
+              "text": "神聖二，大仙女二段",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p3-jwave-opener",
+          "atMs": 578000,
+          "name": "J Wave：醒夢＋罩子＋群盾",
           "phase": "P3 J-Wave",
           "category": "mitigation",
           "cues": [
             {
-              "id": "sch-p3-15-cue",
+              "id": "sch-p3-jwave-opener-cue",
               "offsetMs": 0,
-              "text": "J Wave，罩子低語群盾",
+              "text": "J Wave，醒夢，罩子群盾",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-16",
-          "atMs": 596000,
-          "name": "J-Wave中段：不屈＋妖精祝福",
+          "id": "sch-p3-jwave-whispering",
+          "atMs": 585500,
+          "name": "J Wave：低語",
           "phase": "P3 J-Wave",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p3-16-cue",
+              "id": "sch-p3-jwave-whispering-cue",
               "offsetMs": 0,
-              "text": "中段，不屈祝福",
+              "text": "J Wave，低語",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-17",
+          "id": "sch-p3-jwave-blessing",
+          "atMs": 595000,
+          "name": "J Wave中段：祥光",
+          "phase": "P3 J-Wave",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p3-jwave-blessing-cue",
+              "offsetMs": 0,
+              "text": "J Wave中段，祥光",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p3-jwave-indom1",
+          "atMs": 603000,
+          "name": "J Wave：秘策不屈",
+          "phase": "P3 J-Wave",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p3-jwave-indom1-cue",
+              "offsetMs": 0,
+              "text": "J Wave，秘策不屈",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p3-jwave-illumination",
           "atMs": 612000,
-          "name": "J-Wave後段：幻光＋士氣",
+          "name": "J Wave後段：幻光＋群盾",
+          "phase": "P3 J-Wave",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-p3-jwave-illumination-cue",
+              "offsetMs": 0,
+              "text": "J Wave後段，幻光群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p3-jwave-dissipation",
+          "atMs": 621000,
+          "name": "J Wave後段：轉化",
+          "phase": "P3 J-Wave",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-p3-jwave-dissipation-cue",
+              "offsetMs": 0,
+              "text": "J Wave後段，轉化技能全交",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p3-jwave-emergency",
+          "atMs": 629000,
+          "name": "J Wave終盤：應急群盾",
           "phase": "P3 J-Wave",
           "category": "shield",
           "cues": [
             {
-              "id": "sch-p3-17-cue",
+              "id": "sch-p3-jwave-emergency-cue",
               "offsetMs": 0,
-              "text": "後段，幻光群盾",
+              "text": "J Wave終盤，應急群盾",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p3-18",
-          "atMs": 627000,
-          "name": "J-Wave最後：轉化＋士氣",
+          "id": "sch-p3-jwave-indom2",
+          "atMs": 633500,
+          "name": "J Wave最後：不屈",
           "phase": "P3 J-Wave",
-          "category": "shield",
+          "category": "heal",
           "cues": [
             {
-              "id": "sch-p3-18-cue",
+              "id": "sch-p3-jwave-indom2-cue",
               "offsetMs": 0,
-              "text": "最後，轉化群盾",
+              "text": "J Wave最後，不屈",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p4-01",
-          "atMs": 754500,
-          "name": "照準前：野戰＋士氣＋幻光",
+          "id": "sch-p4-perfect-opener",
+          "atMs": 752000,
+          "name": "照準前：大仙女＋低語＋罩子群盾",
           "phase": "P4 Perfect",
           "category": "mitigation",
           "cues": [
             {
-              "id": "sch-p4-01-cue",
+              "id": "sch-p4-perfect-opener-cue",
               "offsetMs": 0,
-              "text": "照準，罩子群盾幻光",
+              "text": "照準前，大仙女低語，罩子群盾",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p4-02",
-          "atMs": 758000,
-          "name": "照準一：低語",
+          "id": "sch-p4-aim1-consolation",
+          "atMs": 758500,
+          "name": "照準一：大仙女一段",
           "phase": "P4 Perfect",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p4-02-cue",
-              "offsetMs": 0,
-              "text": "照準一，低語",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p4-03",
-          "atMs": 766500,
-          "name": "照準二：不屈＋妖精祝福",
-          "phase": "P4 Perfect",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p4-03-cue",
-              "offsetMs": 0,
-              "text": "照準二，不屈祝福",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p4-04",
-          "atMs": 804000,
-          "name": "Alpha實行前：士氣",
-          "phase": "P4 Alpha",
           "category": "shield",
           "cues": [
             {
-              "id": "sch-p4-04-cue",
+              "id": "sch-p4-aim1-consolation-cue",
               "offsetMs": 0,
-              "text": "Alpha前，群盾",
+              "text": "照準一，大仙女一段",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p4-05",
-          "atMs": 809500,
-          "name": "Alpha實行：野戰",
+          "id": "sch-p4-aim2-consolation",
+          "atMs": 765000,
+          "name": "照準二：大仙女二段",
+          "phase": "P4 Perfect",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-p4-aim2-consolation-cue",
+              "offsetMs": 0,
+              "text": "照準二，大仙女二段",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p4-alpha-prep",
+          "atMs": 800500,
+          "name": "Alpha前：幻光＋秘策＋群盾",
           "phase": "P4 Alpha",
           "category": "mitigation",
           "cues": [
             {
-              "id": "sch-p4-05-cue",
+              "id": "sch-p4-alpha-prep-cue",
               "offsetMs": 0,
-              "text": "Alpha，下罩子",
-              "priority": "normal",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "text": "Alpha前，幻光秘策群盾",
+              "priority": "high",
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p4-06",
-          "atMs": 826000,
-          "name": "坦傷一：深謀＋鼓舞",
+          "id": "sch-p4-alpha-blessing",
+          "atMs": 810000,
+          "name": "Alpha後：祥光",
+          "phase": "P4 Alpha",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p4-alpha-blessing-cue",
+              "offsetMs": 0,
+              "text": "Alpha後，祥光",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p4-alpha-whispering",
+          "atMs": 812500,
+          "name": "Alpha後：低語",
+          "phase": "P4 Alpha",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "sch-p4-alpha-whispering-cue",
+              "offsetMs": 0,
+              "text": "Alpha後，低語",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p4-tankbuster1",
+          "atMs": 826500,
+          "name": "坦傷一：綠帽＋單盾",
           "phase": "P4 Perfect",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p4-06-cue",
+              "id": "sch-p4-tankbuster1-cue",
               "offsetMs": 0,
               "text": "坦傷一，綠帽單盾",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p4-07",
-          "atMs": 836500,
-          "name": "坦傷一後：必要時乙太契約",
-          "phase": "P4 Perfect",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p4-07-cue",
-              "offsetMs": 0,
-              "text": "坦低，連線",
-              "priority": "normal",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p4-08",
-          "atMs": 899000,
-          "name": "Beta實行前：士氣",
+          "id": "sch-p4-beta-shield",
+          "atMs": 889000,
+          "name": "Beta前：群盾",
           "phase": "P4 Beta",
           "category": "shield",
           "cues": [
             {
-              "id": "sch-p4-08-cue",
+              "id": "sch-p4-beta-shield-cue",
               "offsetMs": 0,
               "text": "Beta前，群盾",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p4-09",
-          "atMs": 910500,
-          "name": "Beta傷害後：祝福或不屈",
+          "id": "sch-p4-beta-seraph",
+          "atMs": 892000,
+          "name": "Beta：大仙女",
+          "phase": "P4 Beta",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "sch-p4-beta-seraph-cue",
+              "offsetMs": 0,
+              "text": "Beta，大仙女",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p4-beta-consolation1",
+          "atMs": 895000,
+          "name": "移動後：大仙女一段＋罩子",
+          "phase": "P4 Beta",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-p4-beta-consolation1-cue",
+              "offsetMs": 0,
+              "text": "移動後，大仙女一段罩子",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p4-beta-consolation2",
+          "atMs": 903500,
+          "name": "Beta後續：大仙女二段",
+          "phase": "P4 Beta",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "sch-p4-beta-consolation2-cue",
+              "offsetMs": 0,
+              "text": "Beta後續，大仙女二段",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p4-beta-indom",
+          "atMs": 906000,
+          "name": "Beta後：不屈",
           "phase": "P4 Beta",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p4-09-cue",
+              "id": "sch-p4-beta-indom-cue",
               "offsetMs": 0,
-              "text": "Beta後，祝福不屈",
+              "text": "Beta後，不屈",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p4-10",
+          "id": "sch-p4-tankbuster2",
           "atMs": 925500,
-          "name": "坦傷二：深謀",
+          "name": "坦傷二：必要時綠帽",
           "phase": "P4 Perfect",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p4-10-cue",
+              "id": "sch-p4-tankbuster2-cue",
               "offsetMs": 0,
-              "text": "坦傷二，綠帽",
+              "text": "坦傷二，必要時綠帽",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p4-11",
-          "atMs": 934500,
-          "name": "坦傷二後：必要時乙太契約",
-          "phase": "P4 Perfect",
-          "category": "heal",
+          "id": "sch-p4-judgment1-spreadlo",
+          "atMs": 941500,
+          "name": "第一輪大審判：秘策單盾＋擴散盾罩子",
+          "phase": "P4 Burn",
+          "category": "shield",
           "cues": [
             {
-              "id": "sch-p4-11-cue",
+              "id": "sch-p4-judgment1-spreadlo-cue",
               "offsetMs": 0,
-              "text": "坦低，再連線",
-              "priority": "normal",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "text": "大審判一，秘策單盾，擴散盾罩子",
+              "priority": "high",
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p4-12",
-          "atMs": 945000,
-          "name": "大審判一：召喚熾天使",
+          "id": "sch-p4-judgment1-indom",
+          "atMs": 958500,
+          "name": "第一輪後：不屈",
           "phase": "P4 Burn",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p4-12-cue",
+              "id": "sch-p4-judgment1-indom-cue",
               "offsetMs": 0,
-              "text": "大審判一，大仙女",
+              "text": "第一輪後，不屈",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p4-13",
-          "atMs": 948000,
-          "name": "大審判一：野戰＋士氣",
-          "phase": "P4 Burn",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "sch-p4-13-cue",
-              "offsetMs": 0,
-              "text": "大審判一，罩子群盾",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p4-14",
-          "atMs": 957000,
-          "name": "大審判一：慰藉一",
+          "id": "sch-p4-tankbuster3",
+          "atMs": 970500,
+          "name": "坦傷三：綠帽",
           "phase": "P4 Burn",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p4-14-cue",
-              "offsetMs": 0,
-              "text": "第一輪，慰藉一",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p4-15",
-          "atMs": 966500,
-          "name": "大審判一後：不屈",
-          "phase": "P4 Burn",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p4-15-cue",
-              "offsetMs": 0,
-              "text": "大傷後，不屈",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p4-16",
-          "atMs": 969000,
-          "name": "大審判一後：慰藉二",
-          "phase": "P4 Burn",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p4-16-cue",
-              "offsetMs": 0,
-              "text": "慰藉二",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p4-17",
-          "atMs": 972500,
-          "name": "坦傷三：深謀",
-          "phase": "P4 Burn",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p4-17-cue",
+              "id": "sch-p4-tankbuster3-cue",
               "offsetMs": 0,
               "text": "坦傷三，綠帽",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p4-18",
-          "atMs": 978000,
-          "name": "坦傷三後：必要時活性",
-          "phase": "P4 Burn",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "sch-p4-18-cue",
-              "offsetMs": 0,
-              "text": "坦低，活性",
-              "priority": "normal",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p4-19",
+          "id": "sch-p4-judgment2-mit",
           "atMs": 989500,
-          "name": "大審判二：幻光＋野戰",
+          "name": "第二輪大審判：幻光＋群盾＋罩子＋低語",
           "phase": "P4 Burn",
           "category": "mitigation",
           "cues": [
             {
-              "id": "sch-p4-19-cue",
-              "offsetMs": 0,
-              "text": "大審判二，幻光罩子",
+              "id": "sch-p4-judgment2-mit-cue",
+              "offsetMs": -1500,
+              "text": "第二輪大審判，幻光群盾罩子低語",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p4-20",
-          "atMs": 993000,
-          "name": "大審判二：士氣＋低語",
-          "phase": "P4 Burn",
-          "category": "shield",
-          "cues": [
-            {
-              "id": "sch-p4-20-cue",
-              "offsetMs": 0,
-              "text": "群盾，低語",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "sch-p4-21",
-          "atMs": 1004000,
-          "name": "大審判二：不屈＋妖精祝福",
+          "id": "sch-p4-judgment2-indom",
+          "atMs": 998500,
+          "name": "第二輪後：不屈",
           "phase": "P4 Burn",
           "category": "heal",
           "cues": [
             {
-              "id": "sch-p4-21-cue",
+              "id": "sch-p4-judgment2-indom-cue",
               "offsetMs": 0,
-              "text": "不屈，妖精祝福",
+              "text": "第二輪後，不屈",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p4-22",
-          "atMs": 1007500,
-          "name": "大審判二：秘策鼓舞展開",
+          "id": "sch-p4-judgment2-blessing",
+          "atMs": 1001000,
+          "name": "第二輪後：祥光",
           "phase": "P4 Burn",
-          "category": "shield",
+          "category": "heal",
           "cues": [
             {
-              "id": "sch-p4-22-cue",
+              "id": "sch-p4-judgment2-blessing-cue",
               "offsetMs": 0,
-              "text": "秘策鼓舞，展開",
+              "text": "第二輪後，祥光",
               "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "enabled": true
             }
           ]
         },
         {
-          "id": "sch-p4-23",
+          "id": "sch-p4-burn-dissipation",
+          "atMs": 1007500,
+          "name": "第二輪結束：轉化",
+          "phase": "P4 Burn",
+          "category": "job",
+          "cues": [
+            {
+              "id": "sch-p4-burn-dissipation-cue",
+              "offsetMs": 0,
+              "text": "第二輪結束，轉化全力輸出",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "sch-p4-prison-end",
           "atMs": 1028000,
           "name": "時間牢獄：奶軸結束",
           "phase": "P4 Prison",
           "category": "job",
           "cues": [
             {
-              "id": "sch-p4-23-cue",
+              "id": "sch-p4-prison-end-cue",
               "offsetMs": 0,
-              "text": "牢獄開始，全力輸出",
-              "priority": "normal",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H2"
-                ],
-                "jobs": [
-                  "SCH"
-                ]
-              }
+              "text": "時間牢獄，奶軸結束，全力輸出",
+              "priority": "high",
+              "enabled": true
             }
           ]
         }
