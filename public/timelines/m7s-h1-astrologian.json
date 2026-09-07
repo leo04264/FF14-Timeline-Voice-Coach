@@ -1,0 +1,2770 @@
+{
+  "schemaVersion": 1,
+  "id": "builtin-m7s-h1-astrologian",
+  "meta": {
+    "name": "M7S Brute Abominator — Boss + H1 Astrologian Core + Rotation",
+    "encounterId": "aac-cruiserweight-m3-savage-m7s",
+    "strategy": "7.2 JP PF AST — practical burst + 30s DoT",
+    "author": "FF14 Timeline Voice Coach",
+    "description": "Standalone M7S H1 Astrologian plan with practical rotation reminders. The raid-burst profile uses opener, ~120s, ~240s, then delays the 6-minute window to ~370s because the boss is untargetable from about 352.1s to 369.5s; following raid-burst windows continue around 490s and 610s. DoT reminders follow a practical ~30-second refresh cycle. The refresh that would fall inside the first forced downtime is delayed to the boss return around 163.5s, then the cycle continues from that reapplication. DoT calls are merged into nearby AST healing calls when concise. All cues are enabled and the active <=2000ms collision count is zero.",
+    "version": "0.1.1"
+  },
+  "encounter": {
+    "durationMs": 680000,
+    "countdownMs": 15000
+  },
+  "tracks": [
+    {
+      "id": "boss-mechanics",
+      "type": "encounter",
+      "name": "Boss Mechanics",
+      "enabledByDefault": true,
+      "events": [
+        {
+          "id": "m7s-boss-impact-open",
+          "atMs": 10500,
+          "name": "Brutal Impact x6",
+          "phase": "P1",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-impact-open-cue",
+              "offsetMs": -7500,
+              "text": "開場六連團傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-smash1",
+          "atMs": 34100,
+          "name": "Brutal Smash #1",
+          "phase": "P1",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m7s-boss-smash1-cue",
+              "offsetMs": -7000,
+              "text": "雙坦重傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-spore1",
+          "atMs": 48400,
+          "name": "Spore Sac #1",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m7s-boss-spore1-cue",
+              "offsetMs": -5000,
+              "text": "孢子開始",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-seeds1",
+          "atMs": 60800,
+          "name": "Sinister Seeds #1",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m7s-boss-seeds1-cue",
+              "offsetMs": -4000,
+              "text": "種子落地",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-roots1",
+          "atMs": 65400,
+          "name": "Impact + Tendrils",
+          "phase": "P1",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-roots1-cue",
+              "offsetMs": -4000,
+              "text": "種子後團傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-swamp1",
+          "atMs": 93400,
+          "name": "Quarry Swamp #1",
+          "phase": "P1",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m7s-boss-swamp1-cue",
+              "offsetMs": -5000,
+              "text": "沼澤開始",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-explosion1",
+          "atMs": 105400,
+          "name": "Explosion #1",
+          "phase": "P1",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-explosion1-cue",
+              "offsetMs": -4500,
+              "text": "爆炸開始",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-explosion3",
+          "atMs": 110600,
+          "name": "Explosion #3",
+          "phase": "P1",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-explosion3-cue",
+              "offsetMs": -3000,
+              "text": "爆炸最後",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-smash2",
+          "atMs": 119600,
+          "name": "Brutal Smash #2",
+          "phase": "P1",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m7s-boss-smash2-cue",
+              "offsetMs": -9500,
+              "text": "雙坦重傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-pulp1",
+          "atMs": 127300,
+          "name": "Pulp Smash",
+          "phase": "P1",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-pulp1-cue",
+              "offsetMs": -7500,
+              "text": "Pulp團傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-neo",
+          "atMs": 148000,
+          "name": "Neo Bombarian Special",
+          "phase": "P1",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-neo-cue",
+              "offsetMs": -10000,
+              "text": "轉場大傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-electro1",
+          "atMs": 189200,
+          "name": "Electrogenetic Force #1",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-electro1-cue",
+              "offsetMs": -5000,
+              "text": "電擊團傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-vines1",
+          "atMs": 195200,
+          "name": "Revenge of the Vines #1",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-vines1-cue",
+              "offsetMs": -4000,
+              "text": "藤蔓團傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-death1",
+          "atMs": 206300,
+          "name": "Thorny Deathmatch",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m7s-boss-death1-cue",
+              "offsetMs": -12000,
+              "text": "死鬥開始",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-blink1",
+          "atMs": 222500,
+          "name": "Abominable Blink #1",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-blink1-cue",
+              "offsetMs": -7000,
+              "text": "Blink團傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-spores",
+          "atMs": 231600,
+          "name": "Sporesplosion",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-spores-cue",
+              "offsetMs": -5000,
+              "text": "三連孢子",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-electro2",
+          "atMs": 251600,
+          "name": "Electrogenetic Force #2",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-electro2-cue",
+              "offsetMs": -4000,
+              "text": "第二電擊",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-vines2",
+          "atMs": 257600,
+          "name": "Revenge of the Vines #2",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-vines2-cue",
+              "offsetMs": -4000,
+              "text": "第二藤蔓",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-death2",
+          "atMs": 266700,
+          "name": "Demolition Deathmatch",
+          "phase": "P2",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m7s-boss-death2-cue",
+              "offsetMs": -8500,
+              "text": "爆破死鬥",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-blink2",
+          "atMs": 281100,
+          "name": "Abominable Blink #2",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-blink2-cue",
+              "offsetMs": -4000,
+              "text": "第二Blink",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-killer1",
+          "atMs": 319100,
+          "name": "Killer Seeds #1",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-killer1-cue",
+              "offsetMs": -6000,
+              "text": "殺手種子",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-electro3",
+          "atMs": 334000,
+          "name": "Electrogenetic Force #3",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-electro3-cue",
+              "offsetMs": -9500,
+              "text": "第三電擊",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-vines3",
+          "atMs": 340000,
+          "name": "Revenge of the Vines #3",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-vines3-cue",
+              "offsetMs": -4000,
+              "text": "第三藤蔓",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-powerslam",
+          "atMs": 352100,
+          "name": "Powerslam",
+          "phase": "P2",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-powerslam-cue",
+              "offsetMs": -8500,
+              "text": "轉場重擊",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-impact7",
+          "atMs": 381500,
+          "name": "Brutal Impact x7",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-impact7-cue",
+              "offsetMs": -10000,
+              "text": "七連團傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-vines4",
+          "atMs": 409000,
+          "name": "Revenge of the Vines #4",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-vines4-cue",
+              "offsetMs": -4000,
+              "text": "藤蔓團傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-electro4",
+          "atMs": 426300,
+          "name": "Electrogenetic Force #4",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-electro4-cue",
+              "offsetMs": -5500,
+              "text": "電擊團傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-slam1",
+          "atMs": 432300,
+          "name": "Slaminator #1",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-slam1-cue",
+              "offsetMs": -4000,
+              "text": "Slaminator",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-impact8a",
+          "atMs": 441500,
+          "name": "Brutal Impact x8 #1",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-impact8a-cue",
+              "offsetMs": -10500,
+              "text": "八連團傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-debris",
+          "atMs": 476500,
+          "name": "Debris Deathmatch",
+          "phase": "P3",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m7s-boss-debris-cue",
+              "offsetMs": -6000,
+              "text": "碎石死鬥",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-killer2",
+          "atMs": 495700,
+          "name": "Killer Seeds #2",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-killer2-cue",
+              "offsetMs": -5500,
+              "text": "殺手種子",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-swamp2",
+          "atMs": 512700,
+          "name": "Quarry Swamp #2",
+          "phase": "P3",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m7s-boss-swamp2-cue",
+              "offsetMs": -5000,
+              "text": "第二沼澤",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-pulp2",
+          "atMs": 541700,
+          "name": "Pulp Smash #2",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-pulp2-cue",
+              "offsetMs": -13500,
+              "text": "Pulp團傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-impact8b",
+          "atMs": 550000,
+          "name": "Brutal Impact x8 #2",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-impact8b-cue",
+              "offsetMs": -9000,
+              "text": "八連團傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-strange2",
+          "atMs": 579600,
+          "name": "Strange Seeds #2",
+          "phase": "P3",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m7s-boss-strange2-cue",
+              "offsetMs": -5000,
+              "text": "最後種子",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-lariat2",
+          "atMs": 595400,
+          "name": "Lashing Lariat #2",
+          "phase": "P3",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m7s-boss-lariat2-cue",
+              "offsetMs": -4000,
+              "text": "最後衝撞",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-slam2",
+          "atMs": 611200,
+          "name": "Slaminator #2",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-slam2-cue",
+              "offsetMs": -4000,
+              "text": "最後Slaminator",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-smashf",
+          "atMs": 628400,
+          "name": "Brutal Smash Final",
+          "phase": "P3",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m7s-boss-smashf-cue",
+              "offsetMs": -7500,
+              "text": "最後雙坦重傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-impactf",
+          "atMs": 637400,
+          "name": "Brutal Impact x8 Final",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-impactf-cue",
+              "offsetMs": -7500,
+              "text": "最後八連團傷",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-boss-enrage",
+          "atMs": 669500,
+          "name": "Special Bombarian Special",
+          "phase": "P3",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m7s-boss-enrage-cue",
+              "offsetMs": -8000,
+              "text": "狂暴",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h1-astrologian",
+      "type": "job",
+      "name": "H1 Astrologian Core Healing / Mitigation",
+      "enabledByDefault": true,
+      "target": {
+        "positions": [
+          "H1"
+        ],
+        "jobs": [
+          "AST"
+        ]
+      },
+      "events": [
+        {
+          "id": "m7s-ast-pre-star",
+          "atMs": -7000,
+          "name": "開場前地星",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-pre-star-cue",
+              "offsetMs": 0,
+              "text": "開場前，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-dot-001500",
+          "atMs": 1500,
+          "name": "開場上DoT",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-dot-001500-cue",
+              "offsetMs": -4000,
+              "text": "開場上DoT",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-open-horo",
+          "atMs": 5500,
+          "name": "六連前天宮圖",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-open-horo-cue",
+              "offsetMs": 0,
+              "text": "六連前，天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-pf-burst-006",
+          "atMs": 6000,
+          "name": "開場爆發：光速＋占卜",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-pf-burst-006-cue",
+              "offsetMs": -6000,
+              "text": "爆發前，光速占卜",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-open-wheel",
+          "atMs": 8500,
+          "name": "六連前命運之輪",
+          "phase": "P1",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m7s-ast-open-wheel-cue",
+              "offsetMs": 0,
+              "text": "六連前，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-open-star",
+          "atMs": 12500,
+          "name": "六連後地星回血",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-open-star-cue",
+              "offsetMs": 0,
+              "text": "六連後，地星回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-open-opp",
+          "atMs": 15500,
+          "name": "六連後天星衝日",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-open-opp-cue",
+              "offsetMs": 0,
+              "text": "六連後，天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-tb1-exalt",
+          "atMs": 29500,
+          "name": "死刑擢升MT",
+          "phase": "P1",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m7s-ast-tb1-exalt-cue",
+              "offsetMs": 0,
+              "text": "死刑前，擢升主坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-tb1-int",
+          "atMs": 32000,
+          "name": "死刑交錯ST＋DoT",
+          "phase": "P1",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m7s-ast-tb1-int-cue",
+              "offsetMs": 0,
+              "text": "死刑前，交錯副坦，補DoT",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star2-place",
+          "atMs": 50000,
+          "name": "種子前地星",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star2-place-cue",
+              "offsetMs": 0,
+              "text": "種子前，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-dot-061500",
+          "atMs": 61500,
+          "name": "61.5秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-dot-061500-cue",
+              "offsetMs": -2500,
+              "text": "補DoT",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star2-pop",
+          "atMs": 66500,
+          "name": "種子後地星回血",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star2-pop-cue",
+              "offsetMs": 0,
+              "text": "種子傷害，地星回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-opp2",
+          "atMs": 69500,
+          "name": "Roots前天星衝日",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-opp2-cue",
+              "offsetMs": 0,
+              "text": "Roots前，天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-dot-091500",
+          "atMs": 91500,
+          "name": "91.5秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-dot-091500-cue",
+              "offsetMs": -1000,
+              "text": "補DoT",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-macro1",
+          "atMs": 97000,
+          "name": "爆炸前大宇宙",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-macro1-cue",
+              "offsetMs": 0,
+              "text": "三連爆炸前，大宇宙",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-wheel2",
+          "atMs": 103000,
+          "name": "爆炸命運之輪",
+          "phase": "P1",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m7s-ast-wheel2-cue",
+              "offsetMs": 0,
+              "text": "三連爆炸，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-macro1-pop",
+          "atMs": 112500,
+          "name": "爆炸後大宇宙回血",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-macro1-pop-cue",
+              "offsetMs": 0,
+              "text": "爆炸結束，大宇宙回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-pf-burst-120",
+          "atMs": 120000,
+          "name": "兩分鐘爆發：光速＋占卜",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-pf-burst-120-cue",
+              "offsetMs": -4000,
+              "text": "爆發前，光速占卜",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-horo2",
+          "atMs": 122000,
+          "name": "Pulp前天宮圖＋DoT",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-horo2-cue",
+              "offsetMs": 0,
+              "text": "Pulp前，天宮圖，補DoT",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-opp3",
+          "atMs": 130500,
+          "name": "Pulp後天星衝日",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-opp3-cue",
+              "offsetMs": 0,
+              "text": "Pulp後，天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-neutral1",
+          "atMs": 140500,
+          "name": "轉場中間學派",
+          "phase": "P1",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m7s-ast-neutral1-cue",
+              "offsetMs": 0,
+              "text": "轉場前，中間學派",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-helios1",
+          "atMs": 144000,
+          "name": "轉場陽星合相",
+          "phase": "P1",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m7s-ast-helios1-cue",
+              "offsetMs": 0,
+              "text": "轉場前，陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-sun1",
+          "atMs": 147000,
+          "name": "轉場太陽星座",
+          "phase": "P1",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m7s-ast-sun1-cue",
+              "offsetMs": 0,
+              "text": "轉場大傷，太陽星座",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-dot-163500",
+          "atMs": 163500,
+          "name": "轉場後補DoT",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-dot-163500-cue",
+              "offsetMs": -1000,
+              "text": "補DoT",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star3-place",
+          "atMs": 180000,
+          "name": "電擊前地星",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star3-place-cue",
+              "offsetMs": 0,
+              "text": "電擊前，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-wheel3",
+          "atMs": 186500,
+          "name": "電擊命運之輪",
+          "phase": "P2",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m7s-ast-wheel3-cue",
+              "offsetMs": 0,
+              "text": "電擊前，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-dot-193500",
+          "atMs": 193500,
+          "name": "193.5秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-dot-193500-cue",
+              "offsetMs": -4500,
+              "text": "補DoT",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star3-pop",
+          "atMs": 196500,
+          "name": "藤蔓後地星回血",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star3-pop-cue",
+              "offsetMs": 0,
+              "text": "藤蔓後，地星回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-opp4",
+          "atMs": 199500,
+          "name": "藤蔓後天星衝日",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-opp4-cue",
+              "offsetMs": 0,
+              "text": "藤蔓後，天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-horo3",
+          "atMs": 218000,
+          "name": "Blink前天宮圖",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-horo3-cue",
+              "offsetMs": 0,
+              "text": "Blink前，天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-horo3-pop",
+          "atMs": 224500,
+          "name": "Blink後天宮圖回血＋DoT",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-horo3-pop-cue",
+              "offsetMs": 0,
+              "text": "Blink後，天宮圖回血，補DoT",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star4-place",
+          "atMs": 229000,
+          "name": "孢子前地星",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star4-place-cue",
+              "offsetMs": 0,
+              "text": "孢子前，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-pf-burst-240",
+          "atMs": 240000,
+          "name": "四分鐘爆發：光速＋占卜",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-pf-burst-240-cue",
+              "offsetMs": -4000,
+              "text": "爆發前，光速占卜",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star4-pop",
+          "atMs": 243500,
+          "name": "孢子後地星回血",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star4-pop-cue",
+              "offsetMs": 0,
+              "text": "三連後，地星回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-dot-253500",
+          "atMs": 253500,
+          "name": "253.5秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-dot-253500-cue",
+              "offsetMs": -2500,
+              "text": "補DoT",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-neutral2",
+          "atMs": 260500,
+          "name": "爆破死鬥中間學派",
+          "phase": "P2",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m7s-ast-neutral2-cue",
+              "offsetMs": 0,
+              "text": "死鬥前，中間學派",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-helios2",
+          "atMs": 263500,
+          "name": "爆破死鬥陽星合相",
+          "phase": "P2",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m7s-ast-helios2-cue",
+              "offsetMs": 0,
+              "text": "死鬥前，陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-sun2",
+          "atMs": 267500,
+          "name": "爆破死鬥太陽星座",
+          "phase": "P2",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m7s-ast-sun2-cue",
+              "offsetMs": 0,
+              "text": "死鬥，太陽星座",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-opp5",
+          "atMs": 282500,
+          "name": "Blink後天星衝日＋DoT",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-opp5-cue",
+              "offsetMs": 0,
+              "text": "Blink後，天星衝日，補DoT",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star5-place",
+          "atMs": 300000,
+          "name": "種子連段地星",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star5-place-cue",
+              "offsetMs": 0,
+              "text": "種子連段，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-dot-313500",
+          "atMs": 313500,
+          "name": "313.5秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-dot-313500-cue",
+              "offsetMs": -2500,
+              "text": "補DoT",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-macro2",
+          "atMs": 315500,
+          "name": "殺手種子前大宇宙",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-macro2-cue",
+              "offsetMs": 0,
+              "text": "殺手種子前，大宇宙",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star5-pop",
+          "atMs": 320500,
+          "name": "殺手種子地星回血",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star5-pop-cue",
+              "offsetMs": 0,
+              "text": "殺手種子，地星回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-macro2-pop",
+          "atMs": 327000,
+          "name": "種子後大宇宙回血",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-macro2-pop-cue",
+              "offsetMs": 0,
+              "text": "種子後，大宇宙回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-wheel4",
+          "atMs": 331000,
+          "name": "電擊命運之輪",
+          "phase": "P2",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m7s-ast-wheel4-cue",
+              "offsetMs": 0,
+              "text": "電擊前，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-opp6",
+          "atMs": 341500,
+          "name": "藤蔓後天星衝日",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-opp6-cue",
+              "offsetMs": 0,
+              "text": "藤蔓後，天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-dot-343500",
+          "atMs": 343500,
+          "name": "343.5秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-dot-343500-cue",
+              "offsetMs": -4500,
+              "text": "補DoT",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star6-place",
+          "atMs": 346000,
+          "name": "Powerslam前地星",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star6-place-cue",
+              "offsetMs": 0,
+              "text": "Powerslam前，地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star6-pop",
+          "atMs": 354500,
+          "name": "Powerslam後地星回血",
+          "phase": "P2",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star6-pop-cue",
+              "offsetMs": 0,
+              "text": "Powerslam後，地星回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-pf-burst-370",
+          "atMs": 370000,
+          "name": "六分鐘延後爆發：光速＋占卜",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-pf-burst-370-cue",
+              "offsetMs": -4000,
+              "text": "爆發前，光速占卜",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-neutral3",
+          "atMs": 374000,
+          "name": "七連前中間學派＋DoT",
+          "phase": "P3",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m7s-ast-neutral3-cue",
+              "offsetMs": 0,
+              "text": "七連前，中間學派，補DoT",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-helios3",
+          "atMs": 377000,
+          "name": "七連前陽星合相",
+          "phase": "P3",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m7s-ast-helios3-cue",
+              "offsetMs": 0,
+              "text": "七連前，陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-wheel5",
+          "atMs": 380000,
+          "name": "七連前命運之輪",
+          "phase": "P3",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m7s-ast-wheel5-cue",
+              "offsetMs": 0,
+              "text": "七連前，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-opp7",
+          "atMs": 388500,
+          "name": "七連後天星衝日",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-opp7-cue",
+              "offsetMs": 0,
+              "text": "七連後，天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star7-place",
+          "atMs": 400000,
+          "name": "藤蔓前地星",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star7-place-cue",
+              "offsetMs": 0,
+              "text": "藤蔓前，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-dot-403500",
+          "atMs": 403500,
+          "name": "403.5秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-dot-403500-cue",
+              "offsetMs": -1000,
+              "text": "補DoT",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star7-pop",
+          "atMs": 418000,
+          "name": "衝撞後地星回血",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star7-pop-cue",
+              "offsetMs": 0,
+              "text": "衝撞後，地星回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-horo4",
+          "atMs": 423000,
+          "name": "電擊前天宮圖",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-horo4-cue",
+              "offsetMs": 0,
+              "text": "電擊前，天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-opp8",
+          "atMs": 433500,
+          "name": "Slaminator後天星衝日＋DoT",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-opp8-cue",
+              "offsetMs": 0,
+              "text": "Slam後，衝日補DoT",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-wheel6",
+          "atMs": 439000,
+          "name": "八連前命運之輪",
+          "phase": "P3",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m7s-ast-wheel6-cue",
+              "offsetMs": 0,
+              "text": "八連前，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-horo4-pop",
+          "atMs": 449500,
+          "name": "八連後天宮圖回血",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-horo4-pop-cue",
+              "offsetMs": 0,
+              "text": "八連後，天宮圖回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-dot-463500",
+          "atMs": 463500,
+          "name": "463.5秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-dot-463500-cue",
+              "offsetMs": -1000,
+              "text": "補DoT",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star8-place",
+          "atMs": 473000,
+          "name": "碎石死鬥地星",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star8-place-cue",
+              "offsetMs": 0,
+              "text": "碎石死鬥，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-pf-burst-490",
+          "atMs": 490000,
+          "name": "八分鐘爆發：光速＋占卜",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-pf-burst-490-cue",
+              "offsetMs": -4000,
+              "text": "爆發前，光速占卜",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star8-pop",
+          "atMs": 492500,
+          "name": "孢子後地星回血＋DoT",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star8-pop-cue",
+              "offsetMs": 0,
+              "text": "孢子後，地星回血，補DoT",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-opp9",
+          "atMs": 498500,
+          "name": "殺手種子後天星衝日",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-opp9-cue",
+              "offsetMs": 0,
+              "text": "殺手種子後，天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-dot-523500",
+          "atMs": 523500,
+          "name": "523.5秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-dot-523500-cue",
+              "offsetMs": -1000,
+              "text": "補DoT",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-neutral4",
+          "atMs": 530500,
+          "name": "Pulp前中間學派",
+          "phase": "P3",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m7s-ast-neutral4-cue",
+              "offsetMs": 0,
+              "text": "Pulp前，中間學派",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-helios4",
+          "atMs": 534000,
+          "name": "Pulp前陽星合相",
+          "phase": "P3",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m7s-ast-helios4-cue",
+              "offsetMs": 0,
+              "text": "Pulp前，陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star9-place",
+          "atMs": 537000,
+          "name": "Pulp前地星",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star9-place-cue",
+              "offsetMs": 0,
+              "text": "Pulp前，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-macro3",
+          "atMs": 543500,
+          "name": "八連前大宇宙",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-macro3-cue",
+              "offsetMs": 0,
+              "text": "八連前，大宇宙",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-sun3",
+          "atMs": 548000,
+          "name": "八連前太陽星座",
+          "phase": "P3",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m7s-ast-sun3-cue",
+              "offsetMs": 0,
+              "text": "八連前，太陽星座",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star9-pop",
+          "atMs": 553500,
+          "name": "八連中地星回血＋DoT",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star9-pop-cue",
+              "offsetMs": 0,
+              "text": "八連中，地星回血，補DoT",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-macro3-pop",
+          "atMs": 559000,
+          "name": "八連後大宇宙回血",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-macro3-pop-cue",
+              "offsetMs": 0,
+              "text": "八連後，大宇宙回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-opp10",
+          "atMs": 562500,
+          "name": "八連後天星衝日",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-opp10-cue",
+              "offsetMs": 0,
+              "text": "八連後，天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star10-place",
+          "atMs": 577000,
+          "name": "最後種子地星",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star10-place-cue",
+              "offsetMs": 0,
+              "text": "最後種子，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-dot-583500",
+          "atMs": 583500,
+          "name": "583.5秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-dot-583500-cue",
+              "offsetMs": -1000,
+              "text": "補DoT",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-wheel7",
+          "atMs": 587500,
+          "name": "最後連段命運之輪",
+          "phase": "P3",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m7s-ast-wheel7-cue",
+              "offsetMs": 0,
+              "text": "最後連段，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-star10-pop",
+          "atMs": 598500,
+          "name": "衝撞後地星回血",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-star10-pop-cue",
+              "offsetMs": 0,
+              "text": "衝撞後，地星回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-pf-burst-610",
+          "atMs": 610000,
+          "name": "十分鐘爆發：光速＋占卜",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-pf-burst-610-cue",
+              "offsetMs": -5000,
+              "text": "爆發前，光速占卜",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-opp11",
+          "atMs": 612500,
+          "name": "Slaminator後天星衝日＋DoT",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-opp11-cue",
+              "offsetMs": 0,
+              "text": "Slam後，衝日補DoT",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-tbf-exalt",
+          "atMs": 623000,
+          "name": "最後死刑擢升MT",
+          "phase": "P3",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m7s-ast-tbf-exalt-cue",
+              "offsetMs": 0,
+              "text": "最後死刑，擢升主坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-tbf-int",
+          "atMs": 626000,
+          "name": "最後死刑交錯ST",
+          "phase": "P3",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m7s-ast-tbf-int-cue",
+              "offsetMs": 0,
+              "text": "最後死刑，交錯副坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-horo-final",
+          "atMs": 632000,
+          "name": "最後八連天宮圖",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-horo-final-cue",
+              "offsetMs": 0,
+              "text": "最後八連，天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-wheel-final",
+          "atMs": 635000,
+          "name": "最後八連命運之輪",
+          "phase": "P3",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m7s-ast-wheel-final-cue",
+              "offsetMs": 0,
+              "text": "最後八連，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-dot-643500",
+          "atMs": 643500,
+          "name": "643.5秒：DoT更新",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m7s-ast-dot-643500-cue",
+              "offsetMs": -1000,
+              "text": "補DoT",
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              },
+              "priority": "low",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m7s-ast-horo-final-pop",
+          "atMs": 646500,
+          "name": "最後八連後回血",
+          "phase": "P3",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m7s-ast-horo-final-pop-cue",
+              "offsetMs": 0,
+              "text": "八連後，天宮圖回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
