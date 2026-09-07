@@ -6,8 +6,8 @@
     "encounterId": "aac-cruiserweight-m2-savage-m6s",
     "strategy": "M6S Boss Mechanics + H1 Astrologian 奶軸",
     "author": "FF14 Timeline Voice Coach",
-    "description": "M6S Sugar Riot 的 H1 占星術師奶軸。Boss 機制軌沿用已驗證的 m6s-h2-scholar 秒數，提示風格與既有的學者範本一致。大技能配置對照 Nephritesssss（番茄水煮魚HQ）的 Stella 減傷／治療時間軸表：大宇宙只交三次，分別對準重熱放散（126s）、小怪四的羊雙體 AA（312s）、終盤黏黏慕斯接雙坦死刑（604s，該段死刑 45 萬 x2 是全場最大單體傷害）；王冠之淑女（貴婦）比照該表當成主力群補，排在落地分攤、黏黏分攤、小怪二與第三次慕斯驟雨。太陽星座一律排在中間學派同一個 20 秒窗內對準大團傷，中間學派走 120 秒節奏。動物園（212.6s-412.3s）的補血細節參考 Masla Kaguchi 的實戰心得：小怪一提醒兩隻都掛毒、主坦單補不要斷，小怪四以星位合圖＋大福星撐坦。注意該表把技能標在「它負責的那一下傷害」那一列而不是按下去的時間，因此表上的中間學派（190s/276s）與大宇宙（150s/310s）彼此間隔小於冷卻，無法照抄成實際施放時間；本檔改成冷卻可行、但覆蓋同一批傷害的排法。所有技能冷卻與充能（先天卜卦 40 秒三充、天星交錯 30 秒兩充、光速 60 秒兩充、地星／天宮圖／時測／沖日／黃經 60 秒、合圖／占卜／中間學派 120 秒、大宇宙 180 秒）都經程式檢查；地星每次引爆都在放置後 10-20 秒內、時測引爆都在 30 秒窗內、大宇宙到小宇宙都在 15 秒內。每句提示與 Boss 軌及彼此都保持 2100ms 以上間距，2000ms 碰撞視窗全空。",
-    "version": "0.2.0"
+    "description": "M6S Sugar Riot 的 H1 占星術師奶軸。Boss 機制軌沿用已驗證的 m6s-h2-scholar 秒數，提示風格與既有的學者範本一致。大技能配置對照 Nephritesssss（番茄水煮魚HQ）的 Stella 減傷／治療時間軸表：大宇宙只交三次，分別對準重熱放散（126s）、小怪四的羊雙體 AA（312s）、終盤黏黏慕斯接雙坦死刑（604s，該段死刑 45 萬 x2 是全場最大單體傷害）；王冠之淑女（貴婦）比照該表當成主力群補，排在落地分攤、黏黏分攤、小怪二與第三次慕斯驟雨。太陽星座一律排在中間學派同一個 20 秒窗內對準大團傷，中間學派走 120 秒節奏。動物園（212.6s-412.3s）的補血細節參考 Masla Kaguchi 的實戰心得：小怪一提醒兩隻都掛毒、主坦單補不要斷，小怪四以星位合圖＋大福星撐坦。注意該表把技能標在「它負責的那一下傷害」那一列而不是按下去的時間，因此表上的中間學派（190s/276s）與大宇宙（150s/310s）彼此間隔小於冷卻，無法照抄成實際施放時間；本檔改成冷卻可行、但覆蓋同一批傷害的排法。所有技能冷卻與充能（先天卜卦 40 秒三充、天星交錯 30 秒兩充、光速 60 秒兩充、地星／命運之輪／天宮圖／沖日／黃經 60 秒、合圖／占卜／中間學派 120 秒、大宇宙 180 秒）都經程式檢查；地星每次引爆都在放置後 10-20 秒內、天宮圖引爆都在 30 秒窗內、大宇宙到小宇宙都在 15 秒內。每句提示與 Boss 軌及彼此都保持 2100ms 以上間距，2000ms 碰撞視窗全空。（v0.3.0 更正技能中文名：天宮圖 Horoscope、命運之輪 Collective Unconscious，先前把兩者對調了；只改名稱字串，所有秒數與技能排法不變。）",
+    "version": "0.3.0"
   },
   "encounter": {
     "durationMs": 686000,
@@ -887,14 +887,14 @@
         {
           "id": "ast-004000",
           "atMs": 4000,
-          "name": "開場全體前：天宮圖",
+          "name": "開場全體前：命運之輪",
           "phase": "P1",
           "category": "mitigation",
           "cues": [
             {
               "id": "ast-004000-cue",
               "offsetMs": 0,
-              "text": "開場全體，天宮圖",
+              "text": "開場全體，命運之輪",
               "target": {
                 "positions": [
                   "H1"
@@ -1175,14 +1175,14 @@
         {
           "id": "ast-099000",
           "atMs": 99000,
-          "name": "仙人掌前：時測＋合相",
+          "name": "仙人掌前：天宮圖＋合相",
           "phase": "P1 Desert",
           "category": "heal",
           "cues": [
             {
               "id": "ast-099000-cue",
               "offsetMs": 0,
-              "text": "仙人掌前，時測合相",
+              "text": "仙人掌前，天宮圖合相",
               "target": {
                 "positions": [
                   "H1"
@@ -1199,14 +1199,14 @@
         {
           "id": "ast-114790",
           "atMs": 114790,
-          "name": "仙人掌開始：天宮圖",
+          "name": "仙人掌開始：命運之輪",
           "phase": "P1 Desert",
           "category": "mitigation",
           "cues": [
             {
               "id": "ast-114790-cue",
               "offsetMs": 0,
-              "text": "仙人掌開始，天宮圖",
+              "text": "仙人掌開始，命運之輪",
               "target": {
                 "positions": [
                   "H1"
@@ -1247,14 +1247,14 @@
         {
           "id": "ast-126000",
           "atMs": 126000,
-          "name": "仙人掌連段：引爆時測＋沖日＋大宇宙",
+          "name": "仙人掌連段：引爆天宮圖＋沖日＋大宇宙",
           "phase": "P1 Desert",
           "category": "heal",
           "cues": [
             {
               "id": "ast-126000-cue",
               "offsetMs": 0,
-              "text": "引爆時測，沖日，大宇宙",
+              "text": "引爆天宮圖，沖日，大宇宙",
               "target": {
                 "positions": [
                   "H1"
@@ -1367,14 +1367,14 @@
         {
           "id": "ast-160650",
           "atMs": 160650,
-          "name": "流沙前：時測＋合相",
+          "name": "流沙前：天宮圖＋合相",
           "phase": "P1 Desert",
           "category": "heal",
           "cues": [
             {
               "id": "ast-160650-cue",
               "offsetMs": 0,
-              "text": "流沙前，時測合相",
+              "text": "流沙前，天宮圖合相",
               "target": {
                 "positions": [
                   "H1"
@@ -1391,14 +1391,14 @@
         {
           "id": "ast-167000",
           "atMs": 167000,
-          "name": "流沙中：引爆時測＋卜卦",
+          "name": "流沙中：引爆天宮圖＋卜卦",
           "phase": "P1 Desert",
           "category": "heal",
           "cues": [
             {
               "id": "ast-167000-cue",
               "offsetMs": 0,
-              "text": "引爆時測，卜卦補血",
+              "text": "引爆天宮圖，卜卦補血",
               "target": {
                 "positions": [
                   "H1"
@@ -1415,14 +1415,14 @@
         {
           "id": "ast-176000",
           "atMs": 176000,
-          "name": "流沙後：天宮圖",
+          "name": "流沙後：命運之輪",
           "phase": "P1 Desert",
           "category": "mitigation",
           "cues": [
             {
               "id": "ast-176000-cue",
               "offsetMs": 0,
-              "text": "流沙後，天宮圖",
+              "text": "流沙後，命運之輪",
               "target": {
                 "positions": [
                   "H1"
@@ -1679,14 +1679,14 @@
         {
           "id": "ast-236000",
           "atMs": 236000,
-          "name": "小怪一：天宮圖＋大福星",
+          "name": "小怪一：命運之輪＋大福星",
           "phase": "Zoo",
           "category": "mitigation",
           "cues": [
             {
               "id": "ast-236000-cue",
               "offsetMs": 0,
-              "text": "天宮圖，大福星補坦",
+              "text": "命運之輪，大福星補坦",
               "target": {
                 "positions": [
                   "H1"
@@ -1775,14 +1775,14 @@
         {
           "id": "ast-268000",
           "atMs": 268000,
-          "name": "小怪二：時測＋合相省資源",
+          "name": "小怪二：天宮圖＋合相省資源",
           "phase": "Zoo",
           "category": "heal",
           "cues": [
             {
               "id": "ast-268000-cue",
               "offsetMs": 0,
-              "text": "時測合相，省資源",
+              "text": "天宮圖合相，省資源",
               "target": {
                 "positions": [
                   "H1"
@@ -1847,14 +1847,14 @@
         {
           "id": "ast-292000",
           "atMs": 292000,
-          "name": "大團傷前：引爆時測＋交錯",
+          "name": "大團傷前：引爆天宮圖＋交錯",
           "phase": "Zoo",
           "category": "shield",
           "cues": [
             {
               "id": "ast-292000-cue",
               "offsetMs": 0,
-              "text": "引爆時測，交錯補坦",
+              "text": "引爆天宮圖，交錯補坦",
               "target": {
                 "positions": [
                   "H1"
@@ -1871,14 +1871,14 @@
         {
           "id": "ast-296000",
           "atMs": 296000,
-          "name": "大團傷：天宮圖",
+          "name": "大團傷：命運之輪",
           "phase": "Zoo",
           "category": "mitigation",
           "cues": [
             {
               "id": "ast-296000-cue",
               "offsetMs": 0,
-              "text": "大團傷，天宮圖",
+              "text": "大團傷，命運之輪",
               "target": {
                 "positions": [
                   "H1"
@@ -2039,14 +2039,14 @@
         {
           "id": "ast-333000",
           "atMs": 333000,
-          "name": "小怪四：時測＋合相",
+          "name": "小怪四：天宮圖＋合相",
           "phase": "Zoo",
           "category": "heal",
           "cues": [
             {
               "id": "ast-333000-cue",
               "offsetMs": 0,
-              "text": "時測合相",
+              "text": "天宮圖合相",
               "target": {
                 "positions": [
                   "H1"
@@ -2063,14 +2063,14 @@
         {
           "id": "ast-340000",
           "atMs": 340000,
-          "name": "小怪四：引爆時測＋沖日",
+          "name": "小怪四：引爆天宮圖＋沖日",
           "phase": "Zoo",
           "category": "heal",
           "cues": [
             {
               "id": "ast-340000-cue",
               "offsetMs": 0,
-              "text": "引爆時測，沖日",
+              "text": "引爆天宮圖，沖日",
               "target": {
                 "positions": [
                   "H1"
@@ -2183,14 +2183,14 @@
         {
           "id": "ast-381000",
           "atMs": 381000,
-          "name": "第二次大團傷：天宮圖＋引爆地星",
+          "name": "第二次大團傷：命運之輪＋引爆地星",
           "phase": "Zoo",
           "category": "mitigation",
           "cues": [
             {
               "id": "ast-381000-cue",
               "offsetMs": 0,
-              "text": "大團傷，天宮圖，引爆地星",
+              "text": "大團傷，命運之輪，引爆地星",
               "target": {
                 "positions": [
                   "H1"
@@ -2279,14 +2279,14 @@
         {
           "id": "ast-409000",
           "atMs": 409000,
-          "name": "全體傷害前：時測＋合相",
+          "name": "全體傷害前：天宮圖＋合相",
           "phase": "Zoo",
           "category": "shield",
           "cues": [
             {
               "id": "ast-409000-cue",
               "offsetMs": 0,
-              "text": "全體前，時測合相",
+              "text": "全體前，天宮圖合相",
               "target": {
                 "positions": [
                   "H1"
@@ -2303,14 +2303,14 @@
         {
           "id": "ast-414500",
           "atMs": 414500,
-          "name": "全體後：引爆時測＋貴婦",
+          "name": "全體後：引爆天宮圖＋貴婦",
           "phase": "Zoo",
           "category": "heal",
           "cues": [
             {
               "id": "ast-414500-cue",
               "offsetMs": 0,
-              "text": "引爆時測，貴婦卜卦",
+              "text": "引爆天宮圖，貴婦卜卦",
               "target": {
                 "positions": [
                   "H1"
@@ -2423,14 +2423,14 @@
         {
           "id": "ast-443970",
           "atMs": 443970,
-          "name": "火雷傷害：太陽星座＋天宮圖",
+          "name": "火雷傷害：太陽星座＋命運之輪",
           "phase": "River",
           "category": "mitigation",
           "cues": [
             {
               "id": "ast-443970-cue",
               "offsetMs": 0,
-              "text": "太陽星座，天宮圖，硬吃火雷",
+              "text": "太陽星座，命運之輪，硬吃火雷",
               "target": {
                 "positions": [
                   "H1"
@@ -2543,14 +2543,14 @@
         {
           "id": "ast-481000",
           "atMs": 481000,
-          "name": "雷雲：時測＋合相",
+          "name": "雷雲：天宮圖＋合相",
           "phase": "Storm",
           "category": "heal",
           "cues": [
             {
               "id": "ast-481000-cue",
               "offsetMs": 0,
-              "text": "雷雲，時測合相",
+              "text": "雷雲，天宮圖合相",
               "target": {
                 "positions": [
                   "H1"
@@ -2567,14 +2567,14 @@
         {
           "id": "ast-490000",
           "atMs": 490000,
-          "name": "雷雲收尾：引爆時測＋交錯",
+          "name": "雷雲收尾：引爆天宮圖＋交錯",
           "phase": "Storm",
           "category": "heal",
           "cues": [
             {
               "id": "ast-490000-cue",
               "offsetMs": 0,
-              "text": "引爆時測，交錯補坦",
+              "text": "引爆天宮圖，交錯補坦",
               "target": {
                 "positions": [
                   "H1"
@@ -2615,14 +2615,14 @@
         {
           "id": "ast-505500",
           "atMs": 505500,
-          "name": "五連分攤前：天宮圖",
+          "name": "五連分攤前：命運之輪",
           "phase": "Storm",
           "category": "shield",
           "cues": [
             {
               "id": "ast-505500-cue",
               "offsetMs": 0,
-              "text": "天宮圖，合相群補",
+              "text": "命運之輪，合相群補",
               "target": {
                 "positions": [
                   "H1"
@@ -2831,14 +2831,14 @@
         {
           "id": "ast-570000",
           "atMs": 570000,
-          "name": "第二輪塔前：時測＋地星",
+          "name": "第二輪塔前：天宮圖＋地星",
           "phase": "Lava",
           "category": "heal",
           "cues": [
             {
               "id": "ast-570000-cue",
               "offsetMs": 0,
-              "text": "第二輪塔，時測，地星放場中",
+              "text": "第二輪塔，天宮圖，地星放場中",
               "target": {
                 "positions": [
                   "H1"
@@ -2855,14 +2855,14 @@
         {
           "id": "ast-582970",
           "atMs": 582970,
-          "name": "終盤全體：天宮圖＋引爆地星",
+          "name": "終盤全體：命運之輪＋引爆地星",
           "phase": "Final",
           "category": "mitigation",
           "cues": [
             {
               "id": "ast-582970-cue",
               "offsetMs": 0,
-              "text": "終盤全體，天宮圖，引爆地星",
+              "text": "終盤全體，命運之輪，引爆地星",
               "target": {
                 "positions": [
                   "H1"
@@ -2879,14 +2879,14 @@
         {
           "id": "ast-589670",
           "atMs": 589670,
-          "name": "終盤全體後：引爆時測＋卜卦",
+          "name": "終盤全體後：引爆天宮圖＋卜卦",
           "phase": "Final",
           "category": "heal",
           "cues": [
             {
               "id": "ast-589670-cue",
               "offsetMs": 0,
-              "text": "引爆時測，卜卦補血",
+              "text": "引爆天宮圖，卜卦補血",
               "target": {
                 "positions": [
                   "H1"
@@ -2999,14 +2999,14 @@
         {
           "id": "ast-630000",
           "atMs": 630000,
-          "name": "終盤：時測＋合相",
+          "name": "終盤：天宮圖＋合相",
           "phase": "Final",
           "category": "heal",
           "cues": [
             {
               "id": "ast-630000-cue",
               "offsetMs": 0,
-              "text": "時測合相，拉滿血線",
+              "text": "天宮圖合相，拉滿血線",
               "target": {
                 "positions": [
                   "H1"
@@ -3047,14 +3047,14 @@
         {
           "id": "ast-647960",
           "atMs": 647960,
-          "name": "最後分攤：天宮圖＋引爆地星",
+          "name": "最後分攤：命運之輪＋引爆地星",
           "phase": "Final",
           "category": "mitigation",
           "cues": [
             {
               "id": "ast-647960-cue",
               "offsetMs": 0,
-              "text": "天宮圖，引爆地星",
+              "text": "命運之輪，引爆地星",
               "target": {
                 "positions": [
                   "H1"
@@ -3071,14 +3071,14 @@
         {
           "id": "ast-656000",
           "atMs": 656000,
-          "name": "最後擊飛：引爆時測＋合相",
+          "name": "最後擊飛：引爆天宮圖＋合相",
           "phase": "Final",
           "category": "heal",
           "cues": [
             {
               "id": "ast-656000-cue",
               "offsetMs": 0,
-              "text": "引爆時測，合相拉血",
+              "text": "引爆天宮圖，合相拉血",
               "target": {
                 "positions": [
                   "H1"
