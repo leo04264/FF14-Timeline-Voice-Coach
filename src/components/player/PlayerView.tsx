@@ -1,25 +1,41 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useLibrary } from '../../app/LibraryContext';
 import { useSettings } from '../../app/SettingsContext';
+import { isSpeechSynthesisSupported } from '../../audio/BrowserTtsBackend';
 import { DebugPanel } from '../debug/DebugPanel';
 import { ENGINE_STATE_LABEL } from '../../i18n/labels';
+import { usePlaybackStart } from '../../hooks/usePlaybackStart';
 import { useShortcuts } from '../../hooks/useShortcuts';
 import { useTimelineEngine } from '../../hooks/useTimelineEngine';
-import { loadPlayerPrefs, savePlayerPrefs } from '../../storage/settings';
-import { compileTimeline, TimelineCompileError } from '../../timeline/compiler';
+import {
+  loadPlayerPrefs,
+  PrefsWriteError,
+  pruneEnabledTrackIds,
+  savePlayerPrefs,
+  type TimelinePlayerPrefs,
+} from '../../storage/settings';
+import { buildPlaybackPlan, type PlaybackPlanResult } from '../../timeline/playbackPlan';
+import {
+  applyOptionSelection,
+  selectApplicableTracks,
+} from '../../timeline/selectionGroups';
 import { formatMs, formatSecondsSigned, formatTimer } from '../../timeline/time';
-import type { CompiledTimeline, PlayerProfile, TimelinePackage } from '../../timeline/types';
+import type { PlayerProfile, TimelinePackage } from '../../timeline/types';
 import { CountdownSelector } from './CountdownSelector';
 import { CueDisplay } from './CueDisplay';
 import { OffsetControls } from './OffsetControls';
+import { PreflightDialog } from './PreflightDialog';
 import { ProfileSelector } from './ProfileSelector';
-import { ReadySummary } from './ReadySummary';
+import { SelectionGroupPicker } from './SelectionGroupPicker';
 import { TrackSelector } from './TrackSelector';
 
 /**
- * Player screen (spec §37–§46). Playback can be paused, but starting a new pull
- * always requires an explicit wipe first.
+ * Player screen (spec §37–§46, §4).
+ *
+ * Everything shown here — applicability, counts, exclusivity, collisions —
+ * comes from one `buildPlaybackPlan` call, and every way of starting a pull goes
+ * through `usePlaybackStart`.
  */
 export function PlayerView() {
   const { timelineId } = useParams();
@@ -40,98 +56,118 @@ export function PlayerView() {
   });
   const [enabledTrackIds, setEnabledTrackIds] = useState<string[]>([]);
   const [countdownMs, setCountdownMs] = useState<number>(settings.lastCountdownMs);
-  const [showReady, setShowReady] = useState(false);
+  const [prefsError, setPrefsError] = useState<string | null>(null);
   const [voiceTestStatus, setVoiceTestStatus] = useState<string | null>(null);
 
-  const { engine, backend, recorder, snapshot, records } = useTimelineEngine({
+  const { engine, backend, ownedBackend, snapshot, records, recorder } = useTimelineEngine({
     tickIntervalMs: settings.tickIntervalMs,
     maxLateMs: settings.maxLateMs,
     initialSessionOffsetMs: settings.sessionOffsetMs,
   });
 
-  // Restore per-timeline track selection / countdown (spec §17, §43).
-  useEffect(() => {
-    if (!timeline) return;
-    const prefs = loadPlayerPrefs(timeline.id);
-    setEnabledTrackIds(
-      prefs.enabledTrackIds ??
-        timeline.tracks.filter((track) => track.enabledByDefault).map((track) => track.id),
-    );
-    setCountdownMs(prefs.countdownMs ?? settings.lastCountdownMs ?? timeline.encounter.countdownMs);
-    // Deliberately keyed on the timeline only: player edits below persist themselves.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeline?.id]);
-
-  const compileResult = useMemo((): { compiled: CompiledTimeline } | { error: string } => {
-    if (!timeline) return { error: '尚未選擇時間軸' };
-    try {
-      return {
-        compiled: compileTimeline(timeline, {
-          profile,
-          enabledTrackIds,
-          countdownMs,
-          audioDefaults: settings.audio,
-        }),
-      };
-    } catch (error) {
-      if (error instanceof TimelineCompileError) {
-        return {
-          error: `這份時間軸有 ${error.report.errors.length} 個必須修正的錯誤：${error.report.errors
-            .slice(0, 3)
-            .map((issue) => issue.message)
-            .join('；')}`,
-        };
-      }
-      return { error: error instanceof Error ? error.message : '時間軸編譯失敗' };
-    }
-  }, [timeline, profile, enabledTrackIds, countdownMs, settings.audio]);
-
-  const compiled = 'compiled' in compileResult ? compileResult.compiled : null;
-  const compileError = 'error' in compileResult ? compileResult.error : null;
-
+  const speechSupported = useMemo(() => isSpeechSynthesisSupported(), []);
   const isIdle = snapshot.state === 'idle';
 
-  // Keep the engine in sync while idle; never swap the timeline mid-pull.
+  // Restore per-timeline *and per-identity* selection (spec §4.2). Switching job
+  // re-reads, so one identity's choice never leaks into another's.
   useEffect(() => {
-    if (!compiled) return;
-    if (!isIdle) return;
-    engine.load(compiled);
-  }, [engine, compiled, isIdle]);
+    if (!timeline) return;
+    const prefs = loadPlayerPrefs(timeline.id, profile);
+    const existing = timeline.tracks.map((track) => track.id);
+    setEnabledTrackIds(
+      prefs.enabledTrackIds
+        ? // A track that has since been deleted must not keep affecting playback.
+          pruneEnabledTrackIds(prefs.enabledTrackIds, existing)
+        : timeline.tracks.filter((track) => track.enabledByDefault).map((track) => track.id),
+    );
+    setCountdownMs(prefs.countdownMs ?? settings.lastCountdownMs ?? timeline.encounter.countdownMs);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeline?.id, profile.position, profile.job]);
 
   const persistPrefs = useCallback(
-    (patch: { enabledTrackIds?: string[]; countdownMs?: number }) => {
+    (patch: Partial<TimelinePlayerPrefs>) => {
       if (!timeline) return;
-      const prefs = loadPlayerPrefs(timeline.id);
-      savePlayerPrefs(timeline.id, { ...prefs, ...patch });
+      try {
+        const prefs = loadPlayerPrefs(timeline.id, profile);
+        savePlayerPrefs(timeline.id, profile, { ...prefs, ...patch });
+        setPrefsError(null);
+      } catch (error) {
+        // The in-memory choice stands; only persistence failed (spec §4.2).
+        setPrefsError(
+          error instanceof PrefsWriteError ? error.message : '儲存軌道選擇失敗，這次的設定只保留在畫面上',
+        );
+      }
     },
-    [timeline],
+    [timeline, profile],
   );
 
-  const beginPull = useCallback(() => {
-    if (!compiled) return;
-    engine.load(compiled);
-    engine.start();
-  }, [engine, compiled]);
+  const plan: PlaybackPlanResult | null = useMemo(() => {
+    if (!timeline) return null;
+    return buildPlaybackPlan({
+      timeline,
+      profile,
+      enabledTrackIds,
+      countdownMs,
+      audio: settings.audio,
+      collisionWindowMs: settings.collisionWindowMs,
+      maxLateMs: settings.maxLateMs,
+      // A new pull resets the per-pull nudge, so only the session offset applies.
+      sessionOffsetMs: snapshot.sessionOffsetMs,
+      speechSupported,
+    });
+  }, [
+    timeline,
+    profile,
+    enabledTrackIds,
+    countdownMs,
+    settings.audio,
+    settings.collisionWindowMs,
+    settings.maxLateMs,
+    snapshot.sessionOffsetMs,
+    speechSupported,
+  ]);
 
-  const handleStart = useCallback(() => {
-    if (!compiled) return;
-    if (settings.quickStart) {
-      beginPull();
-      return;
-    }
-    setShowReady(true);
-  }, [compiled, settings.quickStart, beginPull]);
+  const planRef = useRef(plan);
+  planRef.current = plan;
+
+  const start = usePlaybackStart({
+    engine,
+    ownedBackend,
+    engineState: snapshot.state,
+    quickStart: settings.quickStart,
+    getPlan: () => planRef.current,
+  });
+
+  // Keep the engine loaded while idle so the readouts match; the ownership gate
+  // makes this harmless for a running editor preview (spec §7.3).
+  useEffect(() => {
+    if (!plan?.compiledTimeline) return;
+    if (!isIdle) return;
+    engine.load(plan.compiledTimeline);
+  }, [engine, plan?.compiledTimeline, isIdle]);
 
   const handleWipe = useCallback(() => {
-    setShowReady(false);
+    // A wipe invalidates any pending start request (spec §4.6.8).
+    start.invalidate();
     engine.wipe();
-  }, [engine]);
+    ownedBackend.releasePlayback();
+  }, [engine, ownedBackend, start]);
+
+  // Leaving the screen must also invalidate, so nothing starts asynchronously
+  // after the player is gone.
+  useEffect(() => () => start.invalidate(), [start.invalidate]);
 
   const handleVoiceTest = useCallback(async () => {
-    if (!compiled) return;
     setVoiceTestStatus('正在準備語音…');
+    if (!speechSupported) {
+      setVoiceTestStatus('這個瀏覽器不支援 Web Speech API，無法播放語音。');
+      return;
+    }
+    if (!isIdle) {
+      setVoiceTestStatus('正式播放進行中，請先重置再測試語音。');
+      return;
+    }
     try {
-      await backend.prepare(compiled.cues);
       const queued = backend.speakPreview('語音測試，三秒後開始', {
         lang: settings.audio.lang,
         rate: settings.audio.rate,
@@ -141,25 +177,20 @@ export function PlayerView() {
       });
       setVoiceTestStatus(
         queued
-          ? '已送出測試語音；若沒有聽到，請到「設定」確認語音與音量。'
+          ? '已送出測試語音；「送出」不代表你一定聽到了，若沒有聲音請到「設定」確認語音與音量。'
           : '這個瀏覽器不支援 Web Speech API，無法播放語音。',
       );
     } catch (error) {
-      setVoiceTestStatus(
-        `測試語音失敗：${error instanceof Error ? error.message : '未知錯誤'}`,
-      );
+      setVoiceTestStatus(`測試語音失敗：${error instanceof Error ? error.message : '未知錯誤'}`);
     }
-  }, [backend, compiled, settings.audio]);
+  }, [backend, isIdle, settings.audio, speechSupported]);
 
   useShortcuts({
-    enabled: Boolean(compiled) && !showReady,
+    // Shortcuts stay off while a modal owns the screen (spec §4.6.4).
+    enabled: Boolean(timeline) && !start.modalOpen,
     escWipe: settings.escWipe,
     handlers: {
-      onTogglePlayback: () => {
-        if (snapshot.state === 'idle') beginPull();
-        else if (snapshot.state === 'paused') engine.resume();
-        else if (snapshot.state === 'countdown' || snapshot.state === 'running') engine.pause();
-      },
+      onTogglePlayback: start.togglePlayback,
       onWipe: handleWipe,
       onNudge: (delta) => engine.adjustPullOffsetMs(delta),
     },
@@ -205,7 +236,7 @@ export function PlayerView() {
     );
   }
 
-  if (!timeline) {
+  if (!timeline || !plan) {
     return (
       <section className="panel">
         <h1>無法使用這份時間軸</h1>
@@ -218,6 +249,7 @@ export function PlayerView() {
 
   const running = snapshot.state === 'running' || snapshot.state === 'countdown';
   const paused = snapshot.state === 'paused';
+  const blockingErrors = plan.errors;
 
   return (
     <section className="col">
@@ -240,9 +272,26 @@ export function PlayerView() {
         </div>
       </div>
 
-      {compileError ? (
+      {blockingErrors.length > 0 ? (
         <div className="panel">
-          <p className="text-error">{compileError}</p>
+          <h2 className="text-error">這一場還不能開始（{blockingErrors.length} 項）</h2>
+          <ul className="issue-list text-error">
+            {blockingErrors.slice(0, 6).map((issue, index) => (
+              <li key={`${issue.code}-${index}`}>
+                {issue.message}
+                {issue.hint ? <div className="small muted">{issue.hint}</div> : null}
+              </li>
+            ))}
+          </ul>
+          {blockingErrors.length > 6 ? (
+            <p className="small muted">其餘 {blockingErrors.length - 6} 項請展開開場設定或到編輯器檢查。</p>
+          ) : null}
+        </div>
+      ) : null}
+
+      {prefsError ? (
+        <div className="panel">
+          <p className="text-warn" role="status">{prefsError}</p>
         </div>
       ) : null}
 
@@ -276,12 +325,8 @@ export function PlayerView() {
           <button
             type="button"
             className="primary huge"
-            disabled={!compiled || snapshot.state === 'completed'}
-            onClick={() => {
-              if (running) engine.pause();
-              else if (paused) engine.resume();
-              else handleStart();
-            }}
+            disabled={snapshot.state === 'completed'}
+            onClick={start.togglePlayback}
           >
             {running
               ? '暫停'
@@ -322,17 +367,72 @@ export function PlayerView() {
             profile={profile}
             disabled={!isIdle}
             onChange={(next) => {
+              // Identity is never swapped mid-pull (spec §4.6.10).
+              if (!isIdle) return;
+              start.invalidate();
               setProfile(next);
               updateSettings({ lastPosition: next.position, lastJob: next.job });
             }}
           />
 
+          {plan.selectionGroups.length > 0 ? (
+            <>
+              <h3>方案選擇</h3>
+              <SelectionGroupPicker
+                plan={plan}
+                disabled={!isIdle}
+                onSelect={(groupId, optionId) => {
+                  const next = applyOptionSelection(
+                    {
+                      timeline,
+                      enabledTrackIds,
+                      effectiveTrackIds: plan.tracks
+                        .filter((row) => row.selected && row.enabledCueCount > 0)
+                        .map((row) => row.track.id),
+                      applicableTrackIds: plan.tracks
+                        .filter((row) => row.applicable)
+                        .map((row) => row.track.id),
+                    },
+                    groupId,
+                    optionId,
+                  );
+                  start.invalidate();
+                  setEnabledTrackIds(next);
+                  persistPrefs({ enabledTrackIds: next });
+                }}
+              />
+            </>
+          ) : null}
+
           <h3>軌道</h3>
           <TrackSelector
-            tracks={timeline.tracks}
-            enabledTrackIds={enabledTrackIds}
+            plan={plan}
             disabled={!isIdle}
             onChange={(ids) => {
+              start.invalidate();
+              setEnabledTrackIds(ids);
+              persistPrefs({ enabledTrackIds: ids });
+            }}
+            onSelectApplicable={() => {
+              const result = selectApplicableTracks({
+                timeline,
+                enabledTrackIds,
+                effectiveTrackIds: plan.tracks
+                  .filter((row) => row.selected && row.enabledCueCount > 0)
+                  .map((row) => row.track.id),
+                applicableTrackIds: plan.tracks
+                  .filter((row) => row.applicable)
+                  .map((row) => row.track.id),
+              });
+              start.invalidate();
+              setEnabledTrackIds(result.trackIds);
+              persistPrefs({ enabledTrackIds: result.trackIds });
+            }}
+            onSelectDefaults={() => {
+              const ids = timeline.tracks
+                .filter((track) => track.enabledByDefault)
+                .map((track) => track.id);
+              start.invalidate();
               setEnabledTrackIds(ids);
               persistPrefs({ enabledTrackIds: ids });
             }}
@@ -344,6 +444,7 @@ export function PlayerView() {
             timelineDefaultMs={timeline.encounter.countdownMs}
             disabled={!isIdle}
             onChange={(ms) => {
+              start.invalidate();
               setCountdownMs(ms);
               persistPrefs({ countdownMs: ms });
               updateSettings({ lastCountdownMs: ms });
@@ -358,7 +459,7 @@ export function PlayerView() {
             <button
               type="button"
               onClick={() => void handleVoiceTest()}
-              disabled={!compiled || voiceTestStatus === '正在準備語音…'}
+              disabled={voiceTestStatus === '正在準備語音…'}
             >
               播放測試語音
             </button>
@@ -370,25 +471,28 @@ export function PlayerView() {
         </div>
       </details>
 
-      <DebugPanel
-        records={records}
-        onClear={() => recorder.clear()}
-        defaultOpen={false}
-      />
+      <DebugPanel records={records} onClear={() => recorder.clear()} defaultOpen={false} />
 
-      {showReady && compiled ? (
-        <ReadySummary
+      {start.pending ? (
+        <PreflightDialog
+          stage={start.pending.stage}
+          stale={start.pending.stale}
+          plan={start.pending.plan}
           timelineName={timeline.meta.name}
           profile={profile}
-          tracks={timeline.tracks}
-          enabledTrackIds={enabledTrackIds}
           countdownMs={countdownMs}
           effectiveOffsetMs={snapshot.effectiveOffsetMs}
-          cueCount={compiled.cues.length}
-          onCancel={() => setShowReady(false)}
-          onConfirm={() => {
-            setShowReady(false);
-            beginPull();
+          onConfirm={start.confirm}
+          onCancel={start.cancel}
+          onPreviewSegment={(triggerMs) => {
+            start.cancel();
+            navigate(`/editor/${timeline.id}?preview=${Math.round(triggerMs)}`);
+          }}
+          onNavigate={(trackId, eventId, cueId) => {
+            start.cancel();
+            navigate(
+              `/editor/${timeline.id}?track=${trackId}&event=${eventId}${cueId ? `&cue=${cueId}` : ''}`,
+            );
           }}
         />
       ) : null}
