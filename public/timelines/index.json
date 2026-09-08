@@ -2,11 +2,13 @@
   "example.json",
   "timing-test.json",
   "m5s-h2-scholar.json",
+  "m5s-h1-astrologian.json",
   "m6s-h2-scholar.json",
   "m6s-h1-astrologian.json",
   "m6s-h1-astrologian-core.json",
   "m6s.json",
   "m7s-h2-scholar.json",
   "m7s-h1-astrologian.json",
+  "m8s-h1-astrologian.json",
   "tea-h2-scholar.json"
 ]

@@ -1,0 +1,2450 @@
+{
+  "schemaVersion": 1,
+  "id": "builtin-m5s-h1-astrologian",
+  "meta": {
+    "name": "M5S Dancing Green — H1 AST Core + Rotation [Reference Draft]",
+    "encounterId": "aac-cruiserweight-m1-savage-m5s",
+    "strategy": "H1 AST／參考開荒奶軸／獨立於 SCH／團輔須由隊伍確認",
+    "author": "FF14 Timeline Voice Coach",
+    "description": "參考草稿；僅影片公開說明的實用開荒／伐木原則可確認，未取得逐鍵字幕或作者試算表，故占星具體按鍵秒數是依公開王軸與技能限制另行編排，並非影片逐秒轉錄。全部語音啟用；只包含王與 H1 AST；DoT 為30秒參考提醒，不能讀取實際Debuff或自動判斷目標是否存活；團輔為自訂參考方案，非所有野團通用。M5S 採本次公開王軸，與舊SCH版本秒數可能不同，未修改舊檔。占卜5.5/125.5/246.5/366.5/486.5秒，下一次已超過參考狂暴而不安排。",
+    "version": "0.1.0"
+  },
+  "encounter": {
+    "durationMs": 610000,
+    "countdownMs": 15000
+  },
+  "tracks": [
+    {
+      "id": "boss-mechanics",
+      "type": "encounter",
+      "name": "Boss Mechanics",
+      "enabledByDefault": true,
+      "events": [
+        {
+          "id": "m5s-boss-001",
+          "atMs": 15300,
+          "name": "Deep Cut #1",
+          "phase": "P1 開場／燈光",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m5s-boss-001-cue",
+              "offsetMs": -6500,
+              "text": "雙坦死刑準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-002",
+          "atMs": 27000,
+          "name": "Flip A/B #1",
+          "phase": "P1 開場／燈光",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-002-cue",
+              "offsetMs": -5500,
+              "text": "記住正反面",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-003",
+          "atMs": 34100,
+          "name": "Twist #1",
+          "phase": "P1 開場／燈光",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m5s-boss-003-cue",
+              "offsetMs": -5800,
+              "text": "左右刀準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-004",
+          "atMs": 39600,
+          "name": "Play A/B #1",
+          "phase": "P1 開場／燈光",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-004-cue",
+              "offsetMs": -5800,
+              "text": "分攤散開看正反面",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-005",
+          "atMs": 53600,
+          "name": "Twist #2",
+          "phase": "P1 開場／燈光",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m5s-boss-005-cue",
+              "offsetMs": -5800,
+              "text": "第二次左右刀",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-006",
+          "atMs": 65000,
+          "name": "Celebrate Good Times #1",
+          "phase": "P1 開場／燈光",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m5s-boss-006-cue",
+              "offsetMs": -6200,
+              "text": "全體傷害準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-007",
+          "atMs": 77200,
+          "name": "Disco Infernal #1",
+          "phase": "P1 開場／燈光",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m5s-boss-007-cue",
+              "offsetMs": -6400,
+              "text": "燈光大傷準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-008",
+          "atMs": 90500,
+          "name": "Inside Out / Outside In #1",
+          "phase": "P1 開場／燈光",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m5s-boss-008-cue",
+              "offsetMs": -5500,
+              "text": "內外組合準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-009",
+          "atMs": 116800,
+          "name": "Twist #3",
+          "phase": "P1 開場／燈光",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m5s-boss-009-cue",
+              "offsetMs": -5500,
+              "text": "地板後左右刀",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-010",
+          "atMs": 128200,
+          "name": "Celebrate Good Times #2",
+          "phase": "P1 開場／燈光",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m5s-boss-010-cue",
+              "offsetMs": -7400,
+              "text": "全體傷害準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-011",
+          "atMs": 136000,
+          "name": "Deep Cut #2",
+          "phase": "P1 開場／燈光",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m5s-boss-011-cue",
+              "offsetMs": -7200,
+              "text": "雙坦死刑準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-012",
+          "atMs": 154900,
+          "name": "Arcady Night Fever",
+          "phase": "P2 夜狂熱",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-012-cue",
+              "offsetMs": -6600,
+              "text": "八次內外扇形",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-013",
+          "atMs": 182200,
+          "name": "Let's Dance #1",
+          "phase": "P2 夜狂熱",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m5s-boss-013-cue",
+              "offsetMs": -5500,
+              "text": "跳舞順序準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-014",
+          "atMs": 208700,
+          "name": "Let's Pose #1",
+          "phase": "P2 夜狂熱",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m5s-boss-014-cue",
+              "offsetMs": -11900,
+              "text": "稍後跳舞結算準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-015",
+          "atMs": 232600,
+          "name": "Ride the Waves",
+          "phase": "P3 舞浪",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m5s-boss-015-cue",
+              "offsetMs": -5500,
+              "text": "舞浪地火準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-016",
+          "atMs": 242600,
+          "name": "Quarter/Eighth Beats #1",
+          "phase": "P3 舞浪",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-016-cue",
+              "offsetMs": -12800,
+              "text": "稍後第一輪分攤散開",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-017",
+          "atMs": 250600,
+          "name": "Quarter/Eighth Beats #2",
+          "phase": "P3 舞浪",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-017-cue",
+              "offsetMs": -12800,
+              "text": "稍後第二輪分攤散開",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-018",
+          "atMs": 260700,
+          "name": "Inside Out / Outside In #2",
+          "phase": "P3 舞浪",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m5s-boss-018-cue",
+              "offsetMs": -8900,
+              "text": "內外組合準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-019",
+          "atMs": 283600,
+          "name": "Deep Cut #3",
+          "phase": "P3 舞浪",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m5s-boss-019-cue",
+              "offsetMs": -6300,
+              "text": "雙坦死刑準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-020",
+          "atMs": 290200,
+          "name": "Celebrate Good Times #3",
+          "phase": "P3 舞浪",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m5s-boss-020-cue",
+              "offsetMs": -5500,
+              "text": "全體傷害準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-021",
+          "atMs": 301400,
+          "name": "Frogtourage #1",
+          "phase": "P4 青蛙／燈光",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-021-cue",
+              "offsetMs": -5500,
+              "text": "青蛙機制準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-022",
+          "atMs": 315500,
+          "name": "Moonburn / Beats",
+          "phase": "P4 青蛙／燈光",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-022-cue",
+              "offsetMs": -5700,
+              "text": "青蛙分攤散開",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-023",
+          "atMs": 323600,
+          "name": "Disco Infernal #2",
+          "phase": "P4 青蛙／燈光",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m5s-boss-023-cue",
+              "offsetMs": -5500,
+              "text": "燈光大傷準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-024",
+          "atMs": 335200,
+          "name": "Back-up Dance #1",
+          "phase": "P4 青蛙／燈光",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-024-cue",
+              "offsetMs": -6900,
+              "text": "第一輪誘導準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-025",
+          "atMs": 345100,
+          "name": "Back-up Dance #2",
+          "phase": "P4 青蛙／燈光",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-025-cue",
+              "offsetMs": -5500,
+              "text": "第二輪誘導準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-026",
+          "atMs": 362900,
+          "name": "Celebrate Good Times #4",
+          "phase": "P4 青蛙／燈光",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m5s-boss-026-cue",
+              "offsetMs": -5500,
+              "text": "全體傷害準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-027",
+          "atMs": 382300,
+          "name": "Arcady Night Encore",
+          "phase": "P5 返場",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-027-cue",
+              "offsetMs": -5500,
+              "text": "返場八次內外",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-028",
+          "atMs": 409600,
+          "name": "Let's Dance Remix",
+          "phase": "P5 返場",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m5s-boss-028-cue",
+              "offsetMs": -5500,
+              "text": "四向半場準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-029",
+          "atMs": 428200,
+          "name": "Let's Pose #2",
+          "phase": "P5 返場",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m5s-boss-029-cue",
+              "offsetMs": -9400,
+              "text": "返場結算準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-030",
+          "atMs": 454600,
+          "name": "Do the Hustle series",
+          "phase": "P6 青蛙誘導",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m5s-boss-030-cue",
+              "offsetMs": -6300,
+              "text": "三輪半場準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-031",
+          "atMs": 479400,
+          "name": "Back-up Dance #3",
+          "phase": "P6 青蛙誘導",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-031-cue",
+              "offsetMs": -7600,
+              "text": "第一輪分組誘導",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-032",
+          "atMs": 495200,
+          "name": "Back-up Dance #4",
+          "phase": "P6 青蛙誘導",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-032-cue",
+              "offsetMs": -4000,
+              "text": "第二輪分組誘導",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-033",
+          "atMs": 504500,
+          "name": "Do the Hustle final",
+          "phase": "P6 青蛙誘導",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m5s-boss-033-cue",
+              "offsetMs": -5500,
+              "text": "最後半場安全區",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-034",
+          "atMs": 512300,
+          "name": "Deep Cut #4",
+          "phase": "P6 青蛙誘導",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m5s-boss-034-cue",
+              "offsetMs": -6500,
+              "text": "雙坦死刑準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-035",
+          "atMs": 530800,
+          "name": "Final Beats #1",
+          "phase": "P7 終盤",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-035-cue",
+              "offsetMs": -6000,
+              "text": "地板第一輪分攤散開",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-036",
+          "atMs": 538900,
+          "name": "Final In/Out",
+          "phase": "P7 終盤",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m5s-boss-036-cue",
+              "offsetMs": -5500,
+              "text": "地板內外準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-037",
+          "atMs": 550600,
+          "name": "Final Beats #2",
+          "phase": "P7 終盤",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-037-cue",
+              "offsetMs": -5500,
+              "text": "地板第二輪分攤散開",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-038",
+          "atMs": 557900,
+          "name": "Celebrate Good Times #5",
+          "phase": "P7 終盤",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m5s-boss-038-cue",
+              "offsetMs": -5500,
+              "text": "終盤全體一準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-039",
+          "atMs": 568000,
+          "name": "Celebrate Good Times #6",
+          "phase": "P7 終盤",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m5s-boss-039-cue",
+              "offsetMs": -3800,
+              "text": "終盤全體二準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-040",
+          "atMs": 588300,
+          "name": "Frogtourage Finale",
+          "phase": "P7 終盤",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m5s-boss-040-cue",
+              "offsetMs": -5500,
+              "text": "最後演出準備斬殺",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m5s-boss-041",
+          "atMs": 603400,
+          "name": "Hi-NRG Fever",
+          "phase": "P7 終盤",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m5s-boss-041-cue",
+              "offsetMs": -5500,
+              "text": "狂暴將至",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h1-astrologian",
+      "type": "job",
+      "name": "H1 AST — 奶軸／焚灼／爆發（參考草稿）",
+      "enabledByDefault": true,
+      "target": {
+        "positions": [
+          "H1"
+        ],
+        "jobs": [
+          "AST"
+        ]
+      },
+      "events": [
+        {
+          "id": "m5s-ast-001",
+          "atMs": -7000,
+          "name": "-00:07.000 開場輸出與坦克回血：地星放置",
+          "phase": "P1 開場／燈光",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-001-cue",
+              "offsetMs": 0,
+              "text": "放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-dot-01",
+          "atMs": 1500,
+          "name": "00:01.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P1 開場／燈光",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-dot-01-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-074",
+          "atMs": 5500,
+          "name": "00:05.500 選定團隊爆發窗口：光速＋占卜；依隊伍實際時間校正",
+          "phase": "P1 開場／燈光",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-074-cue",
+              "offsetMs": 0,
+              "text": "光速占卜，記得發牌",
+              "priority": "normal",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-065",
+          "atMs": 11000,
+          "name": "00:11.000 死刑：擢升目前承傷坦；00:11.500 開場輸出與坦克回血：成熟地星結算",
+          "phase": "P1 開場／燈光",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m5s-ast-065-cue",
+              "offsetMs": 0,
+              "text": "擢升主坦，引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-066",
+          "atMs": 13500,
+          "name": "00:13.500 死刑：天星交錯另一坦",
+          "phase": "P1 開場／燈光",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m5s-ast-066-cue",
+              "offsetMs": 0,
+              "text": "交錯副坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-dot-02",
+          "atMs": 31500,
+          "name": "00:31.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P1 開場／燈光",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-dot-02-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-058",
+          "atMs": 36000,
+          "name": "00:36.000 即將傷害：命運之輪（短暫張開後可移動）",
+          "phase": "P1 開場／燈光",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m5s-ast-058-cue",
+              "offsetMs": 0,
+              "text": "命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-052",
+          "atMs": 41500,
+          "name": "00:41.500 團血恢復＋持續回血",
+          "phase": "P1 開場／燈光",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-052-cue",
+              "offsetMs": 0,
+              "text": "天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-025",
+          "atMs": 50000,
+          "name": "00:50.000 第二次左右刀：中間學派",
+          "phase": "P1 開場／燈光",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m5s-ast-025-cue",
+              "offsetMs": 0,
+              "text": "中間學派",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-026",
+          "atMs": 53000,
+          "name": "00:53.000 第二次左右刀：中間學派下陽星合相",
+          "phase": "P1 開場／燈光",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m5s-ast-026-cue",
+              "offsetMs": 0,
+              "text": "陽星群盾",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-003",
+          "atMs": 56000,
+          "name": "00:56.000 第一次歡慶後：地星放置；00:57.500 第二次左右刀：太陽星座；00:58.000 首次歡慶：天宮圖準備",
+          "phase": "P1 開場／燈光",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m5s-ast-003-cue",
+              "offsetMs": 0,
+              "text": "放地星，太陽減傷，天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-038",
+          "atMs": 61000,
+          "name": "01:01.000 首次歡慶：陽星合相強化天宮圖；DoT參考窗口 01:01.500／boss",
+          "phase": "P1 開場／燈光",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-038-cue",
+              "offsetMs": 0,
+              "text": "陽星合相，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-019",
+          "atMs": 64000,
+          "name": "01:04.000 首次歡慶與燈光：大宇宙記錄傷害",
+          "phase": "P1 開場／燈光",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-019-cue",
+              "offsetMs": 0,
+              "text": "大宇宙",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-039",
+          "atMs": 68000,
+          "name": "01:08.000 首次歡慶：強化天宮圖結算",
+          "phase": "P1 開場／燈光",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-039-cue",
+              "offsetMs": 0,
+              "text": "天宮圖回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-004",
+          "atMs": 73000,
+          "name": "01:13.000 第一次歡慶後：成熟地星結算",
+          "phase": "P1 開場／燈光",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-004-cue",
+              "offsetMs": 0,
+              "text": "引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-020",
+          "atMs": 78000,
+          "name": "01:18.000 首次歡慶與燈光：小宇宙結算",
+          "phase": "P1 開場／燈光",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-020-cue",
+              "offsetMs": 0,
+              "text": "小宇宙回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-dot-04",
+          "atMs": 91500,
+          "name": "01:31.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P1 開場／燈光",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-dot-04-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-005",
+          "atMs": 116000,
+          "name": "01:56.000 第二次歡慶後：地星放置",
+          "phase": "P1 開場／燈光",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-005-cue",
+              "offsetMs": 0,
+              "text": "放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-059",
+          "atMs": 123000,
+          "name": "02:03.000 即將傷害：命運之輪（短暫張開後可移動）；DoT參考窗口 02:01.500／boss",
+          "phase": "P1 開場／燈光",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m5s-ast-059-cue",
+              "offsetMs": 0,
+              "text": "命運之輪，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-075",
+          "atMs": 125500,
+          "name": "02:05.500 選定團隊爆發窗口：光速＋占卜；依隊伍實際時間校正",
+          "phase": "P1 開場／燈光",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-075-cue",
+              "offsetMs": 0,
+              "text": "光速占卜，記得發牌",
+              "priority": "normal",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-006",
+          "atMs": 131000,
+          "name": "02:11.000 第二次歡慶後：成熟地星結算；02:12.000 死刑：擢升目前承傷坦",
+          "phase": "P1 開場／燈光",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m5s-ast-006-cue",
+              "offsetMs": 0,
+              "text": "引爆地星，擢升主坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-068",
+          "atMs": 134500,
+          "name": "02:14.500 死刑：天星交錯另一坦",
+          "phase": "P1 開場／燈光",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m5s-ast-068-cue",
+              "offsetMs": 0,
+              "text": "交錯副坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-dot-06",
+          "atMs": 151500,
+          "name": "02:31.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P2 夜狂熱",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-dot-06-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-dot-07",
+          "atMs": 181500,
+          "name": "03:01.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P2 夜狂熱",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-dot-07-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-007",
+          "atMs": 192000,
+          "name": "03:12.000 夜狂熱結算：地星放置",
+          "phase": "P2 夜狂熱",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-007-cue",
+              "offsetMs": 0,
+              "text": "放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-040",
+          "atMs": 199000,
+          "name": "03:19.000 夜狂熱結算：天宮圖準備",
+          "phase": "P2 夜狂熱",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-040-cue",
+              "offsetMs": 0,
+              "text": "天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-041",
+          "atMs": 202000,
+          "name": "03:22.000 夜狂熱結算：陽星合相強化天宮圖",
+          "phase": "P2 夜狂熱",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-041-cue",
+              "offsetMs": 0,
+              "text": "陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-060",
+          "atMs": 205000,
+          "name": "03:25.000 即將傷害：命運之輪（短暫張開後可移動）",
+          "phase": "P2 夜狂熱",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m5s-ast-060-cue",
+              "offsetMs": 0,
+              "text": "命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-008",
+          "atMs": 210000,
+          "name": "03:30.000 夜狂熱結算：成熟地星結算",
+          "phase": "P2 夜狂熱",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-008-cue",
+              "offsetMs": 0,
+              "text": "引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-053",
+          "atMs": 212500,
+          "name": "03:32.500 團血恢復＋持續回血；03:34.000 夜狂熱結算：強化天宮圖結算；DoT參考窗口 03:31.500／boss",
+          "phase": "P2 夜狂熱",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-053-cue",
+              "offsetMs": 0,
+              "text": "天星衝日，天宮圖回血，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-028",
+          "atMs": 232000,
+          "name": "03:52.000 舞浪兩次分攤：中間學派",
+          "phase": "P3 舞浪",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m5s-ast-028-cue",
+              "offsetMs": 0,
+              "text": "中間學派",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-029",
+          "atMs": 235000,
+          "name": "03:55.000 舞浪兩次分攤：中間學派下陽星合相",
+          "phase": "P3 舞浪",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m5s-ast-029-cue",
+              "offsetMs": 0,
+              "text": "陽星群盾",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-030",
+          "atMs": 240000,
+          "name": "04:00.000 舞浪兩次分攤：太陽星座；DoT參考窗口 04:01.500／boss",
+          "phase": "P3 舞浪",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m5s-ast-030-cue",
+              "offsetMs": 0,
+              "text": "太陽減傷，準備補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-021",
+          "atMs": 244000,
+          "name": "04:04.000 舞浪第二輪分攤：大宇宙記錄傷害",
+          "phase": "P3 舞浪",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-021-cue",
+              "offsetMs": 0,
+              "text": "大宇宙",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-076",
+          "atMs": 246500,
+          "name": "04:06.500 選定團隊爆發窗口：光速＋占卜；依隊伍實際時間校正",
+          "phase": "P3 舞浪",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-076-cue",
+              "offsetMs": 0,
+              "text": "光速占卜，記得發牌",
+              "priority": "normal",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-009",
+          "atMs": 254000,
+          "name": "04:14.000 舞浪收尾前：地星放置",
+          "phase": "P3 舞浪",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-009-cue",
+              "offsetMs": 0,
+              "text": "放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-022",
+          "atMs": 257000,
+          "name": "04:17.000 舞浪第二輪分攤：小宇宙結算",
+          "phase": "P3 舞浪",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-022-cue",
+              "offsetMs": 0,
+              "text": "小宇宙回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-010",
+          "atMs": 272000,
+          "name": "04:32.000 舞浪收尾前：成熟地星結算；04:33.000 即將傷害：命運之輪（短暫張開後可移動）；DoT參考窗口 04:31.500／boss",
+          "phase": "P3 舞浪",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m5s-ast-010-cue",
+              "offsetMs": 0,
+              "text": "引爆地星，命運之輪，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-069",
+          "atMs": 279500,
+          "name": "04:39.500 死刑：擢升目前承傷坦",
+          "phase": "P3 舞浪",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m5s-ast-069-cue",
+              "offsetMs": 0,
+              "text": "擢升主坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-070",
+          "atMs": 282000,
+          "name": "04:42.000 死刑：天星交錯另一坦",
+          "phase": "P3 舞浪",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m5s-ast-070-cue",
+              "offsetMs": 0,
+              "text": "交錯副坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-054",
+          "atMs": 291500,
+          "name": "04:51.500 團血恢復＋持續回血",
+          "phase": "P3 舞浪",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-054-cue",
+              "offsetMs": 0,
+              "text": "天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-dot-11",
+          "atMs": 301500,
+          "name": "05:01.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P4 青蛙／燈光",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-dot-11-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-043",
+          "atMs": 312000,
+          "name": "05:12.000 青蛙燈光：天宮圖準備",
+          "phase": "P4 青蛙／燈光",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-043-cue",
+              "offsetMs": 0,
+              "text": "天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-011",
+          "atMs": 314500,
+          "name": "05:14.500 青蛙燈光後：地星放置；05:15.000 青蛙燈光：陽星合相強化天宮圖",
+          "phase": "P4 青蛙／燈光",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-011-cue",
+              "offsetMs": 0,
+              "text": "放地星，陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-045",
+          "atMs": 326000,
+          "name": "05:26.000 青蛙燈光：強化天宮圖結算；05:28.000 青蛙燈光後：成熟地星結算",
+          "phase": "P4 青蛙／燈光",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-045-cue",
+              "offsetMs": 0,
+              "text": "天宮圖回血，引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-dot-12",
+          "atMs": 331500,
+          "name": "05:31.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P4 青蛙／燈光",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-dot-12-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-031",
+          "atMs": 352000,
+          "name": "05:52.000 青蛙左右刀後：中間學派",
+          "phase": "P4 青蛙／燈光",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m5s-ast-031-cue",
+              "offsetMs": 0,
+              "text": "中間學派",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-032",
+          "atMs": 355000,
+          "name": "05:55.000 青蛙左右刀後：中間學派下陽星合相",
+          "phase": "P4 青蛙／燈光",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m5s-ast-032-cue",
+              "offsetMs": 0,
+              "text": "陽星群盾",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-033",
+          "atMs": 360000,
+          "name": "06:00.000 青蛙左右刀後：太陽星座；06:00.000 即將傷害：命運之輪（短暫張開後可移動）；DoT參考窗口 06:01.500／boss",
+          "phase": "P4 青蛙／燈光",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m5s-ast-033-cue",
+              "offsetMs": 0,
+              "text": "太陽減傷，命運之輪，準備補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-055",
+          "atMs": 364000,
+          "name": "06:04.000 團血恢復＋持續回血",
+          "phase": "P4 青蛙／燈光",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-055-cue",
+              "offsetMs": 0,
+              "text": "天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-077",
+          "atMs": 366500,
+          "name": "06:06.500 選定團隊爆發窗口：光速＋占卜；依隊伍實際時間校正",
+          "phase": "P4 青蛙／燈光",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-077-cue",
+              "offsetMs": 0,
+              "text": "光速占卜，記得發牌",
+              "priority": "normal",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-dot-14",
+          "atMs": 391500,
+          "name": "06:31.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P5 返場",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-dot-14-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-013",
+          "atMs": 412500,
+          "name": "06:52.500 返場結算：地星放置",
+          "phase": "P5 返場",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-013-cue",
+              "offsetMs": 0,
+              "text": "放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-046",
+          "atMs": 421000,
+          "name": "07:01.000 返場結算：天宮圖準備；DoT參考窗口 07:01.500／boss",
+          "phase": "P5 返場",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-046-cue",
+              "offsetMs": 0,
+              "text": "天宮圖，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-047",
+          "atMs": 424000,
+          "name": "07:04.000 返場結算：陽星合相強化天宮圖；07:05.000 即將傷害：命運之輪（短暫張開後可移動）",
+          "phase": "P5 返場",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m5s-ast-047-cue",
+              "offsetMs": 0,
+              "text": "陽星合相，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-014",
+          "atMs": 430000,
+          "name": "07:10.000 返場結算：成熟地星結算",
+          "phase": "P5 返場",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-014-cue",
+              "offsetMs": 0,
+              "text": "引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-048",
+          "atMs": 433000,
+          "name": "07:13.000 返場結算：強化天宮圖結算",
+          "phase": "P5 返場",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-048-cue",
+              "offsetMs": 0,
+              "text": "天宮圖回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-dot-16",
+          "atMs": 451500,
+          "name": "07:31.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P6 青蛙誘導",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-dot-16-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-034",
+          "atMs": 474000,
+          "name": "07:54.000 青蛙分組誘導：中間學派",
+          "phase": "P6 青蛙誘導",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m5s-ast-034-cue",
+              "offsetMs": 0,
+              "text": "中間學派",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-035",
+          "atMs": 477000,
+          "name": "07:57.000 青蛙分組誘導：中間學派下陽星合相；07:58.000 青蛙誘導：地星放置",
+          "phase": "P6 青蛙誘導",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m5s-ast-035-cue",
+              "offsetMs": 0,
+              "text": "陽星群盾，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-056",
+          "atMs": 481000,
+          "name": "08:01.000 團血恢復＋持續回血；DoT參考窗口 08:01.500／boss",
+          "phase": "P6 青蛙誘導",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-056-cue",
+              "offsetMs": 0,
+              "text": "天星衝日，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-078",
+          "atMs": 486500,
+          "name": "08:06.500 選定團隊爆發窗口：光速＋占卜；依隊伍實際時間校正",
+          "phase": "P6 青蛙誘導",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-078-cue",
+              "offsetMs": 0,
+              "text": "光速占卜，記得發牌",
+              "priority": "normal",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-036",
+          "atMs": 489000,
+          "name": "08:09.000 青蛙分組誘導：太陽星座",
+          "phase": "P6 青蛙誘導",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m5s-ast-036-cue",
+              "offsetMs": 0,
+              "text": "太陽減傷",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-016",
+          "atMs": 496000,
+          "name": "08:16.000 青蛙誘導：成熟地星結算",
+          "phase": "P6 青蛙誘導",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-016-cue",
+              "offsetMs": 0,
+              "text": "引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-071",
+          "atMs": 508000,
+          "name": "08:28.000 死刑：擢升目前承傷坦",
+          "phase": "P6 青蛙誘導",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m5s-ast-071-cue",
+              "offsetMs": 0,
+              "text": "擢升主坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-072",
+          "atMs": 510500,
+          "name": "08:30.500 死刑：天星交錯另一坦；DoT參考窗口 08:31.500／boss",
+          "phase": "P6 青蛙誘導",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m5s-ast-072-cue",
+              "offsetMs": 0,
+              "text": "交錯副坦，準備補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-064",
+          "atMs": 527000,
+          "name": "08:47.000 即將傷害：命運之輪（短暫張開後可移動）；08:48.000 終盤地板第一輪：預先恢復團血",
+          "phase": "P7 終盤",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m5s-ast-064-cue",
+              "offsetMs": 0,
+              "text": "命運之輪，陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-dot-19",
+          "atMs": 541500,
+          "name": "09:01.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P7 終盤",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m5s-ast-dot-19-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-023",
+          "atMs": 549000,
+          "name": "09:09.000 終盤分攤與全體：大宇宙記錄傷害；09:10.000 終盤兩次全體：地星放置",
+          "phase": "P7 終盤",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-023-cue",
+              "offsetMs": 0,
+              "text": "大宇宙，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-057",
+          "atMs": 559000,
+          "name": "09:19.000 團血恢復＋持續回血；09:20.000 終盤全體二：天宮圖準備",
+          "phase": "P7 終盤",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-057-cue",
+              "offsetMs": 0,
+              "text": "天星衝日，天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-024",
+          "atMs": 562000,
+          "name": "09:22.000 終盤分攤與全體：小宇宙結算；09:23.000 終盤全體二：陽星合相強化天宮圖",
+          "phase": "P7 終盤",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-024-cue",
+              "offsetMs": 0,
+              "text": "小宇宙回血，陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-018",
+          "atMs": 568500,
+          "name": "09:28.500 終盤兩次全體：成熟地星結算",
+          "phase": "P7 終盤",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-018-cue",
+              "offsetMs": 0,
+              "text": "引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m5s-ast-051",
+          "atMs": 571500,
+          "name": "09:31.500 終盤全體二：強化天宮圖結算；DoT參考窗口 09:31.500／boss",
+          "phase": "P7 終盤",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m5s-ast-051-cue",
+              "offsetMs": 0,
+              "text": "天宮圖回血，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

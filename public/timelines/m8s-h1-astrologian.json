@@ -1,0 +1,3722 @@
+{
+  "schemaVersion": 1,
+  "id": "builtin-m8s-h1-astrologian",
+  "meta": {
+    "name": "M8S Howling Blade — H1 AST Core + Rotation [Reference Draft]",
+    "encounterId": "aac-cruiserweight-m4-savage-m8s",
+    "strategy": "H1 AST／參考開荒奶軸／獨立於 SCH／團輔須由隊伍確認",
+    "author": "FF14 Timeline Voice Coach",
+    "description": "參考草稿；僅影片公開說明的實用開荒／伐木原則可確認，未取得逐鍵字幕或作者試算表，故占星具體按鍵秒數是依公開王軸與技能限制另行編排，並非影片逐秒轉錄。全部語音啟用；只包含王與 H1 AST；DoT 為30秒參考提醒，不能讀取實際Debuff或自動判斷目標是否存活；團輔為自訂參考方案，非所有野團通用。時間假設：小怪238秒擊殺、王245秒回場；前半407秒打至1HP，後半453.4秒可選中。兩次邊界須依本隊重新校正，不能把 cactbot 的343.8/606人工錨點當絕對時間。",
+    "version": "0.1.0"
+  },
+  "encounter": {
+    "durationMs": 845000,
+    "countdownMs": 15000
+  },
+  "tracks": [
+    {
+      "id": "boss-mechanics",
+      "type": "encounter",
+      "name": "Boss Mechanics",
+      "enabledByDefault": true,
+      "events": [
+        {
+          "id": "m8s-boss-001",
+          "atMs": 14700,
+          "name": "Extraplanar Pursuit #1",
+          "phase": "P1A 開場／風塔",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-001-cue",
+              "offsetMs": -5500,
+              "text": "開場全體準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-002",
+          "atMs": 29500,
+          "name": "Stonefang / Windfang #1",
+          "phase": "P1A 開場／風塔",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-002-cue",
+              "offsetMs": -5500,
+              "text": "風石牙分攤散開",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-003",
+          "atMs": 39600,
+          "name": "Reign #1",
+          "phase": "P1A 開場／風塔",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m8s-boss-003-cue",
+              "offsetMs": -5500,
+              "text": "狼王前後刀準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-004",
+          "atMs": 52500,
+          "name": "Extraplanar Pursuit #2",
+          "phase": "P1A 開場／風塔",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-004-cue",
+              "offsetMs": -5500,
+              "text": "全體傷害準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-005",
+          "atMs": 66000,
+          "name": "Millennial Decay",
+          "phase": "P1A 開場／風塔",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-005-cue",
+              "offsetMs": -3800,
+              "text": "風塔全體準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-006",
+          "atMs": 76800,
+          "name": "Aero III #1",
+          "phase": "P1A 開場／風塔",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m8s-boss-006-cue",
+              "offsetMs": -5500,
+              "text": "擊退準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-007",
+          "atMs": 94500,
+          "name": "Prowling Gale Towers",
+          "phase": "P1A 開場／風塔",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-007-cue",
+              "offsetMs": -10200,
+              "text": "稍後風塔就位準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-008",
+          "atMs": 101300,
+          "name": "Tracking Tremors x8 #1",
+          "phase": "P1A 開場／風塔",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-008-cue",
+              "offsetMs": -11500,
+              "text": "稍後八連分攤準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-009",
+          "atMs": 114300,
+          "name": "Extraplanar Pursuit #3",
+          "phase": "P1A 開場／風塔",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-009-cue",
+              "offsetMs": -5500,
+              "text": "全體傷害準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-010",
+          "atMs": 123200,
+          "name": "Great Divide #1",
+          "phase": "P1A 開場／風塔",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m8s-boss-010-cue",
+              "offsetMs": -9900,
+              "text": "坦克分攤死刑",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-011",
+          "atMs": 145100,
+          "name": "Titanic Pursuit",
+          "phase": "P1A 開場／風塔",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-011-cue",
+              "offsetMs": -5500,
+              "text": "巨石全體準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-012",
+          "atMs": 158800,
+          "name": "Reign #2",
+          "phase": "P1A 開場／風塔",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m8s-boss-012-cue",
+              "offsetMs": -5500,
+              "text": "巨石後狼王刀",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-013",
+          "atMs": 177700,
+          "name": "Tactical Pack",
+          "phase": "P1A 開場／風塔",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-013-cue",
+              "offsetMs": -5500,
+              "text": "雙狼階段準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-014",
+          "atMs": 196900,
+          "name": "Pack Predation #1",
+          "phase": "P1B 雙狼",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-014-cue",
+              "offsetMs": -9100,
+              "text": "雙狼第一輪連線",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-015",
+          "atMs": 210800,
+          "name": "Pack Predation #2",
+          "phase": "P1B 雙狼",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-015-cue",
+              "offsetMs": -5500,
+              "text": "雙狼第二輪連線",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-016",
+          "atMs": 224800,
+          "name": "Pack Predation #3",
+          "phase": "P1B 雙狼",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-016-cue",
+              "offsetMs": -5500,
+              "text": "雙狼第三輪連線",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-017",
+          "atMs": 258000,
+          "name": "Ravenous Saber series",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-017-cue",
+              "offsetMs": -14200,
+              "text": "稍後回場五段全體",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-018",
+          "atMs": 279100,
+          "name": "Terrestrial Rage #1",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-018-cue",
+              "offsetMs": -6800,
+              "text": "大地之怒準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-019",
+          "atMs": 287400,
+          "name": "Heavensearth #1",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-019-cue",
+              "offsetMs": -5500,
+              "text": "狼影分攤散開",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-020",
+          "atMs": 303700,
+          "name": "Reign #3",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m8s-boss-020-cue",
+              "offsetMs": -7900,
+              "text": "狼王前後刀準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-021",
+          "atMs": 323700,
+          "name": "Great Divide #2",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m8s-boss-021-cue",
+              "offsetMs": -6900,
+              "text": "坦克分攤死刑",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-022",
+          "atMs": 337900,
+          "name": "Beckon Moonlight",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-022-cue",
+              "offsetMs": -11100,
+              "text": "稍後四次狼影準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-023",
+          "atMs": 350500,
+          "name": "Heavensearth #3",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-023-cue",
+              "offsetMs": -5500,
+              "text": "狼影第一輪傷害",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-024",
+          "atMs": 358900,
+          "name": "Heavensearth #4",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-024-cue",
+              "offsetMs": -5500,
+              "text": "狼影第二輪傷害",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-025",
+          "atMs": 368000,
+          "name": "Stonefang / Windfang #2",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-025-cue",
+              "offsetMs": -6400,
+              "text": "風石牙分攤散開",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-026",
+          "atMs": 377900,
+          "name": "Tracking Tremors x8 #2",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-026-cue",
+              "offsetMs": -14100,
+              "text": "稍後第二次八連分攤",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-027",
+          "atMs": 390900,
+          "name": "Extraplanar Pursuit #4",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-027-cue",
+              "offsetMs": -6600,
+              "text": "前半全體一準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-028",
+          "atMs": 405700,
+          "name": "Extraplanar Pursuit #5",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-028-cue",
+              "offsetMs": -5500,
+              "text": "前半全體二準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-029",
+          "atMs": 465400,
+          "name": "Quake III #1",
+          "phase": "P2A 風震魔印",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-029-cue",
+              "offsetMs": -7600,
+              "text": "後半全體準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-030",
+          "atMs": 477400,
+          "name": "Ultraviolent Ray #1",
+          "phase": "P2A 風震魔印",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-030-cue",
+              "offsetMs": -5500,
+              "text": "魔光點名準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-031",
+          "atMs": 488400,
+          "name": "Twinbite #1",
+          "phase": "P2A 風震魔印",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m8s-boss-031-cue",
+              "offsetMs": -7600,
+              "text": "雙坦死刑準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-032",
+          "atMs": 500500,
+          "name": "Hero's Blow #1",
+          "phase": "P2A 風震魔印",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m8s-boss-032-cue",
+              "offsetMs": -5500,
+              "text": "後半左右刀準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-033",
+          "atMs": 510500,
+          "name": "Ultraviolent Ray #2",
+          "phase": "P2A 風震魔印",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-033-cue",
+              "offsetMs": -5500,
+              "text": "第二次魔光點名",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-034",
+          "atMs": 521500,
+          "name": "Quake III #2",
+          "phase": "P2A 風震魔印",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-034-cue",
+              "offsetMs": -13700,
+              "text": "稍後全體傷害準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-035",
+          "atMs": 541700,
+          "name": "Elemental Purge",
+          "phase": "P2A 風震魔印",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-035-cue",
+              "offsetMs": -5500,
+              "text": "風震魔印準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-036",
+          "atMs": 560600,
+          "name": "Prowling Gale Towers #2",
+          "phase": "P2A 風震魔印",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-036-cue",
+              "offsetMs": -4400,
+              "text": "風塔就位準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-037",
+          "atMs": 572000,
+          "name": "Twofold Tempest",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m8s-boss-037-cue",
+              "offsetMs": -5500,
+              "text": "雙重暴風顧坦",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-038",
+          "atMs": 614100,
+          "name": "Champion's Circuit",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "movement",
+          "cues": [
+            {
+              "id": "m8s-boss-038-cue",
+              "offsetMs": -5500,
+              "text": "迴轉機制準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-039",
+          "atMs": 641800,
+          "name": "Quake III #3",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-039-cue",
+              "offsetMs": -14000,
+              "text": "稍後迴轉後全體準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-040",
+          "atMs": 655800,
+          "name": "Ultraviolent Ray #3",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-040-cue",
+              "offsetMs": -5500,
+              "text": "魔光點名準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-041",
+          "atMs": 666800,
+          "name": "Twinbite #2",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m8s-boss-041-cue",
+              "offsetMs": -6500,
+              "text": "雙坦死刑準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-042",
+          "atMs": 687200,
+          "name": "Lone Wolf's Lament",
+          "phase": "P2C 孤狼",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-042-cue",
+              "offsetMs": -5500,
+              "text": "孤狼分組準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-043",
+          "atMs": 705900,
+          "name": "Prowling Gale Towers #3",
+          "phase": "P2C 孤狼",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-043-cue",
+              "offsetMs": -5500,
+              "text": "孤狼踩塔準備",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-044",
+          "atMs": 727700,
+          "name": "Ultraviolent Ray #4",
+          "phase": "P2C 孤狼",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-044-cue",
+              "offsetMs": -7000,
+              "text": "孤狼後魔光點名",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-045",
+          "atMs": 742500,
+          "name": "Howling Eight #1",
+          "phase": "P2D 八連光彈",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-045-cue",
+              "offsetMs": -8700,
+              "text": "八連光彈第一輪",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-046",
+          "atMs": 762200,
+          "name": "Howling Eight #2",
+          "phase": "P2D 八連光彈",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-046-cue",
+              "offsetMs": -5500,
+              "text": "八連光彈第二輪",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-047",
+          "atMs": 781700,
+          "name": "Howling Eight #3",
+          "phase": "P2D 八連光彈",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-047-cue",
+              "offsetMs": -5500,
+              "text": "八連光彈第三輪",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-048",
+          "atMs": 801300,
+          "name": "Howling Eight #4",
+          "phase": "P2D 八連光彈",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-048-cue",
+              "offsetMs": -5100,
+              "text": "八連光彈第四輪",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-049",
+          "atMs": 820900,
+          "name": "Howling Eight #5",
+          "phase": "P2D 八連光彈",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-049-cue",
+              "offsetMs": -2700,
+              "text": "八連光彈第五輪",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-050",
+          "atMs": 839300,
+          "name": "Starcleaver",
+          "phase": "P2D 八連光彈",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-050-cue",
+              "offsetMs": -5500,
+              "text": "最後狂暴將至",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h1-astrologian",
+      "type": "job",
+      "name": "H1 AST — 奶軸／焚灼／爆發（參考草稿）",
+      "enabledByDefault": true,
+      "target": {
+        "positions": [
+          "H1"
+        ],
+        "jobs": [
+          "AST"
+        ]
+      },
+      "events": [
+        {
+          "id": "m8s-ast-001",
+          "atMs": -3000,
+          "name": "-00:03.000 開場全體：地星放置",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-001-cue",
+              "offsetMs": 0,
+              "text": "放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-dot-01",
+          "atMs": 1500,
+          "name": "00:01.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P1A 開場／風塔",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-dot-01-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-138",
+          "atMs": 6000,
+          "name": "00:06.000 選定團隊爆發窗口：光速＋占卜；依隊伍實際時間校正",
+          "phase": "P1A 開場／風塔",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-138-cue",
+              "offsetMs": 0,
+              "text": "光速占卜，記得發牌",
+              "priority": "normal",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-100",
+          "atMs": 11500,
+          "name": "00:11.500 預定傷害前短暫張開命運之輪",
+          "phase": "P1A 開場／風塔",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-100-cue",
+              "offsetMs": 0,
+              "text": "命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-002",
+          "atMs": 16000,
+          "name": "00:16.000 開場全體：成熟地星結算",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-002-cue",
+              "offsetMs": 0,
+              "text": "引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-dot-02",
+          "atMs": 31500,
+          "name": "00:31.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P1A 開場／風塔",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-dot-02-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-124",
+          "atMs": 44500,
+          "name": "00:44.500 依團血補陽星合相；隊友已補滿可略過",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-124-cue",
+              "offsetMs": 0,
+              "text": "血低補陽星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-088",
+          "atMs": 54000,
+          "name": "00:54.000 團血恢復＋持續回血",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-088-cue",
+              "offsetMs": 0,
+              "text": "天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-003",
+          "atMs": 60000,
+          "name": "01:00.000 風塔分散：地星放置；DoT參考窗口 01:01.500／boss",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-003-cue",
+              "offsetMs": 0,
+              "text": "放地星，準備補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-004",
+          "atMs": 79000,
+          "name": "01:19.000 風塔分散：成熟地星結算",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-004-cue",
+              "offsetMs": 0,
+              "text": "引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-125",
+          "atMs": 86500,
+          "name": "01:26.500 依團血補陽星合相；隊友已補滿可略過",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-125-cue",
+              "offsetMs": 0,
+              "text": "血低補陽星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-037",
+          "atMs": 92000,
+          "name": "01:32.000 風塔後八連：中間學派；DoT參考窗口 01:31.500／boss",
+          "phase": "P1A 開場／風塔",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-037-cue",
+              "offsetMs": 0,
+              "text": "中間學派，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-038",
+          "atMs": 95000,
+          "name": "01:35.000 風塔後八連：中間學派下陽星合相；01:36.000 第一次八連：天宮圖準備",
+          "phase": "P1A 開場／風塔",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-038-cue",
+              "offsetMs": 0,
+              "text": "陽星群盾，天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-029",
+          "atMs": 98000,
+          "name": "01:38.000 前半八連：大宇宙記錄傷害；01:39.000 預定傷害前短暫張開命運之輪；01:39.500 風塔後八連：太陽星座",
+          "phase": "P1A 開場／風塔",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-029-cue",
+              "offsetMs": 0,
+              "text": "大宇宙，命運之輪，太陽減傷",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-056",
+          "atMs": 100500,
+          "name": "01:40.500 第一次八連：陽星合相強化天宮圖",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-056-cue",
+              "offsetMs": 0,
+              "text": "陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-057",
+          "atMs": 111000,
+          "name": "01:51.000 第一次八連：強化天宮圖結算；01:52.000 前半八連：小宇宙結算",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-057-cue",
+              "offsetMs": 0,
+              "text": "天宮圖回血，小宇宙回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-089",
+          "atMs": 115500,
+          "name": "01:55.500 團血恢復＋持續回血",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-089-cue",
+              "offsetMs": 0,
+              "text": "天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-111",
+          "atMs": 119200,
+          "name": "01:59.200 預定坦傷：擢升承傷坦",
+          "phase": "P1A 開場／風塔",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-111-cue",
+              "offsetMs": 0,
+              "text": "擢升承傷坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-112",
+          "atMs": 121700,
+          "name": "02:01.700 另一坦：天星交錯；DoT參考窗口 02:01.500／boss",
+          "phase": "P1A 開場／風塔",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-112-cue",
+              "offsetMs": 0,
+              "text": "交錯另一坦，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-139",
+          "atMs": 126000,
+          "name": "02:06.000 選定團隊爆發窗口：光速＋占卜；依隊伍實際時間校正",
+          "phase": "P1A 開場／風塔",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-139-cue",
+              "offsetMs": 0,
+              "text": "光速占卜，記得發牌",
+              "priority": "normal",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-005",
+          "atMs": 129000,
+          "name": "02:09.000 巨石全體：地星放置",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-005-cue",
+              "offsetMs": 0,
+              "text": "放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-006",
+          "atMs": 146500,
+          "name": "02:26.500 巨石全體：成熟地星結算",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-006-cue",
+              "offsetMs": 0,
+              "text": "引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-dot-06",
+          "atMs": 151500,
+          "name": "02:31.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P1A 開場／風塔",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-dot-06-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-058",
+          "atMs": 156000,
+          "name": "02:36.000 巨石後狼王刀：天宮圖準備",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-058-cue",
+              "offsetMs": 0,
+              "text": "天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-059",
+          "atMs": 158500,
+          "name": "02:38.500 巨石後狼王刀：陽星合相強化天宮圖",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-059-cue",
+              "offsetMs": 0,
+              "text": "陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-102",
+          "atMs": 161000,
+          "name": "02:41.000 預定傷害前短暫張開命運之輪",
+          "phase": "P1A 開場／風塔",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-102-cue",
+              "offsetMs": 0,
+              "text": "命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-060",
+          "atMs": 168000,
+          "name": "02:48.000 巨石後狼王刀：強化天宮圖結算",
+          "phase": "P1A 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-060-cue",
+              "offsetMs": 0,
+              "text": "天宮圖回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-007",
+          "atMs": 190000,
+          "name": "03:10.000 雙狼團血：地星放置；DoT參考窗口 03:09.300／priority-add",
+          "phase": "P1B 雙狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-007-cue",
+              "offsetMs": 0,
+              "text": "放地星，活怪補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-113",
+          "atMs": 193000,
+          "name": "03:13.000 預定坦傷：擢升承傷坦",
+          "phase": "P1B 雙狼",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-113-cue",
+              "offsetMs": 0,
+              "text": "擢升承傷坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-114",
+          "atMs": 195500,
+          "name": "03:15.500 另一坦：天星交錯",
+          "phase": "P1B 雙狼",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-114-cue",
+              "offsetMs": 0,
+              "text": "交錯另一坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-090",
+          "atMs": 201000,
+          "name": "03:21.000 團血恢復＋持續回血",
+          "phase": "P1B 雙狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-090-cue",
+              "offsetMs": 0,
+              "text": "天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-008",
+          "atMs": 208000,
+          "name": "03:28.000 雙狼團血：成熟地星結算",
+          "phase": "P1B 雙狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-008-cue",
+              "offsetMs": 0,
+              "text": "引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-dot-08",
+          "atMs": 219300,
+          "name": "03:39.300 焚灼（Combust III）30秒參考更新／priority-add",
+          "phase": "P1B 雙狼",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-dot-08-cue",
+              "offsetMs": -2200,
+              "text": "活怪準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-061",
+          "atMs": 222000,
+          "name": "03:42.000 雙狼最後連線：天宮圖準備",
+          "phase": "P1B 雙狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-061-cue",
+              "offsetMs": 0,
+              "text": "天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-062",
+          "atMs": 224500,
+          "name": "03:44.500 雙狼最後連線：陽星合相強化天宮圖",
+          "phase": "P1B 雙狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-062-cue",
+              "offsetMs": 0,
+              "text": "陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-063",
+          "atMs": 232000,
+          "name": "03:52.000 雙狼最後連線：強化天宮圖結算",
+          "phase": "P1B 雙狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-063-cue",
+              "offsetMs": 0,
+              "text": "天宮圖回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-140",
+          "atMs": 246000,
+          "name": "04:06.000 選定團隊爆發窗口：光速＋占卜；依隊伍實際時間校正；DoT參考窗口 04:05.500／boss",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-140-cue",
+              "offsetMs": 0,
+              "text": "光速占卜，發牌，補焚灼",
+              "priority": "normal",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-040",
+          "atMs": 248500,
+          "name": "04:08.500 雙狼回場：中間學派",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-040-cue",
+              "offsetMs": 0,
+              "text": "中間學派",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-009",
+          "atMs": 251000,
+          "name": "04:11.000 雙狼後五段傷害：地星放置；04:12.000 雙狼回場：中間學派下陽星合相",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-009-cue",
+              "offsetMs": 0,
+              "text": "放地星，陽星群盾",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-103",
+          "atMs": 255000,
+          "name": "04:15.000 預定傷害前短暫張開命運之輪；04:16.000 雙狼回場：太陽星座",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-103-cue",
+              "offsetMs": 0,
+              "text": "命運之輪，太陽減傷",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-010",
+          "atMs": 263000,
+          "name": "04:23.000 雙狼後五段傷害：成熟地星結算；04:24.000 團血恢復＋持續回血",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-010-cue",
+              "offsetMs": 0,
+              "text": "引爆地星，天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-dot-10",
+          "atMs": 275500,
+          "name": "04:35.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-dot-10-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-064",
+          "atMs": 298000,
+          "name": "04:58.000 狼王刀後團血：天宮圖準備",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-064-cue",
+              "offsetMs": 0,
+              "text": "天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-065",
+          "atMs": 300500,
+          "name": "05:00.500 狼王刀後團血：陽星合相強化天宮圖",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-065-cue",
+              "offsetMs": 0,
+              "text": "陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-066",
+          "atMs": 307000,
+          "name": "05:07.000 狼王刀後團血：強化天宮圖結算；DoT參考窗口 05:05.500／boss",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-066-cue",
+              "offsetMs": 0,
+              "text": "天宮圖回血，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-011",
+          "atMs": 311000,
+          "name": "05:11.000 狼王刀與坦傷：地星放置",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-011-cue",
+              "offsetMs": 0,
+              "text": "放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-104",
+          "atMs": 319000,
+          "name": "05:19.000 預定傷害前短暫張開命運之輪；05:20.000 預定坦傷：擢升承傷坦",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-104-cue",
+              "offsetMs": 0,
+              "text": "命運之輪，擢升承傷坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-116",
+          "atMs": 322500,
+          "name": "05:22.500 另一坦：天星交錯",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-116-cue",
+              "offsetMs": 0,
+              "text": "交錯另一坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-012",
+          "atMs": 329000,
+          "name": "05:29.000 狼王刀與坦傷：成熟地星結算",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-012-cue",
+              "offsetMs": 0,
+              "text": "引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-092",
+          "atMs": 332000,
+          "name": "05:32.000 團血恢復＋持續回血",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-092-cue",
+              "offsetMs": 0,
+              "text": "天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-dot-12",
+          "atMs": 335500,
+          "name": "05:35.500 焚灼（Combust III）30秒參考更新／boss",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-dot-12-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-126",
+          "atMs": 351000,
+          "name": "05:51.000 依團血補陽星合相；隊友已補滿可略過",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-126-cue",
+              "offsetMs": 0,
+              "text": "血低補陽星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-127",
+          "atMs": 357000,
+          "name": "05:57.000 依團血補陽星合相；隊友已補滿可略過",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-127-cue",
+              "offsetMs": 0,
+              "text": "血低補陽星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-141",
+          "atMs": 366000,
+          "name": "06:06.000 選定團隊爆發窗口：光速＋占卜；依隊伍實際時間校正；DoT參考窗口 06:05.500／boss",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-141-cue",
+              "offsetMs": 0,
+              "text": "光速占卜，發牌，補焚灼",
+              "priority": "normal",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-043",
+          "atMs": 370000,
+          "name": "06:10.000 前半第二輪八連：中間學派；06:12.000 前半第二次八連：天宮圖準備",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-043-cue",
+              "offsetMs": 0,
+              "text": "中間學派，天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-013",
+          "atMs": 373000,
+          "name": "06:13.000 前半八連：地星放置；06:13.000 前半第二輪八連：中間學派下陽星合相；06:13.000 前半第二次八連：陽星合相強化天宮圖",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-013-cue",
+              "offsetMs": 0,
+              "text": "放地星，陽星群盾，陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-031",
+          "atMs": 376000,
+          "name": "06:16.000 前半八連與全體：大宇宙記錄傷害；06:18.000 前半第二輪八連：太陽星座",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-031-cue",
+              "offsetMs": 0,
+              "text": "大宇宙，太陽減傷",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-069",
+          "atMs": 386500,
+          "name": "06:26.500 前半第二次八連：強化天宮圖結算；06:27.500 預定傷害前短暫張開命運之輪",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-069-cue",
+              "offsetMs": 0,
+              "text": "天宮圖回血，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-014",
+          "atMs": 389000,
+          "name": "06:29.000 前半八連：成熟地星結算；06:30.500 前半八連與全體：小宇宙結算",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-014-cue",
+              "offsetMs": 0,
+              "text": "引爆地星，小宇宙回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-093",
+          "atMs": 394000,
+          "name": "06:34.000 團血恢復＋持續回血",
+          "phase": "P1C 狼影／連續傷害",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-093-cue",
+              "offsetMs": 0,
+              "text": "天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-015",
+          "atMs": 450000,
+          "name": "07:30.000 後半開場全體：地星放置",
+          "phase": "轉場（參考）",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-015-cue",
+              "offsetMs": 0,
+              "text": "放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-dot-14",
+          "atMs": 453900,
+          "name": "07:33.900 焚灼（Combust III）30秒參考更新／boss-p2",
+          "phase": "P2A 風震魔印",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-dot-14-cue",
+              "offsetMs": -500,
+              "text": "補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-070",
+          "atMs": 460000,
+          "name": "07:40.000 後半開場與魔光：天宮圖準備；07:41.800 預定傷害前短暫張開命運之輪",
+          "phase": "P2A 風震魔印",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-070-cue",
+              "offsetMs": 0,
+              "text": "天宮圖，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-071",
+          "atMs": 462500,
+          "name": "07:42.500 後半開場與魔光：陽星合相強化天宮圖",
+          "phase": "P2A 風震魔印",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-071-cue",
+              "offsetMs": 0,
+              "text": "陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-016",
+          "atMs": 469000,
+          "name": "07:49.000 後半開場全體：成熟地星結算；07:50.000 團血恢復＋持續回血",
+          "phase": "P2A 風震魔印",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-016-cue",
+              "offsetMs": 0,
+              "text": "引爆地星，天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-128",
+          "atMs": 478500,
+          "name": "07:58.500 依團血補陽星合相；隊友已補滿可略過；07:59.000 後半開場與魔光：強化天宮圖結算",
+          "phase": "P2A 風震魔印",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-128-cue",
+              "offsetMs": 0,
+              "text": "血低補陽星，天宮圖回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-117",
+          "atMs": 483000,
+          "name": "08:03.000 預定坦傷：擢升承傷坦；DoT參考窗口 08:03.900／boss-p2",
+          "phase": "P2A 風震魔印",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-117-cue",
+              "offsetMs": 0,
+              "text": "擢升承傷坦，準備補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-142",
+          "atMs": 486000,
+          "name": "08:06.000 選定團隊爆發窗口：光速＋占卜；依隊伍實際時間校正；08:07.000 另一坦：天星交錯",
+          "phase": "P2A 風震魔印",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-142-cue",
+              "offsetMs": 0,
+              "text": "光速占卜，記得發牌，交錯另一坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-017",
+          "atMs": 510000,
+          "name": "08:30.000 後半第二次全體：地星放置；08:31.000 後半全體與風震：中間學派",
+          "phase": "P2A 風震魔印",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-017-cue",
+              "offsetMs": 0,
+              "text": "放地星，中間學派",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-047",
+          "atMs": 514000,
+          "name": "08:34.000 後半全體與風震：中間學派下陽星合相；DoT參考窗口 08:33.900／boss-p2",
+          "phase": "P2A 風震魔印",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-047-cue",
+              "offsetMs": 0,
+              "text": "陽星群盾，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-048",
+          "atMs": 518000,
+          "name": "08:38.000 後半全體與風震：太陽星座",
+          "phase": "P2A 風震魔印",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-048-cue",
+              "offsetMs": 0,
+              "text": "太陽減傷",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-018",
+          "atMs": 524000,
+          "name": "08:44.000 後半第二次全體：成熟地星結算",
+          "phase": "P2A 風震魔印",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-018-cue",
+              "offsetMs": 0,
+              "text": "引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-073",
+          "atMs": 531000,
+          "name": "08:51.000 風震魔印：天宮圖準備",
+          "phase": "P2A 風震魔印",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-073-cue",
+              "offsetMs": 0,
+              "text": "天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-074",
+          "atMs": 533500,
+          "name": "08:53.500 風震魔印：陽星合相強化天宮圖",
+          "phase": "P2A 風震魔印",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-074-cue",
+              "offsetMs": 0,
+              "text": "陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-dot-17",
+          "atMs": 543900,
+          "name": "09:03.900 焚灼（Combust III）30秒參考更新／boss-p2",
+          "phase": "P2A 風震魔印",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-dot-17-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-095",
+          "atMs": 547000,
+          "name": "09:07.000 團血恢復＋持續回血；09:09.000 風震魔印：強化天宮圖結算",
+          "phase": "P2A 風震魔印",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-095-cue",
+              "offsetMs": 0,
+              "text": "天星衝日，天宮圖回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-129",
+          "atMs": 554000,
+          "name": "09:14.000 依團血補陽星合相；隊友已補滿可略過",
+          "phase": "P2A 風震魔印",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-129-cue",
+              "offsetMs": 0,
+              "text": "血低補陽星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-019",
+          "atMs": 570000,
+          "name": "09:30.000 雙重暴風：地星放置",
+          "phase": "P2A 風震魔印",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-019-cue",
+              "offsetMs": 0,
+              "text": "放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-119",
+          "atMs": 574000,
+          "name": "09:34.000 預定坦傷：擢升承傷坦；09:35.000 双重暴風連續傷害：大宇宙記錄傷害；DoT參考窗口 09:33.900／boss-p2",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-119-cue",
+              "offsetMs": 0,
+              "text": "擢升承傷坦，大宇宙，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-120",
+          "atMs": 576500,
+          "name": "09:36.500 另一坦：天星交錯；09:36.800 預定傷害前短暫張開命運之輪",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-120-cue",
+              "offsetMs": 0,
+              "text": "交錯另一坦，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-123",
+          "atMs": 586000,
+          "name": "09:46.000 雙重暴風：坦低時先天稟賦，非必須按滿",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-123-cue",
+              "offsetMs": 0,
+              "text": "坦低先天稟賦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-020",
+          "atMs": 588500,
+          "name": "09:48.500 雙重暴風：成熟地星結算；09:49.500 双重暴風連續傷害：小宇宙結算",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-020-cue",
+              "offsetMs": 0,
+              "text": "引爆地星，小宇宙回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-130",
+          "atMs": 594000,
+          "name": "09:54.000 依團血補陽星合相；隊友已補滿可略過",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-130-cue",
+              "offsetMs": 0,
+              "text": "血低補陽星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-076",
+          "atMs": 602000,
+          "name": "10:02.000 迴轉前預補：天宮圖準備；10:03.000 迴轉前預補：陽星合相強化天宮圖；DoT參考窗口 10:03.900／boss-p2",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-076-cue",
+              "offsetMs": 0,
+              "text": "天宮圖，陽星合相，準備補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-143",
+          "atMs": 606000,
+          "name": "10:06.000 選定團隊爆發窗口：光速＋占卜；依隊伍實際時間校正",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-143-cue",
+              "offsetMs": 0,
+              "text": "光速占卜，記得發牌",
+              "priority": "normal",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-078",
+          "atMs": 618000,
+          "name": "10:18.000 迴轉前預補：強化天宮圖結算",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-078-cue",
+              "offsetMs": 0,
+              "text": "天宮圖回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-096",
+          "atMs": 625000,
+          "name": "10:25.000 團血恢復＋持續回血",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-096-cue",
+              "offsetMs": 0,
+              "text": "天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-021",
+          "atMs": 630000,
+          "name": "10:30.000 迴轉後全體：地星放置",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-021-cue",
+              "offsetMs": 0,
+              "text": "放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-049",
+          "atMs": 634000,
+          "name": "10:34.000 迴轉後全體：中間學派；DoT參考窗口 10:33.900／boss-p2",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-049-cue",
+              "offsetMs": 0,
+              "text": "中間學派，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-050",
+          "atMs": 637000,
+          "name": "10:37.000 迴轉後全體：中間學派下陽星合相；10:38.500 預定傷害前短暫張開命運之輪",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-050-cue",
+              "offsetMs": 0,
+              "text": "陽星群盾，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-051",
+          "atMs": 641000,
+          "name": "10:41.000 迴轉後全體：太陽星座",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-051-cue",
+              "offsetMs": 0,
+              "text": "太陽減傷",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-022",
+          "atMs": 648000,
+          "name": "10:48.000 迴轉後全體：成熟地星結算",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-022-cue",
+              "offsetMs": 0,
+              "text": "引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-121",
+          "atMs": 662500,
+          "name": "11:02.500 預定坦傷：擢升承傷坦",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-121-cue",
+              "offsetMs": 0,
+              "text": "擢升承傷坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-122",
+          "atMs": 665000,
+          "name": "11:05.000 另一坦：天星交錯；DoT參考窗口 11:03.900／boss-p2",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-122-cue",
+              "offsetMs": 0,
+              "text": "交錯另一坦，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-079",
+          "atMs": 674000,
+          "name": "11:14.000 孤狼前預補：天宮圖準備",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-079-cue",
+              "offsetMs": 0,
+              "text": "天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-080",
+          "atMs": 676500,
+          "name": "11:16.500 孤狼前預補：陽星合相強化天宮圖",
+          "phase": "P2B 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-080-cue",
+              "offsetMs": 0,
+              "text": "陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-081",
+          "atMs": 690000,
+          "name": "11:30.000 孤狼前預補：強化天宮圖結算；11:31.000 孤狼踩塔：地星放置",
+          "phase": "P2C 孤狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-081-cue",
+              "offsetMs": 0,
+              "text": "天宮圖回血，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-dot-22",
+          "atMs": 693900,
+          "name": "11:33.900 焚灼（Combust III）30秒參考更新／boss-p2",
+          "phase": "P2C 孤狼",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-dot-22-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-024",
+          "atMs": 708000,
+          "name": "11:48.000 孤狼踩塔：成熟地星結算；11:48.000 團血恢復＋持續回血",
+          "phase": "P2C 孤狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-024-cue",
+              "offsetMs": 0,
+              "text": "引爆地星，天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-131",
+          "atMs": 715000,
+          "name": "11:55.000 依團血補陽星合相；隊友已補滿可略過",
+          "phase": "P2C 孤狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-131-cue",
+              "offsetMs": 0,
+              "text": "血低補陽星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-dot-23",
+          "atMs": 723900,
+          "name": "12:03.900 焚灼（Combust III）30秒參考更新／boss-p2",
+          "phase": "P2C 孤狼",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-dot-23-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-144",
+          "atMs": 726000,
+          "name": "12:06.000 選定團隊爆發窗口：光速＋占卜；依隊伍實際時間校正；12:08.000 依團血補陽星合相；隊友已補滿可略過",
+          "phase": "P2C 孤狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-144-cue",
+              "offsetMs": 0,
+              "text": "光速占卜，記得發牌，血低補陽星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-082",
+          "atMs": 736000,
+          "name": "12:16.000 第一輪八連：天宮圖準備",
+          "phase": "P2C 孤狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-082-cue",
+              "offsetMs": 0,
+              "text": "天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-083",
+          "atMs": 738500,
+          "name": "12:18.500 第一輪八連：陽星合相強化天宮圖；12:19.000 預定傷害前短暫張開命運之輪",
+          "phase": "P2C 孤狼",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-083-cue",
+              "offsetMs": 0,
+              "text": "陽星合相，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-133",
+          "atMs": 745500,
+          "name": "12:25.500 依團血補陽星合相；隊友已補滿可略過",
+          "phase": "P2D 八連光彈",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-133-cue",
+              "offsetMs": 0,
+              "text": "血低補陽星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-084",
+          "atMs": 750500,
+          "name": "12:30.500 第一輪八連：強化天宮圖結算；12:32.000 第二輪八連：地星放置",
+          "phase": "P2D 八連光彈",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-084-cue",
+              "offsetMs": 0,
+              "text": "天宮圖回血，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-dot-24",
+          "atMs": 753900,
+          "name": "12:33.900 焚灼（Combust III）30秒參考更新／boss-p2",
+          "phase": "P2D 八連光彈",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-ast-dot-24-cue",
+              "offsetMs": -1000,
+              "text": "準備補焚灼",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-134",
+          "atMs": 765000,
+          "name": "12:45.000 依團血補陽星合相；隊友已補滿可略過",
+          "phase": "P2D 八連光彈",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-134-cue",
+              "offsetMs": 0,
+              "text": "血低補陽星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-098",
+          "atMs": 769000,
+          "name": "12:49.000 團血恢復＋持續回血；12:50.000 第二輪八連：成熟地星結算",
+          "phase": "P2D 八連光彈",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-098-cue",
+              "offsetMs": 0,
+              "text": "天星衝日，引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-035",
+          "atMs": 780000,
+          "name": "13:00.000 第三輪八連光彈：大宇宙記錄傷害",
+          "phase": "P2D 八連光彈",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-035-cue",
+              "offsetMs": 0,
+              "text": "大宇宙",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-135",
+          "atMs": 784500,
+          "name": "13:04.500 依團血補陽星合相；隊友已補滿可略過；DoT參考窗口 13:03.900／boss-p2",
+          "phase": "P2D 八連光彈",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-135-cue",
+              "offsetMs": 0,
+              "text": "血低補陽星，補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-036",
+          "atMs": 794000,
+          "name": "13:14.000 第三輪八連光彈：小宇宙結算",
+          "phase": "P2D 八連光彈",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-036-cue",
+              "offsetMs": 0,
+              "text": "小宇宙回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-085",
+          "atMs": 799000,
+          "name": "13:19.000 後兩輪八連：天宮圖準備；13:21.000 預定傷害前短暫張開命運之輪",
+          "phase": "P2D 八連光彈",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-085-cue",
+              "offsetMs": 0,
+              "text": "天宮圖，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-086",
+          "atMs": 801500,
+          "name": "13:21.500 後兩輪八連：陽星合相強化天宮圖",
+          "phase": "P2D 八連光彈",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-086-cue",
+              "offsetMs": 0,
+              "text": "陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-136",
+          "atMs": 804000,
+          "name": "13:24.000 依團血補陽星合相；隊友已補滿可略過；13:26.000 最後兩輪八連：中間學派",
+          "phase": "P2D 八連光彈",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-136-cue",
+              "offsetMs": 0,
+              "text": "血低補陽星，中間學派",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-053",
+          "atMs": 808500,
+          "name": "13:28.500 最後兩輪八連：中間學派下陽星合相",
+          "phase": "P2D 八連光彈",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-ast-053-cue",
+              "offsetMs": 0,
+              "text": "陽星群盾",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-027",
+          "atMs": 813000,
+          "name": "13:33.000 最後八連：地星放置；DoT參考窗口 13:33.900／boss-p2",
+          "phase": "P2D 八連光彈",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-027-cue",
+              "offsetMs": 0,
+              "text": "放地星，準備補焚灼",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-054",
+          "atMs": 816000,
+          "name": "13:36.000 最後兩輪八連：太陽星座",
+          "phase": "P2D 八連光彈",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-ast-054-cue",
+              "offsetMs": 0,
+              "text": "太陽減傷",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-137",
+          "atMs": 824000,
+          "name": "13:44.000 依團血補陽星合相；隊友已補滿可略過",
+          "phase": "P2D 八連光彈",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-137-cue",
+              "offsetMs": 0,
+              "text": "血低補陽星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m8s-ast-087",
+          "atMs": 829000,
+          "name": "13:49.000 後兩輪八連：強化天宮圖結算；13:51.000 最後八連：成熟地星結算；13:51.000 團血恢復＋持續回血",
+          "phase": "P2D 八連光彈",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-ast-087-cue",
+              "offsetMs": 0,
+              "text": "天宮圖回血，引爆地星，天星衝日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
