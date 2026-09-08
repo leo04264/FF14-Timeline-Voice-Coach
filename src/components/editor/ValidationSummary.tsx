@@ -4,6 +4,7 @@ import { describeTarget } from '../../timeline/target';
 import { formatMs } from '../../timeline/time';
 import type { TimelinePackage } from '../../timeline/types';
 import type { ValidationIssue, ValidationReport } from '../../timeline/validator';
+import { eventAtMs as eventAtMsResolved } from '../../timeline/resolveEventTiming';
 
 interface ValidationSummaryProps {
   timeline: TimelinePackage;
@@ -62,12 +63,16 @@ function findIssueContext(timeline: TimelinePackage, issue: ValidationIssue): Is
     ? event?.cues.find((candidate) => candidate.id === issue.cueId)
     : undefined;
 
+  // Times always come from the shared resolver, so a mechanic-linked reminder
+  // reports the live source time here too (spec §3.1).
+  const eventAtMs = event ? eventAtMsResolved(timeline, event) : undefined;
+
   return {
     trackName: track ? track.name || '（未命名軌道）' : undefined,
     eventName: event ? event.name || '（未命名事件）' : undefined,
-    eventAtMs: event?.atMs,
+    eventAtMs,
     cueText: cue ? cue.text || '（空白提示）' : undefined,
-    cueTriggerMs: cue && event ? event.atMs + cue.offsetMs : undefined,
+    cueTriggerMs: cue && eventAtMs !== undefined ? eventAtMs + cue.offsetMs : undefined,
   };
 }
 

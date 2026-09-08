@@ -1,6 +1,8 @@
+import { useMemo } from 'react';
 import { EVENT_CATEGORY_LABEL } from '../../i18n/labels';
 import type { CollisionReport } from '../../timeline/collision';
-import { addEvent, duplicateEvent, removeEvent, sortTrackEvents, updateEvent } from '../../timeline/edits';
+import { addEvent, duplicateEvent, sortTrackEvents, updateEvent } from '../../timeline/edits';
+import { buildMechanicIndex, resolveEventTiming } from '../../timeline/resolveEventTiming';
 import { formatMs } from '../../timeline/time';
 import type { TimelinePackage, TimelineTrack } from '../../timeline/types';
 
@@ -11,6 +13,11 @@ interface EventTableProps {
   collisions: CollisionReport;
   onSelectEvent(eventId: string): void;
   onChange(next: TimelinePackage): void;
+  /**
+   * Deleting goes through the page so reference safety applies to this older
+   * advanced editor too, not just the new list (spec §6.2).
+   */
+  onRequestDeleteEvent(trackId: string, eventId: string): void;
 }
 
 /** Event table (spec §56). */
@@ -21,7 +28,10 @@ export function EventTable({
   collisions,
   onSelectEvent,
   onChange,
+  onRequestDeleteEvent,
 }: EventTableProps) {
+  const index = useMemo(() => buildMechanicIndex(timeline), [timeline]);
+
   const collisionCount = (eventId: string) => {
     const event = track.events.find((candidate) => candidate.id === eventId);
     if (!event) return 0;
@@ -77,6 +87,7 @@ export function EventTable({
           {track.events.map((event) => {
             const enabledCues = event.cues.filter((cue) => cue.enabled !== false).length;
             const collisionsHere = collisionCount(event.id);
+            const resolved = resolveEventTiming(event, track.id, index);
             return (
               <tr
                 key={event.id}
@@ -84,8 +95,17 @@ export function EventTable({
                 className={event.id === selectedEventId ? 'selected' : ''}
                 onClick={() => onSelectEvent(event.id)}
               >
-                <td className="mono">{formatMs(event.atMs)}</td>
-                <td>{event.phase ?? ''}</td>
+                <td className="mono">
+                  {resolved.atMs === undefined ? (
+                    <span className="text-error">連動失效</span>
+                  ) : (
+                    formatMs(resolved.atMs)
+                  )}
+                  {event.timing.kind === 'mechanic' ? (
+                    <span className="badge" title="時間連動到王機制">連動</span>
+                  ) : null}
+                </td>
+                <td>{resolved.phase ?? ''}</td>
                 <td>{event.name || <span className="muted">（未命名）</span>}</td>
                 <td>
                   <span className="badge">{EVENT_CATEGORY_LABEL[event.category]}</span>
@@ -137,7 +157,7 @@ export function EventTable({
                       className="ghost small"
                       onClick={(clickEvent) => {
                         clickEvent.stopPropagation();
-                        onChange(removeEvent(timeline, track.id, event.id));
+                        onRequestDeleteEvent(track.id, event.id);
                       }}
                     >
                       刪除

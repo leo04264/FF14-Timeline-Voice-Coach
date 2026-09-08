@@ -10,7 +10,8 @@ import {
   type CollisionCueRef,
   type CollisionPair,
 } from '../../timeline/collision';
-import { appendMechanicAction } from '../../timeline/edits';
+import { appendMechanicAction, type MechanicActionMode } from '../../timeline/edits';
+import { buildMechanicIndex, resolveEventTiming } from '../../timeline/resolveEventTiming';
 import { formatMs } from '../../timeline/time';
 import {
   CUE_PRIORITIES,
@@ -74,6 +75,7 @@ export function MechanicActionPanel({
   const [priority, setPriority] = useState<CuePriority>('normal');
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [lastAdded, setLastAdded] = useState<AddedActionRef | null>(null);
+  const [mode, setMode] = useState<MechanicActionMode>('linked');
 
   const targetTrack =
     targetTracks.find((track) => track.id === targetTrackId) ?? targetTracks[0] ?? null;
@@ -84,17 +86,22 @@ export function MechanicActionPanel({
     setCategory(defaultCategory(targetTracks[0].type));
   }, [targetTrack, targetTracks]);
 
-  const sameTimeEvents = useMemo(
-    () =>
-      targetTracks.flatMap((track) =>
-        track.events
-          .filter((event) => event.atMs === sourceEvent.atMs)
-          .map((event) => ({ track, event })),
-      ),
-    [sourceEvent.atMs, targetTracks],
+  const sourceAtMs = useMemo(
+    () => resolveEventTiming(sourceEvent, sourceTrack.id, buildMechanicIndex(timeline)).atMs,
+    [sourceEvent, sourceTrack.id, timeline],
   );
 
-  const triggerMs = sourceEvent.atMs + cueOffsetMs;
+  const sameTimeEvents = useMemo(() => {
+    if (sourceAtMs === undefined) return [];
+    const index = buildMechanicIndex(timeline);
+    return targetTracks.flatMap((track) =>
+      track.events
+        .filter((event) => resolveEventTiming(event, track.id, index).atMs === sourceAtMs)
+        .map((event) => ({ track, event })),
+    );
+  }, [sourceAtMs, targetTracks, timeline]);
+
+  const triggerMs = (sourceAtMs ?? 0) + cueOffsetMs;
   const inputError =
     eventName.trim() === ''
       ? '動作名稱不能空白'
@@ -140,10 +147,28 @@ export function MechanicActionPanel({
           其他軌道動作
         </h3>
         <span className="spacer" />
-        <span className="badge mono">{formatMs(sourceEvent.atMs)}</span>
+        <span className="badge mono">
+          {sourceAtMs === undefined ? '—' : formatMs(sourceAtMs)}
+        </span>
+      </div>
+      <div className="row">
+        <label className="field">
+          時間關係
+          <select
+            value={mode}
+            onChange={(changeEvent) =>
+              setMode(changeEvent.target.value as MechanicActionMode)
+            }
+          >
+            <option value="linked">連動到來源機制（機制移動時跟著移動）</option>
+            <option value="fixed">固定時間（僅複製目前秒數，之後不跟著移動）</option>
+          </select>
+        </label>
       </div>
       <p className="small muted mechanic-action-help">
-        以「{sourceEvent.name || '未命名王機制'}」的時間建立一般事件；新增後會獨立編輯，不會因王機制時間變更而自動移動。
+        {mode === 'linked'
+          ? `以「${sourceEvent.name || '未命名王機制'}」為錨點建立連動事件：之後移動這個王機制，新事件與它的提示會一起移動，前後偏移不變。`
+          : `只複製「${sourceEvent.name || '未命名王機制'}」目前的秒數建立獨立事件：之後王機制時間改變時，這個事件不會跟著動。`}
       </p>
 
       {sameTimeEvents.length > 0 ? (
@@ -311,7 +336,7 @@ export function MechanicActionPanel({
                 sourceTrack.id,
                 sourceEvent.id,
                 targetTrack.id,
-                { eventName, category, cueText, cueOffsetMs, priority },
+                { eventName, category, cueText, cueOffsetMs, priority, mode },
               );
               if (!result.ok) {
                 setSubmitError(result.error);

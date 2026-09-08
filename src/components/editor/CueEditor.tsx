@@ -7,6 +7,7 @@ import { CUE_PRIORITIES, type CuePriority, type TimelineCue, type TimelineEvent,
 import { cueTextLengthLevel, measureCueText } from '../../timeline/validator';
 import { TargetEditor } from './TargetEditor';
 import { TimeInput } from './TimeInput';
+import { eventAtMs as resolvedEventAtMs } from '../../timeline/resolveEventTiming';
 
 interface CueEditorProps {
   timeline: TimelinePackage;
@@ -31,6 +32,8 @@ export function CueEditor({
   const patch = (updater: (current: TimelineCue) => TimelineCue) =>
     onChange(updateCue(timeline, trackId, event.id, cue.id, updater));
 
+  const eventAtMs = resolvedEventAtMs(timeline, event);
+  const triggerMs = eventAtMs === undefined ? undefined : eventAtMs + cue.offsetMs;
   const lengthLevel = cueTextLengthLevel(cue.text);
   const pairs = collisions.byCueId.get(cue.id) ?? [];
   const audio = cue.audio ?? {};
@@ -43,7 +46,9 @@ export function CueEditor({
     >
       <div className="row">
         <strong className="small">語音提示</strong>
-        <span className="mono small muted">觸發於 {formatMs(event.atMs + cue.offsetMs)}</span>
+        <span className="mono small muted">
+          {triggerMs === undefined ? '觸發時間未知（連動來源失效）' : `觸發於 ${formatMs(triggerMs)}`}
+        </span>
         <span className="spacer" />
         <label className="check small">
           <input
