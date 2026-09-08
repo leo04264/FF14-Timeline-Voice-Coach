@@ -1,5 +1,5 @@
 import { createId } from './ids';
-import type { TimelinePackage, TimelineTrack } from './types';
+import { absoluteTiming, type TimelinePackage, type TimelineTrack } from './types';
 
 /**
  * In-source demo timeline. Used by unit tests and as the "New from example"
@@ -7,7 +7,7 @@ import type { TimelinePackage, TimelineTrack } from './types';
  * `/public/timelines/` (spec §64).
  */
 export const EXAMPLE_TIMELINE: TimelinePackage = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   id: 'example-demo-encounter',
   meta: {
     name: '示範時間軸',
@@ -30,7 +30,7 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
       events: [
         {
           id: 'example-event-pull',
-          atMs: 0,
+          timing: absoluteTiming(0),
           name: '開場',
           phase: 'P1',
           category: 'mechanic',
@@ -45,7 +45,7 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
         },
         {
           id: 'example-event-raidwide',
-          atMs: 20_000,
+          timing: absoluteTiming(20_000),
           name: '全體攻擊',
           phase: 'P1',
           category: 'raidwide',
@@ -60,7 +60,7 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
         },
         {
           id: 'example-event-tankbuster',
-          atMs: 48_000,
+          timing: absoluteTiming(48_000),
           name: '坦克死刑',
           phase: 'P1',
           category: 'tankbuster',
@@ -83,7 +83,7 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
         },
         {
           id: 'example-event-enrage',
-          atMs: 115_000,
+          timing: absoluteTiming(115_000),
           name: '狂暴',
           phase: 'P2',
           category: 'mechanic',
@@ -106,7 +106,7 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
       events: [
         {
           id: 'example-event-party-mit',
-          atMs: 20_000,
+          timing: absoluteTiming(20_000),
           name: '全體減傷',
           phase: 'P1',
           category: 'mitigation',
@@ -130,7 +130,7 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
       events: [
         {
           id: 'example-event-heal',
-          atMs: 20_000,
+          timing: absoluteTiming(20_000),
           name: '全體補血',
           phase: 'P1',
           category: 'heal',
@@ -162,7 +162,7 @@ export const EXAMPLE_TIMELINE: TimelinePackage = {
       events: [
         {
           id: 'example-event-dnc-tech',
-          atMs: 15_000,
+          timing: absoluteTiming(15_000),
           name: '技巧舞步',
           phase: 'P1',
           category: 'job',
@@ -191,7 +191,7 @@ export function createEmptyTimeline(name = '新的時間軸'): TimelinePackage {
   };
 
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     id: createId(),
     meta: {
       name,

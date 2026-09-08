@@ -5,7 +5,9 @@ import {
   JOB_CODES,
   PARTY_POSITIONS,
   TIMELINE_TRACK_TYPES,
+  TRACK_PURPOSES,
   type TimelinePackage,
+  type TimelinePackageV1,
 } from './types';
 
 /**
@@ -84,14 +86,42 @@ export const timelineCueSchema = z
   })
   .strict();
 
+export const trackPurposeSchema = enumFrom(TRACK_PURPOSES, '軌道用途');
+
+/**
+ * V2 event timing (spec §3.1). A discriminated union so an event can never
+ * carry both an absolute time and a live reference.
+ */
+export const eventTimingSchema = z.discriminatedUnion(
+  'kind',
+  [
+    z.object({ kind: z.literal('absolute'), atMs: finiteMs }).strict(),
+    z
+      .object({
+        kind: z.literal('mechanic'),
+        sourceTrackId: z.string().min(1, '來源軌道 ID 是必填的'),
+        sourceEventId: z.string().min(1, '來源事件 ID 是必填的'),
+      })
+      .strict(),
+  ],
+  { errorMap: () => ({ message: 'timing 必須是 absolute 或 mechanic' }) },
+);
+
 export const timelineEventSchema = z
   .object({
     id: z.string().min(1),
-    atMs: finiteMs,
+    timing: eventTimingSchema,
     name: z.string(),
     phase: z.string().optional(),
     category: eventCategorySchema,
     cues: z.array(timelineCueSchema),
+  })
+  .strict();
+
+export const trackSelectionRefSchema = z
+  .object({
+    groupId: z.string().min(1, '方案群組 ID 是必填的'),
+    optionId: z.string().min(1, '方案選項 ID 是必填的'),
   })
   .strict();
 
@@ -102,7 +132,21 @@ export const timelineTrackSchema = z
     name: z.string(),
     enabledByDefault: z.boolean(),
     target: cueTargetSchema.optional(),
+    selection: trackSelectionRefSchema.optional(),
+    purpose: trackPurposeSchema.optional(),
     events: z.array(timelineEventSchema),
+  })
+  .strict();
+
+export const selectionGroupSchema = z
+  .object({
+    id: z.string().min(1, '方案群組 ID 是必填的'),
+    name: z.string(),
+    options: z.array(
+      z
+        .object({ id: z.string().min(1, '方案選項 ID 是必填的'), name: z.string() })
+        .strict(),
+    ),
   })
   .strict();
 
@@ -126,15 +170,54 @@ export const encounterSchema = z
 
 export const timelinePackageSchema = z
   .object({
-    schemaVersion: z.literal(1),
+    schemaVersion: z.literal(2),
     id: z.string().min(1),
     meta: timelineMetaSchema,
     encounter: encounterSchema,
+    selectionGroups: z.array(selectionGroupSchema).optional(),
     tracks: z.array(timelineTrackSchema),
   })
   .strict();
 
 export type TimelinePackageInput = z.input<typeof timelinePackageSchema>;
+
+// ---------------------------------------------------------------- V1 (legacy)
+
+/**
+ * Schema V1, kept verbatim so old documents are structurally validated *before*
+ * migration runs (spec §3.3.1). Nothing but migration should use these.
+ */
+export const timelineEventV1Schema = z
+  .object({
+    id: z.string().min(1),
+    atMs: finiteMs,
+    name: z.string(),
+    phase: z.string().optional(),
+    category: eventCategorySchema,
+    cues: z.array(timelineCueSchema),
+  })
+  .strict();
+
+export const timelineTrackV1Schema = z
+  .object({
+    id: z.string().min(1),
+    type: trackTypeSchema,
+    name: z.string(),
+    enabledByDefault: z.boolean(),
+    target: cueTargetSchema.optional(),
+    events: z.array(timelineEventV1Schema),
+  })
+  .strict();
+
+export const timelinePackageV1Schema = z
+  .object({
+    schemaVersion: z.literal(1),
+    id: z.string().min(1),
+    meta: timelineMetaSchema,
+    encounter: encounterSchema,
+    tracks: z.array(timelineTrackV1Schema),
+  })
+  .strict();
 
 export interface SchemaParseSuccess {
   ok: true;
@@ -153,16 +236,31 @@ export interface SchemaIssue {
 
 export type SchemaParseResult = SchemaParseSuccess | SchemaParseFailure;
 
+function toIssues(error: z.ZodError): SchemaIssue[] {
+  return error.issues.map((issue) => ({
+    path: issue.path.join('.'),
+    message: issue.message,
+  }));
+}
+
+/** Structural parse of a **V2** document. */
 export function parseTimelinePackage(input: unknown): SchemaParseResult {
   const result = timelinePackageSchema.safeParse(input);
   if (result.success) {
     return { ok: true, timeline: result.data as TimelinePackage };
   }
-  return {
-    ok: false,
-    issues: result.error.issues.map((issue) => ({
-      path: issue.path.join('.'),
-      message: issue.message,
-    })),
-  };
+  return { ok: false, issues: toIssues(result.error) };
+}
+
+export type SchemaParseV1Result =
+  | { ok: true; timeline: TimelinePackageV1 }
+  | { ok: false; issues: SchemaIssue[] };
+
+/** Structural parse of a **V1** document, used as migration input. */
+export function parseTimelinePackageV1(input: unknown): SchemaParseV1Result {
+  const result = timelinePackageV1Schema.safeParse(input);
+  if (result.success) {
+    return { ok: true, timeline: result.data as TimelinePackageV1 };
+  }
+  return { ok: false, issues: toIssues(result.error) };
 }
