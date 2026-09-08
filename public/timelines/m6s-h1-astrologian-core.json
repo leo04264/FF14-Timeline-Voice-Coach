@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "id": "builtin-m6s-h1-astrologian-core",
   "meta": {
-    "name": "M6S Sugar Riot — Boss + H1 Astrologian Core + Rotation",
+    "name": "M6S — H1 占星術師（影片核心＋補毒爆發）",
     "encounterId": "aac-cruiserweight-m2-savage-m6s",
-    "strategy": "7.2 JP PF AST — practical healing + PF burst + 30s DoT",
-    "author": "FF14 Timeline Voice Coach",
-    "description": "Standalone M6S H1 Astrologian timeline. Boss timings follow the current public r6s timeline. AST healing follows the linked M5S-M8S source's pragmatic prog/farm philosophy: Earthly Star and Macrocosmos are aligned to meaningful damage windows rather than forced on cooldown. Practical party-finder burst reminders use opener, 124s, 258s, 360.5s, 480s and 600s. DoT reminders follow an approximately 30-second refresh cycle; during the add phase they refer to the current priority add, and the cycle is reset after the long add phase when the boss returns. This file remains separate from all Scholar timelines. The 361s call was split into two cues (Earthly Star at 361s, DoT refresh plus Lightspeed/Divination at 364s) because the single combined line measured 16.5 units and tripped the long-text warning; the 21.7s gap before the next cue leaves the 2000ms collision window empty.",
-    "version": "0.1.1"
+    "strategy": "7.2／Nephritesssss M6S 影片配置／30 秒補毒＋日服野團轉好爆發（含 W4）",
+    "author": "FF14 Timeline Voice Coach；奶軸參考 Nephritesssss",
+    "description": "以 Nephritesssss 影片 BV1XZ5FzCEdb 第 2 分 P 為主（https://www.bilibili.com/video/BV1XZ5FzCEdb?p=2），依片頭配置表及片中說明重排，不是逐幀施放紀錄。兩份 M6S H1 共用核對過的 cactbot M6S 秒數（https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/07-dt/raid/r6s.txt），只調整語音預告以保持機制順序；沒有更動學者與通用 M6S 範例。倒數 5 秒地星；沙漠大宇宙留給黃點名接四四分攤；動物園第三波交貴婦、中間學派與第一次隕石減傷，第四波交地星、大宇宙；河流火雷延後地星，四輪雷雲交沖日、貴婦、地星；五連分攤開中間學派，散開前刷新群盾，太陽星座保留給遠程分攤與近戰水波；終盤大宇宙同樣覆蓋黃點名接四四，最後兩輪分攤交中間學派、天宮圖、太陽星座。核心版本保留影片大技能、必要坦克減傷與輸出提醒；不包含完整版本額外單補和第二輪塔補強。 補毒在 0 秒起每 30 秒提醒，依毒剩餘時間及可選取目標確認；動物園另提醒優先小怪上毒、換怪重補，不把小怪期當成停止輸出。占卜採日服野團「轉好即開」版本：00:12 開場、02:12 沙漠、04:12 動物園 W1 尾段（涵蓋 W2）、06:12 動物園 W4 後半、08:12 雷雲、10:12 終盤，間隔 120 秒。依影片作者的日服野團背景與 XIV JP Raids 宏的轉好爆發安排（https://xivjpraids.com/7.0_dawntrail/savage_raids/m6s/）；這些秒數是本工具以 12 秒開場換算的提醒基準，不是攻略要求所有隊伍同一秒開，也不是影片逐次團輔記錄。W4 出怪約 05:17.7，六分鐘團輔在後半，不提前到出怪。另有 W2 集怪後才開爆發的隊伍；如採延後版須同步後續占卜，勿混用此軸。貴婦須有王冠之淑女，無牌改陽星合相；單補看實際血量，未固定抽卡、魔力或搭檔減傷。地星均成熟後引爆或自爆，天宮圖皆先以陽星合相強化，大／小宇宙均在 15 秒內；太陽星座在中間學派提供的 30 秒可用期內施放，不要求與 20 秒中間學派本體同時結束。動物園擊殺速度、技能施放延遲及隊伍打法可能造成時間偏移，須實戰校正，通過靜態檢查不代表保證存活。詳見 docs/m6s-h1-video-reference.md。",
+    "version": "0.2.0"
   },
   "encounter": {
     "durationMs": 690000,
@@ -17,7 +17,7 @@
     {
       "id": "boss-mechanics",
       "type": "encounter",
-      "name": "Boss Mechanics",
+      "name": "王機制（M6S 共用基準）",
       "enabledByDefault": true,
       "events": [
         {
@@ -45,7 +45,7 @@
           "cues": [
             {
               "id": "m6s-boss-riot1-cue",
-              "offsetMs": -11500,
+              "offsetMs": -2800,
               "text": "雙坦死刑",
               "priority": "high",
               "enabled": true
@@ -61,7 +61,7 @@
           "cues": [
             {
               "id": "m6s-boss-wing1-cue",
-              "offsetMs": -7000,
+              "offsetMs": -12200,
               "text": "擊飛準備",
               "priority": "normal",
               "enabled": true
@@ -77,7 +77,7 @@
           "cues": [
             {
               "id": "m6s-boss-clash1-cue",
-              "offsetMs": -4000,
+              "offsetMs": -3600,
               "text": "分攤傷害",
               "priority": "high",
               "enabled": true
@@ -93,7 +93,7 @@
           "cues": [
             {
               "id": "m6s-boss-clash2-cue",
-              "offsetMs": -4000,
+              "offsetMs": -9300,
               "text": "第二分攤",
               "priority": "high",
               "enabled": true
@@ -109,7 +109,7 @@
           "cues": [
             {
               "id": "m6s-boss-burst1-cue",
-              "offsetMs": -9000,
+              "offsetMs": -10000,
               "text": "黏黏分攤",
               "priority": "high",
               "enabled": true
@@ -125,7 +125,7 @@
           "cues": [
             {
               "id": "m6s-boss-riot2-cue",
-              "offsetMs": -16500,
+              "offsetMs": -13200,
               "text": "雙坦死刑",
               "priority": "high",
               "enabled": true
@@ -141,7 +141,7 @@
           "cues": [
             {
               "id": "m6s-boss-desert-cue",
-              "offsetMs": -5000,
+              "offsetMs": -4200,
               "text": "沙漠開始",
               "priority": "normal",
               "enabled": true
@@ -157,7 +157,7 @@
           "cues": [
             {
               "id": "m6s-boss-spray1-cue",
-              "offsetMs": -10000,
+              "offsetMs": -11300,
               "text": "仙人掌多段傷害",
               "priority": "high",
               "enabled": true
@@ -189,7 +189,7 @@
           "cues": [
             {
               "id": "m6s-boss-burst2-cue",
-              "offsetMs": -7500,
+              "offsetMs": -3600,
               "text": "第二次分攤",
               "priority": "high",
               "enabled": true
@@ -205,7 +205,7 @@
           "cues": [
             {
               "id": "m6s-boss-brulee2-cue",
-              "offsetMs": -4000,
+              "offsetMs": -4400,
               "text": "流沙前大傷",
               "priority": "high",
               "enabled": true
@@ -221,7 +221,7 @@
           "cues": [
             {
               "id": "m6s-boss-double2-cue",
-              "offsetMs": -4000,
+              "offsetMs": -11100,
               "text": "炸彈放置",
               "priority": "normal",
               "enabled": true
@@ -237,7 +237,7 @@
           "cues": [
             {
               "id": "m6s-boss-mural2-cue",
-              "offsetMs": -5500,
+              "offsetMs": -8900,
               "text": "沙漠收尾全體",
               "priority": "high",
               "enabled": true
@@ -253,7 +253,7 @@
           "cues": [
             {
               "id": "m6s-boss-riot3-cue",
-              "offsetMs": -16000,
+              "offsetMs": -14900,
               "text": "雙坦死刑",
               "priority": "high",
               "enabled": true
@@ -269,7 +269,7 @@
           "cues": [
             {
               "id": "m6s-boss-adds-cue",
-              "offsetMs": -9000,
+              "offsetMs": -9300,
               "text": "動物園開始",
               "priority": "normal",
               "enabled": true
@@ -301,7 +301,7 @@
           "cues": [
             {
               "id": "m6s-boss-wave2-cue",
-              "offsetMs": -4000,
+              "offsetMs": -2400,
               "text": "小怪二出現",
               "priority": "normal",
               "enabled": true
@@ -333,7 +333,7 @@
           "cues": [
             {
               "id": "m6s-boss-ready1-cue",
-              "offsetMs": -8000,
+              "offsetMs": -7700,
               "text": "動物園大傷一",
               "priority": "high",
               "enabled": true
@@ -349,7 +349,7 @@
           "cues": [
             {
               "id": "m6s-boss-wave4-cue",
-              "offsetMs": -4000,
+              "offsetMs": -3300,
               "text": "小怪四出現",
               "priority": "normal",
               "enabled": true
@@ -381,7 +381,7 @@
           "cues": [
             {
               "id": "m6s-boss-riot4-cue",
-              "offsetMs": -6000,
+              "offsetMs": -7000,
               "text": "雙坦死刑",
               "priority": "high",
               "enabled": true
@@ -413,7 +413,7 @@
           "cues": [
             {
               "id": "m6s-boss-river-cue",
-              "offsetMs": -5000,
+              "offsetMs": -1700,
               "text": "河流開始",
               "priority": "normal",
               "enabled": true
@@ -461,7 +461,7 @@
           "cues": [
             {
               "id": "m6s-boss-levin2-cue",
-              "offsetMs": -5000,
+              "offsetMs": -3700,
               "text": "第二輪雷傷",
               "priority": "high",
               "enabled": true
@@ -477,7 +477,7 @@
           "cues": [
             {
               "id": "m6s-boss-levin4-cue",
-              "offsetMs": -4000,
+              "offsetMs": -8200,
               "text": "最後雷傷",
               "priority": "high",
               "enabled": true
@@ -525,7 +525,7 @@
           "cues": [
             {
               "id": "m6s-boss-drip-cue",
-              "offsetMs": -7500,
+              "offsetMs": -8100,
               "text": "多段分攤開始",
               "priority": "high",
               "enabled": true
@@ -557,7 +557,7 @@
           "cues": [
             {
               "id": "m6s-boss-explosion1-cue",
-              "offsetMs": -10000,
+              "offsetMs": -7800,
               "text": "塔後團傷一",
               "priority": "high",
               "enabled": true
@@ -573,7 +573,7 @@
           "cues": [
             {
               "id": "m6s-boss-wing2-cue",
-              "offsetMs": -4000,
+              "offsetMs": -6000,
               "text": "擊飛塔準備",
               "priority": "normal",
               "enabled": true
@@ -605,7 +605,7 @@
           "cues": [
             {
               "id": "m6s-boss-mural4-cue",
-              "offsetMs": -5000,
+              "offsetMs": -6100,
               "text": "熔岩收尾全體",
               "priority": "high",
               "enabled": true
@@ -621,7 +621,7 @@
           "cues": [
             {
               "id": "m6s-boss-stickyf-cue",
-              "offsetMs": -13000,
+              "offsetMs": -9800,
               "text": "終盤黏黏",
               "priority": "normal",
               "enabled": true
@@ -637,7 +637,7 @@
           "cues": [
             {
               "id": "m6s-boss-burstf-cue",
-              "offsetMs": -8000,
+              "offsetMs": -6700,
               "text": "終盤分攤",
               "priority": "high",
               "enabled": true
@@ -653,7 +653,7 @@
           "cues": [
             {
               "id": "m6s-boss-riotf-cue",
-              "offsetMs": -6000,
+              "offsetMs": -8700,
               "text": "最後雙坦死刑",
               "priority": "high",
               "enabled": true
@@ -669,7 +669,7 @@
           "cues": [
             {
               "id": "m6s-boss-wingf-cue",
-              "offsetMs": -13500,
+              "offsetMs": -5600,
               "text": "最後擊飛",
               "priority": "normal",
               "enabled": true
@@ -685,7 +685,7 @@
           "cues": [
             {
               "id": "m6s-boss-clashf-cue",
-              "offsetMs": -4000,
+              "offsetMs": -4700,
               "text": "最後分攤一",
               "priority": "high",
               "enabled": true
@@ -717,7 +717,7 @@
           "cues": [
             {
               "id": "m6s-boss-clashf2-cue",
-              "offsetMs": -4000,
+              "offsetMs": -2000,
               "text": "最後分攤二",
               "priority": "high",
               "enabled": true
@@ -745,8 +745,7 @@
     {
       "id": "h1-astrologian",
       "type": "job",
-      "name": "H1 Astrologian Core Healing / Mitigation + Rotation",
-      "enabledByDefault": true,
+      "name": "H1 占星術師（核心奶軸）",
       "target": {
         "positions": [
           "H1"
@@ -755,18 +754,19 @@
           "AST"
         ]
       },
+      "enabledByDefault": true,
       "events": [
         {
-          "id": "m6s-ast-star1",
-          "atMs": -7000,
-          "name": "開場前地星",
+          "id": "m6s-ast-star1-place",
+          "atMs": -5000,
+          "name": "開場：放置地星，留自爆",
           "phase": "P1",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-star1-cue",
+              "id": "m6s-ast-star1-place-cue",
               "offsetMs": 0,
-              "text": "開場前，放地星",
+              "text": "倒數五秒，放地星",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -781,16 +781,16 @@
           ]
         },
         {
-          "id": "m6s-ast-dot-1_5",
-          "atMs": 1500,
-          "name": "開場上DoT",
+          "id": "m6s-ast-dot-0",
+          "atMs": 0,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-dot-1_5-cue",
-              "offsetMs": -1000,
-              "text": "開場上DoT",
+              "id": "m6s-ast-dot-0-cue",
+              "offsetMs": 0,
+              "text": "開場上毒",
               "priority": "low",
               "enabled": true,
               "target": {
@@ -805,16 +805,16 @@
           ]
         },
         {
-          "id": "m6s-ast-horo1",
-          "atMs": 5000,
-          "name": "開場天宮圖＋爆發",
+          "id": "m6s-ast-light1",
+          "atMs": 7000,
+          "name": "開場爆發：光速",
           "phase": "P1",
-          "category": "heal",
+          "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-horo1-cue",
+              "id": "m6s-ast-light1-cue",
               "offsetMs": 0,
-              "text": "開場，天宮圖，光速占卜",
+              "text": "起手爆發，光速",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -830,10 +830,10 @@
         },
         {
           "id": "m6s-ast-wheel1",
-          "atMs": 8000,
-          "name": "Mural前命運之輪",
+          "atMs": 9500,
+          "name": "開場全體：命運之輪",
           "phase": "P1",
-          "category": "mitigation",
+          "category": "heal",
           "cues": [
             {
               "id": "m6s-ast-wheel1-cue",
@@ -853,16 +853,40 @@
           ]
         },
         {
-          "id": "m6s-ast-star1-pop",
-          "atMs": 13000,
-          "name": "Mural後地星回血",
+          "id": "m6s-ast-divination-12",
+          "atMs": 12000,
+          "name": "開場爆發：占卜，依隊伍安排出牌",
+          "phase": "P1",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-divination-12-cue",
+              "offsetMs": 0,
+              "text": "開場爆發，占卜出牌",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-star1-auto",
+          "atMs": 15000,
+          "name": "開場全體後：地星自爆",
           "phase": "P1",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-star1-pop-cue",
+              "id": "m6s-ast-star1-auto-cue",
               "offsetMs": 0,
-              "text": "全體後，地星回血",
+              "text": "全體後，地星自爆",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -877,16 +901,16 @@
           ]
         },
         {
-          "id": "m6s-ast-opp1",
-          "atMs": 16000,
-          "name": "Mural後天星衝日",
+          "id": "m6s-ast-exalt1",
+          "atMs": 17500,
+          "name": "第一次雙坦死刑：擢升主坦＋天星交錯副坦",
           "phase": "P1",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-opp1-cue",
+              "id": "m6s-ast-exalt1-cue",
               "offsetMs": 0,
-              "text": "全體後，天星衝日",
+              "text": "擢升主坦，交錯副坦",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -901,16 +925,16 @@
           ]
         },
         {
-          "id": "m6s-ast-tb1",
-          "atMs": 19500,
-          "name": "Color Riot坦輔助",
+          "id": "m6s-ast-light2",
+          "atMs": 27800,
+          "name": "第一次擊飛：光速",
           "phase": "P1",
-          "category": "mitigation",
+          "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-tb1-cue",
+              "id": "m6s-ast-light2-cue",
               "offsetMs": 0,
-              "text": "死刑前，擢升交錯",
+              "text": "擊飛前，光速",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -925,257 +949,17 @@
           ]
         },
         {
-          "id": "m6s-ast-dot-31_5",
-          "atMs": 31500,
-          "name": "31.5秒DoT更新",
+          "id": "m6s-ast-dot-30",
+          "atMs": 30000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-dot-31_5-cue",
-              "offsetMs": -1000,
-              "text": "補DoT",
+              "id": "m6s-ast-dot-30-cue",
+              "offsetMs": 0,
+              "text": "確認毒，快到期再補",
               "priority": "low",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-star2",
-          "atMs": 53000,
-          "name": "雙重畫風前地星",
-          "phase": "P1",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-star2-cue",
-              "offsetMs": 0,
-              "text": "雙重畫風，放地星",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-dot-61_5",
-          "atMs": 61500,
-          "name": "61.5秒DoT更新",
-          "phase": "Rotation",
-          "category": "job",
-          "cues": [
-            {
-              "id": "m6s-ast-dot-61_5-cue",
-              "offsetMs": -1000,
-              "text": "補DoT",
-              "priority": "low",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-horo2",
-          "atMs": 70000,
-          "name": "黏黏天宮圖",
-          "phase": "P1",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-horo2-cue",
-              "offsetMs": 0,
-              "text": "黏黏，天宮圖",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-star2-pop",
-          "atMs": 73500,
-          "name": "黏黏地星回血",
-          "phase": "P1",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-star2-pop-cue",
-              "offsetMs": 0,
-              "text": "黏黏，地星回血",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-wheel2",
-          "atMs": 76500,
-          "name": "分攤命運之輪",
-          "phase": "P1",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-wheel2-cue",
-              "offsetMs": 0,
-              "text": "分攤，命運之輪",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-opp2",
-          "atMs": 79500,
-          "name": "分攤後天星衝日",
-          "phase": "P1",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-opp2-cue",
-              "offsetMs": 0,
-              "text": "分攤後，天星衝日",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-tb2",
-          "atMs": 83000,
-          "name": "第二死刑坦輔助",
-          "phase": "P1",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-tb2-cue",
-              "offsetMs": 0,
-              "text": "死刑後，補坦血",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-dot-91_5",
-          "atMs": 91500,
-          "name": "91.5秒DoT更新",
-          "phase": "Rotation",
-          "category": "job",
-          "cues": [
-            {
-              "id": "m6s-ast-dot-91_5-cue",
-              "offsetMs": -1000,
-              "text": "補DoT",
-              "priority": "low",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-star3",
-          "atMs": 114000,
-          "name": "仙人掌前地星",
-          "phase": "Desert",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-star3-cue",
-              "offsetMs": 0,
-              "text": "仙人掌前，放地星",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-macro1",
-          "atMs": 117000,
-          "name": "仙人掌前大宇宙",
-          "phase": "Desert",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-macro1-cue",
-              "offsetMs": 0,
-              "text": "多段前，大宇宙",
-              "priority": "high",
               "enabled": true,
               "target": {
                 "positions": [
@@ -1190,15 +974,15 @@
         },
         {
           "id": "m6s-ast-neutral1",
-          "atMs": 120000,
-          "name": "仙人掌中間學派＋DoT",
-          "phase": "Desert",
-          "category": "shield",
+          "atMs": 33000,
+          "name": "兩輪四四／二二二二分攤：中間學派",
+          "phase": "P1",
+          "category": "heal",
           "cues": [
             {
               "id": "m6s-ast-neutral1-cue",
               "offsetMs": 0,
-              "text": "多段前，中間學派，補DoT",
+              "text": "分攤前，中間學派",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -1213,16 +997,40 @@
           ]
         },
         {
-          "id": "m6s-ast-helios1",
-          "atMs": 123000,
-          "name": "仙人掌陽星合相＋爆發",
-          "phase": "Desert",
-          "category": "shield",
+          "id": "m6s-ast-neutral1-helios",
+          "atMs": 35500,
+          "name": "第一輪分攤前：陽星合相上中間盾",
+          "phase": "P1",
+          "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-helios1-cue",
+              "id": "m6s-ast-neutral1-helios-cue",
               "offsetMs": 0,
-              "text": "多段前，陽星合相，光速占卜",
+              "text": "陽星合相，上群盾",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-opposition1",
+          "atMs": 43500,
+          "name": "第一輪分攤後：沖日",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-opposition1-cue",
+              "offsetMs": 0,
+              "text": "分攤後，沖日拉血",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -1238,15 +1046,15 @@
         },
         {
           "id": "m6s-ast-sun1",
-          "atMs": 126500,
-          "name": "仙人掌太陽星座",
-          "phase": "Desert",
-          "category": "mitigation",
+          "atMs": 54900,
+          "name": "第二輪分攤前：太陽星座",
+          "phase": "P1",
+          "category": "heal",
           "cues": [
             {
               "id": "m6s-ast-sun1-cue",
               "offsetMs": 0,
-              "text": "多段傷害，太陽星座",
+              "text": "第二分攤，太陽星座",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -1261,16 +1069,208 @@
           ]
         },
         {
-          "id": "m6s-ast-star3-pop",
+          "id": "m6s-ast-star2-place",
+          "atMs": 57500,
+          "name": "點名兩人接四四：放置地星，留自爆",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-star2-place-cue",
+              "offsetMs": 0,
+              "text": "點名分攤前，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-dot-60",
+          "atMs": 60000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-dot-60-cue",
+              "offsetMs": 0,
+              "text": "確認毒，快到期再補",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-lady1",
+          "atMs": 64500,
+          "name": "第二輪分攤後：王冠之淑女（貴婦）；無牌改陽星合相",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-lady1-cue",
+              "offsetMs": 0,
+              "text": "有貴婦就補，沒牌用合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-star2-auto-exalt2",
+          "atMs": 77500,
+          "name": "點名分攤後：地星自爆＋擢升主坦",
+          "phase": "P1",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-star2-auto-exalt2-cue",
+              "offsetMs": 0,
+              "text": "地星自爆，擢升主坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-dot-90",
+          "atMs": 90000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-dot-90-cue",
+              "offsetMs": 0,
+              "text": "確認毒，快到期再補",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-horoscope1",
+          "atMs": 112500,
+          "name": "沙漠開頭：開啟天宮圖＋陽星合相",
+          "phase": "沙漠",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-horoscope1-cue",
+              "offsetMs": 0,
+              "text": "沙漠，天宮圖接合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-dot-120",
+          "atMs": 120000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-dot-120-cue",
+              "offsetMs": 0,
+              "text": "確認毒，快到期再補",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-star3-place",
+          "atMs": 123000,
+          "name": "兩火點名與六人分攤：放置地星",
+          "phase": "沙漠",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-star3-place-cue",
+              "offsetMs": 0,
+              "text": "火點名分攤，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-divination-132",
           "atMs": 132000,
-          "name": "仙人掌地星回血",
-          "phase": "Desert",
-          "category": "heal",
+          "name": "沙漠兩分鐘爆發：占卜，依隊伍安排出牌",
+          "phase": "沙漠",
+          "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-star3-pop-cue",
+              "id": "m6s-ast-divination-132-cue",
               "offsetMs": 0,
-              "text": "地星回血，天宮圖",
+              "text": "兩分爆發，占卜出牌",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -1285,16 +1285,16 @@
           ]
         },
         {
-          "id": "m6s-ast-macro1-pop",
-          "atMs": 137000,
-          "name": "仙人掌大宇宙回血",
-          "phase": "Desert",
+          "id": "m6s-ast-wheel2",
+          "atMs": 139200,
+          "name": "兩火點名與六人分攤：命運之輪",
+          "phase": "沙漠",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-macro1-pop-cue",
+              "id": "m6s-ast-wheel2-cue",
               "offsetMs": 0,
-              "text": "多段結束，大宇宙回血",
+              "text": "火點名分攤，命運之輪",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -1309,16 +1309,16 @@
           ]
         },
         {
-          "id": "m6s-ast-opp3",
-          "atMs": 141500,
-          "name": "Brulee後天星衝日",
-          "phase": "Desert",
+          "id": "m6s-ast-star3-pop-horoscope1-pop",
+          "atMs": 142500,
+          "name": "兩火與六人分攤後：引爆地星＋引爆天宮圖",
+          "phase": "沙漠",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-opp3-cue",
+              "id": "m6s-ast-star3-pop-horoscope1-pop-cue",
               "offsetMs": 0,
-              "text": "大傷後，天星衝日",
+              "text": "分攤後，地星天宮圖",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -1333,16 +1333,64 @@
           ]
         },
         {
-          "id": "m6s-ast-dot-151_5",
-          "atMs": 151500,
-          "name": "151.5秒DoT更新",
+          "id": "m6s-ast-lady2",
+          "atMs": 145000,
+          "name": "沙漠點名兩人接四四：王冠之淑女（貴婦）；無牌改陽星合相",
+          "phase": "沙漠",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-lady2-cue",
+              "offsetMs": 0,
+              "text": "有貴婦就補，沒牌用合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-macro1",
+          "atMs": 147500,
+          "name": "沙漠黃點名出現前：大宇宙＋沖日，覆蓋點名接四四",
+          "phase": "沙漠",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-macro1-cue",
+              "offsetMs": 0,
+              "text": "黃點名前，大宇宙沖日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-dot-150",
+          "atMs": 150000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-dot-151_5-cue",
-              "offsetMs": -1000,
-              "text": "補DoT",
+              "id": "m6s-ast-dot-150-cue",
+              "offsetMs": 0,
+              "text": "確認毒，快到期再補",
               "priority": "low",
               "enabled": true,
               "target": {
@@ -1357,16 +1405,16 @@
           ]
         },
         {
-          "id": "m6s-ast-star4",
-          "atMs": 176000,
-          "name": "炸彈前地星",
-          "phase": "Desert",
+          "id": "m6s-ast-micro1",
+          "atMs": 157500,
+          "name": "沙漠四四分攤後：小宇宙",
+          "phase": "沙漠",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-star4-cue",
+              "id": "m6s-ast-micro1-cue",
               "offsetMs": 0,
-              "text": "炸彈前，放地星",
+              "text": "四四結束，小宇宙",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -1381,232 +1429,16 @@
           ]
         },
         {
-          "id": "m6s-ast-dot-181_5",
-          "atMs": 181500,
-          "name": "181.5秒DoT更新",
-          "phase": "Rotation",
+          "id": "m6s-ast-light3",
+          "atMs": 165500,
+          "name": "沙漠雙奶放鋼鐵後：光速",
+          "phase": "沙漠",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-dot-181_5-cue",
-              "offsetMs": -1000,
-              "text": "補DoT",
-              "priority": "low",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-star4-pop",
-          "atMs": 196000,
-          "name": "Mural前地星回血",
-          "phase": "Desert",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-star4-pop-cue",
+              "id": "m6s-ast-light3-cue",
               "offsetMs": 0,
-              "text": "全體前，地星天宮圖",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-wheel3",
-          "atMs": 199000,
-          "name": "Mural命運之輪",
-          "phase": "Desert",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-wheel3-cue",
-              "offsetMs": 0,
-              "text": "全體傷害，命運之輪",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-opp4",
-          "atMs": 203000,
-          "name": "Mural後天星衝日",
-          "phase": "Desert",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-opp4-cue",
-              "offsetMs": 0,
-              "text": "全體後，天星衝日",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-tb3",
-          "atMs": 206000,
-          "name": "Color Riot坦輔助",
-          "phase": "Desert",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-tb3-cue",
-              "offsetMs": 0,
-              "text": "死刑前，擢升交錯",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-dot-211_5",
-          "atMs": 211500,
-          "name": "211.5秒DoT更新",
-          "phase": "Rotation",
-          "category": "job",
-          "cues": [
-            {
-              "id": "m6s-ast-dot-211_5-cue",
-              "offsetMs": -1000,
-              "text": "補DoT",
-              "priority": "low",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-tb-add1",
-          "atMs": 228000,
-          "name": "小怪一坦輔助",
-          "phase": "Adds",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-tb-add1-cue",
-              "offsetMs": 0,
-              "text": "小怪一，擢升交錯",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-star5",
-          "atMs": 239000,
-          "name": "小怪階段地星",
-          "phase": "Adds",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-star5-cue",
-              "offsetMs": 0,
-              "text": "小怪階段，放地星",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-dot-241_5",
-          "atMs": 241500,
-          "name": "241.5秒DoT更新",
-          "phase": "Rotation",
-          "category": "job",
-          "cues": [
-            {
-              "id": "m6s-ast-dot-241_5-cue",
-              "offsetMs": -5000,
-              "text": "補DoT",
-              "priority": "low",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-horo5",
-          "atMs": 259000,
-          "name": "小怪二天宮圖＋爆發",
-          "phase": "Adds",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-horo5-cue",
-              "offsetMs": 0,
-              "text": "小怪二，天宮圖，光速占卜",
+              "text": "放鋼鐵後，光速移動",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -1622,15 +1454,15 @@
         },
         {
           "id": "m6s-ast-neutral2",
-          "atMs": 262000,
-          "name": "小怪二中間學派",
-          "phase": "Adds",
-          "category": "shield",
+          "atMs": 170000,
+          "name": "沙漠炸彈接全體：預開中間學派",
+          "phase": "沙漠",
+          "category": "heal",
           "cues": [
             {
               "id": "m6s-ast-neutral2-cue",
               "offsetMs": 0,
-              "text": "小怪二，中間學派",
+              "text": "炸彈全體，預開中間學派",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -1645,40 +1477,16 @@
           ]
         },
         {
-          "id": "m6s-ast-helios2",
-          "atMs": 265000,
-          "name": "小怪二陽星合相",
-          "phase": "Adds",
-          "category": "shield",
-          "cues": [
-            {
-              "id": "m6s-ast-helios2-cue",
-              "offsetMs": 0,
-              "text": "小怪二，陽星合相",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-opp5",
-          "atMs": 268500,
-          "name": "小怪二天星衝日",
-          "phase": "Adds",
+          "id": "m6s-ast-neutral2-helios",
+          "atMs": 172500,
+          "name": "沙漠炸彈前：陽星合相上中間盾",
+          "phase": "沙漠",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-opp5-cue",
+              "id": "m6s-ast-neutral2-helios-cue",
               "offsetMs": 0,
-              "text": "小怪二，天星衝日",
+              "text": "陽星合相，上群盾",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -1693,16 +1501,16 @@
           ]
         },
         {
-          "id": "m6s-ast-dot-271_5",
-          "atMs": 271500,
-          "name": "271.5秒DoT更新",
+          "id": "m6s-ast-dot-180",
+          "atMs": 180000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-dot-271_5-cue",
+              "id": "m6s-ast-dot-180-cue",
               "offsetMs": 0,
-              "text": "補DoT",
+              "text": "確認毒，快到期再補",
               "priority": "low",
               "enabled": true,
               "target": {
@@ -1717,16 +1525,16 @@
           ]
         },
         {
-          "id": "m6s-ast-tb-add2",
-          "atMs": 288000,
-          "name": "小怪三坦輔助",
-          "phase": "Adds",
-          "category": "mitigation",
+          "id": "m6s-ast-star4-place",
+          "atMs": 183500,
+          "name": "沙漠收尾全體：放置地星",
+          "phase": "沙漠",
+          "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-tb-add2-cue",
+              "id": "m6s-ast-star4-place-cue",
               "offsetMs": 0,
-              "text": "小怪三，擢升交錯",
+              "text": "收尾全體，放地星",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -1741,16 +1549,496 @@
           ]
         },
         {
-          "id": "m6s-ast-star6",
-          "atMs": 300000,
-          "name": "Ready一前地星＋DoT",
-          "phase": "Adds",
+          "id": "m6s-ast-horoscope2",
+          "atMs": 185700,
+          "name": "沙漠炸彈前：開啟天宮圖＋陽星合相，刷新中間盾",
+          "phase": "沙漠",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-star6-cue",
+              "id": "m6s-ast-horoscope2-cue",
               "offsetMs": 0,
-              "text": "大傷一前，放地星，補DoT",
+              "text": "天宮圖接合相，補盾",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-sun2",
+          "atMs": 188000,
+          "name": "沙漠炸彈與收尾全體：太陽星座",
+          "phase": "沙漠",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-sun2-cue",
+              "offsetMs": 0,
+              "text": "炸彈全體，太陽星座",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-star4-pop-wheel3",
+          "atMs": 200200,
+          "name": "沙漠全體後：引爆地星＋命運之輪持續治療",
+          "phase": "沙漠",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-star4-pop-wheel3-cue",
+              "offsetMs": 0,
+              "text": "引爆地星，命運之輪回復",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-horoscope2-pop",
+          "atMs": 202500,
+          "name": "沙漠全體後：引爆天宮圖",
+          "phase": "沙漠",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-horoscope2-pop-cue",
+              "offsetMs": 0,
+              "text": "全體後，引爆天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-exalt3",
+          "atMs": 205000,
+          "name": "動物園前雙坦死刑：擢升主坦",
+          "phase": "沙漠",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-exalt3-cue",
+              "offsetMs": 0,
+              "text": "死刑前，擢升主坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-dot-210",
+          "atMs": 210000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-dot-210-cue",
+              "offsetMs": 0,
+              "text": "有目標才補毒，換怪重補",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-add-target-dot",
+          "atMs": 229500,
+          "name": "動物園目標切換：優先小怪上毒，換怪重新確認",
+          "phase": "動物園",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-add-target-dot-cue",
+              "offsetMs": 0,
+              "text": "優先怪上毒，換怪重補",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-opposition3",
+          "atMs": 232000,
+          "name": "動物園第一波：沖日",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-opposition3-cue",
+              "offsetMs": 0,
+              "text": "小怪一，沖日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-dot-240",
+          "atMs": 240000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-dot-240-cue",
+              "offsetMs": 0,
+              "text": "有目標才補毒，換怪重補",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-star5-place",
+          "atMs": 245000,
+          "name": "動物園第二波：放置地星",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-star5-place-cue",
+              "offsetMs": 0,
+              "text": "小怪二前，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-divination-252",
+          "atMs": 252000,
+          "name": "動物園 W1 尾段爆發：占卜，依隊伍安排出牌（轉好即開，涵蓋 W2）",
+          "phase": "動物園",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-divination-252-cue",
+              "offsetMs": 0,
+              "text": "一波尾，占卜出牌",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-star5-pop",
+          "atMs": 258800,
+          "name": "動物園第二波：引爆地星",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-star5-pop-cue",
+              "offsetMs": 0,
+              "text": "小怪二，引爆地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-dot-270",
+          "atMs": 270000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-dot-270-cue",
+              "offsetMs": 0,
+              "text": "有目標才補毒，換怪重補",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-lady3",
+          "atMs": 281000,
+          "name": "動物園第三波：王冠之淑女（貴婦）；無牌改陽星合相",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-lady3-cue",
+              "offsetMs": 0,
+              "text": "小怪三，有貴婦就補",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-neutral3",
+          "atMs": 290500,
+          "name": "動物園第三波接第一次隕石：中間學派",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-neutral3-cue",
+              "offsetMs": 0,
+              "text": "小怪三，中間學派",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-neutral3-helios",
+          "atMs": 293000,
+          "name": "動物園第三波：陽星合相上中間盾",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-neutral3-helios-cue",
+              "offsetMs": 0,
+              "text": "陽星合相，上群盾",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-dot-300",
+          "atMs": 300000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-dot-300-cue",
+              "offsetMs": 0,
+              "text": "有目標才補毒，換怪重補",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-wheel4",
+          "atMs": 302500,
+          "name": "動物園第一次隕石：命運之輪",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-wheel4-cue",
+              "offsetMs": 0,
+              "text": "第一次隕石，命運之輪",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-sun3",
+          "atMs": 304800,
+          "name": "動物園第一次隕石：太陽星座",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-sun3-cue",
+              "offsetMs": 0,
+              "text": "第一次隕石，太陽星座",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-star6-place",
+          "atMs": 312300,
+          "name": "動物園第四波：放置地星，留自爆",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-star6-place-cue",
+              "offsetMs": 0,
+              "text": "小怪四前，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-exalt4",
+          "atMs": 324800,
+          "name": "動物園第四波：擢升主坦",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-exalt4-cue",
+              "offsetMs": 0,
+              "text": "小怪四，擢升主坦",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -1766,15 +2054,15 @@
         },
         {
           "id": "m6s-ast-macro2",
-          "atMs": 303000,
-          "name": "Ready一前大宇宙",
-          "phase": "Adds",
+          "atMs": 327500,
+          "name": "動物園第四波：大宇宙",
+          "phase": "動物園",
           "category": "heal",
           "cues": [
             {
               "id": "m6s-ast-macro2-cue",
               "offsetMs": 0,
-              "text": "大傷一前，大宇宙",
+              "text": "小怪四，大宇宙",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -1789,136 +2077,16 @@
           ]
         },
         {
-          "id": "m6s-ast-star6-pop",
-          "atMs": 307000,
-          "name": "Ready一後地星回血",
-          "phase": "Adds",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-star6-pop-cue",
-              "offsetMs": 0,
-              "text": "大傷一，地星回血",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-macro2-pop",
-          "atMs": 310500,
-          "name": "Ready一後大宇宙回血",
-          "phase": "Adds",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-macro2-pop-cue",
-              "offsetMs": 0,
-              "text": "大傷一，大宇宙回血",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-horo6",
-          "atMs": 322000,
-          "name": "小怪四天宮圖",
-          "phase": "Adds",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-horo6-cue",
-              "offsetMs": 0,
-              "text": "小怪四，天宮圖",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-wheel4",
-          "atMs": 325000,
-          "name": "小怪四命運之輪",
-          "phase": "Adds",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-wheel4-cue",
-              "offsetMs": 0,
-              "text": "小怪四，命運之輪",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-opp6",
-          "atMs": 329000,
-          "name": "小怪四天星衝日",
-          "phase": "Adds",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-opp6-cue",
-              "offsetMs": 0,
-              "text": "小怪四，天星衝日",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-dot-331_5",
-          "atMs": 331500,
-          "name": "331.5秒DoT更新",
+          "id": "m6s-ast-dot-330",
+          "atMs": 330000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-dot-331_5-cue",
+              "id": "m6s-ast-dot-330-cue",
               "offsetMs": 0,
-              "text": "補DoT",
+              "text": "有目標才補毒，換怪重補",
               "priority": "low",
               "enabled": true,
               "target": {
@@ -1933,40 +2101,16 @@
           ]
         },
         {
-          "id": "m6s-ast-tb-add3",
-          "atMs": 348000,
-          "name": "小怪四坦輔助",
-          "phase": "Adds",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-tb-add3-cue",
-              "offsetMs": 0,
-              "text": "小怪四，擢升交錯",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-star7",
-          "atMs": 361000,
-          "name": "Ready二前地星",
-          "phase": "Adds",
+          "id": "m6s-ast-star6-auto",
+          "atMs": 332300,
+          "name": "動物園第四波：地星自爆",
+          "phase": "動物園",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-star7-cue",
+              "id": "m6s-ast-star6-auto-cue",
               "offsetMs": 0,
-              "text": "大傷二前，放地星",
+              "text": "小怪四，地星自爆",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -1981,17 +2125,41 @@
           ]
         },
         {
-          "id": "m6s-ast-star7-burst",
-          "atMs": 364000,
-          "name": "Ready二前補DoT＋爆發",
+          "id": "m6s-ast-micro2",
+          "atMs": 340500,
+          "name": "動物園第四波：小宇宙",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-micro2-cue",
+              "offsetMs": 0,
+              "text": "小怪四，小宇宙回血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-dot-360",
+          "atMs": 360000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-star7-burst-cue",
+              "id": "m6s-ast-dot-360-cue",
               "offsetMs": 0,
-              "text": "補DoT，光速占卜",
-              "priority": "normal",
+              "text": "有目標才補毒，換怪重補",
+              "priority": "low",
               "enabled": true,
               "target": {
                 "positions": [
@@ -2005,16 +2173,40 @@
           ]
         },
         {
-          "id": "m6s-ast-horo7",
-          "atMs": 385000,
-          "name": "Ready二前天宮圖",
-          "phase": "Adds",
+          "id": "m6s-ast-divination-372",
+          "atMs": 372000,
+          "name": "動物園 W4 後半六分鐘爆發：占卜，依隊伍安排出牌（轉好即開）",
+          "phase": "動物園",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-divination-372-cue",
+              "offsetMs": 0,
+              "text": "四波爆發，占卜出牌",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-star7-place",
+          "atMs": 375000,
+          "name": "動物園第二次隕石：放置地星",
+          "phase": "動物園",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-horo7-cue",
+              "id": "m6s-ast-star7-place-cue",
               "offsetMs": 0,
-              "text": "大傷二前，天宮圖",
+              "text": "第二次隕石，放地星",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2030,15 +2222,15 @@
         },
         {
           "id": "m6s-ast-wheel5",
-          "atMs": 388000,
-          "name": "Ready二命運之輪",
-          "phase": "Adds",
-          "category": "mitigation",
+          "atMs": 386400,
+          "name": "動物園第二次隕石：命運之輪",
+          "phase": "動物園",
+          "category": "heal",
           "cues": [
             {
               "id": "m6s-ast-wheel5-cue",
               "offsetMs": 0,
-              "text": "大傷二，命運之輪",
+              "text": "第二次隕石，命運之輪",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2053,40 +2245,16 @@
           ]
         },
         {
-          "id": "m6s-ast-ready2-heal",
-          "atMs": 391000,
-          "name": "Ready二後回血",
-          "phase": "Adds",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-ready2-heal-cue",
-              "offsetMs": 0,
-              "text": "地星回血，天星衝日",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-dot-398_5",
-          "atMs": 398500,
-          "name": "398.5秒DoT更新",
+          "id": "m6s-ast-dot-390",
+          "atMs": 390000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-dot-398_5-cue",
-              "offsetMs": -1000,
-              "text": "補DoT",
+              "id": "m6s-ast-dot-390-cue",
+              "offsetMs": 0,
+              "text": "有目標才補毒，換怪重補",
               "priority": "low",
               "enabled": true,
               "target": {
@@ -2101,40 +2269,16 @@
           ]
         },
         {
-          "id": "m6s-ast-tb4",
-          "atMs": 407000,
-          "name": "Color Riot坦輔助",
-          "phase": "Adds End",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-tb4-cue",
-              "offsetMs": 0,
-              "text": "死刑前，擢升交錯",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-star8",
-          "atMs": 421000,
-          "name": "河流前地星",
-          "phase": "River",
+          "id": "m6s-ast-star7-pop",
+          "atMs": 392500,
+          "name": "動物園第二次隕石後：引爆地星",
+          "phase": "動物園",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-star8-cue",
+              "id": "m6s-ast-star7-pop-cue",
               "offsetMs": 0,
-              "text": "河流前，放地星",
+              "text": "隕石後，引爆地星",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2149,16 +2293,184 @@
           ]
         },
         {
-          "id": "m6s-ast-dot-428_5",
-          "atMs": 428500,
-          "name": "428.5秒DoT更新",
+          "id": "m6s-ast-light4",
+          "atMs": 397000,
+          "name": "動物園箭矢與轉場：光速",
+          "phase": "動物園",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-light4-cue",
+              "offsetMs": 0,
+              "text": "箭矢移動，光速",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-exalt5",
+          "atMs": 406000,
+          "name": "動物園後雙坦死刑：擢升主坦",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-exalt5-cue",
+              "offsetMs": 0,
+              "text": "死刑前，擢升主坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-horoscope3",
+          "atMs": 409000,
+          "name": "動物園收尾：開啟天宮圖＋陽星合相",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-horoscope3-cue",
+              "offsetMs": 0,
+              "text": "天宮圖，接陽星合相",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-dot-420",
+          "atMs": 420000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-dot-428_5-cue",
-              "offsetMs": -1000,
-              "text": "補DoT",
+              "id": "m6s-ast-dot-420-cue",
+              "offsetMs": 0,
+              "text": "確認毒，快到期再補",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-horoscope3-pop",
+          "atMs": 422200,
+          "name": "動物園收尾全體後：引爆天宮圖",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-horoscope3-pop-cue",
+              "offsetMs": 0,
+              "text": "全體後，引爆天宮圖",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-opposition4-lady4",
+          "atMs": 424500,
+          "name": "動物園收尾：沖日＋王冠之淑女（貴婦）；無牌改陽星合相",
+          "phase": "動物園",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-opposition4-lady4-cue",
+              "offsetMs": 0,
+              "text": "沖日，有貴婦再補血",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-star8-place",
+          "atMs": 435000,
+          "name": "河流火雷分攤／分散：延後放置地星",
+          "phase": "河流",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-star8-place-cue",
+              "offsetMs": 0,
+              "text": "火雷前，延後放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-dot-450",
+          "atMs": 450000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-dot-450-cue",
+              "offsetMs": 0,
+              "text": "確認毒，快到期再補",
               "priority": "low",
               "enabled": true,
               "target": {
@@ -2174,15 +2486,15 @@
         },
         {
           "id": "m6s-ast-star8-pop",
-          "atMs": 441000,
-          "name": "河流地星回血",
-          "phase": "River",
+          "atMs": 454000,
+          "name": "河流火雷傷害後：引爆地星",
+          "phase": "河流",
           "category": "heal",
           "cues": [
             {
               "id": "m6s-ast-star8-pop-cue",
               "offsetMs": 0,
-              "text": "河流，地星回血",
+              "text": "火雷後，引爆地星",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2197,16 +2509,16 @@
           ]
         },
         {
-          "id": "m6s-ast-horo8",
-          "atMs": 448000,
-          "name": "火雷前天宮圖",
-          "phase": "River",
-          "category": "heal",
+          "id": "m6s-ast-light5",
+          "atMs": 475000,
+          "name": "河流四輪雷雲：光速",
+          "phase": "河流",
+          "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-horo8-cue",
+              "id": "m6s-ast-light5-cue",
               "offsetMs": 0,
-              "text": "火雷前，天宮圖",
+              "text": "雷雲移動，光速",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2221,64 +2533,16 @@
           ]
         },
         {
-          "id": "m6s-ast-wheel6",
-          "atMs": 451000,
-          "name": "火雷命運之輪",
-          "phase": "River",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-wheel6-cue",
-              "offsetMs": 0,
-              "text": "火雷，命運之輪",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-opp8",
-          "atMs": 455000,
-          "name": "火雷後天星衝日",
-          "phase": "River",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-opp8-cue",
-              "offsetMs": 0,
-              "text": "火雷後，天星衝日",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-dot-458_5",
-          "atMs": 458500,
-          "name": "458.5秒DoT更新",
+          "id": "m6s-ast-dot-480",
+          "atMs": 480000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-dot-458_5-cue",
-              "offsetMs": -1000,
-              "text": "補DoT",
+              "id": "m6s-ast-dot-480-cue",
+              "offsetMs": 0,
+              "text": "確認毒，快到期再補",
               "priority": "low",
               "enabled": true,
               "target": {
@@ -2293,16 +2557,16 @@
           ]
         },
         {
-          "id": "m6s-ast-star9",
-          "atMs": 481000,
-          "name": "雷雨地星＋爆發",
-          "phase": "Storm",
+          "id": "m6s-ast-opposition5",
+          "atMs": 484500,
+          "name": "河流四輪雷雲：沖日",
+          "phase": "河流",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-star9-cue",
+              "id": "m6s-ast-opposition5-cue",
               "offsetMs": 0,
-              "text": "雷雨，放地星，光速占卜",
+              "text": "雷雲，沖日拉血",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2317,41 +2581,89 @@
           ]
         },
         {
-          "id": "m6s-ast-dot-488_5",
-          "atMs": 488500,
-          "name": "488.5秒DoT更新",
+          "id": "m6s-ast-divination-492",
+          "atMs": 492000,
+          "name": "雷雲八分鐘爆發：占卜，依隊伍安排出牌",
+          "phase": "河流",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-divination-492-cue",
+              "offsetMs": 0,
+              "text": "八分爆發，占卜出牌",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-star9-place",
+          "atMs": 495000,
+          "name": "河流四輪雷雲：放置地星",
+          "phase": "河流",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-star9-place-cue",
+              "offsetMs": 0,
+              "text": "雷雲後半，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-lady5",
+          "atMs": 498000,
+          "name": "河流四輪雷雲：王冠之淑女（貴婦）；無牌改陽星合相",
+          "phase": "河流",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-lady5-cue",
+              "offsetMs": 0,
+              "text": "雷雲，有貴婦就補",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-dot-510",
+          "atMs": 510000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-dot-488_5-cue",
-              "offsetMs": -1000,
-              "text": "補DoT",
-              "priority": "low",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-neutral3",
-          "atMs": 500000,
-          "name": "雷雨中間學派",
-          "phase": "Storm",
-          "category": "shield",
-          "cues": [
-            {
-              "id": "m6s-ast-neutral3-cue",
+              "id": "m6s-ast-dot-510-cue",
               "offsetMs": 0,
-              "text": "雷雨，中間陽星合相",
-              "priority": "high",
+              "text": "確認毒，快到期再補",
+              "priority": "low",
               "enabled": true,
               "target": {
                 "positions": [
@@ -2366,15 +2678,15 @@
         },
         {
           "id": "m6s-ast-star9-pop",
-          "atMs": 503000,
-          "name": "雷雨地星回血",
-          "phase": "Storm",
+          "atMs": 512300,
+          "name": "最後一輪雷傷後：引爆地星",
+          "phase": "河流",
           "category": "heal",
           "cues": [
             {
               "id": "m6s-ast-star9-pop-cue",
               "offsetMs": 0,
-              "text": "雷雨，地星回血",
+              "text": "最後雷傷，引爆地星",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2389,16 +2701,16 @@
           ]
         },
         {
-          "id": "m6s-ast-macro3",
-          "atMs": 510000,
-          "name": "五連前大宇宙",
-          "phase": "Storm",
+          "id": "m6s-ast-neutral4-wheel6",
+          "atMs": 514500,
+          "name": "五連分攤：中間學派＋命運之輪",
+          "phase": "河流",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-macro3-cue",
+              "id": "m6s-ast-neutral4-wheel6-cue",
               "offsetMs": 0,
-              "text": "五連前，天宮圖大宇宙",
+              "text": "五連，中間學派命運之輪",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2413,40 +2725,16 @@
           ]
         },
         {
-          "id": "m6s-ast-wheel7",
-          "atMs": 514000,
-          "name": "五連命運之輪",
-          "phase": "Storm",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-wheel7-cue",
-              "offsetMs": 0,
-              "text": "五連分攤，命運之輪",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-party-heal",
-          "atMs": 519000,
-          "name": "五連後回血＋DoT",
-          "phase": "Storm",
+          "id": "m6s-ast-horoscope4",
+          "atMs": 517000,
+          "name": "五連分攤：開啟天宮圖＋陽星合相",
+          "phase": "河流",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-party-heal-cue",
+              "id": "m6s-ast-horoscope4-cue",
               "offsetMs": 0,
-              "text": "大宇宙回血，天星衝日，補DoT",
+              "text": "五連，天宮圖接合相",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2461,16 +2749,16 @@
           ]
         },
         {
-          "id": "m6s-ast-star10",
-          "atMs": 541000,
-          "name": "熔岩地星",
-          "phase": "Lava",
+          "id": "m6s-ast-horoscope4-pop",
+          "atMs": 522800,
+          "name": "五連分攤後：引爆天宮圖",
+          "phase": "河流",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-star10-cue",
+              "id": "m6s-ast-horoscope4-pop-cue",
               "offsetMs": 0,
-              "text": "熔岩，放地星",
+              "text": "五連後，引爆天宮圖",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2485,16 +2773,16 @@
           ]
         },
         {
-          "id": "m6s-ast-horo10",
-          "atMs": 544000,
-          "name": "多段分攤天宮圖",
-          "phase": "Lava",
+          "id": "m6s-ast-neutral4-refresh",
+          "atMs": 531700,
+          "name": "前往熔岩站位前：陽星合相刷新中間盾",
+          "phase": "河流",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-horo10-cue",
+              "id": "m6s-ast-neutral4-refresh-cue",
               "offsetMs": 0,
-              "text": "多段分攤，天宮圖",
+              "text": "散開前，合相刷新群盾",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2509,17 +2797,89 @@
           ]
         },
         {
-          "id": "m6s-ast-dot-548_5",
-          "atMs": 548500,
-          "name": "548.5秒DoT更新",
+          "id": "m6s-ast-dot-540",
+          "atMs": 540000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-dot-548_5-cue",
-              "offsetMs": -1000,
-              "text": "補DoT",
+              "id": "m6s-ast-dot-540-cue",
+              "offsetMs": 0,
+              "text": "確認毒，快到期再補",
               "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-sun4",
+          "atMs": 543500,
+          "name": "遠程分攤與近戰水波：太陽星座",
+          "phase": "河流",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-sun4-cue",
+              "offsetMs": 0,
+              "text": "分攤水波，太陽星座",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-light6",
+          "atMs": 545800,
+          "name": "遠程分攤：光速，依自己站位使用",
+          "phase": "河流",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-light6-cue",
+              "offsetMs": 0,
+              "text": "遠程分攤，光速移動",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-star10-place",
+          "atMs": 555000,
+          "name": "第一輪踩塔：放置地星",
+          "phase": "河流",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-star10-place-cue",
+              "offsetMs": 0,
+              "text": "第一輪塔，放地星",
+              "priority": "high",
               "enabled": true,
               "target": {
                 "positions": [
@@ -2534,15 +2894,15 @@
         },
         {
           "id": "m6s-ast-star10-pop",
-          "atMs": 557000,
-          "name": "多段分攤地星回血",
-          "phase": "Lava",
+          "atMs": 565200,
+          "name": "第一輪塔傷後：引爆地星",
+          "phase": "河流",
           "category": "heal",
           "cues": [
             {
               "id": "m6s-ast-star10-pop-cue",
               "offsetMs": 0,
-              "text": "多段分攤，地星回血",
+              "text": "塔傷後，引爆地星",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2557,40 +2917,16 @@
           ]
         },
         {
-          "id": "m6s-ast-wheel8",
-          "atMs": 560000,
-          "name": "扇形後命運之輪",
-          "phase": "Lava",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-wheel8-cue",
-              "offsetMs": 0,
-              "text": "扇形後，命運之輪",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-dot-578_5",
-          "atMs": 578500,
-          "name": "578.5秒DoT更新",
+          "id": "m6s-ast-dot-570",
+          "atMs": 570000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-dot-578_5-cue",
-              "offsetMs": -1000,
-              "text": "補DoT",
+              "id": "m6s-ast-dot-570-cue",
+              "offsetMs": 0,
+              "text": "確認毒，快到期再補",
               "priority": "low",
               "enabled": true,
               "target": {
@@ -2605,16 +2941,16 @@
           ]
         },
         {
-          "id": "m6s-ast-opp10",
-          "atMs": 581500,
-          "name": "塔階段天星衝日",
-          "phase": "Lava",
+          "id": "m6s-ast-wheel7",
+          "atMs": 594500,
+          "name": "熔岩收尾全體：命運之輪",
+          "phase": "河流",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-opp10-cue",
+              "id": "m6s-ast-wheel7-cue",
               "offsetMs": 0,
-              "text": "塔階段，天星衝日",
+              "text": "收尾全體，命運之輪",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2629,113 +2965,233 @@
           ]
         },
         {
-          "id": "m6s-ast-horo11",
-          "atMs": 588000,
-          "name": "Mural前天宮圖",
-          "phase": "Lava",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-horo11-cue",
-              "offsetMs": 0,
-              "text": "全體前，天宮圖",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-wheel9",
-          "atMs": 595500,
-          "name": "Mural命運之輪",
-          "phase": "Lava",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-wheel9-cue",
-              "offsetMs": 0,
-              "text": "全體傷害，命運之輪",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-opp11",
-          "atMs": 598500,
-          "name": "Mural後天星衝日＋爆發",
-          "phase": "Lava",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-opp11-cue",
-              "offsetMs": 0,
-              "text": "全體後，天星衝日，光速占卜",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-star11",
-          "atMs": 602000,
-          "name": "終盤地星",
-          "phase": "Final",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-star11-cue",
-              "offsetMs": 0,
-              "text": "終盤，放地星",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-dot-608_5",
-          "atMs": 608500,
-          "name": "608.5秒DoT更新",
+          "id": "m6s-ast-dot-600",
+          "atMs": 600000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-dot-608_5-cue",
-              "offsetMs": -1000,
-              "text": "補DoT",
+              "id": "m6s-ast-dot-600-cue",
+              "offsetMs": 0,
+              "text": "確認毒，快到期再補",
               "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-macro3",
+          "atMs": 604500,
+          "name": "終盤黃點名出現前：大宇宙＋沖日，覆蓋點名接四四",
+          "phase": "河流",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-macro3-cue",
+              "offsetMs": 0,
+              "text": "黃點名前，大宇宙沖日",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-divination-612",
+          "atMs": 612000,
+          "name": "終盤十分鐘爆發：占卜，依隊伍安排出牌",
+          "phase": "終盤",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-divination-612-cue",
+              "offsetMs": 0,
+              "text": "十分爆發，占卜出牌",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-exalt6",
+          "atMs": 614500,
+          "name": "終盤雙坦死刑：擢升主坦",
+          "phase": "終盤",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-exalt6-cue",
+              "offsetMs": 0,
+              "text": "最後死刑，擢升主坦",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-micro3",
+          "atMs": 617000,
+          "name": "終盤四四分攤後：小宇宙，不等雙坦死刑",
+          "phase": "終盤",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-micro3-cue",
+              "offsetMs": 0,
+              "text": "四四結束，小宇宙",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-star11-place",
+          "atMs": 621000,
+          "name": "最後兩輪四四／二二二二分攤：放置地星",
+          "phase": "終盤",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-star11-place-cue",
+              "offsetMs": 0,
+              "text": "最後分攤，放地星",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-light7",
+          "atMs": 627500,
+          "name": "最後擊飛：光速",
+          "phase": "終盤",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-light7-cue",
+              "offsetMs": 0,
+              "text": "最後擊飛，光速",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-dot-630",
+          "atMs": 630000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
+          "phase": "Rotation",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m6s-ast-dot-630-cue",
+              "offsetMs": 0,
+              "text": "確認毒，快到期再補",
+              "priority": "low",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-neutral5",
+          "atMs": 634500,
+          "name": "最後分攤前：中間學派＋陽星合相",
+          "phase": "終盤",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-neutral5-cue",
+              "offsetMs": 0,
+              "text": "中間學派，接合相上盾",
+              "priority": "high",
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H1"
+                ],
+                "jobs": [
+                  "AST"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m6s-ast-horoscope5",
+          "atMs": 637000,
+          "name": "最後兩輪分攤：開啟天宮圖＋陽星合相，留二段",
+          "phase": "終盤",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m6s-ast-horoscope5-cue",
+              "offsetMs": 0,
+              "text": "天宮圖接合相，留二段",
+              "priority": "high",
               "enabled": true,
               "target": {
                 "positions": [
@@ -2750,15 +3206,15 @@
         },
         {
           "id": "m6s-ast-star11-pop",
-          "atMs": 615000,
-          "name": "終盤地星回血",
-          "phase": "Final",
+          "atMs": 639500,
+          "name": "最後第一輪分攤後：引爆地星",
+          "phase": "終盤",
           "category": "heal",
           "cues": [
             {
               "id": "m6s-ast-star11-pop-cue",
               "offsetMs": 0,
-              "text": "終盤，地星回血",
+              "text": "分攤後，引爆地星",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2773,88 +3229,16 @@
           ]
         },
         {
-          "id": "m6s-ast-neutral4",
-          "atMs": 620000,
-          "name": "終盤中間學派",
-          "phase": "Final",
-          "category": "shield",
-          "cues": [
-            {
-              "id": "m6s-ast-neutral4-cue",
-              "offsetMs": 0,
-              "text": "終盤，中間陽星合相",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-tb-final",
-          "atMs": 623000,
-          "name": "最後死刑坦輔助",
-          "phase": "Final",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-tb-final-cue",
-              "offsetMs": 0,
-              "text": "最後死刑，擢升交錯",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-sun-final",
-          "atMs": 626000,
-          "name": "終盤太陽星座",
-          "phase": "Final",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-sun-final-cue",
-              "offsetMs": 0,
-              "text": "終盤，太陽星座",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-horo12",
-          "atMs": 637000,
-          "name": "最後分攤天宮圖＋DoT",
-          "phase": "Final",
+          "id": "m6s-ast-sun5",
+          "atMs": 654000,
+          "name": "最後第二輪分攤：太陽星座",
+          "phase": "終盤",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-horo12-cue",
+              "id": "m6s-ast-sun5-cue",
               "offsetMs": 0,
-              "text": "最後分攤，天宮圖，補DoT",
+              "text": "最後分攤，太陽星座",
               "priority": "high",
               "enabled": true,
               "target": {
@@ -2869,88 +3253,16 @@
           ]
         },
         {
-          "id": "m6s-ast-wheel10",
-          "atMs": 640000,
-          "name": "最後分攤命運之輪",
-          "phase": "Final",
-          "category": "mitigation",
-          "cues": [
-            {
-              "id": "m6s-ast-wheel10-cue",
-              "offsetMs": 0,
-              "text": "最後分攤，命運之輪",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-opp12",
-          "atMs": 644000,
-          "name": "最後分攤後天星衝日",
-          "phase": "Final",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-opp12-cue",
-              "offsetMs": 0,
-              "text": "分攤後，天星衝日",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-star12",
-          "atMs": 664000,
-          "name": "狂暴前地星",
-          "phase": "Final",
-          "category": "heal",
-          "cues": [
-            {
-              "id": "m6s-ast-star12-cue",
-              "offsetMs": 0,
-              "text": "狂暴前，放地星",
-              "priority": "high",
-              "enabled": true,
-              "target": {
-                "positions": [
-                  "H1"
-                ],
-                "jobs": [
-                  "AST"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m6s-ast-dot-668_5",
-          "atMs": 668500,
-          "name": "668.5秒DoT更新",
+          "id": "m6s-ast-dot-660",
+          "atMs": 660000,
+          "name": "每 30 秒：確認焚灼，將到期且有目標才補毒",
           "phase": "Rotation",
           "category": "job",
           "cues": [
             {
-              "id": "m6s-ast-dot-668_5-cue",
-              "offsetMs": -1000,
-              "text": "補DoT",
+              "id": "m6s-ast-dot-660-cue",
+              "offsetMs": 0,
+              "text": "確認毒，快到期再補",
               "priority": "low",
               "enabled": true,
               "target": {
@@ -2965,16 +3277,16 @@
           ]
         },
         {
-          "id": "m6s-ast-star12-pop",
-          "atMs": 679000,
-          "name": "狂暴前地星回血",
-          "phase": "Final",
+          "id": "m6s-ast-horoscope5-pop",
+          "atMs": 662300,
+          "name": "最後第二輪分攤後：引爆天宮圖",
+          "phase": "終盤",
           "category": "heal",
           "cues": [
             {
-              "id": "m6s-ast-star12-pop-cue",
+              "id": "m6s-ast-horoscope5-pop-cue",
               "offsetMs": 0,
-              "text": "狂暴前，地星回血",
+              "text": "分攤後，引爆天宮圖",
               "priority": "high",
               "enabled": true,
               "target": {
