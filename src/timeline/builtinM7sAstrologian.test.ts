@@ -2,10 +2,23 @@ import { describe, expect, it } from 'vitest';
 import payload from '../../public/timelines/m7s-h1-astrologian.json';
 import manifest from '../../public/timelines/index.json';
 import { analyzeCollisions } from './collision';
+import { migrateTimeline } from './migration';
+import { absoluteAtMs } from './resolveEventTiming';
+
+/**
+ * The shipped JSON is still schemaVersion 1 (spec §3.3.6 — no mass rewrite of
+ * timelines just to bump the version); the loader migrates it, so these tests
+ * read it exactly the way the app does.
+ */
+const migrated = (payload: unknown): unknown => {
+  const result = migrateTimeline(payload);
+  if (!result.ok) throw new Error(result.error);
+  return result.value;
+};
 import { compileTimeline } from './compiler';
 import { parseAndValidateTimeline } from './validator';
 
-const result = parseAndValidateTimeline(payload);
+const result = parseAndValidateTimeline(migrated(payload));
 if (!result.ok) throw new Error('M7S H1 範例格式錯誤');
 const timeline = result.timeline;
 const healing = timeline.tracks.find(track => track.id === 'h1-astrologian')!;
@@ -29,14 +42,14 @@ describe('M7S H1 影片奶軸', () => {
 
   it('preserves all 40 boss damage/mechanic timings', () => {
     const boss = timeline.tracks.find(track => track.id === 'boss-mechanics')!;
-    expect(boss.events.map(item => item.atMs)).toEqual([
+    expect(boss.events.map(item => absoluteAtMs(item))).toEqual([
       10500, 34100, 48400, 60800, 65400, 93400, 105400, 110600,
       119600, 127300, 148000, 189200, 195200, 206300, 222500, 231600,
       251600, 257600, 266700, 281100, 319100, 334000, 340000, 352100,
       381500, 409000, 426300, 432300, 441500, 476500, 495700, 512700,
       541700, 550000, 579600, 595400, 611200, 628400, 637400, 669500,
     ]);
-    const warnings = boss.events.map(item => item.atMs + item.cues[0].offsetMs);
+    const warnings = boss.events.map(item => absoluteAtMs(item) + item.cues[0].offsetMs);
     expect(warnings).toEqual([...warnings].sort((a, b) => a - b));
   });
 
@@ -68,7 +81,7 @@ describe('M7S H1 影片奶軸', () => {
     const casts = matching(pattern);
     expect(casts.length).toBeGreaterThan(1);
     for (let index = 1; index < casts.length; index += 1) {
-      expect(casts[index].atMs - casts[index - 1].atMs,
+      expect(absoluteAtMs(casts[index]) - absoluteAtMs(casts[index - 1]),
         `${casts[index - 1].id} → ${casts[index].id}`).toBeGreaterThanOrEqual(recast);
     }
   });
@@ -83,13 +96,13 @@ describe('M7S H1 影片奶軸', () => {
     const casts = matching(pattern);
     expect(casts.length).toBeGreaterThan(0);
     for (const cast of casts) {
-      while (nextRecharge !== undefined && nextRecharge <= cast.atMs) {
+      while (nextRecharge !== undefined && nextRecharge <= absoluteAtMs(cast)) {
         charges += 1;
         nextRecharge = charges < maximum ? nextRecharge + recast : undefined;
       }
       expect(charges, cast.id).toBeGreaterThan(0);
       charges -= 1;
-      nextRecharge ??= cast.atMs + recast;
+      nextRecharge ??= absoluteAtMs(cast) + recast;
     }
   });
 
@@ -100,14 +113,14 @@ describe('M7S H1 影片奶軸', () => {
     expect(detonations).toHaveLength(places.length);
     places.forEach((place, index) => {
       const detonation = detonations[index];
-      const delay = detonation.atMs - place.atMs;
+      const delay = absoluteAtMs(detonation) - absoluteAtMs(place);
       if (detonation.name.includes('地星自爆')) {
         expect(delay, detonation.id).toBe(20000);
       } else {
         expect(delay, detonation.id).toBeGreaterThanOrEqual(10000);
         expect(delay, detonation.id).toBeLessThan(20000);
       }
-      if (places[index + 1]) expect(detonation.atMs).toBeLessThan(places[index + 1].atMs);
+      if (places[index + 1]) expect(absoluteAtMs(detonation)).toBeLessThan(absoluteAtMs(places[index + 1]));
     });
   });
 
@@ -119,9 +132,9 @@ describe('M7S H1 影片奶軸', () => {
     starts.forEach((start, index) => {
       expect(start.name).toContain('陽星合相');
       // The instruction means Horoscope, then a 1.5 s Helios Conjunction cast.
-      const upgradeAt = start.atMs + 1500;
-      expect(pops[index].atMs - upgradeAt, pops[index].id).toBeGreaterThan(0);
-      expect(pops[index].atMs - upgradeAt, pops[index].id).toBeLessThan(30000);
+      const upgradeAt = absoluteAtMs(start) + 1500;
+      expect(absoluteAtMs(pops[index]) - upgradeAt, pops[index].id).toBeGreaterThan(0);
+      expect(absoluteAtMs(pops[index]) - upgradeAt, pops[index].id).toBeLessThan(30000);
     });
   });
 
@@ -131,8 +144,8 @@ describe('M7S H1 影片奶軸', () => {
     expect(starts).toHaveLength(3);
     expect(pops).toHaveLength(starts.length);
     starts.forEach((start, index) => {
-      expect(pops[index].atMs - start.atMs).toBeGreaterThan(0);
-      expect(pops[index].atMs - start.atMs).toBeLessThan(15000);
+      expect(absoluteAtMs(pops[index]) - absoluteAtMs(start)).toBeGreaterThan(0);
+      expect(absoluteAtMs(pops[index]) - absoluteAtMs(start)).toBeLessThan(15000);
     });
   });
 
@@ -143,26 +156,26 @@ describe('M7S H1 影片奶軸', () => {
     expect(neutral).toHaveLength(4);
     expect(sun).toHaveLength(neutral.length);
     neutral.forEach((start, index) => {
-      expect(sun[index].atMs - start.atMs).toBeGreaterThanOrEqual(0);
-      expect(sun[index].atMs - start.atMs).toBeLessThan(30000);
-      expect(sun[index].atMs).toBeLessThan(damageWindows[index][0]);
-      expect(sun[index].atMs + 15000).toBeGreaterThan(damageWindows[index][1]);
+      expect(absoluteAtMs(sun[index]) - absoluteAtMs(start)).toBeGreaterThanOrEqual(0);
+      expect(absoluteAtMs(sun[index]) - absoluteAtMs(start)).toBeLessThan(30000);
+      expect(absoluteAtMs(sun[index])).toBeLessThan(damageWindows[index][0]);
+      expect(absoluteAtMs(sun[index]) + 15000).toBeGreaterThan(damageWindows[index][1]);
       const shields = matching(/陽星合相/).filter(item =>
-        item.atMs >= start.atMs && item.atMs + 1500 < start.atMs + 20000);
+        absoluteAtMs(item) >= absoluteAtMs(start) && absoluteAtMs(item) + 1500 < absoluteAtMs(start) + 20000);
       expect(shields.length, start.id).toBeGreaterThan(0);
     });
   });
 
   it('uses the video opener and reserves Macrocosmos for the video mechanic groups', () => {
-    expect(event('pre-horo').atMs).toBe(-10000);
-    expect(event('pre-star').atMs).toBe(-5000);
-    expect(event('macro1').atMs).toBeGreaterThan(65000);
-    expect(event('macro1-pop').atMs).toBeLessThan(93400);
-    expect(event('neutral1').atMs).toBeLessThan(105400);
-    expect(event('macro2').atMs).toBeLessThan(409000);
-    expect(event('macro2-pop').atMs).toBeGreaterThan(409000);
-    expect(event('macro3').atMs).toBeLessThan(637400);
-    expect(event('macro3-pop').atMs).toBeGreaterThan(644400);
+    expect(absoluteAtMs(event('pre-horo'))).toBe(-10000);
+    expect(absoluteAtMs(event('pre-star'))).toBe(-5000);
+    expect(absoluteAtMs(event('macro1'))).toBeGreaterThan(65000);
+    expect(absoluteAtMs(event('macro1-pop'))).toBeLessThan(93400);
+    expect(absoluteAtMs(event('neutral1'))).toBeLessThan(105400);
+    expect(absoluteAtMs(event('macro2'))).toBeLessThan(409000);
+    expect(absoluteAtMs(event('macro2-pop'))).toBeGreaterThan(409000);
+    expect(absoluteAtMs(event('macro3'))).toBeLessThan(637400);
+    expect(absoluteAtMs(event('macro3-pop'))).toBeGreaterThan(644400);
     expect(matching(/大宇宙/).filter(item => item.phase === 'P2')).toEqual([]);
     for (const lady of matching(/王冠之淑女/)) {
       expect(lady.name).toContain('無牌改陽星合相');
@@ -171,13 +184,13 @@ describe('M7S H1 影片奶軸', () => {
   });
 
   it('keeps a legal 120 second Divination rhythm outside forced downtime', () => {
-    expect(matching(/占卜/).map(item => item.atMs)).toEqual([
+    expect(matching(/占卜/).map(item => absoluteAtMs(item))).toEqual([
       11500, 131500, 251500, 371500, 491500, 611500,
     ]);
     const offensive = matching(/占卜|焚灼/);
     for (const cast of offensive) {
-      expect(cast.atMs >= 148000 && cast.atMs < 163500, cast.id).toBe(false);
-      expect(cast.atMs >= 352100 && cast.atMs < 369500, cast.id).toBe(false);
+      expect(absoluteAtMs(cast) >= 148000 && absoluteAtMs(cast) < 163500, cast.id).toBe(false);
+      expect(absoluteAtMs(cast) >= 352100 && absoluteAtMs(cast) < 369500, cast.id).toBe(false);
     }
   });
 

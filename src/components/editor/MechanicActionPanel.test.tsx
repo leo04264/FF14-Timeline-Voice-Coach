@@ -42,10 +42,14 @@ describe('MechanicActionPanel', () => {
     const next = vi.mocked(props.onChange).mock.calls[0][0];
     const healer = next.tracks.find((track) => track.id === 'example-track-healer');
     expect(healer?.events).toHaveLength(2);
+    // 面板預設建立真正的連動事件（規格 §5.2.5）
     expect(healer?.events[1]).toMatchObject({
-      atMs: 20_000,
+      timing: {
+        kind: 'mechanic',
+        sourceTrackId: 'example-track-boss',
+        sourceEventId: 'example-event-raidwide',
+      },
       name: '全體攻擊：學者罩子',
-      phase: 'P1',
       category: 'mitigation',
       cues: [expect.objectContaining({ offsetMs: -12_000, text: '全體前罩子' })],
     });

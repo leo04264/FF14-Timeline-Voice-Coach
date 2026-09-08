@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { analyzeCollisions, DEFAULT_COLLISION_WINDOW_MS } from './collision';
 import type { TimelinePackage } from './types';
+import { absoluteTiming } from './types';
 
 function timeline(partial: Partial<TimelinePackage> = {}): TimelinePackage {
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     id: 'collision-test',
     meta: { name: 'Collision', encounterId: 'test' },
     encounter: { durationMs: 60_000, countdownMs: 0 },
@@ -26,7 +27,7 @@ function trackWithCues(
     target: trackTarget as never,
     events: cues.map((cue) => ({
       id: `${cue.id}-event`,
-      atMs: cue.atMs,
+      timing: absoluteTiming(cue.atMs),
       name: cue.id,
       category: 'custom' as const,
       cues: [
