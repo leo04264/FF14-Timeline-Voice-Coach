@@ -29,7 +29,7 @@ export function App() {
               <NavLink to="/editor">編輯器</NavLink>
               <NavLink to="/settings">設定</NavLink>
             </nav>
-            <span className="badge">V0.1</span>
+            <span className="badge">v{__APP_VERSION__}</span>
           </header>
           <main className="app-main">
             <Routes>

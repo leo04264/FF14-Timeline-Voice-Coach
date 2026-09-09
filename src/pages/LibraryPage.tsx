@@ -360,7 +360,7 @@ export function LibraryPage() {
                 ? pendingDelete.timeline.meta.name
                 : (pendingDelete.name ?? pendingDelete.id)}
             </strong>
-            。V0.1 沒有垃圾桶，離開頁面之後就救不回來了（規格 §66）。
+            。目前沒有垃圾桶，離開頁面之後就救不回來了（規格 §66）。
           </p>
         </Modal>
       ) : null}

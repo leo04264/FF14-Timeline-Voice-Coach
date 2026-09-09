@@ -119,7 +119,7 @@ export function SettingsPage() {
           />
         </label>
         <p className="small muted">
-          V0.1 使用 performance.now() 搭配 setInterval，只能算是原型排程器。正式在高難度副本使用之前，請先跑過
+          目前使用 performance.now() 搭配 setInterval，只能算是原型排程器。正式在高難度副本使用之前，請先跑過
           5 分鐘延遲測試（規格 §84）。
         </p>
       </div>
