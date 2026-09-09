@@ -1,0 +1,286 @@
+import { createId } from './ids';
+import { updateTrack } from './edits';
+import type {
+  SelectionGroup,
+  SelectionGroupOption,
+  TimelinePackage,
+  TimelineTrack,
+  TrackSelectionRef,
+} from './types';
+
+/**
+ * Mutually exclusive alternatives ("方案", spec §3.2 / §4.4).
+ *
+ * Exclusivity is *only* ever driven by author metadata. Nothing here looks at
+ * track names, job names or how many tracks a timeline happens to have, and two
+ * unrelated built-in templates are never merged into a group automatically.
+ *
+ * A track without `selection` stays freely multi-selectable, so a Scholar's
+ * healing plan, damage rotation and personal reminders can all run together.
+ */
+
+export interface SelectionOptionState {
+  option: SelectionGroupOption;
+  /** Tracks declared as part of this option. */
+  trackIds: string[];
+  /** Tracks of this option that are selected *and* actually produce cues. */
+  activeTrackIds: string[];
+  /** Tracks of this option that apply to the current profile at all. */
+  applicableTrackIds: string[];
+}
+
+export interface SelectionGroupState {
+  group: SelectionGroup;
+  options: SelectionOptionState[];
+  /** The single option in use, when exactly one is active. */
+  chosenOptionId: string | null;
+  /** More than one option is active — a blocking conflict (spec §4.4). */
+  conflictingOptionIds: string[];
+  /** No option is active: legal (the group is simply unused). */
+  unused: boolean;
+}
+
+export interface SelectionInput {
+  timeline: TimelinePackage;
+  /** Tracks the player switched on. */
+  enabledTrackIds: readonly string[];
+  /**
+   * Tracks that would really speak for this profile — selected, applicable and
+   * with at least one enabled cue. Only these can create a conflict, so a track
+   * belonging to another job cannot produce a phantom clash.
+   */
+  effectiveTrackIds: readonly string[];
+  /** Tracks whose target matches the profile, regardless of selection. */
+  applicableTrackIds: readonly string[];
+}
+
+export function tracksInOption(
+  timeline: TimelinePackage,
+  groupId: string,
+  optionId: string,
+): TimelineTrack[] {
+  return timeline.tracks.filter(
+    (track) => track.selection?.groupId === groupId && track.selection.optionId === optionId,
+  );
+}
+
+export function analyzeSelectionGroups(input: SelectionInput): SelectionGroupState[] {
+  const { timeline } = input;
+  const enabled = new Set(input.enabledTrackIds);
+  const effective = new Set(input.effectiveTrackIds);
+  const applicable = new Set(input.applicableTrackIds);
+
+  return (timeline.selectionGroups ?? []).map((group) => {
+    const options = group.options.map((option): SelectionOptionState => {
+      const tracks = tracksInOption(timeline, group.id, option.id);
+      return {
+        option,
+        trackIds: tracks.map((track) => track.id),
+        activeTrackIds: tracks
+          .filter((track) => enabled.has(track.id) && effective.has(track.id))
+          .map((track) => track.id),
+        applicableTrackIds: tracks.filter((track) => applicable.has(track.id)).map((t) => t.id),
+      };
+    });
+
+    const activeOptions = options.filter((state) => state.activeTrackIds.length > 0);
+    return {
+      group,
+      options,
+      chosenOptionId: activeOptions.length === 1 ? activeOptions[0].option.id : null,
+      conflictingOptionIds:
+        activeOptions.length > 1 ? activeOptions.map((state) => state.option.id) : [],
+      unused: activeOptions.length === 0,
+    };
+  });
+}
+
+/**
+ * Switch a group to one option.
+ *
+ * Every other option's tracks in the same group are switched off, and the
+ * chosen option's tracks are switched on — but only those that would actually
+ * speak for this profile, so picking a strategy never enables a track meant for
+ * somebody else.
+ */
+export function applyOptionSelection(
+  input: SelectionInput,
+  groupId: string,
+  optionId: string | null,
+): string[] {
+  const { timeline } = input;
+  const group = (timeline.selectionGroups ?? []).find((candidate) => candidate.id === groupId);
+  if (!group) return [...input.enabledTrackIds];
+
+  const groupTrackIds = new Set(
+    timeline.tracks
+      .filter((track) => track.selection?.groupId === groupId)
+      .map((track) => track.id),
+  );
+
+  const next = input.enabledTrackIds.filter((id) => !groupTrackIds.has(id));
+  if (optionId === null) return next;
+
+  const applicable = new Set(input.applicableTrackIds);
+  const wanted = tracksInOption(timeline, groupId, optionId)
+    .filter((track) => applicable.has(track.id))
+    .map((track) => track.id);
+
+  return [...next, ...wanted];
+}
+
+/**
+ * Safe "select applicable tracks" (replaces the old blanket 全選, spec §4.3.8).
+ *
+ * Picks every applicable standalone track plus the applicable tracks of the
+ * option already chosen in each group. Groups with no choice yet are left
+ * untouched so the player is asked instead of guessed for.
+ */
+export function selectApplicableTracks(input: SelectionInput): {
+  trackIds: string[];
+  groupsNeedingChoice: SelectionGroup[];
+} {
+  const { timeline } = input;
+  const applicable = new Set(input.applicableTrackIds);
+  const states = analyzeSelectionGroups(input);
+  const chosenByGroup = new Map(states.map((state) => [state.group.id, state.chosenOptionId]));
+
+  const trackIds: string[] = [];
+  for (const track of timeline.tracks) {
+    if (!applicable.has(track.id)) continue;
+    if (!track.selection) {
+      trackIds.push(track.id);
+      continue;
+    }
+    if (chosenByGroup.get(track.selection.groupId) === track.selection.optionId) {
+      trackIds.push(track.id);
+    }
+  }
+
+  const groupsNeedingChoice = states
+    .filter(
+      (state) =>
+        state.chosenOptionId === null &&
+        state.options.some((option) => option.applicableTrackIds.length > 0),
+    )
+    .map((state) => state.group);
+
+  return { trackIds, groupsNeedingChoice };
+}
+
+// ------------------------------------------------------------- author editing
+
+export function addSelectionGroup(
+  timeline: TimelinePackage,
+  name = '新方案群組',
+): { timeline: TimelinePackage; groupId: string } {
+  const group: SelectionGroup = { id: createId(), name, options: [] };
+  return {
+    timeline: { ...timeline, selectionGroups: [...(timeline.selectionGroups ?? []), group] },
+    groupId: group.id,
+  };
+}
+
+export function renameSelectionGroup(
+  timeline: TimelinePackage,
+  groupId: string,
+  name: string,
+): TimelinePackage {
+  return {
+    ...timeline,
+    selectionGroups: (timeline.selectionGroups ?? []).map((group) =>
+      group.id === groupId ? { ...group, name } : group,
+    ),
+  };
+}
+
+/** Removing a group also clears every track that pointed at it. */
+export function removeSelectionGroup(timeline: TimelinePackage, groupId: string): TimelinePackage {
+  const tracks = timeline.tracks.map((track) => {
+    if (track.selection?.groupId !== groupId) return track;
+    const next = { ...track };
+    delete next.selection;
+    return next;
+  });
+  const groups = (timeline.selectionGroups ?? []).filter((group) => group.id !== groupId);
+  const next: TimelinePackage = { ...timeline, tracks };
+  if (groups.length > 0) next.selectionGroups = groups;
+  else delete next.selectionGroups;
+  return next;
+}
+
+export function addSelectionOption(
+  timeline: TimelinePackage,
+  groupId: string,
+  name = '新方案',
+): { timeline: TimelinePackage; optionId: string } {
+  const optionId = createId();
+  return {
+    timeline: {
+      ...timeline,
+      selectionGroups: (timeline.selectionGroups ?? []).map((group) =>
+        group.id === groupId
+          ? { ...group, options: [...group.options, { id: optionId, name }] }
+          : group,
+      ),
+    },
+    optionId,
+  };
+}
+
+export function renameSelectionOption(
+  timeline: TimelinePackage,
+  groupId: string,
+  optionId: string,
+  name: string,
+): TimelinePackage {
+  return {
+    ...timeline,
+    selectionGroups: (timeline.selectionGroups ?? []).map((group) =>
+      group.id === groupId
+        ? {
+            ...group,
+            options: group.options.map((option) =>
+              option.id === optionId ? { ...option, name } : option,
+            ),
+          }
+        : group,
+    ),
+  };
+}
+
+export function removeSelectionOption(
+  timeline: TimelinePackage,
+  groupId: string,
+  optionId: string,
+): TimelinePackage {
+  const tracks = timeline.tracks.map((track) => {
+    if (track.selection?.groupId !== groupId || track.selection.optionId !== optionId) return track;
+    const next = { ...track };
+    delete next.selection;
+    return next;
+  });
+  return {
+    ...timeline,
+    tracks,
+    selectionGroups: (timeline.selectionGroups ?? []).map((group) =>
+      group.id === groupId
+        ? { ...group, options: group.options.filter((option) => option.id !== optionId) }
+        : group,
+    ),
+  };
+}
+
+/** Assign a track to one option, or detach it with `null`. */
+export function setTrackSelection(
+  timeline: TimelinePackage,
+  trackId: string,
+  selection: TrackSelectionRef | null,
+): TimelinePackage {
+  return updateTrack(timeline, trackId, (track) => {
+    const next = { ...track };
+    if (selection === null) delete next.selection;
+    else next.selection = { ...selection };
+    return next;
+  });
+}

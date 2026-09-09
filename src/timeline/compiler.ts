@@ -1,3 +1,4 @@
+import { buildMechanicIndex, resolveEventTiming } from './resolveEventTiming';
 import { combineTargets, matchesTarget } from './target';
 import { validateTimeline, type ValidationReport } from './validator';
 import type {
@@ -95,11 +96,20 @@ export function compileTimeline(
 
   const enabled = new Set(options.enabledTrackIds);
   const rows: (CompiledCue & SortKey)[] = [];
+  // The anchor index always covers the whole document, never just the selected
+  // tracks: switching off the boss callouts must not move personal reminders.
+  const index = buildMechanicIndex(timeline);
 
   timeline.tracks.forEach((track, trackOrder) => {
     if (!enabled.has(track.id)) return; // Track filter
 
     track.events.forEach((event, eventOrder) => {
+      const resolved = resolveEventTiming(event, track.id, index);
+      // A broken reference is already a blocking validation error above, so we
+      // can never reach here with one; guard anyway rather than emit NaN.
+      if (resolved.atMs === undefined) return;
+      const eventAtMs = resolved.atMs;
+
       event.cues.forEach((cue, cueOrder) => {
         if (cue.enabled === false) return; // Disabled cues keep their data (spec §21)
 
@@ -112,10 +122,10 @@ export function compileTimeline(
           trackId: track.id,
           eventId: event.id,
           eventName: event.name,
-          eventAtMs: event.atMs,
-          triggerMs: event.atMs + cue.offsetMs,
+          eventAtMs,
+          triggerMs: eventAtMs + cue.offsetMs,
           offsetMs: cue.offsetMs,
-          phase: event.phase,
+          phase: resolved.phase,
           category: event.category,
           text: cue.text,
           priority,

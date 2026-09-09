@@ -3,6 +3,8 @@ import { EXAMPLE_TIMELINE } from './exampleTimeline';
 import { parseTimelinePackage } from './schema';
 import { cueTextLengthLevel, parseAndValidateTimeline, validateTimeline } from './validator';
 import type { TimelinePackage } from './types';
+import { absoluteTiming } from './types';
+import { absoluteAtMs } from './resolveEventTiming';
 
 function clone(): TimelinePackage {
   return structuredClone(EXAMPLE_TIMELINE);
@@ -17,7 +19,7 @@ describe('zod schema', () => {
   it('rejects NaN and Infinity times', () => {
     const timeline = clone() as unknown as Record<string, unknown>;
     const bad = clone();
-    bad.tracks[0].events[0].atMs = Number.NaN;
+    bad.tracks[0].events[0].timing = { kind: 'absolute', atMs: Number.NaN };
     expect(parseTimelinePackage(bad).ok).toBe(false);
 
     const infinite = clone();
@@ -28,8 +30,14 @@ describe('zod schema', () => {
   });
 
   it('rejects unknown schema versions', () => {
-    const bad = { ...clone(), schemaVersion: 2 };
+    // V2 是目前版本，所以「未知版本」要用更新的號碼表達原本的意圖。
+    const bad = { ...clone(), schemaVersion: 3 };
     expect(parseTimelinePackage(bad).ok).toBe(false);
+  });
+
+  it('rejects a V1 document at the V2 parser (migration is a separate step)', () => {
+    const v1 = { ...clone(), schemaVersion: 1 };
+    expect(parseTimelinePackage(v1).ok).toBe(false);
   });
 
   it('rejects unknown enum values', () => {
@@ -69,7 +77,7 @@ describe('domain validation', () => {
 
   it('flags an event after the encounter duration', () => {
     const timeline = clone();
-    timeline.tracks[0].events[0].atMs = timeline.encounter.durationMs + 1;
+    timeline.tracks[0].events[0].timing = absoluteTiming(timeline.encounter.durationMs + 1);
     const report = validateTimeline(timeline);
     expect(report.errors.some((issue) => issue.code === 'event.after-duration')).toBe(true);
     expect(report.hasBlockingError).toBe(true);
@@ -84,9 +92,9 @@ describe('domain validation', () => {
 
   it('never auto-fixes invalid times', () => {
     const timeline = clone();
-    timeline.tracks[0].events[0].atMs = 999_999;
+    timeline.tracks[0].events[0].timing = absoluteTiming(999_999);
     validateTimeline(timeline);
-    expect(timeline.tracks[0].events[0].atMs).toBe(999_999);
+    expect(absoluteAtMs(timeline.tracks[0].events[0])).toBe(999_999);
   });
 
   it('treats empty cue text as blocking', () => {
@@ -106,7 +114,7 @@ describe('domain validation', () => {
     });
     timeline.tracks[0].events.push({
       id: 'empty-event',
-      atMs: 1000,
+      timing: absoluteTiming(1000),
       name: 'Empty',
       category: 'custom',
       cues: [],
@@ -142,7 +150,7 @@ describe('domain validation', () => {
 
 describe('parseAndValidateTimeline', () => {
   it('surfaces schema failures as errors', () => {
-    const result = parseAndValidateTimeline({ schemaVersion: 1 });
+    const result = parseAndValidateTimeline({ schemaVersion: 2 });
     expect(result.ok).toBe(false);
     expect(result.report.hasBlockingError).toBe(true);
   });

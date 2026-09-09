@@ -4,6 +4,7 @@ import { TimelineEngine } from '../engine/TimelineEngine';
 import { compileTimeline } from '../timeline/compiler';
 import type { TimelinePackage } from '../timeline/types';
 import { BrowserTtsBackend } from './BrowserTtsBackend';
+import { absoluteTiming } from '../timeline/types';
 
 /**
  * 倒數 16 秒、提示排在 -15 秒、全域偏移 -4 秒的情境。
@@ -14,7 +15,7 @@ import { BrowserTtsBackend } from './BrowserTtsBackend';
  */
 
 const TIMELINE: TimelinePackage = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   id: 'tts-start-race',
   meta: { name: 'tts-start-race', encounterId: 'test' },
   encounter: { durationMs: 610_000, countdownMs: 16_000 },
@@ -27,7 +28,7 @@ const TIMELINE: TimelinePackage = {
       events: [
         {
           id: 'event',
-          atMs: 0,
+          timing: absoluteTiming(0),
           name: '倒數15秒',
           category: 'mechanic',
           cues: [{ id: 'cue-15s', offsetMs: -15_000, text: '秘策綠帽主坦，雙坦單盾' }],

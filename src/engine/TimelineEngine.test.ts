@@ -4,9 +4,10 @@ import { compileTimeline } from '../timeline/compiler';
 import type { CompiledTimeline, TimelinePackage } from '../timeline/types';
 import { FakeClock, ManualTicker } from './Clock';
 import { TimelineEngine, type EngineEvent } from './TimelineEngine';
+import { absoluteTiming } from '../timeline/types';
 
 const TIMELINE: TimelinePackage = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   id: 'engine-test',
   meta: { name: 'Engine Test', encounterId: 'test' },
   encounter: { durationMs: 60_000, countdownMs: 15_000 },
@@ -19,21 +20,21 @@ const TIMELINE: TimelinePackage = {
       events: [
         {
           id: 'e-pull',
-          atMs: 0,
+          timing: absoluteTiming(0),
           name: 'Pull',
           category: 'mechanic',
           cues: [{ id: 'c-countdown', offsetMs: -2000, text: '兩秒後開始' }],
         },
         {
           id: 'e-first',
-          atMs: 10_000,
+          timing: absoluteTiming(10_000),
           name: 'First',
           category: 'mechanic',
           cues: [{ id: 'c-first', offsetMs: 0, text: '第一次' }],
         },
         {
           id: 'e-second',
-          atMs: 20_000,
+          timing: absoluteTiming(20_000),
           name: 'Second',
           category: 'mechanic',
           cues: [{ id: 'c-second', offsetMs: 0, text: '第二次' }],

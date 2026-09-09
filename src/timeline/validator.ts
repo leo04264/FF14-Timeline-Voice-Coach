@@ -1,3 +1,4 @@
+import { buildMechanicIndex, resolveEventTiming } from './resolveEventTiming';
 import { parseTimelinePackage } from './schema';
 import { isEmptyTarget, combineTargets } from './target';
 import type { TimelinePackage } from './types';
@@ -69,6 +70,46 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
   const trackIds = new Set<string>();
   const eventIds = new Set<string>();
   const cueIds = new Set<string>();
+  const index = buildMechanicIndex(timeline);
+
+  // ---- selection groups (spec §3.2): ids must exist and be unique ---------
+  const groupIds = new Set<string>();
+  const optionKeys = new Set<string>();
+  for (const group of timeline.selectionGroups ?? []) {
+    if (groupIds.has(group.id)) {
+      issues.push({
+        level: 'error',
+        code: 'selection-group.duplicate-id',
+        message: `方案群組 ID 重複：「${group.id}」`,
+        field: 'selectionGroups',
+      });
+    }
+    groupIds.add(group.id);
+    if (group.options.length === 0) {
+      issues.push({
+        level: 'warning',
+        code: 'selection-group.no-options',
+        message: `方案群組「${group.name || group.id}」沒有任何選項`,
+        field: 'selectionGroups',
+      });
+    }
+    const seen = new Set<string>();
+    for (const option of group.options) {
+      if (seen.has(option.id)) {
+        issues.push({
+          level: 'error',
+          code: 'selection-option.duplicate-id',
+          message: `方案群組「${group.name || group.id}」裡的選項 ID 重複：「${option.id}」`,
+          field: 'selectionGroups',
+        });
+      }
+      seen.add(option.id);
+      optionKeys.add(`${group.id}\u0000${option.id}`);
+    }
+  }
+
+  // ---- at most one system personal-reminders track per exact profile -------
+  const personalTargetKeys = new Set<string>();
 
   if (timeline.tracks.length === 0) {
     issues.push({
@@ -119,6 +160,44 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
       });
     }
 
+    if (track.selection) {
+      if (!optionKeys.has(`${track.selection.groupId}\u0000${track.selection.optionId}`)) {
+        issues.push({
+          level: 'error',
+          code: 'track.unknown-selection',
+          message: `軌道「${track.name}」指向不存在的方案（${track.selection.groupId} / ${track.selection.optionId}）`,
+          trackId: track.id,
+          field: 'selection',
+        });
+      }
+    }
+
+    if (track.purpose === 'personal-reminders') {
+      const positions = track.target?.positions ?? [];
+      const jobs = track.target?.jobs ?? [];
+      if (positions.length !== 1 || jobs.length !== 1) {
+        issues.push({
+          level: 'error',
+          code: 'track.personal-target-not-exact',
+          message: `我的自訂提醒軌道「${track.name}」必須剛好對應一個站位與一個職業`,
+          trackId: track.id,
+          field: 'target',
+        });
+      } else {
+        const key = `${positions[0]}\u0000${jobs[0]}`;
+        if (personalTargetKeys.has(key)) {
+          issues.push({
+            level: 'error',
+            code: 'track.duplicate-personal-track',
+            message: `同一個身分（${positions[0]} / ${jobs[0]}）出現了兩條我的自訂提醒軌道`,
+            trackId: track.id,
+            field: 'purpose',
+          });
+        }
+        personalTargetKeys.add(key);
+      }
+    }
+
     for (const event of track.events) {
       if (eventIds.has(event.id)) {
         issues.push({
@@ -143,25 +222,33 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
         });
       }
 
-      if (event.atMs > durationMs) {
+      const resolved = resolveEventTiming(event, track.id, index);
+      if (resolved.issue) {
+        // Structurally readable but referentially broken: a blocking error, so
+        // the player and formal export stop, while the editor can still fix it.
+        issues.push({ level: 'error', ...resolved.issue });
+      }
+      const eventAtMs = resolved.atMs;
+
+      if (eventAtMs !== undefined && eventAtMs > durationMs) {
         issues.push({
           level: 'error',
           code: 'event.after-duration',
           message: `事件「${event.name}」超過戰鬥全長（${durationMs} 毫秒）`,
           trackId: track.id,
           eventId: event.id,
-          field: 'atMs',
+          field: 'timing',
         });
       }
 
-      if (event.atMs < minTimeMs) {
+      if (eventAtMs !== undefined && eventAtMs < minTimeMs) {
         issues.push({
           level: 'warning',
           code: 'event.before-countdown',
           message: `事件「${event.name}」早於倒數開始（${minTimeMs} 毫秒）`,
           trackId: track.id,
           eventId: event.id,
-          field: 'atMs',
+          field: 'timing',
         });
       }
 
@@ -201,8 +288,8 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
           });
         }
 
-        const triggerMs = event.atMs + cue.offsetMs;
-        if (triggerMs < minTimeMs) {
+        const triggerMs = eventAtMs === undefined ? undefined : eventAtMs + cue.offsetMs;
+        if (triggerMs !== undefined && triggerMs < minTimeMs) {
           issues.push({
             level: 'error',
             code: 'cue.before-countdown',
@@ -214,7 +301,7 @@ export function validateTimeline(timeline: TimelinePackage): ValidationReport {
           });
         }
 
-        if (triggerMs > durationMs) {
+        if (triggerMs !== undefined && triggerMs > durationMs) {
           issues.push({
             level: 'warning',
             code: 'cue.after-duration',

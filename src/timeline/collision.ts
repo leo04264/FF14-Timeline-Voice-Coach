@@ -1,3 +1,4 @@
+import { buildMechanicIndex, resolveEventTiming } from './resolveEventTiming';
 import { combineTargets, describeTarget, targetsCanOverlap } from './target';
 import { DEFAULT_CUE_PRIORITY } from './compiler';
 import type { CueTarget, CuePriority, TimelinePackage } from './types';
@@ -48,8 +49,13 @@ function emptyReport(windowMs: number): CollisionReport {
 
 export function collectCueRefs(timeline: TimelinePackage): CollisionCueRef[] {
   const refs: CollisionCueRef[] = [];
+  const index = buildMechanicIndex(timeline);
   for (const track of timeline.tracks) {
     for (const event of track.events) {
+      const resolvedAtMs = resolveEventTiming(event, track.id, index).atMs;
+      // Unresolvable references are reported by the validator; they simply have
+      // no time to collide at.
+      if (resolvedAtMs === undefined) continue;
       for (const cue of event.cues) {
         if (cue.enabled === false) continue; // Disabled cues never play
         refs.push({
@@ -59,7 +65,7 @@ export function collectCueRefs(timeline: TimelinePackage): CollisionCueRef[] {
           eventName: event.name,
           cueId: cue.id,
           text: cue.text,
-          triggerMs: event.atMs + cue.offsetMs,
+          triggerMs: resolvedAtMs + cue.offsetMs,
           priority: cue.priority ?? DEFAULT_CUE_PRIORITY,
           target: combineTargets(track.target, cue.target),
         });

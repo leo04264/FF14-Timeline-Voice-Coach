@@ -4,6 +4,8 @@ import { useLibrary } from '../app/LibraryContext';
 import { useSettings } from '../app/SettingsContext';
 import { EventDetail } from '../components/editor/EventDetail';
 import { EventTable } from '../components/editor/EventTable';
+import { MechanicReminderWorkspace } from '../components/editor/MechanicReminderWorkspace';
+import { SelectionGroupEditor } from '../components/editor/SelectionGroupEditor';
 import { TrackList } from '../components/editor/TrackList';
 import { ValidationSummary } from '../components/editor/ValidationSummary';
 import { TimeInput } from '../components/editor/TimeInput';
@@ -11,9 +13,18 @@ import { SAVE_STATUS_TEXT } from '../i18n/labels';
 import { useEditorState } from '../hooks/useEditorState';
 import { exportRawDraft, exportTimeline } from '../storage/timelineIo';
 import { analyzeCollisions } from '../timeline/collision';
+import { DeleteDependentsDialog } from '../components/editor/ReferenceSafetyDialogs';
+import {
+  describeEventDependents,
+  describeTrackDependents,
+  removeEventSafely,
+  removeTrackSafely,
+  type DeleteDependentsStrategy,
+  type DependentSummary,
+} from '../timeline/edits';
 import { cloneTimelineWithNewIds } from '../timeline/exampleTimeline';
 import { validateTimeline, type ValidationIssue } from '../timeline/validator';
-import type { TimelinePackage } from '../timeline/types';
+import type { PlayerProfile, TimelinePackage } from '../timeline/types';
 
 type EditorLocation =
   | { kind: 'track'; id: string }
@@ -24,7 +35,17 @@ export function EditorPage() {
   const { timelineId } = useParams();
   const navigate = useNavigate();
   const { entries, repository, refresh, saveTimeline, loading } = useLibrary();
-  const { settings } = useSettings();
+  const { settings, update: updateSettings } = useSettings();
+
+  // "我的身分" uses the exact same semantics as the player (spec §4.2).
+  const [profile, setProfile] = useState<PlayerProfile>({
+    position: settings.lastPosition,
+    job: settings.lastJob,
+  });
+  const changeProfile = (next: PlayerProfile) => {
+    setProfile(next);
+    updateSettings({ lastPosition: next.position, lastJob: next.job });
+  };
 
   const editor = useEditorState(repository);
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
@@ -32,6 +53,11 @@ export function EditorPage() {
   const [highlightCueId, setHighlightCueId] = useState<string | null>(null);
   const [pendingLocation, setPendingLocation] = useState<EditorLocation | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+  const [pendingDelete, setPendingDelete] = useState<
+    | { kind: 'event'; trackId: string; eventId: string; what: string; dependents: DependentSummary[] }
+    | { kind: 'track'; trackId: string; what: string; dependents: DependentSummary[] }
+    | null
+  >(null);
 
   const entry = useMemo(
     () => entries.find((candidate) => candidate.id === timelineId),
@@ -148,22 +174,46 @@ export function EditorPage() {
 
   if (entry.source === 'builtin') {
     return (
-      <section className="panel col">
-        <h1>{entry.timeline.meta.name}</h1>
-        <p>內建時間軸是唯讀的。要修改請先建立一份複本（規格 §64）。</p>
-        <button
-          type="button"
-          className="primary"
-          onClick={async () => {
-            const copy = cloneTimelineWithNewIds(entry.timeline, {
-              name: `${entry.timeline.meta.name}（複本）`,
-            });
-            await saveTimeline(copy);
-            navigate(`/editor/${copy.id}`);
-          }}
-        >
-          複製後編輯
-        </button>
+      <section className="col">
+        <div className="panel col">
+          <h1>{entry.timeline.meta.name}</h1>
+          <p>
+            內建時間軸是唯讀的。你可以直接在下面用「＋我的提醒」加自己的提示——
+            第一次儲存時會自動建立一份本機複本，並把提醒指向複本裡對應的王機制（規格 §64、§5.2.8）。
+          </p>
+          <button
+            type="button"
+            onClick={async () => {
+              const copy = cloneTimelineWithNewIds(entry.timeline, {
+                name: `${entry.timeline.meta.name}（複本）`,
+              });
+              await saveTimeline(copy);
+              navigate(`/editor/${copy.id}`);
+            }}
+          >
+            直接建立複本後完整編輯
+          </button>
+        </div>
+        <div className="panel">
+          <MechanicReminderWorkspace
+            timeline={entry.timeline}
+            profile={profile}
+            onProfileChange={changeProfile}
+            settings={settings}
+            readOnly
+            onFork={async (next) => {
+              await saveTimeline(next);
+              await refresh();
+              // The workspace unmounts on navigation, so the confirmation has to
+              // be raised here to survive the switch to the fork (spec §5.2.7).
+              setNotice('已建立本機複本，並把提醒加入「我的自訂提醒」。');
+              navigate(`/editor/${next.id}`);
+            }}
+            onNavigateAdvanced={() =>
+              setNotice('內建範本唯讀：請先建立複本才能使用進階編輯。')
+            }
+          />
+        </div>
       </section>
     );
   }
@@ -345,6 +395,32 @@ export function EditorPage() {
         </div>
       </details>
 
+      <div className="panel">
+        <MechanicReminderWorkspace
+          timeline={timeline}
+          profile={profile}
+          onProfileChange={changeProfile}
+          settings={settings}
+          readOnly={false}
+          onChange={change}
+          onNavigateAdvanced={(trackId, eventId, cueId) => {
+            setSelectedTrackId(trackId);
+            setSelectedEventId(eventId);
+            setHighlightCueId(cueId ?? null);
+            setPendingLocation(cueId ? { kind: 'cue', id: cueId } : { kind: 'event', id: eventId });
+          }}
+        />
+      </div>
+
+      <details className="panel">
+        <summary>進階設定：互斥方案</summary>
+        <div style={{ marginTop: '0.6rem' }}>
+          <SelectionGroupEditor timeline={timeline} onChange={change} />
+        </div>
+      </details>
+
+      <details className="panel" open>
+        <summary>進階編輯（軌道／事件／提示）</summary>
       <div className="editor-layout">
         <div className="editor-column">
           <TrackList
@@ -356,6 +432,21 @@ export function EditorPage() {
               setSelectedEventId(track?.events[0]?.id ?? null);
             }}
             onChange={change}
+            onRequestDeleteTrack={(trackId) => {
+              const track = timeline.tracks.find((candidate) => candidate.id === trackId);
+              const dependents = describeTrackDependents(timeline, trackId);
+              if (dependents.length === 0) {
+                const result = removeTrackSafely(timeline, trackId, 'delete-dependents');
+                if (result.ok) change(result.timeline);
+                return;
+              }
+              setPendingDelete({
+                kind: 'track',
+                trackId,
+                what: track?.name || '這條軌道',
+                dependents,
+              });
+            }}
           />
         </div>
 
@@ -371,6 +462,24 @@ export function EditorPage() {
                 setHighlightCueId(null);
               }}
               onChange={change}
+              onRequestDeleteEvent={(trackId, eventId) => {
+                const event = timeline.tracks
+                  .find((candidate) => candidate.id === trackId)
+                  ?.events.find((candidate) => candidate.id === eventId);
+                const dependents = describeEventDependents(timeline, eventId);
+                if (dependents.length === 0) {
+                  const result = removeEventSafely(timeline, trackId, eventId, 'delete-dependents');
+                  if (result.ok) change(result.timeline);
+                  return;
+                }
+                setPendingDelete({
+                  kind: 'event',
+                  trackId,
+                  eventId,
+                  what: event?.name || '這個事件',
+                  dependents,
+                });
+              }}
             />
           ) : (
             <p className="muted">先新增一個軌道才能開始。</p>
@@ -398,6 +507,23 @@ export function EditorPage() {
           ) : null}
         </div>
       </div>
+      </details>
+
+      {pendingDelete ? (
+        <DeleteDependentsDialog
+          what={pendingDelete.what}
+          dependents={pendingDelete.dependents}
+          onCancel={() => setPendingDelete(null)}
+          onConfirm={(strategy: Exclude<DeleteDependentsStrategy, 'cancel'>) => {
+            const result =
+              pendingDelete.kind === 'event'
+                ? removeEventSafely(timeline, pendingDelete.trackId, pendingDelete.eventId, strategy)
+                : removeTrackSafely(timeline, pendingDelete.trackId, strategy);
+            if (result.ok) change(result.timeline);
+            setPendingDelete(null);
+          }}
+        />
+      ) : null}
     </section>
   );
 }

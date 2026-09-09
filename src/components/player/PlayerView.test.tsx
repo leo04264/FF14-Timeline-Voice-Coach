@@ -6,9 +6,10 @@ import { SettingsProvider } from '../../app/SettingsContext';
 import { MemoryTimelineRepository } from '../../test/memoryRepository';
 import type { TimelinePackage } from '../../timeline/types';
 import { PlayerView } from './PlayerView';
+import { absoluteTiming } from '../../timeline/types';
 
 const TIMELINE: TimelinePackage = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   id: 'ui-test-timeline',
   meta: { name: 'UI Test', encounterId: 'ui-test' },
   encounter: { durationMs: 60_000, countdownMs: 16_000 },
@@ -21,14 +22,14 @@ const TIMELINE: TimelinePackage = {
       events: [
         {
           id: 'ui-event-pull',
-          atMs: 0,
+          timing: absoluteTiming(0),
           name: 'Pull',
           category: 'mechanic',
           cues: [{ id: 'ui-cue-countdown', offsetMs: -2000, text: '兩秒後開始' }],
         },
         {
           id: 'ui-event-first',
-          atMs: 10_000,
+          timing: absoluteTiming(10_000),
           name: 'First Mechanic',
           category: 'mechanic',
           cues: [{ id: 'ui-cue-first', offsetMs: 0, text: '第一次機制' }],
@@ -75,10 +76,24 @@ function click(element: HTMLElement) {
   });
 }
 
+/**
+ * Confirm whichever preflight dialog appeared.
+ *
+ * This timeline only has a Boss track, so the plan raises the
+ * "本次只有共通提醒" warning and the dialog is the risk-confirm variant
+ * (spec §4.5). Quick Start does not skip it either.
+ */
+function confirmPreflight() {
+  const dialog = screen.getByRole('dialog');
+  const confirm =
+    within(dialog).queryByRole('button', { name: '了解風險，仍開始' }) ??
+    within(dialog).getByRole('button', { name: '開始' });
+  click(confirm);
+}
+
 function startPull() {
   click(screen.getByRole('button', { name: '開始' }));
-  const dialog = screen.getByRole('dialog');
-  click(within(dialog).getByRole('button', { name: '開始' }));
+  confirmPreflight();
 }
 
 describe('Player flow', () => {
@@ -104,11 +119,11 @@ describe('Player flow', () => {
     // Idle sits at -countdown (16s is the default preset).
     expect(screen.getByTestId('timer')).toHaveTextContent('-00:16.0');
 
-    // START opens the Ready Summary (Quick Start is off by default).
+    // START opens the preflight dialog (Quick Start is off by default).
     click(screen.getByRole('button', { name: '開始' }));
     const dialog = screen.getByRole('dialog');
     expect(within(dialog).getByText(/Boss Mechanics/)).toBeInTheDocument();
-    click(within(dialog).getByRole('button', { name: '開始' }));
+    confirmPreflight();
 
     expect(screen.getByText('倒數中')).toBeInTheDocument();
 
@@ -162,7 +177,11 @@ describe('Player flow', () => {
     renderPlayer();
     await flush();
 
+    // Space now goes through the same requestStart flow as the button, so the
+    // preflight dialog appears instead of starting straight away (spec §4.6.1).
     act(() => fireEvent.keyDown(window, { key: ' ' }));
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    confirmPreflight();
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     expect(screen.getByText('倒數中')).toBeInTheDocument();
     expect(screen.getAllByText(/第 1 場/).length).toBeGreaterThan(0);
@@ -210,26 +229,25 @@ describe('Player flow', () => {
     expect(screen.queryByRole('button', { name: '測試語音引擎' })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: '試聽一句' })).not.toBeInTheDocument();
 
+    // The voice test no longer runs the destructive `prepare()` warm-up, so it
+    // resolves synchronously (spec §7.3.5).
     click(screen.getByRole('button', { name: '播放測試語音' }));
-    expect(screen.getByText('正在準備語音…')).toBeInTheDocument();
-    await act(async () => {
-      vi.advanceTimersByTime(2100);
-      await Promise.resolve();
-    });
     expect(screen.getByText(/已送出測試語音/)).toBeInTheDocument();
+    expect(screen.getByText(/不代表你一定聽到了/)).toBeInTheDocument();
   });
 
   it('requires a manual wipe before starting again after completion', async () => {
     renderPlayer();
     await flush();
 
-    act(() => fireEvent.keyDown(window, { key: ' ' }));
+    startPull();
     advance(76_100); // 16s countdown + the full 60s encounter
     expect(screen.getByText('已結束')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '請先重置' })).toBeDisabled();
 
     act(() => fireEvent.keyDown(window, { key: ' ' }));
     expect(screen.getByText('已結束')).toBeInTheDocument();
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     expect(screen.getAllByText(/第 1 場/).length).toBeGreaterThan(0);
 
     click(screen.getByRole('button', { name: '重置' }));

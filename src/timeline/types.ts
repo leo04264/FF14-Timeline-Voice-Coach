@@ -194,15 +194,87 @@ export interface TimelineCue {
   audio?: AudioConfig;
 }
 
+/**
+ * When an event happens (schema V2).
+ *
+ * `absolute` carries the only real time value. `mechanic` is a live reference to
+ * an encounter-track absolute event: the referenced time is resolved on every
+ * read, so moving the boss mechanic moves every reminder hanging off it. There is
+ * deliberately no second, independently editable `atMs` on a mechanic event —
+ * one anchor, one truth (spec §3.1).
+ */
+export type EventTiming =
+  | {
+      kind: 'absolute';
+      /** Absolute timeline time of the in-game event. May be negative (spec §16). */
+      atMs: number;
+    }
+  | {
+      kind: 'mechanic';
+      sourceTrackId: string;
+      sourceEventId: string;
+    };
+
+export function absoluteTiming(atMs: number): EventTiming {
+  return { kind: 'absolute', atMs };
+}
+
+export function mechanicTiming(sourceTrackId: string, sourceEventId: string): EventTiming {
+  return { kind: 'mechanic', sourceTrackId, sourceEventId };
+}
+
+export function isAbsoluteTiming(
+  timing: EventTiming,
+): timing is Extract<EventTiming, { kind: 'absolute' }> {
+  return timing.kind === 'absolute';
+}
+
+export function isMechanicTiming(
+  timing: EventTiming,
+): timing is Extract<EventTiming, { kind: 'mechanic' }> {
+  return timing.kind === 'mechanic';
+}
+
 export interface TimelineEvent {
   id: string;
-  /** Absolute timeline time of the in-game event. May be negative (spec §16). */
-  atMs: number;
+  timing: EventTiming;
   name: string;
   phase?: string;
   category: EventCategory;
   cues: TimelineCue[];
 }
+
+/**
+ * One mutually exclusive family of alternatives ("方案"), e.g. two different
+ * strategies for the same fight. Exclusivity is *only* ever driven by this
+ * metadata — never guessed from track names, job names or track counts
+ * (spec §3.2).
+ */
+export interface SelectionGroupOption {
+  id: string;
+  name: string;
+}
+
+export interface SelectionGroup {
+  id: string;
+  name: string;
+  options: SelectionGroupOption[];
+}
+
+/** A track's membership in one option of one group. */
+export interface TrackSelectionRef {
+  groupId: string;
+  optionId: string;
+}
+
+/**
+ * `personal-reminders` marks the single system-managed track that holds the
+ * player's own quick reminders for one exact position/job. At most one such
+ * track may exist per profile per timeline (spec §5.2).
+ */
+export type TrackPurpose = 'personal-reminders';
+
+export const TRACK_PURPOSES: readonly TrackPurpose[] = ['personal-reminders'];
 
 export interface TimelineTrack {
   id: string;
@@ -211,6 +283,10 @@ export interface TimelineTrack {
   enabledByDefault: boolean;
   /** Applied on top of each cue target (intersection). */
   target?: CueTarget;
+  /** Mutually exclusive alternative this track belongs to, when any. */
+  selection?: TrackSelectionRef;
+  /** System role, when this track is managed by the app rather than the author. */
+  purpose?: TrackPurpose;
   events: TimelineEvent[];
 }
 
@@ -229,14 +305,49 @@ export interface EncounterConfig {
 }
 
 export interface TimelinePackage {
+  schemaVersion: 2;
+  id: string;
+  meta: TimelineMeta;
+  encounter: EncounterConfig;
+  /** Author-declared mutually exclusive alternatives (spec §3.2). */
+  selectionGroups?: SelectionGroup[];
+  tracks: TimelineTrack[];
+}
+
+export const CURRENT_SCHEMA_VERSION = 2 as const;
+export const LEGACY_SCHEMA_VERSION_V1 = 1 as const;
+
+// ------------------------------------------------------------------ V1 (legacy)
+
+/**
+ * Schema V1 shapes, kept only so migration can read old documents without
+ * `any`. Nothing outside migration/schema should depend on these.
+ */
+export interface TimelineEventV1 {
+  id: string;
+  atMs: number;
+  name: string;
+  phase?: string;
+  category: EventCategory;
+  cues: TimelineCue[];
+}
+
+export interface TimelineTrackV1 {
+  id: string;
+  type: TimelineTrackType;
+  name: string;
+  enabledByDefault: boolean;
+  target?: CueTarget;
+  events: TimelineEventV1[];
+}
+
+export interface TimelinePackageV1 {
   schemaVersion: 1;
   id: string;
   meta: TimelineMeta;
   encounter: EncounterConfig;
-  tracks: TimelineTrack[];
+  tracks: TimelineTrackV1[];
 }
-
-export const CURRENT_SCHEMA_VERSION = 1 as const;
 
 /** Who the player is for this session. */
 export interface PlayerProfile {

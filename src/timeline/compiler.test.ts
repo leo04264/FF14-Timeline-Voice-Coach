@@ -3,6 +3,7 @@ import { compileTimeline, DEFAULT_AUDIO_CONFIG, TimelineCompileError } from './c
 import { EXAMPLE_TIMELINE } from './exampleTimeline';
 import { matchesTarget, combineTargets, targetsCanOverlap } from './target';
 import type { CueTarget, PlayerProfile, TimelinePackage } from './types';
+import { absoluteTiming } from './types';
 
 const MT_PLD: PlayerProfile = { position: 'MT', job: 'PLD' };
 const ALL_TRACKS = EXAMPLE_TIMELINE.tracks.map((track) => track.id);
@@ -116,7 +117,7 @@ describe('compileTimeline', () => {
 
 describe('deterministic sort', () => {
   const base: TimelinePackage = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     id: 'sort-test',
     meta: { name: 'Sort', encounterId: 'sort' },
     encounter: { durationMs: 60_000, countdownMs: 0 },
@@ -129,7 +130,7 @@ describe('deterministic sort', () => {
         events: [
           {
             id: 'event-a',
-            atMs: 10_000,
+            timing: absoluteTiming(10_000),
             name: 'A',
             category: 'custom',
             cues: [
@@ -147,7 +148,7 @@ describe('deterministic sort', () => {
         events: [
           {
             id: 'event-b',
-            atMs: 10_000,
+            timing: absoluteTiming(10_000),
             name: 'B',
             category: 'custom',
             cues: [

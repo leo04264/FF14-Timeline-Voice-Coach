@@ -4,9 +4,10 @@ import { analyzeCollisions } from '../../timeline/collision';
 import type { TimelinePackage } from '../../timeline/types';
 import { validateTimeline } from '../../timeline/validator';
 import { ValidationSummary } from './ValidationSummary';
+import { absoluteTiming } from '../../timeline/types';
 
 const TIMELINE: TimelinePackage = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   id: 'validation-summary-test',
   meta: { name: '問題清單測試', encounterId: 'test' },
   encounter: { durationMs: 60_000, countdownMs: 15_000 },
@@ -19,7 +20,7 @@ const TIMELINE: TimelinePackage = {
       events: [
         {
           id: 'event-opening',
-          atMs: 10_000,
+          timing: absoluteTiming(10_000),
           name: '開場',
           category: 'mechanic',
           cues: [

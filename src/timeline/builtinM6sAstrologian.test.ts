@@ -3,9 +3,22 @@ import fullPayload from '../../public/timelines/m6s-h1-astrologian.json';
 import corePayload from '../../public/timelines/m6s-h1-astrologian-core.json';
 import manifest from '../../public/timelines/index.json';
 import { analyzeCollisions } from './collision';
+import { migrateTimeline } from './migration';
+import { absoluteAtMs } from './resolveEventTiming';
+
+/**
+ * The shipped JSON is still schemaVersion 1 (spec §3.3.6 — no mass rewrite of
+ * timelines just to bump the version); the loader migrates it, so these tests
+ * read it exactly the way the app does.
+ */
+const migrated = (payload: unknown): unknown => {
+  const result = migrateTimeline(payload);
+  if (!result.ok) throw new Error(result.error);
+  return result.value;
+};
 import { compileTimeline } from './compiler';
 import { parseAndValidateTimeline } from './validator';
-import type { TimelineEvent } from './types';
+import type { TimelineEventV1 } from './types';
 
 const variants = [
   { payload: fullPayload, file: 'm6s-h1-astrologian.json', id: 'builtin-m6s-h1-astrologian', version: '0.4.0', full: true },
@@ -13,7 +26,7 @@ const variants = [
 ];
 
 for (const variant of variants) {
-  const result = parseAndValidateTimeline(variant.payload);
+  const result = parseAndValidateTimeline(migrated(variant.payload));
   if (!result.ok) throw new Error(JSON.stringify(result.report.issues));
   const timeline = result.timeline;
   const healing = timeline.tracks.find(track => track.id === 'h1-astrologian')!;
@@ -21,7 +34,7 @@ for (const variant of variants) {
   const at = (key: string) => {
     const event = healing.events.find(item => item.id === `m6s-ast-${key}`);
     if (!event) throw new Error(`Missing ${key}`);
-    return event.atMs;
+    return absoluteAtMs(event);
   };
 
   describe(`M6S H1 ${variant.full ? '完整' : '核心'}影片奶軸`, () => {
@@ -43,7 +56,7 @@ for (const variant of variants) {
 
     it('uses the verified shared boss baseline, including the first 41.2 s stack', () => {
       const boss = timeline.tracks.find(track => track.id === 'boss-mechanics')!;
-      expect(boss.events.map(event => event.atMs)).toEqual([
+      expect(boss.events.map(event => absoluteAtMs(event))).toEqual([
         11300, 22400, 35100, 41200, 62100, 76600, 81900, 91300, 121700,
         141100, 155700, 172300, 189000, 199000, 207100, 217200, 227400,
         256500, 278600, 305500, 317700, 388700, 410900, 418900, 428300,
@@ -51,7 +64,7 @@ for (const variant of variants) {
         564900, 569100, 591300, 596300, 606400, 613300, 618600, 631000,
         637100, 653200, 658100, 680700,
       ]);
-      const warnings = boss.events.map(event => event.atMs + event.cues[0].offsetMs);
+      const warnings = boss.events.map(event => absoluteAtMs(event) + event.cues[0].offsetMs);
       expect(warnings).toEqual([...warnings].sort((a, b) => a - b));
       for (const event of boss.events) {
         expect(event.cues[0].offsetMs).toBeLessThan(0);
@@ -75,9 +88,9 @@ for (const variant of variants) {
 
     it('reminds DoT exactly every 30 seconds, including conditional add-target checks', () => {
       const dots = healing.events.filter(event => /^m6s-ast-dot-\d+$/.test(event.id));
-      expect(dots.map(event => event.atMs + event.cues[0].offsetMs))
+      expect(dots.map(event => absoluteAtMs(event) + event.cues[0].offsetMs))
         .toEqual(Array.from({ length: 23 }, (_, index) => index * 30000));
-      for (const dot of dots.filter(event => event.atMs >= 210000 && event.atMs <= 390000)) {
+      for (const dot of dots.filter(event => absoluteAtMs(event) >= 210000 && absoluteAtMs(event) <= 390000)) {
         expect(dot.cues[0].text).toContain('有目標');
         expect(dot.cues[0].text).toContain('換怪');
       }
@@ -87,8 +100,8 @@ for (const variant of variants) {
 
     it('uses the JP PF on-recast Divination variant with an opener and W4 burst', () => {
       const casts = matching(/占卜/);
-      expect(casts.map(event => event.atMs)).toEqual([12000, 132000, 252000, 372000, 492000, 612000]);
-      expect(casts.map(event => event.atMs + event.cues[0].offsetMs)).toEqual(casts.map(event => event.atMs));
+      expect(casts.map(event => absoluteAtMs(event))).toEqual([12000, 132000, 252000, 372000, 492000, 612000]);
+      expect(casts.map(event => absoluteAtMs(event) + event.cues[0].offsetMs)).toEqual(casts.map(event => absoluteAtMs(event)));
       expect(casts.map(event => event.phase)).toEqual(['P1', '沙漠', '動物園', '動物園', '河流', '終盤']);
       expect(casts[0].cues[0].text).toContain('開場爆發');
       expect(casts[3].name).toContain('W4 後半');
@@ -100,7 +113,7 @@ for (const variant of variants) {
 
     it('puts the add-phase bursts across W1/W2 and in late W4, not at the W4 spawn', () => {
       const boss = timeline.tracks.find(track => track.id === 'boss-mechanics')!;
-      const bossAt = (id: string) => boss.events.find(event => event.id === `m6s-boss-${id}`)!.atMs;
+      const bossAt = (id: string) => absoluteAtMs(boss.events.find(event => event.id === `m6s-boss-${id}`)!);
       const firstAddsBurst = at('divination-252');
       expect(firstAddsBurst).toBeGreaterThan(bossAt('wave1'));
       expect(firstAddsBurst).toBeLessThan(bossAt('wave2'));
@@ -124,7 +137,7 @@ for (const variant of variants) {
       const casts = matching(pattern);
       expect(casts.length).toBeGreaterThan(1);
       for (let index = 1; index < casts.length; index += 1) {
-        expect(casts[index].atMs - casts[index - 1].atMs,
+        expect(absoluteAtMs(casts[index]) - absoluteAtMs(casts[index - 1]),
           `${casts[index - 1].id} → ${casts[index].id}`).toBeGreaterThanOrEqual(recast);
       }
     });
@@ -137,13 +150,13 @@ for (const variant of variants) {
       let charges: number = maximum;
       let nextRecharge: number | undefined;
       for (const cast of matching(pattern)) {
-        while (nextRecharge !== undefined && nextRecharge <= cast.atMs) {
+        while (nextRecharge !== undefined && nextRecharge <= absoluteAtMs(cast)) {
           charges += 1;
           nextRecharge = charges < maximum ? nextRecharge + recast : undefined;
         }
         expect(charges, cast.id).toBeGreaterThan(0);
         charges -= 1;
-        nextRecharge ??= cast.atMs + recast;
+        nextRecharge ??= absoluteAtMs(cast) + recast;
       }
     });
 
@@ -154,7 +167,7 @@ for (const variant of variants) {
       expect(detonations).toHaveLength(placements.length);
       placements.forEach((place, index) => {
         const detonation = detonations[index];
-        const elapsed = detonation.atMs - place.atMs;
+        const elapsed = absoluteAtMs(detonation) - absoluteAtMs(place);
         if (detonation.name.includes('地星自爆')) expect(elapsed, detonation.id).toBe(20000);
         else {
           expect(elapsed, detonation.id).toBeGreaterThanOrEqual(10000);
@@ -170,20 +183,20 @@ for (const variant of variants) {
       expect(pops).toHaveLength(starts.length);
       starts.forEach((start, index) => {
         expect(start.name).toContain('陽星合相');
-        const elapsed = pops[index].atMs - (start.atMs + 1500);
+        const elapsed = absoluteAtMs(pops[index]) - (absoluteAtMs(start) + 1500);
         expect(elapsed, pops[index].id).toBeGreaterThan(0);
         expect(elapsed, pops[index].id).toBeLessThan(30000);
       });
     });
 
     it('uses Macrocosmos on the video mechanic groups, not the cactus or first meteor', () => {
-      expect(matching(/大宇宙/).map(event => event.atMs)).toEqual([147500, 327500, 604500]);
+      expect(matching(/大宇宙/).map(event => absoluteAtMs(event))).toEqual([147500, 327500, 604500]);
       const starts = matching(/大宇宙/);
       const pops = matching(/小宇宙/);
       expect(pops).toHaveLength(3);
       starts.forEach((start, index) => {
-        expect(pops[index].atMs - start.atMs).toBeGreaterThan(0);
-        expect(pops[index].atMs - start.atMs).toBeLessThan(15000);
+        expect(absoluteAtMs(pops[index]) - absoluteAtMs(start)).toBeGreaterThan(0);
+        expect(absoluteAtMs(pops[index]) - absoluteAtMs(start)).toBeLessThan(15000);
       });
       expect(at('macro1')).toBeLessThan(149700);
       expect(at('micro1')).toBeGreaterThan(155700);
@@ -200,10 +213,10 @@ for (const variant of variants) {
       expect(neutral).toHaveLength(5);
       expect(sun).toHaveLength(neutral.length);
       neutral.forEach((cast, index) => {
-        expect(sun[index].atMs - cast.atMs).toBeGreaterThanOrEqual(0);
-        expect(sun[index].atMs - cast.atMs).toBeLessThan(30000);
+        expect(absoluteAtMs(sun[index]) - absoluteAtMs(cast)).toBeGreaterThanOrEqual(0);
+        expect(absoluteAtMs(sun[index]) - absoluteAtMs(cast)).toBeLessThan(30000);
         const shield = matching(/陽星合相/).find(event =>
-          !event.name.includes('無牌') && event.atMs >= cast.atMs && event.atMs + 1500 < cast.atMs + 20000);
+          !event.name.includes('無牌') && absoluteAtMs(event) >= absoluteAtMs(cast) && absoluteAtMs(event) + 1500 < absoluteAtMs(cast) + 20000);
         expect(shield, cast.id).toBeDefined();
       });
       expect(at('neutral3')).toBeGreaterThan(278600);
@@ -230,7 +243,8 @@ for (const variant of variants) {
 
 it('shares boss timings and core instructions between both M6S H1 variants', () => {
   expect(fullPayload.tracks[0]).toEqual(corePayload.tracks[0]);
-  const fullEvents: TimelineEvent[] = fullPayload.tracks[1].events as TimelineEvent[];
+  // 這一段比對的是磁碟上未遷移的 V1 原始 JSON，型別就是 V1 事件。
+  const fullEvents: TimelineEventV1[] = fullPayload.tracks[1].events as TimelineEventV1[];
   for (const event of corePayload.tracks[1].events) {
     expect(fullEvents.find(item => item.id === event.id), event.id).toEqual(event);
   }

@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { compileTimeline } from './compiler';
 import { EXAMPLE_TIMELINE } from './exampleTimeline';
-import { appendMechanicAction } from './edits';
+import { appendMechanicAction, setEventAbsoluteTime } from './edits';
+import { buildMechanicIndex, resolveEventTiming } from './resolveEventTiming';
+import { absoluteTiming } from './types';
 
 describe('appendMechanicAction', () => {
-  it('adds a standard event to the target track at the encounter event time', () => {
+  it('links the new event to the encounter mechanic by default', () => {
     const source = structuredClone(EXAMPLE_TIMELINE);
     const result = appendMechanicAction(
       source,
@@ -25,12 +27,21 @@ describe('appendMechanicAction', () => {
 
     const target = result.timeline.tracks.find((track) => track.id === 'example-track-healer');
     const added = target?.events.find((event) => event.id === result.eventId);
+    // 預設是真正的跨軌連動，不是複製秒數（規格 §5.2.5）
     expect(added).toMatchObject({
-      atMs: 20_000,
+      timing: {
+        kind: 'mechanic',
+        sourceTrackId: 'example-track-boss',
+        sourceEventId: 'example-event-raidwide',
+      },
       name: '全體攻擊：學者罩子',
-      phase: 'P1',
       category: 'mitigation',
     });
+    // 連動事件不凍結 phase；階段由來源機制即時解析（規格 §3.1）
+    expect(added?.phase).toBeUndefined();
+    expect(
+      resolveEventTiming(added!, 'example-track-healer', buildMechanicIndex(result.timeline)),
+    ).toMatchObject({ atMs: 20_000, phase: 'P1' });
     expect(added?.cues).toEqual([
       expect.objectContaining({
         id: result.cueId,
@@ -41,6 +52,43 @@ describe('appendMechanicAction', () => {
       }),
     ]);
     expect(source.tracks.find((track) => track.id === 'example-track-healer')?.events).toHaveLength(1);
+  });
+
+  it('can snapshot a fixed time instead, which then does not follow the source', () => {
+    const linked = appendMechanicAction(
+      EXAMPLE_TIMELINE,
+      'example-track-boss',
+      'example-event-raidwide',
+      'example-track-healer',
+      {
+        eventName: '固定時間版',
+        category: 'mitigation',
+        cueText: '固定時間提示',
+        cueOffsetMs: -5000,
+        priority: 'normal',
+        mode: 'fixed',
+      },
+    );
+    expect(linked.ok).toBe(true);
+    if (!linked.ok) return;
+    const added = linked.timeline.tracks
+      .find((track) => track.id === 'example-track-healer')
+      ?.events.find((event) => event.id === linked.eventId);
+    expect(added?.timing).toEqual(absoluteTiming(20_000));
+
+    // 移動來源機制之後，固定時間版不動
+    const moved = setEventAbsoluteTime(
+      linked.timeline,
+      'example-track-boss',
+      'example-event-raidwide',
+      25_000,
+    );
+    expect(moved.ok).toBe(true);
+    if (!moved.ok) return;
+    const after = moved.timeline.tracks
+      .find((track) => track.id === 'example-track-healer')
+      ?.events.find((event) => event.id === linked.eventId);
+    expect(after?.timing).toEqual(absoluteTiming(20_000));
   });
 
   it('inserts chronologically without reordering existing same-time events', () => {

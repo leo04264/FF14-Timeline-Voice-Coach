@@ -1,6 +1,6 @@
 import { TRACK_TYPE_LABEL } from '../../i18n/labels';
 import { TIMELINE_TRACK_TYPES, type TimelinePackage, type TimelineTrackType } from '../../timeline/types';
-import { addTrack, duplicateTrack, moveTrack, removeTrack, updateTrack } from '../../timeline/edits';
+import { addTrack, duplicateTrack, moveTrack, updateTrack } from '../../timeline/edits';
 import { TargetEditor } from './TargetEditor';
 
 interface TrackListProps {
@@ -8,9 +8,17 @@ interface TrackListProps {
   selectedTrackId: string | null;
   onSelectTrack(trackId: string): void;
   onChange(next: TimelinePackage): void;
+  /** Reference safety is enforced by the page for every delete entry point. */
+  onRequestDeleteTrack(trackId: string): void;
 }
 
-export function TrackList({ timeline, selectedTrackId, onSelectTrack, onChange }: TrackListProps) {
+export function TrackList({
+  timeline,
+  selectedTrackId,
+  onSelectTrack,
+  onChange,
+  onRequestDeleteTrack,
+}: TrackListProps) {
   const selected = timeline.tracks.find((track) => track.id === selectedTrackId) ?? null;
 
   return (
@@ -125,7 +133,7 @@ export function TrackList({ timeline, selectedTrackId, onSelectTrack, onChange }
               type="button"
               className="danger"
               onClick={() => {
-                onChange(removeTrack(timeline, selected.id));
+                onRequestDeleteTrack(selected.id);
                 const remaining = timeline.tracks.filter((track) => track.id !== selected.id);
                 if (remaining[0]) onSelectTrack(remaining[0].id);
               }}
