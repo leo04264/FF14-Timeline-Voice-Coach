@@ -117,6 +117,14 @@ export interface PlaybackPlanResult {
   warnings: PlanIssue[];
   /** Collisions among the cues that will really play this run. */
   actualCollisions: CollisionReport;
+  /** Earliest trigger among this run's cues; null when nothing compiled. */
+  earliestCueMs: number | null;
+  /**
+   * Shortest countdown that still covers every cue of this run. 0 when nothing
+   * starts before the pull. The player uses this to grey out the countdown
+   * presets that cannot work, instead of letting the run be blocked later.
+   */
+  minimumCountdownMs: number;
   /**
    * Changes whenever anything that shapes this run changes. Used to invalidate a
    * warning acknowledgement — not a security token and never a way to skip
@@ -341,13 +349,22 @@ export function buildPlaybackPlan(input: PlaybackPlanInput): PlaybackPlanResult 
   const cues = compiledTimeline?.cues ?? [];
   const minTimeMs = -countdownMs;
 
+  let earliestCueMs: number | null = null;
+  for (const cue of cues) {
+    if (earliestCueMs === null || cue.triggerMs < earliestCueMs) earliestCueMs = cue.triggerMs;
+  }
+  const minimumCountdownMs = earliestCueMs !== null && earliestCueMs < 0 ? -earliestCueMs : 0;
+
   for (const cue of cues) {
     if (cue.triggerMs < minTimeMs) {
       errors.push({
         level: 'error',
         code: 'plan.cue-before-countdown',
         message: `提示「${cue.text}」在 ${cue.triggerMs} 毫秒觸發，比這次的倒數（${countdownMs} 毫秒）還早`,
-        hint: '改用足夠長的倒數，或回去修改這句的時間；系統不會偷偷略過開場提示。',
+        hint:
+          `改用足夠長的倒數：這一場至少需要 ${minimumCountdownMs / 1000} 秒` +
+          `（時間軸預設是 ${timeline.encounter.countdownMs / 1000} 秒）。` +
+          '也可以回去修改這句的時間；系統不會偷偷略過開場提示。',
         trackId: cue.trackId,
         eventId: cue.eventId,
         cueId: cue.id,
@@ -370,7 +387,12 @@ export function buildPlaybackPlan(input: PlaybackPlanInput): PlaybackPlanResult 
   // early cues beyond the late tolerance before the first tick.
   if (Number.isFinite(sessionOffsetMs) && cues.length > 0) {
     const initialElapsedMs = -countdownMs - sessionOffsetMs;
-    const skipped = cues.filter((cue) => initialElapsedMs - cue.triggerMs > maxLateMs);
+    // Cues that start before the countdown are already reported by
+    // plan.cue-before-countdown. Counting them here blamed the offset for a
+    // countdown problem — it fired even when the offset was exactly 0.
+    const skipped = cues.filter(
+      (cue) => cue.triggerMs >= minTimeMs && initialElapsedMs - cue.triggerMs > maxLateMs,
+    );
     if (skipped.length > 0) {
       errors.push({
         level: 'error',
@@ -482,6 +504,8 @@ export function buildPlaybackPlan(input: PlaybackPlanInput): PlaybackPlanResult 
     errors,
     warnings,
     actualCollisions,
+    earliestCueMs,
+    minimumCountdownMs,
     fingerprint,
     canStart,
     requiresConfirmation: warnings.some((warning) => warning.requiresConfirmation === true),
