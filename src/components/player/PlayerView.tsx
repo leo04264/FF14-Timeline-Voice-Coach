@@ -130,6 +130,28 @@ export function PlayerView() {
   const planRef = useRef(plan);
   planRef.current = plan;
 
+  /**
+   * The engine is only loaded once a plan can actually start, so a blocked run
+   * left the readout showing 全長 00:00 · 提示 0/0 and 「沒有後續提示了」 —
+   * which reads as "this timeline is empty" rather than "fix the countdown".
+   * Fall back to the plan, which is the same single source of truth the engine
+   * would have been handed.
+   */
+  const readout = useMemo(() => {
+    if (snapshot.totalCues > 0 || !plan || plan.cues.length === 0 || !timeline) {
+      return {
+        durationMs: snapshot.durationMs,
+        totalCues: snapshot.totalCues,
+        nextCues: snapshot.nextCues,
+      };
+    }
+    return {
+      durationMs: timeline.encounter.durationMs,
+      totalCues: plan.cues.length,
+      nextCues: plan.cues.slice(0, 3),
+    };
+  }, [snapshot.totalCues, snapshot.durationMs, snapshot.nextCues, plan, timeline]);
+
   const start = usePlaybackStart({
     engine,
     ownedBackend,
@@ -303,8 +325,8 @@ export function PlayerView() {
               {formatTimer(snapshot.timelineElapsedMs)}
             </div>
             <div className="small muted mono">
-              全長 {formatMs(snapshot.durationMs, { millis: false })} · 提示 {snapshot.firedCount}/
-              {snapshot.totalCues}
+              全長 {formatMs(readout.durationMs, { millis: false })} · 提示 {snapshot.firedCount}/
+              {readout.totalCues}
               {snapshot.skippedCount > 0 ? ` · 略過 ${snapshot.skippedCount}` : ''}
             </div>
             <div className="small offset-text mono">
@@ -316,7 +338,7 @@ export function PlayerView() {
             <CueDisplay
               currentCue={snapshot.currentCue}
               currentCueAtMs={snapshot.currentCueAtMs}
-              nextCues={snapshot.nextCues}
+              nextCues={readout.nextCues}
             />
           </div>
         </div>
@@ -442,6 +464,7 @@ export function PlayerView() {
           <CountdownSelector
             countdownMs={countdownMs}
             timelineDefaultMs={timeline.encounter.countdownMs}
+            minimumMs={plan?.minimumCountdownMs ?? 0}
             disabled={!isIdle}
             onChange={(ms) => {
               start.invalidate();
