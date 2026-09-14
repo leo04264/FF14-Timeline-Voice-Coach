@@ -9,6 +9,9 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  # actions/deploy-pages 從 v4 起就記載需要這個權限才能讀取 artifact。
+  # 指定 permissions 區塊之後，沒列出的權限一律是 none。
+  actions: read
 
 concurrency:
   group: pages
@@ -18,10 +21,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: 20
+          # Node 20 於 2026-04-30 EOL。22 是 LTS（支援到 2027-04-30），
+          # 也比 24 更接近 Vite 5 / Vitest 2 實際被測試過的環境。
+          node-version: 22
           cache: npm
       - run: npm ci
       - run: npm run test
@@ -29,7 +34,7 @@ jobs:
         env:
           # Repository name; change if the repo is renamed.
           BASE_PATH: /FF14-Timeline-Voice-Coach/
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
@@ -41,4 +46,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
