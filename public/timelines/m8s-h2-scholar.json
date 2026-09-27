@@ -1,0 +1,2938 @@
+{
+  "schemaVersion": 1,
+  "id": "builtin-m8s-h2-scholar",
+  "meta": {
+    "name": "M8S — H2 學者｜野生西瓜影片奶軸",
+    "encounterId": "aac-cruiserweight-m4-savage-m8s",
+    "strategy": "H2 SCH／7.2 影片奶軸＋團輔／每輪補毒／轉場需校時",
+    "author": "FF14 Timeline Voice Coach；治療配置參考：野生西瓜",
+    "version": "0.2.0",
+    "description": "依野生西瓜 M8S 學者講解影片 https://www.bilibili.com/video/BV1Vc3Nz7Ejd 的全片字幕與畫面整理治療配置，技能秒數按 cactbot 王軸、冷卻與資源重排，非逐鍵轉錄。0 秒為開戰（影片約 00:21）；採雙狼後王 248.5 秒回場、前半 398.7 秒轉場、後半 443 秒可選取的影片近似基準，務必依本隊擊殺速度校時。影片前半提早轉場，較慢隊伍須補入額外空間斬。以太超流提醒為本工具補充；留豆給罩子／不屈／綠帽／活性，勿全打能量吸收。仙女連線須有量譜。連環計按影片團輔段落安排於 7.5／127.5／250／374.8／507／629／751 秒，後半起手不開；需隨隊伍爆發約定與轉場校時，並保持至少 120 秒冷卻。26 次蠱毒法提醒涵蓋開場、雙狼、王回場及後半，每約 30 秒檢查一次；到期且有存活目標才補，不為團輔強制蓋毒。相近治療合併播報，檢查時刻與標準刷新相差不超過 2 秒；長轉場停止、後半回場重起，短跳躍保留原毒節奏，換小怪重補。所有治療、輸出與 Boss 提示啟用；細節、平台站位與來源時間對照見 docs/m8s-h2-video-reference.md。"
+  },
+  "encounter": {
+    "durationMs": 831000,
+    "countdownMs": 10000
+  },
+  "tracks": [
+    {
+      "id": "boss-mechanics",
+      "type": "encounter",
+      "name": "M8S 王機制／轉場校時",
+      "enabledByDefault": true,
+      "events": [
+        {
+          "id": "m8s-boss-pursuit-1",
+          "atMs": 14700,
+          "name": "空間斬／Extraplanar Pursuit",
+          "phase": "P1 開場／風塔",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-pursuit-1-cue",
+              "offsetMs": -9300,
+              "text": "準備全體傷害",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-fangs-1",
+          "atMs": 29500,
+          "name": "風牙／土牙",
+          "phase": "P1 開場／風塔",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-fangs-1-cue",
+              "offsetMs": -3400,
+              "text": "風土，分攤分散",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-reign-1",
+          "atMs": 39600,
+          "name": "雙狼連擊／Reign",
+          "phase": "P1 開場／風塔",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-reign-1-cue",
+              "offsetMs": -10700,
+              "text": "準備雙狼連擊",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-pursuit-2",
+          "atMs": 52500,
+          "name": "空間斬／Extraplanar Pursuit",
+          "phase": "P1 開場／風塔",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-pursuit-2-cue",
+              "offsetMs": -8600,
+              "text": "準備全體傷害",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-decay",
+          "atMs": 66000,
+          "name": "千年風化／Millennial Decay",
+          "phase": "P1 開場／風塔",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-decay-cue",
+              "offsetMs": -7100,
+              "text": "千年風化全體",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-aero-1",
+          "atMs": 76800,
+          "name": "Aero III：第一組風傷",
+          "phase": "P1 開場／風塔",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-aero-1-cue",
+              "offsetMs": -3700,
+              "text": "風圈與擊退",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-wind-towers",
+          "atMs": 94500,
+          "name": "風塔／Prowling Gale",
+          "phase": "P1 開場／風塔",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-wind-towers-cue",
+              "offsetMs": -6600,
+              "text": "拉線踩塔",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-tremors-1",
+          "atMs": 101300,
+          "name": "追蹤震動／Tracking Tremors：八連開始",
+          "phase": "P1 開場／風塔",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-tremors-1-cue",
+              "offsetMs": -3200,
+              "text": "八連分攤",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-pursuit-3",
+          "atMs": 114300,
+          "name": "空間斬／Extraplanar Pursuit",
+          "phase": "P1 開場／風塔",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-pursuit-3-cue",
+              "offsetMs": -5900,
+              "text": "全體傷害",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-divide-1",
+          "atMs": 123200,
+          "name": "Great Divide",
+          "phase": "P1 開場／風塔",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m8s-boss-divide-1-cue",
+              "offsetMs": -5000,
+              "text": "坦克死刑",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-titanic",
+          "atMs": 145100,
+          "name": "Titanic Pursuit：石柱階段全體",
+          "phase": "P1 開場／風塔",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-titanic-cue",
+              "offsetMs": -5000,
+              "text": "石柱全體傷害",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-reign-2",
+          "atMs": 158800,
+          "name": "雙狼連擊／Reign",
+          "phase": "P1 開場／風塔",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-reign-2-cue",
+              "offsetMs": -6400,
+              "text": "雙狼連擊",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-tactical-pack",
+          "atMs": 177700,
+          "name": "Tactical Pack：雙狼階段",
+          "phase": "P1 雙狼",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-tactical-pack-cue",
+              "offsetMs": -5800,
+              "text": "雙狼轉場",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-howling-havoc",
+          "atMs": 186800,
+          "name": "Howling Havoc：雙狼出場全體",
+          "phase": "P1 雙狼",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-howling-havoc-cue",
+              "offsetMs": -6900,
+              "text": "雙狼出場全體",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-pack-1",
+          "atMs": 196900,
+          "name": "Pack Predation：第一輪",
+          "phase": "P1 雙狼",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-pack-1-cue",
+              "offsetMs": -6500,
+              "text": "雙狼第一輪分攤",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-pack-2",
+          "atMs": 210800,
+          "name": "Pack Predation：第二輪",
+          "phase": "P1 雙狼",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-pack-2-cue",
+              "offsetMs": -13900,
+              "text": "準備雙狼第二輪分攤",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-pack-3",
+          "atMs": 224800,
+          "name": "Pack Predation：第三輪",
+          "phase": "P1 雙狼",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-pack-3-cue",
+              "offsetMs": -5900,
+              "text": "雙狼第三輪分攤",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-return",
+          "atMs": 248500,
+          "name": "王回場：影片基準，依本隊小怪擊殺校時",
+          "phase": "P1 回場／四刀",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-return-cue",
+              "offsetMs": -4400,
+              "text": "準備回場，確認校時",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-saber",
+          "atMs": 261500,
+          "name": "Ravenous Saber：連續揮刀",
+          "phase": "P1 回場／四刀",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-saber-cue",
+              "offsetMs": -13600,
+              "text": "準備回場連續全體",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-rage",
+          "atMs": 282600,
+          "name": "Terrestrial Rage",
+          "phase": "P1 回場／四刀",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-rage-cue",
+              "offsetMs": -5000,
+              "text": "土狼機制",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-heavensearth-1",
+          "atMs": 290900,
+          "name": "Heavensearth：第一輪分攤／分散",
+          "phase": "P1 回場／四刀",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-heavensearth-1-cue",
+              "offsetMs": -3300,
+              "text": "第一輪分攤分散",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-heavensearth-2",
+          "atMs": 297700,
+          "name": "Heavensearth：第二輪分攤／分散",
+          "phase": "P1 回場／四刀",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-heavensearth-2-cue",
+              "offsetMs": -5000,
+              "text": "第二輪分攤分散",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-reign-3",
+          "atMs": 307200,
+          "name": "雙狼連擊／Reign",
+          "phase": "P1 回場／四刀",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-reign-3-cue",
+              "offsetMs": -5800,
+              "text": "雙狼連擊",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-divide-2",
+          "atMs": 327200,
+          "name": "Great Divide",
+          "phase": "P1 回場／四刀",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m8s-boss-divide-2-cue",
+              "offsetMs": -5000,
+              "text": "坦克死刑",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-moonlight",
+          "atMs": 341400,
+          "name": "Beckon Moonlight：四刀",
+          "phase": "P1 回場／四刀",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-moonlight-cue",
+              "offsetMs": -10500,
+              "text": "準備四刀機制",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-moonlight-1",
+          "atMs": 354000,
+          "name": "四刀：第一輪分攤／分散",
+          "phase": "P1 回場／四刀",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-moonlight-1-cue",
+              "offsetMs": -5000,
+              "text": "四刀第一輪點名",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-moonlight-2",
+          "atMs": 362400,
+          "name": "四刀：第二輪分攤／分散",
+          "phase": "P1 回場／四刀",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-moonlight-2-cue",
+              "offsetMs": -5000,
+              "text": "四刀第二輪點名",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-fangs-2",
+          "atMs": 371500,
+          "name": "風牙／土牙",
+          "phase": "P1 回場／四刀",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-fangs-2-cue",
+              "offsetMs": -7100,
+              "text": "風土，分攤分散",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-tremors-2",
+          "atMs": 381400,
+          "name": "Tracking Tremors：八連開始",
+          "phase": "P1 回場／四刀",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-tremors-2-cue",
+              "offsetMs": -8700,
+              "text": "準備前半最後八連",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-pursuit-4",
+          "atMs": 394400,
+          "name": "空間斬／Extraplanar Pursuit",
+          "phase": "P1 回場／四刀",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-pursuit-4-cue",
+              "offsetMs": -7600,
+              "text": "前半最後全體",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-transition",
+          "atMs": 398700,
+          "name": "前半壓至 1 HP：影片參考轉場點",
+          "phase": "轉場",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-transition-cue",
+              "offsetMs": -5000,
+              "text": "準備轉場，確認校時",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-p2-targetable",
+          "atMs": 443000,
+          "name": "後半可選取：影片參考基準",
+          "phase": "P2 五平台",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-p2-targetable-cue",
+              "offsetMs": -5000,
+              "text": "後半準備，確認校時",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-quake-1",
+          "atMs": 455000,
+          "name": "Quake III：四四分攤",
+          "phase": "P2 五平台",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-quake-1-cue",
+              "offsetMs": -14100,
+              "text": "準備四四分攤",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-ray-1",
+          "atMs": 467000,
+          "name": "Ultraviolent Ray：藍標一",
+          "phase": "P2 五平台",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-ray-1-cue",
+              "offsetMs": -5000,
+              "text": "第一次藍標",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-twinbite-1",
+          "atMs": 478000,
+          "name": "Twinbite：雙坦死刑",
+          "phase": "P2 五平台",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m8s-boss-twinbite-1-cue",
+              "offsetMs": -6100,
+              "text": "雙坦死刑",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-hero-1",
+          "atMs": 490100,
+          "name": "Hero's Blow：半場刀",
+          "phase": "P2 五平台",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-hero-1-cue",
+              "offsetMs": -5000,
+              "text": "半場刀，找安全點",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-ray-2",
+          "atMs": 500100,
+          "name": "Ultraviolent Ray：藍標二",
+          "phase": "P2 五平台",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-ray-2-cue",
+              "offsetMs": -5000,
+              "text": "第二次藍標",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-quake-2",
+          "atMs": 511100,
+          "name": "Quake III：四四分攤",
+          "phase": "P2 五平台",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-quake-2-cue",
+              "offsetMs": -11000,
+              "text": "準備四四分攤",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-mooncleaver",
+          "atMs": 524300,
+          "name": "Mooncleaver：平台破壞",
+          "phase": "P2 五平台",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-mooncleaver-cue",
+              "offsetMs": -5400,
+              "text": "換平台",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-purge",
+          "atMs": 536400,
+          "name": "風震魔印：分攤／大圈傷害判定",
+          "phase": "P2 五平台",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-purge-cue",
+              "offsetMs": -6000,
+              "text": "魔印分攤大圈",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-p2-towers",
+          "atMs": 550200,
+          "name": "Prowling Gale：踩塔判定",
+          "phase": "P2 五平台",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-p2-towers-cue",
+              "offsetMs": -4100,
+              "text": "風塔判定",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-twofold",
+          "atMs": 561600,
+          "name": "Twofold Tempest：四組雙重暴風",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-twofold-cue",
+              "offsetMs": -4500,
+              "text": "雙重暴風，注意坦血",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-circuit",
+          "atMs": 603700,
+          "name": "Champion's Circuit：五次迴轉",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-circuit-cue",
+              "offsetMs": -5000,
+              "text": "迴轉機制",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-quake-3",
+          "atMs": 631400,
+          "name": "Quake III：四四分攤",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-quake-3-cue",
+              "offsetMs": -14000,
+              "text": "準備四四分攤",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-ray-3",
+          "atMs": 645400,
+          "name": "Ultraviolent Ray：藍標三",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-ray-3-cue",
+              "offsetMs": -5000,
+              "text": "第三次藍標",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-twinbite-2",
+          "atMs": 656400,
+          "name": "Twinbite：雙坦死刑",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "tankbuster",
+          "cues": [
+            {
+              "id": "m8s-boss-twinbite-2-cue",
+              "offsetMs": -7000,
+              "text": "雙坦死刑",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-lone-wolf",
+          "atMs": 676800,
+          "name": "Lone Wolf's Lament：孤狼",
+          "phase": "P2 孤狼",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-lone-wolf-cue",
+              "offsetMs": -6400,
+              "text": "孤狼拉線機制",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-lone-wolf-towers",
+          "atMs": 695500,
+          "name": "Prowling Gale：孤狼踩塔",
+          "phase": "P2 孤狼",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-lone-wolf-towers-cue",
+              "offsetMs": -5000,
+              "text": "孤狼踩塔",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-hero-2",
+          "atMs": 705100,
+          "name": "Hero's Blow：半場刀",
+          "phase": "P2 孤狼",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-hero-2-cue",
+              "offsetMs": -3000,
+              "text": "半場刀，找安全點",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-ray-4",
+          "atMs": 717300,
+          "name": "Ultraviolent Ray：藍標四",
+          "phase": "P2 孤狼",
+          "category": "mechanic",
+          "cues": [
+            {
+              "id": "m8s-boss-ray-4-cue",
+              "offsetMs": -3200,
+              "text": "最後藍標",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-howling-1",
+          "atMs": 732100,
+          "name": "Howling Eight：第 1 輪八連",
+          "phase": "P2 五輪八連",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-howling-1-cue",
+              "offsetMs": -11200,
+              "text": "準備第一輪八連分攤",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-howling-2",
+          "atMs": 751800,
+          "name": "Howling Eight：第 2 輪八連",
+          "phase": "P2 五輪八連",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-howling-2-cue",
+              "offsetMs": -5000,
+              "text": "第二輪八連分攤",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-howling-3",
+          "atMs": 771300,
+          "name": "Howling Eight：第 3 輪八連",
+          "phase": "P2 五輪八連",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-howling-3-cue",
+              "offsetMs": -5000,
+              "text": "第三輪八連分攤",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-howling-4",
+          "atMs": 790900,
+          "name": "Howling Eight：第 4 輪八連",
+          "phase": "P2 五輪八連",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-howling-4-cue",
+              "offsetMs": -8000,
+              "text": "第四輪八連分攤",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-howling-5",
+          "atMs": 810500,
+          "name": "Howling Eight：第 5 輪八連",
+          "phase": "P2 五輪八連",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-howling-5-cue",
+              "offsetMs": -15100,
+              "text": "準備第五輪八連分攤",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-boss-enrage",
+          "atMs": 828900,
+          "name": "Starcleaver：狂暴",
+          "phase": "P2 五輪八連",
+          "category": "raidwide",
+          "cues": [
+            {
+              "id": "m8s-boss-enrage-cue",
+              "offsetMs": -5000,
+              "text": "狂暴讀條，全力輸出",
+              "priority": "normal",
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h2-scholar",
+      "type": "job",
+      "name": "H2 學者：奶軸／連環計／補毒",
+      "enabledByDefault": true,
+      "target": {
+        "positions": [
+          "H2"
+        ],
+        "jobs": [
+          "SCH"
+        ]
+      },
+      "events": [
+        {
+          "id": "m8s-sch-pre-shield",
+          "atMs": -10000,
+          "name": "幻光＋群盾：倒數預盾",
+          "phase": "P1 開場／風塔",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-pre-shield-cue",
+              "offsetMs": 0,
+              "text": "幻光，群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-opening-dissipation",
+          "atMs": 500,
+          "name": "轉化：開戰後取得三顆以太超流",
+          "phase": "P1 開場／風塔",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-opening-dissipation-cue",
+              "offsetMs": 0,
+              "text": "開戰，轉化",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-dot-opening-1",
+          "atMs": 2600,
+          "name": "蠱毒法檢查：開場主王，上毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P1 開場／風塔",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-dot-opening-1-cue",
+              "offsetMs": 0,
+              "text": "開場補毒",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-chain-opening",
+          "atMs": 7500,
+          "name": "連環計：開場團輔，以隊伍約定為準",
+          "phase": "P1 開場／風塔",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-chain-opening-cue",
+              "offsetMs": 0,
+              "text": "團輔，連環計",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-opening-soil",
+          "atMs": 10000,
+          "name": "野戰治療陣：開場空間斬",
+          "phase": "P1 開場／風塔",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-opening-soil-cue",
+              "offsetMs": 0,
+              "text": "場中下罩子",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-fangs-shield",
+          "atMs": 24000,
+          "name": "群盾：風牙／土牙前",
+          "phase": "P1 開場／風塔",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-fangs-shield-cue",
+              "offsetMs": 0,
+              "text": "風土前，群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-reign-spread-prep",
+          "atMs": 31000,
+          "name": "秘策＋生命回生法＋鼓舞激勵之策＋蠱毒法檢查：自己做單盾；開場主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P1 開場／風塔",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-reign-spread-prep-cue",
+              "offsetMs": 0,
+              "text": "秘策回生，單盾自己，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-reign-deployment",
+          "atMs": 35000,
+          "name": "展開戰術：第一次雙狼連擊",
+          "phase": "P1 開場／風塔",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-reign-deployment-cue",
+              "offsetMs": 0,
+              "text": "擴散盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-double-raidwide-shield",
+          "atMs": 46000,
+          "name": "群盾：第二次空間斬前",
+          "phase": "P1 開場／風塔",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-double-raidwide-shield-cue",
+              "offsetMs": 0,
+              "text": "回中，群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-double-raidwide-soil",
+          "atMs": 51500,
+          "name": "野戰治療陣：覆蓋 52.5 秒空間斬與 66 秒千年風化",
+          "phase": "P1 開場／風塔",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-double-raidwide-soil-cue",
+              "offsetMs": -2500,
+              "text": "全體落地前下罩子",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-raidwide-dawn",
+          "atMs": 55000,
+          "name": "仙光的低語：空間斬後持續回血",
+          "phase": "P1 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-raidwide-dawn-cue",
+              "offsetMs": 0,
+              "text": "低語回血",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-aetherflow-1",
+          "atMs": 61000,
+          "name": "以太超流＋蠱毒法檢查：補充資源，保留治療用豆；開場主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P1 開場／風塔",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-aetherflow-1-cue",
+              "offsetMs": 0,
+              "text": "以太超流，保留治療豆，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-decay-blessing",
+          "atMs": 67600,
+          "name": "仙光的祥光＋群盾：千年風化後",
+          "phase": "P1 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-decay-blessing-cue",
+              "offsetMs": 0,
+              "text": "祥光，補群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-wind-seraph",
+          "atMs": 71000,
+          "name": "召喚熾天使：大圈擊退段",
+          "phase": "P1 開場／風塔",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-wind-seraph-cue",
+              "offsetMs": 0,
+              "text": "召喚大仙女",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-wind-consolation-1",
+          "atMs": 78500,
+          "name": "慰藉一段：第一次風傷後",
+          "phase": "P1 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-wind-consolation-1-cue",
+              "offsetMs": 0,
+              "text": "大仙女一段",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-wind-consolation-2",
+          "atMs": 85500,
+          "name": "慰藉二段：第二次擊退後",
+          "phase": "P1 開場／風塔",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-wind-consolation-2-cue",
+              "offsetMs": 0,
+              "text": "大仙女二段",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-wind-seraphism",
+          "atMs": 90000,
+          "name": "熾天附體：風塔與第一輪八連",
+          "phase": "P1 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-wind-seraphism-cue",
+              "offsetMs": 0,
+              "text": "仙女附體",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-wind-accession",
+          "atMs": 93000,
+          "name": "附體群盾＋蠱毒法檢查：拉線／踩塔前；開場主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P1 開場／風塔",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-wind-accession-cue",
+              "offsetMs": 0,
+              "text": "踩塔前，附體群盾，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-tremors-soil-expedient",
+          "atMs": 96000,
+          "name": "野戰治療陣＋疾風怒濤之計：八連分攤",
+          "phase": "P1 開場／風塔",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-tremors-soil-expedient-cue",
+              "offsetMs": 0,
+              "text": "罩子，跑快快",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-tremors-accession",
+          "atMs": 102000,
+          "name": "附體群盾：連傷期間按血量連續施放，配合搭檔大宇宙",
+          "phase": "P1 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-tremors-accession-cue",
+              "offsetMs": 0,
+              "text": "連刷群盾，配合搭檔",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-pursuit-shield",
+          "atMs": 110500,
+          "name": "群盾：八連後空間斬前",
+          "phase": "P1 開場／風塔",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-pursuit-shield-cue",
+              "offsetMs": 0,
+              "text": "全體前，群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-aetherflow-2",
+          "atMs": 124000,
+          "name": "以太超流＋蠱毒法檢查：補充資源，保留治療用豆；開場主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P1 開場／風塔",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-aetherflow-2-cue",
+              "offsetMs": 0,
+              "text": "以太超流，保留治療豆，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-chain-two-minute",
+          "atMs": 127500,
+          "name": "連環計：第一次坦克死刑後的團輔，以隊伍約定為準",
+          "phase": "P1 開場／風塔",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-chain-two-minute-cue",
+              "offsetMs": 0,
+              "text": "團輔，連環計",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-titans-shield",
+          "atMs": 154500,
+          "name": "群盾＋蠱毒法檢查：石柱安全點站定後，覆蓋第二次雙狼連擊；開場主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P1 開場／風塔",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-titans-shield-cue",
+              "offsetMs": 0,
+              "text": "安全點，補群盾，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-titans-blessing",
+          "atMs": 166500,
+          "name": "仙光的祥光：連擊後",
+          "phase": "P1 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-titans-blessing-cue",
+              "offsetMs": 0,
+              "text": "分攤後，祥光",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-pre-adds-union",
+          "atMs": 174000,
+          "name": "以太契約：主坦低血且有仙女量譜時連線",
+          "phase": "P1 開場／風塔",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-pre-adds-union-cue",
+              "offsetMs": 0,
+              "text": "主坦低血，有量譜連線",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-adds-shield",
+          "atMs": 182000,
+          "name": "群盾：雙狼出場全體傷害前，靠中覆蓋八人",
+          "phase": "P1 雙狼",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-adds-shield-cue",
+              "offsetMs": 0,
+              "text": "雙狼出場，群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-aetherflow-3",
+          "atMs": 184500,
+          "name": "以太超流：補充資源，保留治療用豆",
+          "phase": "P1 雙狼",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-aetherflow-3-cue",
+              "offsetMs": 0,
+              "text": "以太超流，保留治療豆",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-adds-spread-prep",
+          "atMs": 187500,
+          "name": "幻光＋秘策＋生命回生法＋鼓舞激勵之策：自己做單盾",
+          "phase": "P1 雙狼",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-adds-spread-prep-cue",
+              "offsetMs": 0,
+              "text": "幻光秘策，回生單盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-adds-deployment",
+          "atMs": 192500,
+          "name": "展開戰術＋蠱毒法檢查：雙狼第一輪分攤；雙狼主攻目標；只對存活且可選取的小怪補毒，換目標重補，上毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P1 雙狼",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-adds-deployment-cue",
+              "offsetMs": 0,
+              "text": "擴散，雙狼補毒，換怪重補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-adds-dawn",
+          "atMs": 199000,
+          "name": "仙光的低語：第一輪分攤後，仙女固定場中",
+          "phase": "P1 雙狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-adds-dawn-cue",
+              "offsetMs": 0,
+              "text": "分攤後，低語",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-adds-seraph",
+          "atMs": 203000,
+          "name": "召喚熾天使：雙狼第二、三輪",
+          "phase": "P1 雙狼",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-adds-seraph-cue",
+              "offsetMs": 0,
+              "text": "雙狼二，大仙女",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-adds-soil-shield",
+          "atMs": 207000,
+          "name": "野戰治療陣＋群盾：雙狼第二輪前",
+          "phase": "P1 雙狼",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-adds-soil-shield-cue",
+              "offsetMs": 0,
+              "text": "場中罩子，群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-adds-consolation-1",
+          "atMs": 213000,
+          "name": "慰藉一段：第二輪分攤後",
+          "phase": "P1 雙狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-adds-consolation-1-cue",
+              "offsetMs": 0,
+              "text": "大仙女一段",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-adds-expedient",
+          "atMs": 216000,
+          "name": "疾風怒濤之計：土點名移動與後續傷害",
+          "phase": "P1 雙狼",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-adds-expedient-cue",
+              "offsetMs": 0,
+              "text": "跑快快",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-adds-consolation-2",
+          "atMs": 221000,
+          "name": "慰藉二段＋蠱毒法檢查：土點名後，第三輪分攤前；雙狼主攻目標；只對存活且可選取的小怪補毒，換目標重補，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P1 雙狼",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-adds-consolation-2-cue",
+              "offsetMs": 0,
+              "text": "大仙女二段，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-adds-indom-blessing",
+          "atMs": 227000,
+          "name": "不屈不撓之策＋仙光的祥光：第三輪分攤後",
+          "phase": "P1 雙狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-adds-indom-blessing-cue",
+              "offsetMs": 0,
+              "text": "不屈，祥光",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-adds-excog",
+          "atMs": 236000,
+          "name": "深謀遠慮之策：雙狼坦克低血時使用，預留一豆",
+          "phase": "P1 雙狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-adds-excog-cue",
+              "offsetMs": 0,
+              "text": "坦克低血，綠帽",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-adds-dissipation",
+          "atMs": 239000,
+          "name": "轉化：雙狼尾段，仙女已回場",
+          "phase": "P1 雙狼",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-adds-dissipation-cue",
+              "offsetMs": 0,
+              "text": "雙狼尾，轉化",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-return-shield",
+          "atMs": 242000,
+          "name": "群盾：利用轉化增療，靠近人群預盾",
+          "phase": "P1 雙狼",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-return-shield-cue",
+              "offsetMs": 0,
+              "text": "集合，轉化群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-saber-recitation",
+          "atMs": 250000,
+          "name": "秘策＋連環計＋蠱毒法檢查：保留給回場三刀群盾；雙狼後王回場團輔；雙狼後王回場，上毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P1 回場／四刀",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-saber-recitation-cue",
+              "offsetMs": 0,
+              "text": "補毒，秘策，連環計",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-saber-soil",
+          "atMs": 253000,
+          "name": "野戰治療陣：王回場後連續揮刀",
+          "phase": "P1 回場／四刀",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-saber-soil-cue",
+              "offsetMs": 0,
+              "text": "回場，下罩子",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-saber-recited-shield",
+          "atMs": 257000,
+          "name": "群盾：消耗秘策，覆蓋連續物理揮刀",
+          "phase": "P1 回場／四刀",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-saber-recited-shield-cue",
+              "offsetMs": 0,
+              "text": "秘策群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-saber-indom",
+          "atMs": 263000,
+          "name": "不屈不撓之策：前三刀後回血",
+          "phase": "P1 回場／四刀",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-saber-indom-cue",
+              "offsetMs": 0,
+              "text": "三刀後，不屈",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-rage-shield",
+          "atMs": 271000,
+          "name": "群盾：爆發尾段；仙女回場後固定在場中",
+          "phase": "P1 回場／四刀",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-rage-shield-cue",
+              "offsetMs": 0,
+              "text": "群盾，仙女放中間",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-aetherflow-4",
+          "atMs": 275000,
+          "name": "以太超流：補充資源，保留治療用豆",
+          "phase": "P1 回場／四刀",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-aetherflow-4-cue",
+              "offsetMs": 0,
+              "text": "以太超流，保留治療豆",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-dot-return-2",
+          "atMs": 280000,
+          "name": "蠱毒法檢查：雙狼後王回場，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P1 回場／四刀",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-dot-return-2-cue",
+              "offsetMs": 0,
+              "text": "毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-rage-soil-dawn",
+          "atMs": 285500,
+          "name": "野戰治療陣＋仙光的低語：兩輪分攤／分散",
+          "phase": "P1 回場／四刀",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-rage-soil-dawn-cue",
+              "offsetMs": 0,
+              "text": "罩子，低語",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-rage-blessing",
+          "atMs": 299000,
+          "name": "仙光的祥光：第二輪分攤／分散後",
+          "phase": "P1 回場／四刀",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-rage-blessing-cue",
+              "offsetMs": 0,
+              "text": "第二輪後，祥光",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-rage-reign-shield",
+          "atMs": 303500,
+          "name": "群盾：雙狼連擊前，靠近場中",
+          "phase": "P1 回場／四刀",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-rage-reign-shield-cue",
+              "offsetMs": 0,
+              "text": "靠中，群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-dot-return-3",
+          "atMs": 310000,
+          "name": "蠱毒法檢查：雙狼後王回場，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P1 回場／四刀",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-dot-return-3-cue",
+              "offsetMs": 0,
+              "text": "毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-moonlight-spread-prep",
+          "atMs": 333000,
+          "name": "秘策＋生命回生法＋鼓舞激勵之策：四刀前做單盾，勿過早",
+          "phase": "P1 回場／四刀",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-moonlight-spread-prep-cue",
+              "offsetMs": 0,
+              "text": "秘策回生，單盾自己",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-moonlight-deployment",
+          "atMs": 337000,
+          "name": "展開戰術：覆蓋四刀兩輪分攤／分散",
+          "phase": "P1 回場／四刀",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-moonlight-deployment-cue",
+              "offsetMs": 0,
+              "text": "四刀，擴散盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-aetherflow-5",
+          "atMs": 340000,
+          "name": "以太超流＋蠱毒法檢查：補充資源，保留治療用豆；雙狼後王回場，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P1 回場／四刀",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-aetherflow-5-cue",
+              "offsetMs": 0,
+              "text": "以太超流，保留治療豆，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-moonlight-excog",
+          "atMs": 344000,
+          "name": "深謀遠慮之策：開荒時可給自己容錯，預留一豆",
+          "phase": "P1 回場／四刀",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-moonlight-excog-cue",
+              "offsetMs": 0,
+              "text": "開荒可綠帽自己",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-moonlight-dawn",
+          "atMs": 355000,
+          "name": "仙光的低語：四刀第一輪分攤／分散後",
+          "phase": "P1 回場／四刀",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-moonlight-dawn-cue",
+              "offsetMs": 0,
+              "text": "第一輪後，低語",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-moonlight-expedient",
+          "atMs": 359500,
+          "name": "疾風怒濤之計：第二輪點名與後續風牙／土牙",
+          "phase": "P1 回場／四刀",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-moonlight-expedient-cue",
+              "offsetMs": 0,
+              "text": "第二輪，跑快快",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-p1-fairy",
+          "atMs": 366500,
+          "name": "仙光的祥光＋幻光：正點規避後回中",
+          "phase": "P1 回場／四刀",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-final-p1-fairy-cue",
+              "offsetMs": 0,
+              "text": "祥光，幻光",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-p1-seraphism",
+          "atMs": 370500,
+          "name": "熾天附體＋附體群盾＋蠱毒法檢查：風牙／土牙至八連；雙狼後王回場，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P1 回場／四刀",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-final-p1-seraphism-cue",
+              "offsetMs": 0,
+              "text": "仙女附體，群盾，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-p1-soil",
+          "atMs": 374800,
+          "name": "野戰治療陣＋連環計：前半第二輪八連；前半風牙／土牙後的團輔",
+          "phase": "P1 回場／四刀",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-final-p1-soil-cue",
+              "offsetMs": 0,
+              "text": "回中，下罩子，團輔連環計",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-p1-seraph",
+          "atMs": 377500,
+          "name": "召喚熾天使：前半第二輪八連",
+          "phase": "P1 回場／四刀",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-final-p1-seraph-cue",
+              "offsetMs": 0,
+              "text": "召喚大仙女",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-p1-consolation-1",
+          "atMs": 380600,
+          "name": "慰藉一段：風牙／土牙後，八連前",
+          "phase": "P1 回場／四刀",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-final-p1-consolation-1-cue",
+              "offsetMs": 0,
+              "text": "大仙女一段",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-p1-accession",
+          "atMs": 384500,
+          "name": "附體群盾：連傷期間按血量連續施放",
+          "phase": "P1 回場／四刀",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-final-p1-accession-cue",
+              "offsetMs": 0,
+              "text": "八連，連刷群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-p1-consolation-2",
+          "atMs": 388900,
+          "name": "慰藉二段：八連尾段",
+          "phase": "P1 回場／四刀",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-final-p1-consolation-2-cue",
+              "offsetMs": 0,
+              "text": "大仙女二段",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-p1-shield",
+          "atMs": 391500,
+          "name": "群盾：附體結束後，覆蓋最後空間斬；秘策保留給後半起手",
+          "phase": "P1 回場／四刀",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-final-p1-shield-cue",
+              "offsetMs": 0,
+              "text": "群盾接全體，保留秘策",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-aetherflow-6",
+          "atMs": 443000,
+          "name": "以太超流＋蠱毒法檢查：補充資源，保留治療用豆；後半主王，上毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P2 五平台",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-aetherflow-6-cue",
+              "offsetMs": 0,
+              "text": "以太超流，後半補毒",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-p2-spread-prep",
+          "atMs": 445500,
+          "name": "秘策＋生命回生法＋即刻詠唱＋鼓舞激勵之策：後半起手",
+          "phase": "P2 五平台",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-p2-spread-prep-cue",
+              "offsetMs": 0,
+              "text": "秘策回生，即刻單盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-p2-deployment",
+          "atMs": 449500,
+          "name": "展開戰術：後半第一輪四四分攤",
+          "phase": "P2 五平台",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-p2-deployment-cue",
+              "offsetMs": 0,
+              "text": "後半起手，擴散盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-p2-soil",
+          "atMs": 452000,
+          "name": "野戰治療陣：出生平台內側，同時覆蓋雙坦兩組",
+          "phase": "P2 五平台",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-p2-soil-cue",
+              "offsetMs": 0,
+              "text": "出生台內側，罩子",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-p2-fairy-heal",
+          "atMs": 457000,
+          "name": "仙光的低語＋仙光的祥光：四四分攤後",
+          "phase": "P2 五平台",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-p2-fairy-heal-cue",
+              "offsetMs": 0,
+              "text": "分攤後，低語祥光",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-p2-tank-care",
+          "atMs": 469000,
+          "name": "深謀遠慮之策給一坦；有量譜時以太契約連另一坦，與 H1 分工",
+          "phase": "P2 五平台",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-p2-tank-care-cue",
+              "offsetMs": 0,
+              "text": "綠帽，有量譜連另一坦",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-p2-tank-adlo",
+          "atMs": 474000,
+          "name": "鼓舞激勵之策＋蠱毒法檢查：第一次雙坦死刑，主坦單盾；後半主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P2 五平台",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-p2-tank-adlo-cue",
+              "offsetMs": 0,
+              "text": "死刑前，主坦單盾，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-p2-fangs-shield",
+          "atMs": 493000,
+          "name": "幻光＋群盾：半場安全位置站定後",
+          "phase": "P2 五平台",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-p2-fangs-shield-cue",
+              "offsetMs": 0,
+              "text": "安全點，幻光群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-p2-ray-seraph",
+          "atMs": 498000,
+          "name": "疾風怒濤之計＋召喚熾天使：第二次藍標前",
+          "phase": "P2 五平台",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-p2-ray-seraph-cue",
+              "offsetMs": 0,
+              "text": "跑快快，大仙女",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-p2-ray-consolation-1",
+          "atMs": 502200,
+          "name": "慰藉一段＋野戰治療陣＋蠱毒法檢查：藍標後，出生平台接四四分攤；後半主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P2 五平台",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-p2-ray-consolation-1-cue",
+              "offsetMs": 0,
+              "text": "大仙女一段，下罩子，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-aetherflow-7",
+          "atMs": 504500,
+          "name": "以太超流：補充資源，保留治療用豆",
+          "phase": "P2 五平台",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-aetherflow-7-cue",
+              "offsetMs": 0,
+              "text": "以太超流，保留治療豆",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-chain-p2-first",
+          "atMs": 507000,
+          "name": "連環計：後半第二次藍標後、四四標記出現的團輔；等團隊，不在後半起手開，以隊伍約定為準",
+          "phase": "P2 五平台",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-chain-p2-first-cue",
+              "offsetMs": 0,
+              "text": "團輔，連環計",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-p2-ray-consolation-2",
+          "atMs": 514000,
+          "name": "慰藉二段：四四分攤後",
+          "phase": "P2 五平台",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-p2-ray-consolation-2-cue",
+              "offsetMs": 0,
+              "text": "分攤後，大仙女二段",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-purge-dissipation",
+          "atMs": 521000,
+          "name": "轉化：確認熾天使結束、仙女回場後使用",
+          "phase": "P2 五平台",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-purge-dissipation-cue",
+              "offsetMs": 0,
+              "text": "仙女回來，轉化",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-purge-soil",
+          "atMs": 532500,
+          "name": "野戰治療陣＋群盾＋蠱毒法檢查：轉化增療覆蓋風震魔印分攤；後半主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P2 五平台",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-purge-soil-cue",
+              "offsetMs": 0,
+              "text": "魔印，罩子群盾，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-purge-spread-prep",
+          "atMs": 537500,
+          "name": "秘策＋生命回生法＋鼓舞激勵之策：分攤後，轉化增療尚在",
+          "phase": "P2 五平台",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-purge-spread-prep-cue",
+              "offsetMs": 0,
+              "text": "秘策回生，單盾自己",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-purge-deployment",
+          "atMs": 541500,
+          "name": "展開戰術：靠中覆蓋八人，準備踩塔",
+          "phase": "P2 五平台",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-purge-deployment-cue",
+              "offsetMs": 0,
+              "text": "靠中，擴散盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-purge-excog",
+          "atMs": 544000,
+          "name": "深謀遠慮之策：給另一側主坦",
+          "phase": "P2 五平台",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-purge-excog-cue",
+              "offsetMs": 0,
+              "text": "另一側主坦，綠帽",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-tempest-fairy-position",
+          "atMs": 555000,
+          "name": "仙女移至平台內緣，讓低語覆蓋隔壁輸出組",
+          "phase": "P2 五平台",
+          "category": "custom",
+          "cues": [
+            {
+              "id": "m8s-sch-tempest-fairy-position-cue",
+              "offsetMs": 0,
+              "text": "仙女放平台內緣",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-tempest-dawn",
+          "atMs": 562000,
+          "name": "仙光的低語＋蠱毒法檢查：雙重暴風第一組傷害後；後半主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-tempest-dawn-cue",
+              "offsetMs": 0,
+              "text": "第一組後，低語，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-aetherflow-8",
+          "atMs": 564500,
+          "name": "以太超流：補充資源，保留治療用豆",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-aetherflow-8-cue",
+              "offsetMs": 0,
+              "text": "以太超流，保留治療豆",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-tempest-seraphism-soil",
+          "atMs": 567000,
+          "name": "熾天附體＋野戰治療陣：右側輸出平台，照顧同組坦克",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-tempest-seraphism-soil-cue",
+              "offsetMs": 0,
+              "text": "附體，右側輸出台罩子",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-tempest-union",
+          "atMs": 572000,
+          "name": "以太契約：有量譜時連同組坦；附體單盾照顧坦克",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-tempest-union-cue",
+              "offsetMs": 0,
+              "text": "有量譜連坦，附體單盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-tempest-tank-heal",
+          "atMs": 578000,
+          "name": "附體單盾；必要時生命活性法：照顧同組坦，預留一豆",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-tempest-tank-heal-cue",
+              "offsetMs": 0,
+              "text": "單盾補坦，急救用活性",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-circuit-blessing",
+          "atMs": 594000,
+          "name": "仙光的祥光＋蠱毒法檢查：回出生平台集合時；後半主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-circuit-blessing-cue",
+              "offsetMs": 0,
+              "text": "集合，祥光，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-circuit-shield",
+          "atMs": 619500,
+          "name": "幻光＋群盾：迴轉最後兩次機制",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-circuit-shield-cue",
+              "offsetMs": 0,
+              "text": "幻光，群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-circuit-soil-expedient",
+          "atMs": 623000,
+          "name": "野戰治療陣＋疾風怒濤之計＋蠱毒法檢查：出生平台四四分攤前；後半主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-circuit-soil-expedient-cue",
+              "offsetMs": 0,
+              "text": "出生台，罩子跑快快，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-circuit-seraph",
+          "atMs": 626000,
+          "name": "召喚熾天使：四四分攤接藍標",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-circuit-seraph-cue",
+              "offsetMs": 0,
+              "text": "召喚大仙女",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-circuit-consolation-1",
+          "atMs": 629000,
+          "name": "慰藉一段＋連環計：四四分攤前；迴轉後四四標記出現的團輔",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-circuit-consolation-1-cue",
+              "offsetMs": 0,
+              "text": "大仙女一段，團輔連環計",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-circuit-consolation-2",
+          "atMs": 633500,
+          "name": "慰藉二段：分攤後回血，盾留給藍標",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-circuit-consolation-2-cue",
+              "offsetMs": 0,
+              "text": "大仙女二段",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-aetherflow-9",
+          "atMs": 636000,
+          "name": "以太超流：補充資源，保留治療用豆",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-aetherflow-9-cue",
+              "offsetMs": 0,
+              "text": "以太超流，保留治療豆",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-circuit-tank-care",
+          "atMs": 651500,
+          "name": "深謀遠慮之策給主坦；仙女回場後有量譜時以太契約連副坦＋蠱毒法檢查：；後半主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-circuit-tank-care-cue",
+              "offsetMs": 0,
+              "text": "主坦綠帽，量譜連副坦，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-lone-wolf-fairy-position",
+          "atMs": 665000,
+          "name": "仙女移至雙奶平台最內側",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "custom",
+          "cues": [
+            {
+              "id": "m8s-sch-lone-wolf-fairy-position-cue",
+              "offsetMs": 0,
+              "text": "仙女放雙奶台內側",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-lone-wolf-spread-prep",
+          "atMs": 672500,
+          "name": "秘策＋生命回生法＋鼓舞激勵之策：孤狼紅字階段，預盾不可過早",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-lone-wolf-spread-prep-cue",
+              "offsetMs": 0,
+              "text": "秘策回生，單盾自己",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-lone-wolf-deployment",
+          "atMs": 676500,
+          "name": "展開戰術：拉線踩塔盾",
+          "phase": "P2 雙重暴風／迴轉",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-lone-wolf-deployment-cue",
+              "offsetMs": 0,
+              "text": "孤狼，擴散盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-dot-p2-9",
+          "atMs": 683000,
+          "name": "蠱毒法檢查：後半主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P2 孤狼",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-dot-p2-9-cue",
+              "offsetMs": 0,
+              "text": "毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-lone-wolf-soil-union",
+          "atMs": 686000,
+          "name": "野戰治療陣放坦克腳下；有量譜時以太契約連主坦",
+          "phase": "P2 孤狼",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-lone-wolf-soil-union-cue",
+              "offsetMs": 0,
+              "text": "坦腳下罩子，有量譜連坦",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-lone-wolf-excog",
+          "atMs": 697500,
+          "name": "深謀遠慮之策：拉線後給低血坦克",
+          "phase": "P2 孤狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-lone-wolf-excog-cue",
+              "offsetMs": 0,
+              "text": "低血坦，綠帽",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-aetherflow-10",
+          "atMs": 700000,
+          "name": "以太超流：補充資源，保留治療用豆",
+          "phase": "P2 孤狼",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-aetherflow-10-cue",
+              "offsetMs": 0,
+              "text": "以太超流，保留治療豆",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-lone-wolf-shield",
+          "atMs": 706000,
+          "name": "群盾：半場安全點站定後",
+          "phase": "P2 孤狼",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-lone-wolf-shield-cue",
+              "offsetMs": 0,
+              "text": "安全半場，群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-lone-wolf-blessing",
+          "atMs": 712000,
+          "name": "仙光的祥光＋蠱毒法檢查：左右分組前；依坦血量補單盾；後半主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P2 孤狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-lone-wolf-blessing-cue",
+              "offsetMs": 0,
+              "text": "祥光，注意雙坦，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-howling-pre-shield",
+          "atMs": 723000,
+          "name": "群盾：藍標後回出生台，準備第一輪八連",
+          "phase": "P2 孤狼",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-howling-pre-shield-cue",
+              "offsetMs": 0,
+              "text": "回出生台，群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-howling-dawn",
+          "atMs": 727000,
+          "name": "仙光的低語：第一輪八連",
+          "phase": "P2 孤狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-howling-dawn-cue",
+              "offsetMs": 0,
+              "text": "八連前，低語",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-howling-shield",
+          "atMs": 731000,
+          "name": "群盾：八連逐漸加速，後半段集中治療",
+          "phase": "P2 孤狼",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-howling-shield-cue",
+              "offsetMs": 0,
+              "text": "八連，群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-howling-recited-indom",
+          "atMs": 737000,
+          "name": "秘策＋不屈不撓之策：第一輪八連後半段",
+          "phase": "P2 五輪八連",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-howling-recited-indom-cue",
+              "offsetMs": 0,
+              "text": "秘策不屈",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-howling-dissipation",
+          "atMs": 743000,
+          "name": "轉化＋蠱毒法檢查：移至第二平台；預留治療用豆；後半主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P2 五輪八連",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-howling-dissipation-cue",
+              "offsetMs": 0,
+              "text": "第二台，轉化留豆，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-chain-final",
+          "atMs": 751000,
+          "name": "連環計：最後八連第二平台的團輔，以隊伍約定為準",
+          "phase": "P2 五輪八連",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-chain-final-cue",
+              "offsetMs": 0,
+              "text": "團輔，連環計",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-aetherflow-11",
+          "atMs": 760000,
+          "name": "以太超流：補充資源，保留治療用豆",
+          "phase": "P2 五輪八連",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-aetherflow-11-cue",
+              "offsetMs": 0,
+              "text": "以太超流，保留治療豆",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-dot-p2-12",
+          "atMs": 773000,
+          "name": "蠱毒法檢查：後半主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P2 五輪八連",
+          "category": "job",
+          "cues": [
+            {
+              "id": "m8s-sch-dot-p2-12-cue",
+              "offsetMs": 0,
+              "text": "毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-howling-mt-adlo",
+          "atMs": 785000,
+          "name": "鼓舞激勵之策：雙坦分攤前，主坦單盾",
+          "phase": "P2 五輪八連",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-howling-mt-adlo-cue",
+              "offsetMs": 0,
+              "text": "主坦單盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-howling-st-adlo",
+          "atMs": 788000,
+          "name": "鼓舞激勵之策：雙坦分攤前，副坦單盾",
+          "phase": "P2 五輪八連",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-howling-st-adlo-cue",
+              "offsetMs": 0,
+              "text": "副坦單盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-howling-fairy",
+          "atMs": 791800,
+          "name": "仙光的祥光＋幻光：雙坦開始分攤",
+          "phase": "P2 五輪八連",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-howling-fairy-cue",
+              "offsetMs": 0,
+              "text": "祥光，幻光",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-spread-prep",
+          "atMs": 797500,
+          "name": "秘策＋生命回生法＋鼓舞激勵之策：最後八人分攤前",
+          "phase": "P2 五輪八連",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-final-spread-prep-cue",
+              "offsetMs": 0,
+              "text": "秘策回生，單盾自己",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-deployment",
+          "atMs": 801500,
+          "name": "展開戰術：最後八人分攤前",
+          "phase": "P2 五輪八連",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-final-deployment-cue",
+              "offsetMs": 0,
+              "text": "最後八人，擴散盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-soil-expedient",
+          "atMs": 804000,
+          "name": "野戰治療陣＋疾風怒濤之計＋蠱毒法檢查：最後平台；後半主王，確認剩餘時間，將到期才補毒；治療優先，提早刷新後依實際毒剩餘時間調整",
+          "phase": "P2 五輪八連",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-final-soil-expedient-cue",
+              "offsetMs": 0,
+              "text": "最後罩子，跑快快，毒到期補",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-seraph",
+          "atMs": 806500,
+          "name": "召喚熾天使：最後八連",
+          "phase": "P2 五輪八連",
+          "category": "mitigation",
+          "cues": [
+            {
+              "id": "m8s-sch-final-seraph-cue",
+              "offsetMs": 0,
+              "text": "召喚大仙女",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-seraphism",
+          "atMs": 809000,
+          "name": "熾天附體＋附體群盾：最後八連",
+          "phase": "P2 五輪八連",
+          "category": "shield",
+          "cues": [
+            {
+              "id": "m8s-sch-final-seraphism-cue",
+              "offsetMs": 0,
+              "text": "仙女附體，群盾",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-consolation-1",
+          "atMs": 811500,
+          "name": "慰藉一段：最後八連前段",
+          "phase": "P2 五輪八連",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-final-consolation-1-cue",
+              "offsetMs": 0,
+              "text": "大仙女一段",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-accession",
+          "atMs": 814000,
+          "name": "附體群盾；必要時不屈不撓之策：連傷按血量續補，預留一豆",
+          "phase": "P2 五輪八連",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-final-accession-cue",
+              "offsetMs": 0,
+              "text": "連刷群盾，必要時不屈",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "m8s-sch-final-consolation-2",
+          "atMs": 816500,
+          "name": "慰藉二段：最後八連尾段",
+          "phase": "P2 五輪八連",
+          "category": "heal",
+          "cues": [
+            {
+              "id": "m8s-sch-final-consolation-2-cue",
+              "offsetMs": 0,
+              "text": "大仙女二段",
+              "priority": "high",
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
