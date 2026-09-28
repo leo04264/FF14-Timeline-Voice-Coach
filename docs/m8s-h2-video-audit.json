@@ -1,0 +1,3047 @@
+{
+  "schemaVersion": 2,
+  "status": "corrected-with-observation-windows",
+  "reviewDate": "2026-09-28",
+  "previousReview": {
+    "commit": "53c2256ef17571e84dda7eb805879888dff11a5a",
+    "timelineSha256": "779fd442f0a9c7cf120316f25a88bbdc7dc41af42b0e6ec0ecab1fa5b5b2a918",
+    "result": "v0.2.0 failed video fidelity; passing old tests was insufficient"
+  },
+  "source": {
+    "url": "https://www.bilibili.com/video/BV1Vc3Nz7Ejd",
+    "availableVideoResolution": [
+      640,
+      360
+    ],
+    "durationSeconds": 870.266,
+    "method": "Full-film subtitle inventory at 1 fps; manually inspect mechanic/action windows and fairy gauge transitions. Sub-second checks only at explicitly listed boundaries. Not a frame-exact cast log."
+  },
+  "timebase": {
+    "videoZeroSeconds": 21.5,
+    "visualPullWindowSeconds": [
+      21.4,
+      21.5
+    ],
+    "notServerLog": true
+  },
+  "captionInventory": [
+    {
+      "id": "C02",
+      "videoStartSeconds": 13,
+      "videoEndSeconds": 21,
+      "factualSummary": "約倒數十秒：幻光與群盾，用於首個全體傷害。",
+      "eventIds": [
+        "m8s-sch-pre-shield"
+      ]
+    },
+    {
+      "id": "C03",
+      "videoStartSeconds": 21,
+      "videoEndSeconds": 32,
+      "factualSummary": "約倒數二秒預讀極炎法；依序轉化、上毒、藥、極炎法與連環計。",
+      "eventIds": [
+        "m8s-sch-precast",
+        "m8s-sch-opening-dissipation",
+        "m8s-sch-chain-opening"
+      ]
+    },
+    {
+      "id": "C04",
+      "videoStartSeconds": 32,
+      "videoEndSeconds": 39,
+      "factualSummary": "王開始空間斬讀條後，場中放罩子。",
+      "eventIds": [
+        "m8s-sch-opening-soil"
+      ]
+    },
+    {
+      "id": "C05",
+      "videoStartSeconds": 41,
+      "videoEndSeconds": 45,
+      "factualSummary": "風土傷害前群盾。",
+      "eventIds": [
+        "m8s-sch-fangs-shield"
+      ]
+    },
+    {
+      "id": "C06",
+      "videoStartSeconds": 46,
+      "videoEndSeconds": 49,
+      "factualSummary": "預留一豆供下一次罩子；不是指定一次新的超流施放時間。",
+      "eventIds": [
+        "m8s-sch-opening-soil"
+      ]
+    },
+    {
+      "id": "C07",
+      "videoStartSeconds": 50,
+      "videoEndSeconds": 59,
+      "factualSummary": "風土分攤／分散結算後，秘策、回生、單盾，再展開。",
+      "eventIds": [
+        "m8s-sch-reign-spread-prep",
+        "m8s-sch-reign-deployment"
+      ]
+    },
+    {
+      "id": "C08",
+      "videoStartSeconds": 60,
+      "videoEndSeconds": 65,
+      "factualSummary": "仙女移到中央，使治療覆蓋全隊。",
+      "eventIds": [
+        "m8s-sch-fairy-center"
+      ]
+    },
+    {
+      "id": "C09",
+      "videoStartSeconds": 67,
+      "videoEndSeconds": 73,
+      "factualSummary": "分攤結算後放罩子與群盾。",
+      "eventIds": [
+        "m8s-sch-double-raidwide-shield",
+        "m8s-sch-double-raidwide-soil"
+      ]
+    },
+    {
+      "id": "C10",
+      "videoStartSeconds": 74,
+      "videoEndSeconds": 83,
+      "factualSummary": "低語或祥光視血量使用；同一罩子覆蓋兩個全體。",
+      "eventIds": [
+        "m8s-sch-double-raidwide-soil",
+        "m8s-sch-raidwide-dawn"
+      ]
+    },
+    {
+      "id": "C11",
+      "videoStartSeconds": 84,
+      "videoEndSeconds": 94,
+      "factualSummary": "傷害前已有盾與罩子；傷害後群盾，仙女技能依血量。",
+      "eventIds": [
+        "m8s-sch-decay-pre-shield",
+        "m8s-sch-decay-blessing"
+      ]
+    },
+    {
+      "id": "C14",
+      "videoStartSeconds": 95,
+      "videoEndSeconds": 102,
+      "factualSummary": "大圈標記後召喚熾天使；擊退傷害結算後慰藉一段。",
+      "eventIds": [
+        "m8s-sch-wind-seraph",
+        "m8s-sch-wind-consolation-1"
+      ]
+    },
+    {
+      "id": "C15",
+      "videoStartSeconds": 106,
+      "videoEndSeconds": 111,
+      "factualSummary": "第二輪大圈點名處理完後慰藉二段。",
+      "eventIds": [
+        "m8s-sch-wind-consolation-2"
+      ]
+    },
+    {
+      "id": "C16",
+      "videoStartSeconds": 114,
+      "videoEndSeconds": 119,
+      "factualSummary": "結算前附體與群盾。",
+      "eventIds": [
+        "m8s-sch-wind-seraphism"
+      ]
+    },
+    {
+      "id": "C17",
+      "videoStartSeconds": 120,
+      "videoEndSeconds": 126,
+      "factualSummary": "中央罩子、群盾與疾風怒濤涵蓋連續分攤。",
+      "eventIds": [
+        "m8s-sch-tremors-soil-expedient"
+      ]
+    },
+    {
+      "id": "C18",
+      "videoStartSeconds": 126,
+      "videoEndSeconds": 137,
+      "factualSummary": "依搭檔大宇宙與團血安排群盾；求穩可連續補。",
+      "eventIds": [
+        "m8s-sch-tremors-accession",
+        "m8s-sch-pursuit-shield"
+      ]
+    },
+    {
+      "id": "C19",
+      "videoStartSeconds": 146,
+      "videoEndSeconds": 153,
+      "factualSummary": "連環計跟團輔；既有豆與超流豆依輸出安排。",
+      "eventIds": [
+        "m8s-sch-aetherflow-2",
+        "m8s-sch-chain-two-minute"
+      ]
+    },
+    {
+      "id": "C20",
+      "videoStartSeconds": 175,
+      "videoEndSeconds": 181,
+      "factualSummary": "安全點站定後群盾，覆蓋下一次分攤。",
+      "eventIds": [
+        "m8s-sch-titans-shield"
+      ]
+    },
+    {
+      "id": "C21",
+      "videoStartSeconds": 187,
+      "videoEndSeconds": 195,
+      "factualSummary": "分攤結算後祥光，繼續輸出至轉場。",
+      "eventIds": [
+        "m8s-sch-titans-blessing"
+      ]
+    },
+    {
+      "id": "C22",
+      "videoStartSeconds": 195,
+      "videoEndSeconds": 201,
+      "factualSummary": "主坦偏低時可用仙女連線。",
+      "eventIds": [
+        "m8s-sch-pre-adds-union"
+      ]
+    },
+    {
+      "id": "C23",
+      "videoStartSeconds": 203,
+      "videoEndSeconds": 208,
+      "factualSummary": "轉場後群盾須覆蓋全員。",
+      "eventIds": [
+        "m8s-sch-adds-shield"
+      ]
+    },
+    {
+      "id": "C24",
+      "videoStartSeconds": 209,
+      "videoEndSeconds": 218,
+      "factualSummary": "出場全體後幻光、秘策、回生、單盾、展開，覆蓋首次分攤。",
+      "eventIds": [
+        "m8s-sch-adds-spread-prep",
+        "m8s-sch-adds-deployment"
+      ]
+    },
+    {
+      "id": "C25",
+      "videoStartSeconds": 219,
+      "videoEndSeconds": 226,
+      "factualSummary": "首次分攤後低語，仙女留在場中。",
+      "eventIds": [
+        "m8s-sch-adds-dawn"
+      ]
+    },
+    {
+      "id": "C26",
+      "videoStartSeconds": 230,
+      "videoEndSeconds": 235,
+      "factualSummary": "分攤標記出現後罩子與群盾。",
+      "eventIds": [
+        "m8s-sch-adds-soil-shield"
+      ]
+    },
+    {
+      "id": "C27",
+      "videoStartSeconds": 235,
+      "videoEndSeconds": 244,
+      "factualSummary": "分攤後慰藉一段與疾風怒濤；土點名結算後慰藉二段。",
+      "eventIds": [
+        "m8s-sch-adds-seraph",
+        "m8s-sch-adds-consolation-1",
+        "m8s-sch-adds-expedient",
+        "m8s-sch-adds-consolation-2"
+      ]
+    },
+    {
+      "id": "C28",
+      "videoStartSeconds": 247,
+      "videoEndSeconds": 259,
+      "factualSummary": "分攤後不屈、祥光；坦血低可選綠帽或連線。",
+      "eventIds": [
+        "m8s-sch-adds-indom-blessing",
+        "m8s-sch-adds-blessing",
+        "m8s-sch-adds-excog"
+      ]
+    },
+    {
+      "id": "C29",
+      "videoStartSeconds": 259,
+      "videoEndSeconds": 268,
+      "factualSummary": "小怪結束前依輸出用豆，轉化後靠人群補盾。",
+      "eventIds": [
+        "m8s-sch-adds-dissipation",
+        "m8s-sch-return-shield"
+      ]
+    },
+    {
+      "id": "C30",
+      "videoStartSeconds": 270,
+      "videoEndSeconds": 280,
+      "factualSummary": "預開秘策、團輔連環計；經兩個 GCD 後罩子。",
+      "eventIds": [
+        "m8s-sch-saber-recitation",
+        "m8s-sch-saber-soil"
+      ]
+    },
+    {
+      "id": "C31",
+      "videoStartSeconds": 282,
+      "videoEndSeconds": 291,
+      "factualSummary": "秘策群盾處理三刀；三刀後可加不屈。",
+      "eventIds": [
+        "m8s-sch-saber-recited-shield",
+        "m8s-sch-saber-indom"
+      ]
+    },
+    {
+      "id": "C32",
+      "videoStartSeconds": 292,
+      "videoEndSeconds": 298,
+      "factualSummary": "超流豆留一顆罩子，其餘可用於團輔輸出。",
+      "eventIds": [
+        "m8s-sch-aetherflow-4"
+      ]
+    },
+    {
+      "id": "C33",
+      "videoStartSeconds": 300,
+      "videoEndSeconds": 307,
+      "factualSummary": "靠人群群盾，仙女移回中央。",
+      "eventIds": [
+        "m8s-sch-rage-shield"
+      ]
+    },
+    {
+      "id": "C34",
+      "videoStartSeconds": 307,
+      "videoEndSeconds": 314,
+      "factualSummary": "分攤／分散標記後罩子與低語。",
+      "eventIds": [
+        "m8s-sch-rage-soil-dawn"
+      ]
+    },
+    {
+      "id": "C35",
+      "videoStartSeconds": 318,
+      "videoEndSeconds": 324,
+      "factualSummary": "第二次分攤／分散結算後祥光。",
+      "eventIds": [
+        "m8s-sch-rage-blessing"
+      ]
+    },
+    {
+      "id": "C36",
+      "videoStartSeconds": 326,
+      "videoEndSeconds": 332,
+      "factualSummary": "靠中央補全隊群盾。",
+      "eventIds": [
+        "m8s-sch-rage-reign-shield"
+      ]
+    },
+    {
+      "id": "C37",
+      "videoStartSeconds": 336,
+      "videoEndSeconds": 341,
+      "factualSummary": "不要求立即補血，可繼續輸出。",
+      "eventIds": [
+        "m8s-sch-keep-dps"
+      ]
+    },
+    {
+      "id": "C38",
+      "videoStartSeconds": 350,
+      "videoEndSeconds": 363,
+      "factualSummary": "秘策、回生、單盾與展開，避免太早做盾。",
+      "eventIds": [
+        "m8s-sch-moonlight-spread-prep",
+        "m8s-sch-moonlight-deployment"
+      ]
+    },
+    {
+      "id": "C39",
+      "videoStartSeconds": 364,
+      "videoEndSeconds": 373,
+      "factualSummary": "可給自己綠帽並用毀壞走位，屬開荒選項。",
+      "eventIds": [
+        "m8s-sch-moonlight-excog"
+      ]
+    },
+    {
+      "id": "C40",
+      "videoStartSeconds": 373,
+      "videoEndSeconds": 378,
+      "factualSummary": "分攤／分散後低語。",
+      "eventIds": [
+        "m8s-sch-moonlight-dawn"
+      ]
+    },
+    {
+      "id": "C41",
+      "videoStartSeconds": 378,
+      "videoEndSeconds": 387,
+      "factualSummary": "疾風怒濤涵蓋第二輪點名、移動及後續風土。",
+      "eventIds": [
+        "m8s-sch-moonlight-expedient"
+      ]
+    },
+    {
+      "id": "C42",
+      "videoStartSeconds": 387,
+      "videoEndSeconds": 397,
+      "factualSummary": "正點規避時祥光；人群回中央後幻光、附體群盾、罩子。",
+      "eventIds": [
+        "m8s-sch-final-p1-fairy",
+        "m8s-sch-final-p1-seraphism",
+        "m8s-sch-final-p1-soil"
+      ]
+    },
+    {
+      "id": "C43",
+      "videoStartSeconds": 397,
+      "videoEndSeconds": 402,
+      "factualSummary": "風土處理完才慰藉一段，連環計配合同段團輔。",
+      "eventIds": [
+        "m8s-sch-final-p1-seraph",
+        "m8s-sch-final-p1-consolation-1"
+      ]
+    },
+    {
+      "id": "C44",
+      "videoStartSeconds": 402,
+      "videoEndSeconds": 412,
+      "factualSummary": "附體群盾隨血量，治療空檔可輸出。",
+      "eventIds": [
+        "m8s-sch-final-p1-accession"
+      ]
+    },
+    {
+      "id": "C45",
+      "videoStartSeconds": 412,
+      "videoEndSeconds": 422,
+      "factualSummary": "慰藉二段；八連後一般或秘策群盾接最後全體。",
+      "eventIds": [
+        "m8s-sch-final-p1-consolation-2",
+        "m8s-sch-final-p1-shield"
+      ]
+    },
+    {
+      "id": "C46",
+      "videoStartSeconds": 462,
+      "videoEndSeconds": 471,
+      "factualSummary": "超流、上毒、秘策、回生、即刻、單盾、展開。",
+      "eventIds": [
+        "m8s-sch-p2-opening",
+        "m8s-sch-p2-spread-prep",
+        "m8s-sch-p2-deployment"
+      ]
+    },
+    {
+      "id": "C47",
+      "videoStartSeconds": 471,
+      "videoEndSeconds": 478,
+      "factualSummary": "移至右側後使用藥，出生台內緣罩子盡量涵蓋雙組。",
+      "eventIds": [
+        "m8s-sch-p2-soil"
+      ]
+    },
+    {
+      "id": "C48",
+      "videoStartSeconds": 478,
+      "videoEndSeconds": 485,
+      "factualSummary": "低語與祥光維持本組團血。",
+      "eventIds": [
+        "m8s-sch-p2-fairy-heal"
+      ]
+    },
+    {
+      "id": "C49",
+      "videoStartSeconds": 488,
+      "videoEndSeconds": 498,
+      "factualSummary": "連線與綠帽分別照顧雙坦，與另一位補師分工。",
+      "eventIds": [
+        "m8s-sch-p2-tank-care"
+      ]
+    },
+    {
+      "id": "C52",
+      "videoStartSeconds": 498,
+      "videoEndSeconds": 504,
+      "factualSummary": "可加主坦單盾。",
+      "eventIds": [
+        "m8s-sch-p2-tank-adlo"
+      ]
+    },
+    {
+      "id": "C53",
+      "videoStartSeconds": 506,
+      "videoEndSeconds": 513,
+      "factualSummary": "群盾與幻光涵蓋後續四四。",
+      "eventIds": [
+        "m8s-sch-p2-fangs-shield"
+      ]
+    },
+    {
+      "id": "C54",
+      "videoStartSeconds": 516,
+      "videoEndSeconds": 523,
+      "factualSummary": "靠中央疾風怒濤，預先召喚熾天使。",
+      "eventIds": [
+        "m8s-sch-p2-ray-expedient",
+        "m8s-sch-p2-ray-seraph"
+      ]
+    },
+    {
+      "id": "C55",
+      "videoStartSeconds": 524,
+      "videoEndSeconds": 533,
+      "factualSummary": "慰藉一段與罩子；四四標記出現時連環計，作者另說實錄略早。",
+      "eventIds": [
+        "m8s-sch-p2-ray-consolation-1",
+        "m8s-sch-chain-p2-first"
+      ]
+    },
+    {
+      "id": "C56",
+      "videoStartSeconds": 534,
+      "videoEndSeconds": 538,
+      "factualSummary": "分攤結算後慰藉二段。",
+      "eventIds": [
+        "m8s-sch-p2-ray-consolation-2"
+      ]
+    },
+    {
+      "id": "C57",
+      "videoStartSeconds": 544,
+      "videoEndSeconds": 560,
+      "factualSummary": "仙女回來才轉化；集合群盾，罩子轉好後涵蓋分攤。",
+      "eventIds": [
+        "m8s-sch-purge-dissipation",
+        "m8s-sch-purge-soil"
+      ]
+    },
+    {
+      "id": "C58",
+      "videoStartSeconds": 560,
+      "videoEndSeconds": 576,
+      "factualSummary": "分攤後秘策、回生、單盾、展開，靠中覆蓋全隊；另一側主坦綠帽。",
+      "eventIds": [
+        "m8s-sch-purge-spread-prep",
+        "m8s-sch-purge-deployment",
+        "m8s-sch-purge-excog"
+      ]
+    },
+    {
+      "id": "C59",
+      "videoStartSeconds": 578,
+      "videoEndSeconds": 588,
+      "factualSummary": "仙女置內緣以涵蓋隔壁輸出；第一組結算後低語。",
+      "eventIds": [
+        "m8s-sch-tempest-fairy-position",
+        "m8s-sch-tempest-dawn"
+      ]
+    },
+    {
+      "id": "C60",
+      "videoStartSeconds": 589,
+      "videoEndSeconds": 602,
+      "factualSummary": "連線同組坦，右側輸出台罩子，附體照顧坦血。",
+      "eventIds": [
+        "m8s-sch-tempest-seraphism-soil"
+      ]
+    },
+    {
+      "id": "C61",
+      "videoStartSeconds": 606,
+      "videoEndSeconds": 612,
+      "factualSummary": "視血量選活性或綠帽照顧同組坦。",
+      "eventIds": [
+        "m8s-sch-tempest-tank-heal"
+      ]
+    },
+    {
+      "id": "C62",
+      "videoStartSeconds": 613,
+      "videoEndSeconds": 620,
+      "factualSummary": "回出生台且團血低時祥光。",
+      "eventIds": [
+        "m8s-sch-circuit-blessing"
+      ]
+    },
+    {
+      "id": "C63",
+      "videoStartSeconds": 623,
+      "videoEndSeconds": 631,
+      "factualSummary": "開荒可用毀壞先處理自身走位。",
+      "eventIds": [
+        "m8s-sch-circuit-move"
+      ]
+    },
+    {
+      "id": "C64",
+      "videoStartSeconds": 634,
+      "videoEndSeconds": 638,
+      "factualSummary": "此段可使用一次疾跑。",
+      "eventIds": [
+        "m8s-sch-circuit-sprint"
+      ]
+    },
+    {
+      "id": "C65",
+      "videoStartSeconds": 642,
+      "videoEndSeconds": 647,
+      "factualSummary": "幻光與群盾。",
+      "eventIds": [
+        "m8s-sch-circuit-shield"
+      ]
+    },
+    {
+      "id": "C66",
+      "videoStartSeconds": 648,
+      "videoEndSeconds": 654,
+      "factualSummary": "疾風怒濤與出生台罩子。",
+      "eventIds": [
+        "m8s-sch-circuit-soil-expedient"
+      ]
+    },
+    {
+      "id": "C67",
+      "videoStartSeconds": 654,
+      "videoEndSeconds": 668,
+      "factualSummary": "標記出現後慰藉一段與連環計；結算後慰藉二段，為藍標預盾。",
+      "eventIds": [
+        "m8s-sch-circuit-seraph",
+        "m8s-sch-circuit-consolation-1",
+        "m8s-sch-circuit-consolation-2"
+      ]
+    },
+    {
+      "id": "C68",
+      "videoStartSeconds": 673,
+      "videoEndSeconds": 680,
+      "factualSummary": "死刑前主坦綠帽、副坦連線。",
+      "eventIds": [
+        "m8s-sch-circuit-tank-care"
+      ]
+    },
+    {
+      "id": "C69",
+      "videoStartSeconds": 686,
+      "videoEndSeconds": 692,
+      "factualSummary": "仙女移至雙奶平台內緣。",
+      "eventIds": [
+        "m8s-sch-lone-wolf-fairy-position"
+      ]
+    },
+    {
+      "id": "C70",
+      "videoStartSeconds": 696,
+      "videoEndSeconds": 706,
+      "factualSummary": "秘策、回生、單盾、展開；可等中央紅字再做。",
+      "eventIds": [
+        "m8s-sch-lone-wolf-spread-prep",
+        "m8s-sch-lone-wolf-deployment"
+      ]
+    },
+    {
+      "id": "C71",
+      "videoStartSeconds": 707,
+      "videoEndSeconds": 717,
+      "factualSummary": "連主坦，坦腳下罩子。",
+      "eventIds": [
+        "m8s-sch-lone-wolf-soil-union"
+      ]
+    },
+    {
+      "id": "C72",
+      "videoStartSeconds": 723,
+      "videoEndSeconds": 733,
+      "factualSummary": "低血坦綠帽；半場安全點群盾。",
+      "eventIds": [
+        "m8s-sch-lone-wolf-excog",
+        "m8s-sch-lone-wolf-shield"
+      ]
+    },
+    {
+      "id": "C73",
+      "videoStartSeconds": 734,
+      "videoEndSeconds": 742,
+      "factualSummary": "祥光，可再單盾雙坦。",
+      "eventIds": [
+        "m8s-sch-lone-wolf-blessing"
+      ]
+    },
+    {
+      "id": "C74",
+      "videoStartSeconds": 744,
+      "videoEndSeconds": 750,
+      "factualSummary": "回出生台群盾；若坦倒下，及時補第二仇恨目標。",
+      "eventIds": [
+        "m8s-sch-howling-pre-shield"
+      ]
+    },
+    {
+      "id": "C75",
+      "videoStartSeconds": 752,
+      "videoEndSeconds": 767,
+      "factualSummary": "低語、群盾，秘策不屈或群盾；治療偏後半段。",
+      "eventIds": [
+        "m8s-sch-howling-dawn",
+        "m8s-sch-howling-shield",
+        "m8s-sch-howling-recited-indom"
+      ]
+    },
+    {
+      "id": "C76",
+      "videoStartSeconds": 768,
+      "videoEndSeconds": 783,
+      "factualSummary": "藥與連環計配合團輔；原有豆輸出後轉化，轉化豆可留一或全用。",
+      "eventIds": [
+        "m8s-sch-howling-potion",
+        "m8s-sch-chain-final",
+        "m8s-sch-howling-dissipation"
+      ]
+    },
+    {
+      "id": "C77",
+      "videoStartSeconds": 803,
+      "videoEndSeconds": 813,
+      "factualSummary": "雙坦各一單盾；可另外留豆綠帽。",
+      "eventIds": [
+        "m8s-sch-howling-mt-adlo",
+        "m8s-sch-howling-st-adlo"
+      ]
+    },
+    {
+      "id": "C78",
+      "videoStartSeconds": 816,
+      "videoEndSeconds": 828,
+      "factualSummary": "祥光、幻光，秘策回生單盾展開準備最後八人分攤。",
+      "eventIds": [
+        "m8s-sch-howling-fairy",
+        "m8s-sch-final-spread-prep",
+        "m8s-sch-final-deployment"
+      ]
+    },
+    {
+      "id": "C79",
+      "videoStartSeconds": 829,
+      "videoEndSeconds": 846,
+      "factualSummary": "罩子、疾風怒濤、熾天使；慰藉穿插連傷，可用附體與不屈。",
+      "eventIds": [
+        "m8s-sch-final-soil-expedient",
+        "m8s-sch-final-seraph",
+        "m8s-sch-final-consolation-1",
+        "m8s-sch-final-seraphism",
+        "m8s-sch-final-consolation-2"
+      ]
+    },
+    {
+      "id": "C80",
+      "videoStartSeconds": 847,
+      "videoEndSeconds": 854,
+      "factualSummary": "長讀條期間輸出。影片沒有提供狂暴傷害實際結算的證據。",
+      "eventIds": [
+        "m8s-sch-enrage-dps"
+      ]
+    }
+  ],
+  "bossObservations": [
+    {
+      "eventId": "m8s-boss-pursuit-1",
+      "videoWindowSeconds": [
+        35.4,
+        35.8
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-fangs-1",
+      "videoWindowSeconds": [
+        50.5,
+        51.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-reign-1",
+      "videoWindowSeconds": [
+        61.5,
+        62.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-pursuit-2",
+      "videoWindowSeconds": [
+        73.5,
+        74.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-decay",
+      "videoWindowSeconds": [
+        87.5,
+        88.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-aero-1",
+      "videoWindowSeconds": [
+        98.5,
+        99.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-wind-towers",
+      "videoWindowSeconds": [
+        116.5,
+        117.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-tremors-1",
+      "videoWindowSeconds": [
+        122.5,
+        124.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-pursuit-3",
+      "videoWindowSeconds": [
+        135.5,
+        137.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-divide-1",
+      "videoWindowSeconds": [
+        145.5,
+        147.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-titanic",
+      "videoWindowSeconds": [
+        165.5,
+        167.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-reign-2",
+      "videoWindowSeconds": [
+        181.5,
+        182.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-tactical-pack",
+      "videoWindowSeconds": [
+        201.5,
+        203.5
+      ],
+      "observationKind": "phase-transition"
+    },
+    {
+      "eventId": "m8s-boss-howling-havoc",
+      "videoWindowSeconds": [
+        209.5,
+        211.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-pack-1",
+      "videoWindowSeconds": [
+        218.5,
+        220.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-pack-2",
+      "videoWindowSeconds": [
+        233.5,
+        235.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-pack-3",
+      "videoWindowSeconds": [
+        248.5,
+        250.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-return",
+      "videoWindowSeconds": [
+        269.5,
+        270.5
+      ],
+      "observationKind": "phase-transition"
+    },
+    {
+      "eventId": "m8s-boss-saber",
+      "videoWindowSeconds": [
+        284.5,
+        286.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-rage",
+      "videoWindowSeconds": [
+        303.5,
+        305.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-heavensearth-1",
+      "videoWindowSeconds": [
+        311.5,
+        313.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-heavensearth-2",
+      "videoWindowSeconds": [
+        319.5,
+        321.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-reign-3",
+      "videoWindowSeconds": [
+        331.5,
+        333.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-divide-2",
+      "videoWindowSeconds": [
+        348.5,
+        350.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-moonlight",
+      "videoWindowSeconds": [
+        362.5,
+        364.5
+      ],
+      "observationKind": "phase-transition"
+    },
+    {
+      "eventId": "m8s-boss-moonlight-1",
+      "videoWindowSeconds": [
+        374.5,
+        376.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-moonlight-2",
+      "videoWindowSeconds": [
+        383.5,
+        385.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-fangs-2",
+      "videoWindowSeconds": [
+        393.5,
+        395.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-tremors-2",
+      "videoWindowSeconds": [
+        403.5,
+        405.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-pursuit-4",
+      "videoWindowSeconds": [
+        415.5,
+        417.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-transition",
+      "videoWindowSeconds": [
+        417.5,
+        418.5
+      ],
+      "observationKind": "phase-transition"
+    },
+    {
+      "eventId": "m8s-boss-p2-targetable",
+      "videoWindowSeconds": [
+        463.5,
+        464.5
+      ],
+      "observationKind": "phase-transition"
+    },
+    {
+      "eventId": "m8s-boss-quake-1",
+      "videoWindowSeconds": [
+        476.5,
+        477.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-ray-1",
+      "videoWindowSeconds": [
+        488.5,
+        489.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-twinbite-1",
+      "videoWindowSeconds": [
+        500.5,
+        502.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-hero-1",
+      "videoWindowSeconds": [
+        510.5,
+        512.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-ray-2",
+      "videoWindowSeconds": [
+        522.5,
+        523.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-quake-2",
+      "videoWindowSeconds": [
+        533,
+        534
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-mooncleaver",
+      "videoWindowSeconds": [
+        547,
+        549
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-purge",
+      "videoWindowSeconds": [
+        557.5,
+        559.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-p2-towers",
+      "videoWindowSeconds": [
+        571.5,
+        573.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-twofold",
+      "videoWindowSeconds": [
+        587.5,
+        589.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-circuit",
+      "videoWindowSeconds": [
+        627.5,
+        629.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-quake-3",
+      "videoWindowSeconds": [
+        656,
+        657
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-ray-3",
+      "videoWindowSeconds": [
+        670.5,
+        671.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-twinbite-2",
+      "videoWindowSeconds": [
+        680.5,
+        682.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-lone-wolf",
+      "videoWindowSeconds": [
+        698.5,
+        700.5
+      ],
+      "observationKind": "phase-transition"
+    },
+    {
+      "eventId": "m8s-boss-lone-wolf-towers",
+      "videoWindowSeconds": [
+        720.5,
+        722.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-hero-2",
+      "videoWindowSeconds": [
+        730.5,
+        732.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-ray-4",
+      "videoWindowSeconds": [
+        742.5,
+        743.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-howling-1",
+      "videoWindowSeconds": [
+        754.5,
+        756.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-howling-2",
+      "videoWindowSeconds": [
+        773.5,
+        775.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-howling-3",
+      "videoWindowSeconds": [
+        793.5,
+        795.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-howling-4",
+      "videoWindowSeconds": [
+        813.5,
+        815.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-howling-5",
+      "videoWindowSeconds": [
+        833.5,
+        835.5
+      ],
+      "observationKind": "damage-window"
+    },
+    {
+      "eventId": "m8s-boss-enrage",
+      "videoWindowSeconds": [
+        846.5,
+        847.5
+      ],
+      "observationKind": "cast-start"
+    }
+  ],
+  "actionReferences": [
+    {
+      "eventId": "m8s-sch-pre-shield",
+      "sourceCaptionIds": [
+        "C02"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 11.5,
+      "condition": "幻光＋群盾：倒數十秒預盾",
+      "actions": [
+        "illumination",
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-precast",
+      "sourceCaptionIds": [
+        "C03"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 19.5,
+      "condition": "極炎法：倒數兩秒預讀",
+      "actions": [
+        "broil"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-opening-dissipation",
+      "sourceCaptionIds": [
+        "C03"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 22,
+      "condition": "開戰才轉化，下一個 GCD 上毒，再插入爆發藥；接一發極炎法後連環計。此列是順序提示，不是同時施放。",
+      "actions": [
+        "dissipation",
+        "dot",
+        "potion"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-chain-opening",
+      "sourceCaptionIds": [
+        "C03"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 28.5,
+      "condition": "連環計：極炎法後，對齊開場團輔",
+      "actions": [
+        "chain"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-opening-soil",
+      "sourceCaptionIds": [
+        "C04",
+        "C06"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 32.5,
+      "condition": "野戰治療陣：空間斬讀條後，場中放置；留一豆給下一輪罩子",
+      "actions": [
+        "soil"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-fangs-shield",
+      "sourceCaptionIds": [
+        "C05"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 43.5,
+      "condition": "群盾：風土判定前",
+      "actions": [
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-reign-spread-prep",
+      "sourceCaptionIds": [
+        "C07"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 52.5,
+      "condition": "秘策＋生命回生法＋鼓舞激勵之策：風土傷害後，自己做盾",
+      "actions": [
+        "recitation",
+        "protraction",
+        "adlo",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-reign-deployment",
+      "sourceCaptionIds": [
+        "C07"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 57.5,
+      "condition": "展開戰術：單盾完成後擴散",
+      "actions": [
+        "deployment"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-fairy-center",
+      "sourceCaptionIds": [
+        "C08"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 61,
+      "condition": "仙女移至場中：轉化結束後固定位置",
+      "actions": [
+        "fairy-position"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-double-raidwide-shield",
+      "sourceCaptionIds": [
+        "C09"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 70,
+      "condition": "群盾：雙狼連擊分攤後",
+      "actions": [
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-double-raidwide-soil",
+      "sourceCaptionIds": [
+        "C09",
+        "C10"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 73.5,
+      "condition": "野戰治療陣：晚放，覆蓋空間斬與千年風化",
+      "actions": [
+        "soil"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-raidwide-dawn",
+      "sourceCaptionIds": [
+        "C10"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 77,
+      "condition": "仙光的低語：空間斬後；祥光依團血留給風化後",
+      "actions": [
+        "dawn"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-aetherflow-1",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 82,
+      "condition": "以太超流檢查：冷卻完成且豆已花完再補，保留治療豆",
+      "actions": [
+        "aetherflow",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-decay-pre-shield",
+      "sourceCaptionIds": [
+        "C11"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 85,
+      "condition": "群盾：千年風化前，確認罩子仍覆蓋",
+      "actions": [
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-decay-blessing",
+      "sourceCaptionIds": [
+        "C11"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 90,
+      "condition": "仙光的祥光＋群盾：千年風化傷害後",
+      "actions": [
+        "blessing",
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-wind-seraph",
+      "sourceCaptionIds": [
+        "C14"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 94,
+      "condition": "召喚熾天使：大風圈出現後，預備擊退回血",
+      "actions": [
+        "seraph"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-wind-consolation-1",
+      "sourceCaptionIds": [
+        "C14"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 102.5,
+      "condition": "慰藉一段：第一次擊退判定後",
+      "actions": [
+        "consolation"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-wind-consolation-2",
+      "sourceCaptionIds": [
+        "C15"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 108.5,
+      "condition": "慰藉二段：第二次大圈與擊退判定後",
+      "actions": [
+        "consolation"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-wind-seraphism",
+      "sourceCaptionIds": [
+        "C16"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 115,
+      "condition": "熾天附體＋附體群盾：踩塔前",
+      "actions": [
+        "seraphism",
+        "accession",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-tremors-soil-expedient",
+      "sourceCaptionIds": [
+        "C17"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 118,
+      "condition": "疾風怒濤之計＋野戰治療陣＋附體群盾：塔後，場中準備八連",
+      "actions": [
+        "expedient",
+        "soil",
+        "accession"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-tremors-accession",
+      "sourceCaptionIds": [
+        "C18"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 125,
+      "condition": "附體群盾：八連期間按血量續刷，配合搭檔大宇宙",
+      "actions": [
+        "accession"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-pursuit-shield",
+      "sourceCaptionIds": [
+        "C18"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 131.5,
+      "condition": "附體群盾：八連收尾，留盾接空間斬",
+      "actions": [
+        "accession"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-aetherflow-2",
+      "sourceCaptionIds": [
+        "C19"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 142,
+      "condition": "以太超流檢查：冷卻完成且豆已花完再補",
+      "actions": [
+        "aetherflow",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-chain-two-minute",
+      "sourceCaptionIds": [
+        "C19"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 148.5,
+      "condition": "連環計：死刑後的兩分鐘團輔；餘豆可打能量吸收",
+      "actions": [
+        "chain"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-titans-shield",
+      "sourceCaptionIds": [
+        "C20"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 176,
+      "condition": "群盾：石柱落地，站定安全點後",
+      "actions": [
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-titans-blessing",
+      "sourceCaptionIds": [
+        "C21"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 190,
+      "condition": "仙光的祥光：雙狼連擊分攤後",
+      "actions": [
+        "blessing"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-pre-adds-union",
+      "sourceCaptionIds": [
+        "C22"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 197,
+      "condition": "以太契約：主坦低血且有量譜時連線",
+      "actions": [
+        "union"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-aetherflow-3",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 202,
+      "condition": "以太超流檢查：冷卻完成且豆已花完再補",
+      "actions": [
+        "aetherflow"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-adds-shield",
+      "sourceCaptionIds": [
+        "C23"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 205,
+      "condition": "群盾：雙狼出場全體前，靠近人群蓋八人",
+      "actions": [
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-adds-spread-prep",
+      "sourceCaptionIds": [
+        "C24"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 212,
+      "condition": "幻光＋秘策＋生命回生法＋鼓舞激勵之策：雙狼出場全體後",
+      "actions": [
+        "illumination",
+        "recitation",
+        "protraction",
+        "adlo"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-adds-deployment",
+      "sourceCaptionIds": [
+        "C24"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 217,
+      "condition": "展開戰術：靠中蓋八人，準備第一輪分攤",
+      "actions": [
+        "deployment",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-adds-dawn",
+      "sourceCaptionIds": [
+        "C25"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 221,
+      "condition": "仙光的低語＋仙女移至場中：第一輪分攤後",
+      "actions": [
+        "dawn",
+        "fairy-position"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-adds-soil-shield",
+      "sourceCaptionIds": [
+        "C26"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 230,
+      "condition": "野戰治療陣＋群盾：第二輪標記出現後",
+      "actions": [
+        "soil",
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-adds-seraph",
+      "sourceCaptionIds": [
+        "C27"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 233,
+      "condition": "字幕的慰藉需要先召喚；量譜在影片 232.5–233.5 秒由仙女轉為熾天使。",
+      "actions": [
+        "seraph"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-adds-consolation-1",
+      "sourceCaptionIds": [
+        "C27"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 236,
+      "condition": "慰藉一段：第二輪分攤傷害後",
+      "actions": [
+        "consolation"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-adds-expedient",
+      "sourceCaptionIds": [
+        "C27"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 239,
+      "condition": "疾風怒濤之計：第二輪分攤後移動",
+      "actions": [
+        "expedient"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-adds-consolation-2",
+      "sourceCaptionIds": [
+        "C27"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 244,
+      "condition": "慰藉二段：土點名判定後",
+      "actions": [
+        "consolation"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-adds-indom-blessing",
+      "sourceCaptionIds": [
+        "C28"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 251,
+      "condition": "此刻熾天使尚在；不屈先用，祥光延至 255.5 秒仙女回場後。",
+      "actions": [
+        "indom"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-adds-blessing",
+      "sourceCaptionIds": [
+        "C28"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 255.5,
+      "condition": "仙光的祥光：熾天使結束、仙女回場後；坦血量低可連線",
+      "actions": [
+        "blessing"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-adds-excog",
+      "sourceCaptionIds": [
+        "C28"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 258,
+      "condition": "深謀遠慮之策：坦低血才用；有量譜也可連線",
+      "actions": [
+        "excog"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-adds-dissipation",
+      "sourceCaptionIds": [
+        "C29"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 263,
+      "condition": "轉化：餘豆先打完；雙狼收尾仙女已回場",
+      "actions": [
+        "dissipation"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-return-shield",
+      "sourceCaptionIds": [
+        "C29"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 267,
+      "condition": "群盾：轉化增療期間，王回場前蓋八人",
+      "actions": [
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-saber-recitation",
+      "sourceCaptionIds": [
+        "C30"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 273,
+      "condition": "秘策＋蠱毒法檢查＋連環計：王回場團輔，秘策留給三刀群盾；兩個 GCD 後放罩子",
+      "actions": [
+        "recitation",
+        "dot",
+        "chain"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-saber-soil",
+      "sourceCaptionIds": [
+        "C30"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 278,
+      "condition": "野戰治療陣：王回場兩個 GCD 後",
+      "actions": [
+        "soil"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-saber-recited-shield",
+      "sourceCaptionIds": [
+        "C31"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 281,
+      "condition": "群盾：消耗預開秘策，覆蓋三刀",
+      "actions": [
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-saber-indom",
+      "sourceCaptionIds": [
+        "C31"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 290,
+      "condition": "不屈不撓之策：前三刀判定後，團血低才補",
+      "actions": [
+        "indom"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-aetherflow-4",
+      "sourceCaptionIds": [
+        "C32"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 295,
+      "condition": "以太超流檢查：至少保留一豆給下一個罩子；其餘可輸出",
+      "actions": [
+        "aetherflow"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-rage-shield",
+      "sourceCaptionIds": [
+        "C33"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 303,
+      "condition": "群盾＋仙女移至場中：團輔結束後",
+      "actions": [
+        "group",
+        "fairy-position",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-rage-soil-dawn",
+      "sourceCaptionIds": [
+        "C34"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 309,
+      "condition": "野戰治療陣＋仙光的低語：分攤分散標記出現後",
+      "actions": [
+        "soil",
+        "dawn"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-rage-blessing",
+      "sourceCaptionIds": [
+        "C35"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 322,
+      "condition": "仙光的祥光：第二輪分攤分散傷害後",
+      "actions": [
+        "blessing"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-rage-reign-shield",
+      "sourceCaptionIds": [
+        "C36"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 329,
+      "condition": "群盾：兩輪結束後靠中蓋八人",
+      "actions": [
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-keep-dps",
+      "sourceCaptionIds": [
+        "C37"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 339,
+      "condition": "維持輸出：本輪結束不急著抬血",
+      "actions": []
+    },
+    {
+      "eventId": "m8s-sch-aetherflow-5",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 355,
+      "condition": "以太超流檢查：冷卻完成且豆已花完再補",
+      "actions": [
+        "aetherflow"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-moonlight-spread-prep",
+      "sourceCaptionIds": [
+        "C38"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 358,
+      "condition": "秘策＋生命回生法＋鼓舞激勵之策：四刀前，勿過早做盾",
+      "actions": [
+        "recitation",
+        "protraction",
+        "adlo"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-moonlight-deployment",
+      "sourceCaptionIds": [
+        "C38"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 363,
+      "condition": "展開戰術：覆蓋兩輪四刀點名",
+      "actions": [
+        "deployment",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-moonlight-excog",
+      "sourceCaptionIds": [
+        "C39"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 368,
+      "condition": "深謀遠慮之策：開荒可給自己容錯；移動用毀壞",
+      "actions": [
+        "excog"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-moonlight-dawn",
+      "sourceCaptionIds": [
+        "C40"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 377,
+      "condition": "仙光的低語：第一輪分攤分散後",
+      "actions": [
+        "dawn"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-moonlight-expedient",
+      "sourceCaptionIds": [
+        "C41"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 381,
+      "condition": "疾風怒濤之計：第二輪前，覆蓋第二輪與後續風土",
+      "actions": [
+        "expedient"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-p1-fairy",
+      "sourceCaptionIds": [
+        "C42"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 389,
+      "condition": "仙光的祥光＋幻光：正點規避後，靠中覆蓋團隊",
+      "actions": [
+        "blessing",
+        "illumination"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-p1-seraphism",
+      "sourceCaptionIds": [
+        "C42"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 392,
+      "condition": "熾天附體＋附體群盾：靠中後補盾",
+      "actions": [
+        "seraphism",
+        "accession",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-p1-soil",
+      "sourceCaptionIds": [
+        "C42"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 394,
+      "condition": "野戰治療陣：靠近場中放置，接八連",
+      "actions": [
+        "soil"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-p1-seraph",
+      "sourceCaptionIds": [
+        "C43"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 396,
+      "condition": "召喚熾天使：預備風土後慰藉",
+      "actions": [
+        "seraph"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-p1-consolation-1",
+      "sourceCaptionIds": [
+        "C43"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 399,
+      "condition": "慰藉一段＋連環計：風土判定後，對齊團輔",
+      "actions": [
+        "consolation",
+        "chain"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-p1-accession",
+      "sourceCaptionIds": [
+        "C44"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 406,
+      "condition": "附體群盾：八連間續刷；團血穩才打能量吸收",
+      "actions": [
+        "accession"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-p1-consolation-2",
+      "sourceCaptionIds": [
+        "C45"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 411.5,
+      "condition": "慰藉二段：八連尾段",
+      "actions": [
+        "consolation"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-p1-shield",
+      "sourceCaptionIds": [
+        "C45"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 413.5,
+      "condition": "群盾：附體結束後、八連收尾接空間斬；本軸選普通群盾，秘策留後半",
+      "actions": [
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-p2-opening",
+      "sourceCaptionIds": [
+        "C46"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 464.5,
+      "condition": "以太超流＋蠱毒法檢查：後半王可選取，只重上毒，連環計等後面團輔",
+      "actions": [
+        "aetherflow",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-p2-spread-prep",
+      "sourceCaptionIds": [
+        "C46"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 467,
+      "condition": "秘策＋生命回生法＋即刻詠唱＋鼓舞激勵之策：後半起手",
+      "actions": [
+        "recitation",
+        "protraction",
+        "adlo"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-p2-deployment",
+      "sourceCaptionIds": [
+        "C46"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 471,
+      "condition": "展開戰術：覆蓋第一輪四四",
+      "actions": [
+        "deployment"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-p2-soil",
+      "sourceCaptionIds": [
+        "C47"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 474,
+      "condition": "爆發藥＋野戰治療陣：到右平台後，出生台內側蓋兩組",
+      "actions": [
+        "potion",
+        "soil"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-p2-fairy-heal",
+      "sourceCaptionIds": [
+        "C48"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 480,
+      "condition": "仙光的低語＋仙光的祥光：第一輪四四傷害後",
+      "actions": [
+        "dawn",
+        "blessing"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-p2-tank-care",
+      "sourceCaptionIds": [
+        "C49"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 492,
+      "condition": "深謀遠慮之策＋以太契約：藍標後，綠帽一坦，有量譜連另一坦",
+      "actions": [
+        "excog",
+        "union"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-p2-tank-adlo",
+      "sourceCaptionIds": [
+        "C52"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 500,
+      "condition": "鼓舞激勵之策：雙坦死刑前，開荒可給主坦單盾",
+      "actions": [
+        "adlo"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-p2-fangs-shield",
+      "sourceCaptionIds": [
+        "C53"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 513,
+      "condition": "幻光＋群盾：半場刀安全點站定後",
+      "actions": [
+        "illumination",
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-p2-ray-expedient",
+      "sourceCaptionIds": [
+        "C54"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 518,
+      "condition": "疾風怒濤之計：藍標傷害前靠近場中",
+      "actions": [
+        "expedient"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-p2-ray-seraph",
+      "sourceCaptionIds": [
+        "C54"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 521,
+      "condition": "召喚熾天使：藍標前預備慰藉",
+      "actions": [
+        "seraph"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-p2-ray-consolation-1",
+      "sourceCaptionIds": [
+        "C55"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 525,
+      "condition": "慰藉一段＋野戰治療陣：藍標傷害後，接四四",
+      "actions": [
+        "consolation",
+        "soil",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-aetherflow-7",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 527,
+      "condition": "以太超流檢查：冷卻完成且豆已花完再補",
+      "actions": [
+        "aetherflow"
+      ],
+      "voiceIncludedInEventId": "m8s-sch-p2-ray-consolation-1"
+    },
+    {
+      "eventId": "m8s-sch-chain-p2-first",
+      "sourceCaptionIds": [
+        "C55"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 531,
+      "condition": "連環計：四四標記出現後，對齊團輔；作者註明影片開得略早",
+      "actions": [
+        "chain"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-p2-ray-consolation-2",
+      "sourceCaptionIds": [
+        "C56"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 536,
+      "condition": "慰藉二段：四四傷害後",
+      "actions": [
+        "consolation"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-purge-dissipation",
+      "sourceCaptionIds": [
+        "C57"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 547,
+      "condition": "轉化＋群盾：熾天使結束、仙女回場後使用",
+      "actions": [
+        "dissipation",
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-purge-soil",
+      "sourceCaptionIds": [
+        "C57"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 555,
+      "condition": "野戰治療陣：冷卻完成後，覆蓋風震魔印分攤",
+      "actions": [
+        "soil",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-purge-spread-prep",
+      "sourceCaptionIds": [
+        "C58"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 561,
+      "condition": "秘策＋生命回生法＋鼓舞激勵之策：分攤傷害後，利用轉化增療",
+      "actions": [
+        "recitation",
+        "protraction",
+        "adlo"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-purge-deployment",
+      "sourceCaptionIds": [
+        "C58"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 566,
+      "condition": "展開戰術：靠中蓋八人，接踩塔",
+      "actions": [
+        "deployment"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-purge-excog",
+      "sourceCaptionIds": [
+        "C58"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 570,
+      "condition": "深謀遠慮之策：給另一側主坦",
+      "actions": [
+        "excog"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-tempest-fairy-position",
+      "sourceCaptionIds": [
+        "C59"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 580,
+      "condition": "仙女移至平台內緣：低語要覆蓋隔壁輸出組",
+      "actions": [
+        "fairy-position"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-aetherflow-8",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 587,
+      "condition": "以太超流檢查：冷卻完成且豆已花完再補",
+      "actions": [
+        "aetherflow"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-tempest-dawn",
+      "sourceCaptionIds": [
+        "C59"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 589.5,
+      "condition": "仙光的低語：第一組雙重暴風傷害後",
+      "actions": [
+        "dawn"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-tempest-seraphism-soil",
+      "sourceCaptionIds": [
+        "C60"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 595,
+      "condition": "以太契約＋野戰治療陣＋熾天附體：第二組時，有量譜連同組坦，罩子放右側輸出台",
+      "actions": [
+        "union",
+        "soil",
+        "seraphism"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-tempest-tank-heal",
+      "sourceCaptionIds": [
+        "C61"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 608,
+      "condition": "附體單盾＋生命活性法：坦低血才用；本軸選活性，深謀尚未冷卻",
+      "actions": [
+        "manifestation",
+        "lustrate"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-circuit-blessing",
+      "sourceCaptionIds": [
+        "C62"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 617,
+      "condition": "仙光的祥光：回出生台集合，團血低才用",
+      "actions": [
+        "blessing"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-circuit-move",
+      "sourceCaptionIds": [
+        "C63"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 626,
+      "condition": "毀壞：開荒優先走機制，安全後再讀條",
+      "actions": []
+    },
+    {
+      "eventId": "m8s-sch-circuit-sprint",
+      "sourceCaptionIds": [
+        "C64"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 635,
+      "condition": "衝刺：迴轉移動",
+      "actions": [
+        "sprint"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-circuit-shield",
+      "sourceCaptionIds": [
+        "C65"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 643,
+      "condition": "幻光＋群盾：迴轉最後兩次",
+      "actions": [
+        "illumination",
+        "group",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-aetherflow-9",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 647,
+      "condition": "以太超流檢查：冷卻完成且豆已花完再補",
+      "actions": [
+        "aetherflow"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-circuit-soil-expedient",
+      "sourceCaptionIds": [
+        "C66"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 651,
+      "condition": "野戰治療陣＋疾風怒濤之計：左右分組，罩子放出生台",
+      "actions": [
+        "soil",
+        "expedient"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-circuit-seraph",
+      "sourceCaptionIds": [
+        "C67"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 654,
+      "condition": "召喚熾天使：預備四四點名慰藉",
+      "actions": [
+        "seraph"
+      ],
+      "voiceIncludedInEventId": "m8s-sch-circuit-soil-expedient"
+    },
+    {
+      "eventId": "m8s-sch-circuit-consolation-1",
+      "sourceCaptionIds": [
+        "C67"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 656,
+      "condition": "慰藉一段＋連環計：四四標記出現，傷害前",
+      "actions": [
+        "consolation",
+        "chain"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-circuit-consolation-2",
+      "sourceCaptionIds": [
+        "C67"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 659,
+      "condition": "慰藉二段：四四傷害後，盾留給後續藍標",
+      "actions": [
+        "consolation"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-circuit-tank-care",
+      "sourceCaptionIds": [
+        "C68"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 677,
+      "condition": "深謀遠慮之策＋以太契約：雙坦死刑前，綠帽主坦；仙女回來且有量譜連副坦",
+      "actions": [
+        "excog",
+        "union"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-lone-wolf-fairy-position",
+      "sourceCaptionIds": [
+        "C69"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 690,
+      "condition": "仙女移至雙奶平台最內側",
+      "actions": [
+        "fairy-position"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-lone-wolf-spread-prep",
+      "sourceCaptionIds": [
+        "C70"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 701,
+      "condition": "秘策＋生命回生法＋鼓舞激勵之策：孤狼紅字階段，避免過早預盾",
+      "actions": [
+        "recitation",
+        "protraction",
+        "adlo"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-lone-wolf-deployment",
+      "sourceCaptionIds": [
+        "C70"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 706,
+      "condition": "展開戰術：靠中蓋八人，覆蓋拉線踩塔",
+      "actions": [
+        "deployment",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-aetherflow-10",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 709,
+      "condition": "以太超流檢查：冷卻完成且豆已花完再補",
+      "actions": [
+        "aetherflow"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-lone-wolf-soil-union",
+      "sourceCaptionIds": [
+        "C71"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 712,
+      "condition": "野戰治療陣＋以太契約：拉線時罩子放坦腳下，有量譜連主坦",
+      "actions": [
+        "soil",
+        "union"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-lone-wolf-excog",
+      "sourceCaptionIds": [
+        "C72"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 724,
+      "condition": "深謀遠慮之策：拉線踩塔後，給低血坦",
+      "actions": [
+        "excog"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-lone-wolf-shield",
+      "sourceCaptionIds": [
+        "C72"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 733,
+      "condition": "群盾：半場刀安全點站定後",
+      "actions": [
+        "group",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-lone-wolf-blessing",
+      "sourceCaptionIds": [
+        "C73"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 738,
+      "condition": "仙光的祥光：分組前；求穩可分別給雙坦單盾",
+      "actions": [
+        "blessing"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-howling-pre-shield",
+      "sourceCaptionIds": [
+        "C74"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 747,
+      "condition": "群盾：藍標後回出生台；若坦倒地，照顧仇恨第二的 DPS",
+      "actions": [
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-howling-dawn",
+      "sourceCaptionIds": [
+        "C75"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 753,
+      "condition": "仙光的低語：第一輪八連",
+      "actions": [
+        "dawn"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-howling-shield",
+      "sourceCaptionIds": [
+        "C75"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 758,
+      "condition": "群盾：八連加速，治療集中後半段",
+      "actions": [
+        "group"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-howling-recited-indom",
+      "sourceCaptionIds": [
+        "C75"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 762,
+      "condition": "秘策＋不屈不撓之策：第一輪八連後半；影片可改秘策群盾，本軸選不屈",
+      "actions": [
+        "recitation",
+        "recited-indom"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-aetherflow-11",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 769,
+      "condition": "以太超流檢查：冷卻完成且豆已花完再補",
+      "actions": [
+        "aetherflow"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-howling-potion",
+      "sourceCaptionIds": [
+        "C76"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 772,
+      "condition": "爆發藥：第二平台，接團輔",
+      "actions": [
+        "potion"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-chain-final",
+      "sourceCaptionIds": [
+        "C76"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 776,
+      "condition": "連環計：第二平台，對齊團輔",
+      "actions": [
+        "chain"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-howling-dissipation",
+      "sourceCaptionIds": [
+        "C76"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 780,
+      "condition": "轉化：能量吸收打完現有豆後再用；轉化後打兩豆、留一豆給可選綠帽",
+      "actions": [
+        "dissipation"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-howling-mt-adlo",
+      "sourceCaptionIds": [
+        "C77"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 806,
+      "condition": "鼓舞激勵之策＋深謀遠慮之策：雙坦分攤前，主坦單盾，低血可加綠帽",
+      "actions": [
+        "adlo",
+        "excog"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-howling-st-adlo",
+      "sourceCaptionIds": [
+        "C77"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 809.5,
+      "condition": "鼓舞激勵之策：雙坦分攤前，副坦單盾",
+      "actions": [
+        "adlo"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-howling-fairy",
+      "sourceCaptionIds": [
+        "C78"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 818,
+      "condition": "仙光的祥光＋幻光：雙坦開始分攤後",
+      "actions": [
+        "blessing",
+        "illumination"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-spread-prep",
+      "sourceCaptionIds": [
+        "C78"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 823,
+      "condition": "秘策＋生命回生法＋鼓舞激勵之策：雙坦分攤中，為最後八人預盾",
+      "actions": [
+        "recitation",
+        "protraction",
+        "adlo",
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-deployment",
+      "sourceCaptionIds": [
+        "C78"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 828,
+      "condition": "展開戰術：最後八人八連前",
+      "actions": [
+        "deployment"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-soil-expedient",
+      "sourceCaptionIds": [
+        "C79"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 831,
+      "condition": "以太超流檢查＋野戰治療陣＋疾風怒濤之計：超流就緒且豆花完才補；最後平台場中",
+      "actions": [
+        "aetherflow",
+        "soil",
+        "expedient"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-seraph",
+      "sourceCaptionIds": [
+        "C79"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 835,
+      "condition": "召喚熾天使：最後八連",
+      "actions": [
+        "seraph"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-consolation-1",
+      "sourceCaptionIds": [
+        "C79"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 838,
+      "condition": "慰藉一段：最後八連前段",
+      "actions": [
+        "consolation"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-seraphism",
+      "sourceCaptionIds": [
+        "C79"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 841,
+      "condition": "熾天附體＋附體群盾：最後八連加速；有豆且團血低可加不屈不撓之策",
+      "actions": [
+        "seraphism",
+        "accession",
+        "indom"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-consolation-2",
+      "sourceCaptionIds": [
+        "C79"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 844,
+      "condition": "慰藉二段：最後八連尾段",
+      "actions": [
+        "consolation"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-enrage-dps",
+      "sourceCaptionIds": [
+        "C80"
+      ],
+      "origin": "video-instruction",
+      "videoSeconds": 848,
+      "condition": "維持輸出：狂暴長讀條；影片在傷害前擊殺",
+      "actions": []
+    },
+    {
+      "eventId": "m8s-sch-dot-opening-6",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 173.5,
+      "condition": "蠱毒法檢查：到期且目標可攻擊才補；換小怪重補",
+      "actions": [
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-dot-adds-2",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 247,
+      "condition": "蠱毒法檢查：到期且目標可攻擊才補；換小怪重補",
+      "actions": [
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-dot-return-3",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 333,
+      "condition": "蠱毒法檢查：到期且目標可攻擊才補；換小怪重補",
+      "actions": [
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-dot-p2-2",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 494.5,
+      "condition": "蠱毒法檢查：到期且目標可攻擊才補；換小怪重補",
+      "actions": [
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-dot-p2-5",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 584.5,
+      "condition": "蠱毒法檢查：到期且目標可攻擊才補；換小怪重補",
+      "actions": [
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-dot-p2-6",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 614.5,
+      "condition": "蠱毒法檢查：到期且目標可攻擊才補；換小怪重補",
+      "actions": [
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-dot-p2-8",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 674.5,
+      "condition": "蠱毒法檢查：到期且目標可攻擊才補；換小怪重補",
+      "actions": [
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-dot-p2-11",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 764.5,
+      "condition": "蠱毒法檢查：到期且目標可攻擊才補；換小怪重補",
+      "actions": [
+        "dot"
+      ]
+    },
+    {
+      "eventId": "m8s-sch-dot-p2-12",
+      "sourceCaptionIds": [],
+      "origin": "tool-reminder",
+      "videoSeconds": 794.5,
+      "condition": "蠱毒法檢查：到期且目標可攻擊才補；換小怪重補",
+      "actions": [
+        "dot"
+      ]
+    }
+  ],
+  "dotChecks": [
+    {
+      "segment": "opening",
+      "nominalVideoSeconds": 23.5,
+      "eventId": "m8s-sch-opening-dissipation"
+    },
+    {
+      "segment": "opening",
+      "nominalVideoSeconds": 53.5,
+      "eventId": "m8s-sch-reign-spread-prep"
+    },
+    {
+      "segment": "opening",
+      "nominalVideoSeconds": 83.5,
+      "eventId": "m8s-sch-aetherflow-1"
+    },
+    {
+      "segment": "opening",
+      "nominalVideoSeconds": 113.5,
+      "eventId": "m8s-sch-wind-seraphism"
+    },
+    {
+      "segment": "opening",
+      "nominalVideoSeconds": 143.5,
+      "eventId": "m8s-sch-aetherflow-2"
+    },
+    {
+      "segment": "opening",
+      "nominalVideoSeconds": 173.5,
+      "eventId": "m8s-sch-dot-opening-6"
+    },
+    {
+      "segment": "adds",
+      "nominalVideoSeconds": 217,
+      "eventId": "m8s-sch-adds-deployment"
+    },
+    {
+      "segment": "adds",
+      "nominalVideoSeconds": 247,
+      "eventId": "m8s-sch-dot-adds-2"
+    },
+    {
+      "segment": "return",
+      "nominalVideoSeconds": 273,
+      "eventId": "m8s-sch-saber-recitation"
+    },
+    {
+      "segment": "return",
+      "nominalVideoSeconds": 303,
+      "eventId": "m8s-sch-rage-shield"
+    },
+    {
+      "segment": "return",
+      "nominalVideoSeconds": 333,
+      "eventId": "m8s-sch-dot-return-3"
+    },
+    {
+      "segment": "return",
+      "nominalVideoSeconds": 363,
+      "eventId": "m8s-sch-moonlight-deployment"
+    },
+    {
+      "segment": "return",
+      "nominalVideoSeconds": 393,
+      "eventId": "m8s-sch-final-p1-seraphism"
+    },
+    {
+      "segment": "p2",
+      "nominalVideoSeconds": 464.5,
+      "eventId": "m8s-sch-p2-opening"
+    },
+    {
+      "segment": "p2",
+      "nominalVideoSeconds": 494.5,
+      "eventId": "m8s-sch-dot-p2-2"
+    },
+    {
+      "segment": "p2",
+      "nominalVideoSeconds": 524.5,
+      "eventId": "m8s-sch-p2-ray-consolation-1"
+    },
+    {
+      "segment": "p2",
+      "nominalVideoSeconds": 554.5,
+      "eventId": "m8s-sch-purge-soil"
+    },
+    {
+      "segment": "p2",
+      "nominalVideoSeconds": 584.5,
+      "eventId": "m8s-sch-dot-p2-5"
+    },
+    {
+      "segment": "p2",
+      "nominalVideoSeconds": 614.5,
+      "eventId": "m8s-sch-dot-p2-6"
+    },
+    {
+      "segment": "p2",
+      "nominalVideoSeconds": 644.5,
+      "eventId": "m8s-sch-circuit-shield"
+    },
+    {
+      "segment": "p2",
+      "nominalVideoSeconds": 674.5,
+      "eventId": "m8s-sch-dot-p2-8"
+    },
+    {
+      "segment": "p2",
+      "nominalVideoSeconds": 704.5,
+      "eventId": "m8s-sch-lone-wolf-deployment"
+    },
+    {
+      "segment": "p2",
+      "nominalVideoSeconds": 734.5,
+      "eventId": "m8s-sch-lone-wolf-shield"
+    },
+    {
+      "segment": "p2",
+      "nominalVideoSeconds": 764.5,
+      "eventId": "m8s-sch-dot-p2-11"
+    },
+    {
+      "segment": "p2",
+      "nominalVideoSeconds": 794.5,
+      "eventId": "m8s-sch-dot-p2-12"
+    },
+    {
+      "segment": "p2",
+      "nominalVideoSeconds": 824.5,
+      "eventId": "m8s-sch-final-spread-prep"
+    }
+  ],
+  "observedSeraphChanges": [
+    {
+      "eventId": "m8s-sch-wind-seraph",
+      "videoWindowSeconds": [
+        93.5,
+        94.5
+      ]
+    },
+    {
+      "eventId": "m8s-sch-adds-seraph",
+      "videoWindowSeconds": [
+        232.5,
+        233.5
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-p1-seraph",
+      "videoWindowSeconds": [
+        395.5,
+        396.5
+      ]
+    },
+    {
+      "eventId": "m8s-sch-p2-ray-seraph",
+      "videoWindowSeconds": [
+        520.5,
+        521.5
+      ]
+    },
+    {
+      "eventId": "m8s-sch-circuit-seraph",
+      "videoWindowSeconds": [
+        653.5,
+        654.5
+      ]
+    },
+    {
+      "eventId": "m8s-sch-final-seraph",
+      "videoWindowSeconds": [
+        834.5,
+        835.5
+      ]
+    }
+  ],
+  "knownLimits": [
+    "360p does not support proving every key press or server damage timestamp.",
+    "Action conditions and phase order take precedence over approximate seconds.",
+    "Aetherflow checks and recurring DoT expiry checks are tool supplements, not observed casts.",
+    "Static playback cannot detect HP, cooldown, targetability, gauge, movement, or party mitigation."
+  ]
+}
