@@ -32,7 +32,15 @@
               "offsetMs": -3000,
               "text": "全體傷害",
               "priority": "normal",
-              "enabled": true
+              "enabled": true,
+              "target": {
+                "positions": [
+                  "H2"
+                ],
+                "jobs": [
+                  "SCH"
+                ]
+              }
             }
           ]
         },
@@ -1038,7 +1046,7 @@
             {
               "id": "m8s-sch-reign-spread-prep-cue",
               "offsetMs": 0,
-              "text": "風土後，秘策回生單盾，毒到期補",
+              "text": "風土後，做大盾，補毒",
               "priority": "high",
               "enabled": true
             }
@@ -1134,7 +1142,7 @@
             {
               "id": "m8s-sch-aetherflow-1-cue",
               "offsetMs": 0,
-              "text": "超流，留治療豆，毒到期補",
+              "text": "超流，留治療豆，補毒",
               "priority": "high",
               "enabled": true
             }
@@ -1230,7 +1238,7 @@
             {
               "id": "m8s-sch-wind-seraphism-cue",
               "offsetMs": 0,
-              "text": "附體，踩塔前群盾，毒到期補",
+              "text": "附體，踩塔前群盾，補毒",
               "priority": "high",
               "enabled": true
             }
@@ -1294,7 +1302,7 @@
             {
               "id": "m8s-sch-aetherflow-2-cue",
               "offsetMs": 0,
-              "text": "超流，留治療豆，毒到期補",
+              "text": "超流，留治療豆，補毒",
               "priority": "high",
               "enabled": true
             }
@@ -1326,7 +1334,7 @@
             {
               "id": "m8s-sch-dot-opening-6-cue",
               "offsetMs": 0,
-              "text": "毒到期補",
+              "text": "補毒",
               "priority": "high",
               "enabled": true
             }
@@ -1374,7 +1382,7 @@
             {
               "id": "m8s-sch-pre-adds-union-cue",
               "offsetMs": 0,
-              "text": "主坦低血，有量譜連線",
+              "text": "主坦低血，連線",
               "priority": "high",
               "enabled": true
             }
@@ -1422,7 +1430,7 @@
             {
               "id": "m8s-sch-adds-spread-prep-cue",
               "offsetMs": 0,
-              "text": "出場傷害後，幻光秘策回生單盾",
+              "text": "出場傷害後，幻光，擴散大盾",
               "priority": "high",
               "enabled": true
             }
@@ -1438,7 +1446,7 @@
             {
               "id": "m8s-sch-adds-deployment-cue",
               "offsetMs": 0,
-              "text": "展開，蓋八人，毒到期補",
+              "text": "補毒",
               "priority": "high",
               "enabled": true
             }
@@ -1550,7 +1558,7 @@
             {
               "id": "m8s-sch-dot-adds-2-cue",
               "offsetMs": 0,
-              "text": "毒到期補",
+              "text": "補毒",
               "priority": "high",
               "enabled": true
             }
@@ -1567,22 +1575,6 @@
               "id": "m8s-sch-adds-indom-blessing-cue",
               "offsetMs": 0,
               "text": "第三輪後不屈，仙女回來祥光",
-              "priority": "high",
-              "enabled": true
-            }
-          ]
-        },
-        {
-          "id": "m8s-sch-adds-blessing",
-          "atMs": 234000,
-          "name": "仙光的祥光：熾天使結束、仙女回場後；坦血量低可連線",
-          "phase": "P1 石柱／雙狼",
-          "category": "job",
-          "cues": [
-            {
-              "id": "m8s-sch-adds-blessing-cue",
-              "offsetMs": 0,
-              "text": "仙女回來，祥光",
               "priority": "high",
               "enabled": true
             }
@@ -1726,7 +1718,7 @@
             {
               "id": "m8s-sch-rage-shield-cue",
               "offsetMs": 0,
-              "text": "群盾，仙女放中，毒到期補",
+              "text": "群盾，仙女放中，補毒",
               "priority": "high",
               "enabled": true
             }
@@ -1790,7 +1782,7 @@
             {
               "id": "m8s-sch-dot-return-3-cue",
               "offsetMs": 0,
-              "text": "毒到期補",
+              "text": "補毒",
               "priority": "high",
               "enabled": true
             }
@@ -1838,7 +1830,7 @@
             {
               "id": "m8s-sch-moonlight-spread-prep-cue",
               "offsetMs": 0,
-              "text": "四刀秘策回生單盾",
+              "text": "ＢＯＳＳ回場中擴散盾",
               "priority": "high",
               "enabled": true
             }
@@ -1854,7 +1846,7 @@
             {
               "id": "m8s-sch-moonlight-deployment-cue",
               "offsetMs": 0,
-              "text": "展開戰術，毒到期補",
+              "text": "補毒",
               "priority": "high",
               "enabled": true
             }
@@ -1870,7 +1862,7 @@
             {
               "id": "m8s-sch-moonlight-excog-cue",
               "offsetMs": 0,
-              "text": "開荒綠帽自己，移動毀壞",
+              "text": "開荒綠帽自己",
               "priority": "high",
               "enabled": true
             }
@@ -1934,7 +1926,7 @@
             {
               "id": "m8s-sch-final-p1-seraphism-cue",
               "offsetMs": -500,
-              "text": "附體群盾，毒到期補",
+              "text": "附體群盾，補毒",
               "priority": "high",
               "enabled": true
             }

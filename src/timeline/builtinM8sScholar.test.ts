@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import payload from '../../public/timelines/m8s-h2-scholar.json';
 import evidence from '../../docs/m8s-h2-video-audit.json';
 import manifest from '../../public/timelines/index.json';
@@ -7,6 +7,7 @@ import { parseAndValidateTimeline } from './validator';
 import { buildPlaybackPlan } from './playbackPlan';
 import { absoluteAtMs } from './resolveEventTiming';
 import { DEFAULT_SETTINGS } from '../storage/settings';
+import { loadBuiltinTimelines } from '../storage/builtinTimelines';
 import type { PlayerProfile, TimelineEvent } from './types';
 
 const migrated = migrateTimeline(payload);
@@ -20,7 +21,11 @@ const byId = new Map(timeline.tracks.flatMap(t => t.events).map(e => [e.id, e]))
 const at = (e: TimelineEvent) => absoluteAtMs(e) / 1000;
 const video = (e: TimelineEvent) => at(e) + evidence.timebase.videoZeroSeconds;
 const event = (key: string) => byId.get(`m8s-sch-${key}`)!;
-const refs = new Map(evidence.actionReferences.map(r => [r.eventId, r]));
+// The historical video audit keeps its original 136 actions. The supplied attachment
+// deliberately omits the standalone Blessing at 234s; every other audit ID still applies.
+const attachmentOmittedEventId = 'm8s-sch-adds-blessing';
+const actionReferences = evidence.actionReferences.filter(r => r.eventId !== attachmentOmittedEventId);
+const refs = new Map(actionReferences.map(r => [r.eventId, r]));
 const casts = (ability: string) => healing.events.filter(e => refs.get(e.id)!.actions.includes(ability));
 const planFor = (profile: PlayerProfile = { position: 'H2', job: 'SCH' },
   selected = timeline.tracks.filter(t => t.enabledByDefault).map(t => t.id), countdownMs = 10_000) => buildPlaybackPlan({
@@ -29,9 +34,11 @@ const planFor = (profile: PlayerProfile = { position: 'H2', job: 'SCH' },
   maxLateMs: DEFAULT_SETTINGS.maxLateMs, sessionOffsetMs: 0, speechSupported: true,
 });
 
-describe('M8S H2 Scholar: source conditions before scheduling convenience', () => {
+describe('M8S H2 Scholar: attachment wording with preserved source timing', () => {
   it('is discoverable, valid, H2 SCH only, and honest about video precision', () => {
     expect(manifest.filter(f => f === 'm8s-h2-scholar.json')).toHaveLength(1);
+    expect(timeline.id).toBe('builtin-m8s-h2-scholar');
+    expect(timeline.tracks.map(t => t.id)).toEqual(['boss-mechanics', 'h2-scholar']);
     expect(timeline.meta.version).toBe('0.3.0');
     expect(timeline.meta.description).toContain('BV1Vc3Nz7Ejd');
     expect(timeline.meta.description).toContain('非逐鍵轉錄');
@@ -40,11 +47,98 @@ describe('M8S H2 Scholar: source conditions before scheduling convenience', () =
     expect(evidence.timebase.videoZeroSeconds).toBe(21.5);
   });
 
-  it('accounts for all 75 subtitle instruction groups and every scholar event', () => {
+  it('loads the updated builtin through the manifest without changing its identity', async () => {
+    const fetchMock = vi.fn(async (input: RequestInfo | URL) => ({
+      ok: true,
+      json: async () => String(input).endsWith('timelines/index.json')
+        ? ['m8s-h2-scholar.json']
+        : payload,
+    }));
+    vi.stubGlobal('fetch', fetchMock);
+    try {
+      const entries = await loadBuiltinTimelines();
+      expect(fetchMock.mock.calls.map(([url]) => String(url))).toEqual([
+        expect.stringMatching(/timelines\/index\.json$/),
+        expect.stringMatching(/timelines\/m8s-h2-scholar\.json$/),
+      ]);
+      expect(entries).toHaveLength(1);
+      const entry = entries[0];
+      expect(entry.status).toBe('valid');
+      if (entry.status !== 'valid') throw new Error(entry.error);
+      expect(entry.id).toBe('builtin-m8s-h2-scholar');
+      expect(entry.timeline).toEqual(timeline);
+      expect(entry.report.issues).toEqual([]);
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('speaks the attachment wording at the existing trigger times', () => {
+    const expected = [
+      ['reign-spread-prep', 31, '風土後，做大盾，補毒'],
+      ['aetherflow-1', 60.5, '超流，留治療豆，補毒'],
+      ['wind-seraphism', 93.5, '附體，踩塔前群盾，補毒'],
+      ['aetherflow-2', 120.5, '超流，留治療豆，補毒'],
+      ['dot-opening-6', 152, '補毒'],
+      ['pre-adds-union', 175.5, '主坦低血，連線'],
+      ['adds-spread-prep', 190.5, '出場傷害後，幻光，擴散大盾'],
+      ['adds-deployment', 195.5, '補毒'],
+      ['dot-adds-2', 225.5, '補毒'],
+      ['rage-shield', 281.5, '群盾，仙女放中，補毒'],
+      ['dot-return-3', 311.5, '補毒'],
+      ['moonlight-spread-prep', 336.5, 'ＢＯＳＳ回場中擴散盾'],
+      ['moonlight-deployment', 341.5, '補毒'],
+      ['moonlight-excog', 346.5, '開荒綠帽自己'],
+      ['final-p1-seraphism', 370, '附體群盾，補毒'],
+    ] as const;
+    const plan = planFor();
+    for (const [key, triggerSeconds, text] of expected) {
+      const compiled = plan.cues.find(c => c.eventId === event(key).id);
+      expect(compiled?.id, key).toBe(`m8s-sch-${key}-cue`);
+      expect(compiled?.text, key).toBe(text);
+      expect(compiled?.triggerMs, key).toBe(triggerSeconds * 1000);
+    }
+  });
+
+  it('omits the standalone adds Blessing exactly as the attachment does', () => {
+    expect(byId.has(attachmentOmittedEventId)).toBe(false);
+    expect(boss.events).toHaveLength(56);
+    expect(healing.events).toHaveLength(135);
+    const plan = planFor();
+    expect(plan.totalCueCount).toBe(133);
+    expect(plan.cues.some(c => c.eventId === attachmentOmittedEventId)).toBe(false);
+    // The earlier third-wave instruction remains; the attachment removes its later standalone repeat.
+    expect(event('adds-indom-blessing').cues[0].text).toBe('第三輪後不屈，仙女回來祥光');
+  });
+
+  it.each([
+    [{ position: 'H2', job: 'SCH' }, true],
+    [{ position: 'H1', job: 'SCH' }, false],
+    [{ position: 'H2', job: 'AST' }, false],
+  ] as const)('targets the first boss raidwide to H2 SCH for %j', (profile, included) => {
+    expect(byId.get('m8s-boss-pursuit-1')!.cues[0].target)
+      .toEqual({ positions: ['H2'], jobs: ['SCH'] });
+    const plan = planFor(profile, [boss.id]);
+    expect(plan.cues.some(c => c.eventId === 'm8s-boss-pursuit-1')).toBe(included);
+    expect(plan.cues).toHaveLength(included ? 56 : 55);
+  });
+
+  it('preserves stable cue IDs and chronological event and playback ordering', () => {
+    for (const track of timeline.tracks) {
+      const times = track.events.map(absoluteAtMs);
+      expect(times).toEqual([...times].sort((a, b) => a - b));
+      for (const e of track.events) expect(e.cues[0].id).toBe(`${e.id}-cue`);
+    }
+    const triggers = planFor().cues.map(c => c.triggerMs);
+    expect(triggers).toEqual([...triggers].sort((a, b) => a - b));
+  });
+
+  it('accounts for all 75 subtitle groups with the attachment omission explicit', () => {
     expect(evidence.captionInventory).toHaveLength(75);
     for (const c of evidence.captionInventory) {
-      expect(c.eventIds.length, c.id).toBeGreaterThan(0);
-      for (const id of c.eventIds) {
+      const shippedIds = c.eventIds.filter(id => id !== attachmentOmittedEventId);
+      expect(shippedIds.length, c.id).toBeGreaterThan(0);
+      for (const id of shippedIds) {
         expect(byId.has(id), `${c.id}: ${id}`).toBe(true);
         expect(refs.get(id)!.sourceCaptionIds).toContain(c.id);
       }
@@ -124,7 +218,7 @@ describe('M8S H2 Scholar: source conditions before scheduling convenience', () =
       'recited-indom': '不屈不撓之策', group: '群盾', consolation: '慰藉',
       'fairy-position': '仙女', broil: '極炎法', sprint: '衝刺',
     };
-    for (const r of evidence.actionReferences) for (const a of r.actions) {
+    for (const r of actionReferences) for (const a of r.actions) {
       expect(byId.get(r.eventId)!.name, `${r.eventId}: ${a}`).toContain(labels[a]);
     }
   });
