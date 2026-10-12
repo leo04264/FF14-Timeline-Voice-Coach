@@ -2054,7 +2054,7 @@
             {
               "id": "m8s-sch-p2-spread-prep-cue",
               "offsetMs": 0,
-              "text": "秘策回生，即刻單盾",
+              "text": "擴散大盾",
               "priority": "high",
               "enabled": true
             }
@@ -2118,7 +2118,7 @@
             {
               "id": "m8s-sch-p2-tank-care-cue",
               "offsetMs": 0,
-              "text": "綠帽一坦，有量譜連另一坦",
+              "text": "綠帽一坦，連另一坦",
               "priority": "high",
               "enabled": true
             }
@@ -2134,7 +2134,7 @@
             {
               "id": "m8s-sch-dot-p2-2-cue",
               "offsetMs": 0,
-              "text": "毒到期補",
+              "text": "補毒",
               "priority": "high",
               "enabled": true
             }
@@ -2214,7 +2214,7 @@
             {
               "id": "m8s-sch-p2-ray-consolation-1-cue",
               "offsetMs": 0,
-              "text": "慰藉一罩子，毒到期補，超流",
+              "text": "慰藉一罩子，補毒，超流",
               "priority": "high",
               "enabled": true
             }
@@ -2294,7 +2294,7 @@
             {
               "id": "m8s-sch-purge-soil-cue",
               "offsetMs": 0,
-              "text": "風震前罩子，毒到期補",
+              "text": "風震前罩子，補毒",
               "priority": "high",
               "enabled": true
             }
@@ -2310,7 +2310,7 @@
             {
               "id": "m8s-sch-purge-spread-prep-cue",
               "offsetMs": 0,
-              "text": "分攤後秘策回生單盾",
+              "text": "分攤後擴散大盾",
               "priority": "high",
               "enabled": true
             }
@@ -2326,7 +2326,7 @@
             {
               "id": "m8s-sch-purge-deployment-cue",
               "offsetMs": 0,
-              "text": "靠中展開，蓋八人",
+              "text": "靠中，蓋八人",
               "priority": "high",
               "enabled": true
             }
@@ -2374,7 +2374,7 @@
             {
               "id": "m8s-sch-dot-p2-5-cue",
               "offsetMs": 0,
-              "text": "毒到期補",
+              "text": "補毒",
               "priority": "high",
               "enabled": true
             }
@@ -2422,7 +2422,7 @@
             {
               "id": "m8s-sch-tempest-seraphism-soil-cue",
               "offsetMs": 0,
-              "text": "有量譜連坦，右台罩子附體",
+              "text": "連坦，右台罩子附體",
               "priority": "high",
               "enabled": true
             }
@@ -2454,7 +2454,7 @@
             {
               "id": "m8s-sch-dot-p2-6-cue",
               "offsetMs": 0,
-              "text": "毒到期補",
+              "text": "補毒",
               "priority": "high",
               "enabled": true
             }
@@ -2486,7 +2486,7 @@
             {
               "id": "m8s-sch-circuit-move-cue",
               "offsetMs": 0,
-              "text": "先走機制，移動毀壞",
+              "text": "先走機制",
               "priority": "high",
               "enabled": true
             }
@@ -2518,7 +2518,7 @@
             {
               "id": "m8s-sch-circuit-shield-cue",
               "offsetMs": 0,
-              "text": "最後兩次，幻光群盾，毒到期補",
+              "text": "最後兩次，幻光群盾，補毒",
               "priority": "high",
               "enabled": true
             }
@@ -2582,7 +2582,7 @@
             {
               "id": "m8s-sch-circuit-consolation-1-cue",
               "offsetMs": -1500,
-              "text": "慰藉一，連環計，毒到期補",
+              "text": "慰藉一，連環計，補毒",
               "priority": "high",
               "enabled": true
             }
@@ -2614,7 +2614,7 @@
             {
               "id": "m8s-sch-dot-p2-8-cue",
               "offsetMs": 0,
-              "text": "毒到期補",
+              "text": "補毒",
               "priority": "high",
               "enabled": true
             }
@@ -2630,7 +2630,7 @@
             {
               "id": "m8s-sch-circuit-tank-care-cue",
               "offsetMs": 0,
-              "text": "綠帽主坦，有量譜連副坦",
+              "text": "綠帽主坦，連副坦",
               "priority": "high",
               "enabled": true
             }
@@ -2662,7 +2662,7 @@
             {
               "id": "m8s-sch-lone-wolf-spread-prep-cue",
               "offsetMs": 0,
-              "text": "紅字，秘策回生單盾",
+              "text": "紅字，擴散大盾",
               "priority": "high",
               "enabled": true
             }
@@ -2678,7 +2678,7 @@
             {
               "id": "m8s-sch-lone-wolf-deployment-cue",
               "offsetMs": 0,
-              "text": "展開戰術，毒到期補",
+              "text": "補毒",
               "priority": "high",
               "enabled": true
             }
@@ -2710,7 +2710,7 @@
             {
               "id": "m8s-sch-lone-wolf-soil-union-cue",
               "offsetMs": 0,
-              "text": "坦腳下罩子，有量譜連主坦",
+              "text": "坦腳下罩子，連主坦",
               "priority": "high",
               "enabled": true
             }
@@ -2742,7 +2742,7 @@
             {
               "id": "m8s-sch-lone-wolf-shield-cue",
               "offsetMs": 0,
-              "text": "安全點群盾，毒到期補",
+              "text": "安全點群盾，補毒",
               "priority": "high",
               "enabled": true
             }
@@ -2838,7 +2838,7 @@
             {
               "id": "m8s-sch-dot-p2-11-cue",
               "offsetMs": 0,
-              "text": "毒到期補",
+              "text": "補毒",
               "priority": "high",
               "enabled": true
             }
@@ -2918,7 +2918,7 @@
             {
               "id": "m8s-sch-dot-p2-12-cue",
               "offsetMs": 0,
-              "text": "毒到期補",
+              "text": "補毒",
               "priority": "high",
               "enabled": true
             }
@@ -2982,7 +2982,7 @@
             {
               "id": "m8s-sch-final-spread-prep-cue",
               "offsetMs": 0,
-              "text": "秘策回生單盾，毒到期補",
+              "text": "擴散大盾，補毒",
               "priority": "high",
               "enabled": true
             }
