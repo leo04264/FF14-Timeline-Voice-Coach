@@ -2582,7 +2582,7 @@
             {
               "id": "m8s-sch-circuit-consolation-1-cue",
               "offsetMs": -1500,
-              "text": "慰藉一，連環計，補毒",
+              "text": "慰藉一，連環計",
               "priority": "high",
               "enabled": true
             }
